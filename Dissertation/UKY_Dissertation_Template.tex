@@ -1,0 +1,173 @@
+\documentclass[final]{ukthesis}
+%you must include these 2 packages.
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{memhfixc}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage{cite}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{upgreek}
+\usepackage{subcaption} 
+\usepackage[perpage]{footmisc}
+\usepackage{braket}
+\usepackage[numbers]{natbib}
+\usepackage{etoolbox}
+\usepackage[pdfauthor={Michael Brown},
+            pdftitle={The Title},
+            pdfsubject={The Subject},
+            pdfkeywords={Some Keywords},
+            pdfproducer={Latex with hyperref},
+            pdfcreator={latex->dvips->ps2pdf},
+            pdfpagemode=UseOutlines,
+            bookmarksopen=true,
+            letterpaper,
+            bookmarksnumbered=true,
+            backref=page,
+            hyperfootnotes=true]{hyperref}
+\makeatletter
+\patchcmd{\BR@backref}{\newblock}{\newblock(page~}{}{}
+\patchcmd{\BR@backref}{\par}{)\par}{}{}
+\makeatother
+
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\changetocdepth{3}
+\maxsecnumdepth{subsection}
+\maxsecnumdepth{subsubsection}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\bfseries\huge}
+  {\filleft\Large\chaptertitlename~\thechapter}
+  {2.5ex}
+  {{\titlerule[1.0pt]}\vspace{1.0ex}\filright}
+  [\vspace{1.0ex}{\titlerule[1.0pt]}]
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{ntheorem}
+\newtheorem{theorem}{}
+\newtheorem*{theorem-non}{}
+
+%\usepackage{fleqn}
+%\setlength{\mathindent}{30.0pt}
+
+\newlength{\figwidth}
+\setlength{\figwidth}{\textwidth}
+\sloppy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%author data
+
+\author{Michael Brown}
+
+\title{BLAH BLAH}
+
+\abstract{BLAH BLAH}
+
+\advisor{Dr. Bradley Plaster}
+\keywords{BLAH BLAH}
+\dgs{Dr. Tim Gorringe}
+%the title pages
+\frontmatter
+\maketitle
+
+\begin{dedication}
+Dedicated to BLAH BLAH
+\end{dedication}
+
+\begin{acknowledgments}
+BLAH BLAH
+\end{acknowledgments}
+
+
+\tableofcontents\clearpage
+\listoffigures\clearpage
+\listoftables\clearpage
+%----------------------------------------------
+\mainmatter
+\DoubleSpacing
+%\OnehalfSpacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+\label{ch:Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+BLAH BLAH
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Standard Model}
+\label{sec:Standard_Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+BLAH BLAH
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interactions}
+\label{sec:Ints}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+BLAH BLAH
+
+
+%Note the copyright notice at the end of each chapter.
+\copyrightnotice
+%-----------------------------------------------
+\backmatter
+%\chapter{Reference} 
+%\section*{References}
+\bibliographystyle{elsarticle-num} 
+%\bibliographystyle{plain}%Choose a bibliograhpic style
+\bibliography{NimaNouri_Dissertation}
+%\bibliography{/Users/almar/ref}
+
+\copyrightnotice
+
+\chapter{Appendix}
+
+BLAH BLAH
+
+\copyrightnotice
+
+\chapter{Vita}
+BLAH BLAH
+
+\section*{Papers in Refereed Journals}
+\begin{enumerate}
+\item BLAH BLAH
+\end{enumerate}
+
+\section*{Papers in Refereed Conference Proceedings}
+\begin{enumerate}
+
+\item BLAH BLAH
+
+\end{enumerate}
+
+\copyrightnotice
+
+\end{document}
