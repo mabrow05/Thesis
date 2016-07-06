@@ -37,3 +37,9 @@
 *.out
 *.thm
 *.toc
+*.bbl
+*.bib
+*.bcf
+*.blg
+*.pdf
+*.xml
