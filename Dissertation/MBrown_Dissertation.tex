@@ -10,8 +10,16 @@
             bookmarksopen=true,
             bookmarksnumbered=true]{hyperref}
 \usepackage{memhfixc}
-\setcounter{secnumdepth}{3}
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage[small]{titlesec}
+%\setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{3}
+
+%\changetocdepth{3}
+%\maxsecnumdepth{subsection}
+\setsecnumdepth{subsubsection}
+
 
 \usepackage[
 backend=bibtex,
@@ -73,6 +81,7 @@ style=alphabetic,
 %----------------------------------------------
 
 \mainmatter
+\OnehalfSpacing
 
 % Chapter 1
 \include{1-Introduction/Introduction}
@@ -86,6 +95,19 @@ style=alphabetic,
 \include{3-UCNAAnalysis/UCNAAnalysis}
 \copyrightnotice
 
+
+% Chapter 4
+\include{4-UCNACalibrations/UCNACalibrations}
+\copyrightnotice
+
+% Chapter 5
+\include{5-UCNAResults/UCNAResults}
+\copyrightnotice
+
+
+\appendix
+\addappheadtotoc
+\chapter{Here is an Appendix}
 
 %-----------------------------------------------
 \backmatter

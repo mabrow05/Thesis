@@ -1,0 +1,242 @@
+\chapter{UCNA Results}
+\label{ch:UCNA_Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Constructing an Asymmetry}
+
+\subsection{Decay Rate Model}
+Nominally the decay rate for polarized neutrons is expressed in terms of the spin
+vector and all possible correlations to the products. For simplicity,
+we begin by writing the decay rate only as a function of the
+electron asymmetry: 
+
+\begin{equation} \label{eq:simpleRate}
+\Gamma\left(E,\Omega\right)=C \cdot S(E) \cdot \left[ 1+A(E)\beta\cos\theta \right],
+\end{equation}
+
+\noindent where $S(E)$ is the Standard Model decay rate for unpolarized beta decay, $C$
+is a constant which encompasses anything not included in $S(E)$ and serves the 
+purpose of absorbing other constants, $A(E)$ is the 
+energy dependent electron asymmetry parameter, $\beta$ is the normal $v/c$, and 
+$\theta$ is the angle between the spin of the neutron and the electron momentum.
+
+We can also introduce a polarization, giving
+
+\begin{equation}
+\Gamma\left(E,\Omega\right)=C \cdot S(E) \cdot \epsilon \cdot \left[ 1+ P\cdot A(E)\beta\cos\theta \right],
+\end{equation}
+
+\noindent where $\epsilon$ is the loading efficiency of neutrons in this spin state which I haven't absorbed
+into the constant for reasons to be seen, and 
+$P$ is the polarization, i.e. a number between 0 and 1 (very close to 1
+in our case).
+
+At this point, assumptions can be made regarding the experimental setup utilized
+to further express the decay rate in terms of detector rates. Due to the polarization
+being aligned with the 1 T magnetic field in the decay trap, electrons emitted with
+a momentum component along the spin will spiral towards one detector, while electrons
+with a component of momentum opposite the spin will be detected in the opposite 
+detector. If we fix the z-axis in our decay rate using the static position of our
+apparatus, we can call the detector at $\theta=0$ detector
+1 and the opposite detector 2. 
+
+Now, all electrons with $0 < \theta < \pi/2$ will head towards detector 1 and those 
+with $\pi/2 < \theta < \pi$ will be directed towards detector 2. The solid angle can
+then be integrated out for each detector by integrating $\phi$ from $(0,2\pi)$ and $\cos\theta$ over the intervals given, where the integral of $\cos\theta$ over detectors
+1 and 2 yields $\pm1/2$ respectively: 
+
+\begin{equation} 
+\Gamma_{1,2}\left(E\right)= 2\pi \cdot C \cdot S(E) \cdot \epsilon \cdot \eta_{1,2}(E) \left[ 1+ P\cdot A(E)\beta \left(\pm_{1,2}\frac{1}{2}\right) \right],
+\end{equation} 
+
+\begin{equation} 
+\Gamma_{1,2}\left(E\right)=C' \cdot S(E) \cdot \epsilon \cdot \eta_{1,2}(E) \left[ 1 \pm_{1,2} P\cdot A(E) \frac{\beta}{2} \right],
+\end{equation} 
+
+\noindent with $\eta_{1,2}(E)$ signifying energy dependent electron detection efficiencies for detectors 1 and 2. 
+
+Thus far we have assumed a fixed polarization, but in UCNA we have the ability to 
+flip the spin of the neutrons prior to loading. We call these states flipper on ($+$) 
+and flipper off ($-$), denoted by $P_{\pm}$. The flipper on state introduces a negative in front of the polarization efficiency:
+
+\begin{equation}
+\Gamma_{1,2}^{\pm}\left(E\right)=C' \cdot S(E) \cdot \epsilon_{\pm} \cdot \eta_{1,2} \left[ 1 \pm_{1,2} 
+\left(\mp P_{\pm}\right) \cdot A(E) \frac{\beta}{2} \right],
+\end{equation} 
+
+\noindent where $\epsilon_{\pm}$ accounts for differing loading efficiencies for 
+different spin states.
+
+If we now assume that we are equally as good at polarizing in either spin state, we
+can say $P_{+}=P_{-}=P$:
+
+\begin{equation}
+\Gamma_{1,2}^{\pm}\left(E\right)=C' \cdot S(E) \cdot \epsilon_{\pm} \cdot \eta_{1,2} \left[ 1 \pm_{1,2} 
+\left(\mp P \right) \cdot A(E) \frac{\beta}{2} \right].
+\end{equation}
+
+
+\subsection{Super-Ratio}
+
+A simple asymmetry over some energy bin for a single 
+polarization state can be defined as
+
+\begin{equation} 
+A_{\mathrm{simple}} = \frac{\Gamma_1 - \Gamma_2}{\Gamma_1 + \Gamma_2}, 
+\end{equation}
+
+\noindent and assuming that the efficiencies $\eta_1$ and $\eta_2$ are the same one
+finds
+
+\begin{equation} \label{eq:Asimple}
+A_{\mathrm{simple}} = P \cdot A(E) \cdot \frac{\beta}{2},
+\end{equation}
+
+\noindent where $\beta$ is calculated as either the velocity associated with the energy 
+at the center of the bin or the average energy of the bin.   
+
+In reality we can't assume with certainty that the detectors are identical, but we can 
+utilize the fact that we can flip the spins to cancel differing efficiencies. If we 
+take two runs with opposite polarizations, we can define the super-ratio asymmetry in 
+some energy range as:
+
+\begin{equation}
+A_{\mathrm{SR}} = \frac{1-\sqrt{R}}{1+\sqrt{R}} ,
+\end{equation}
+\noindent where 
+\begin{equation} \label{eq:finalA_SR}
+ R = \frac{\Gamma_{1}^+ \cdot \Gamma_{2}^-}{\Gamma_{1}^- \cdot \Gamma_{2}^+}.
+\end{equation}
+
+Some algebra yields an identical expression to equation \ref{eq:Asimple},
+
+\begin{equation*}
+R = \frac{ \left[ C'  S(E)  \epsilon_{+}  \eta_{1} \left[ 1 + 
+      \left(- P \right)  A(E) \frac{\beta}{2} \right] \right] 
+\left[ C'  S(E)  \epsilon_{-}  \eta_{2} \left[ 1 - 
+    \left(+ P \right)  A(E) \frac{\beta}{2} \right] \right] }
+{ \left[ C'  S(E)  \epsilon_{-}  \eta_{1} \left[ 1 + 
+      \left(+ P \right)  A(E) \frac{\beta}{2} \right] \right] 
+\left[ C'  S(E)  \epsilon_{+}  \eta_{2} \left[ 1 - 
+    \left(- P \right)  A(E) \frac{\beta}{2} \right] \right] },
+\end{equation*}
+
+\begin{equation*}
+R = \frac{ \left[ 1 + \left(- P \right)  A(E) \frac{\beta}{2} \right] 
+\left[ 1 - \left(+ P \right)  A(E) \frac{\beta}{2} \right]  }
+{  \left[ 1 +  \left(+ P \right)  A(E) \frac{\beta}{2}  \right] 
+ \left[ 1 -  \left(- P \right)  A(E) \frac{\beta}{2} \right]},
+\end{equation*}
+
+\begin{equation*}
+R = \frac{ \left[ 1 -  P  A(E) \frac{\beta}{2} \right]^2 }
+{  \left[ 1 + P  A(E) \frac{\beta}{2}  \right]^2 },
+\end{equation*}
+
+\noindent and plugging into $A_{\mathrm{SR}}$
+
+\begin{equation*}
+  A_{\mathrm{SR}} = \frac{1-\frac{ \left[ 1 -  P  A(E) \frac{\beta}{2} \right] }
+{  \left[ 1 + P  A(E) \frac{\beta}{2}  \right] } }
+  {1+\frac{ \left[ 1 -  P  A(E) \frac{\beta}{2} \right] }
+{  \left[ 1 + P  A(E) \frac{\beta}{2}  \right] }},
+\end{equation*}
+
+\begin{equation*}
+A_{\mathrm{SR}} = \frac{2 P A(E) \frac{\beta}{2}}{2},
+\end{equation*}
+
+
+\begin{equation}
+A_{\mathrm{SR}} = P \cdot A(E) \cdot \frac{\beta}{2}.
+\end{equation}
+
+\subsection{Extracting $A_0$}
+
+The quantity of interest isn't the raw measured asymmetry, or even $A(E)$, but rather $A_0$, which is also directly proportional to $\lambda=g_A/g_V$, yielding a direct 
+measurement of the axial vector coupling constant if the CVC hypothesis is assumed. 
+
+$A_0$ manifests itself in our measured asymmetry as:
+
+\begin{equation}
+A(E) = A_0 \cdot \left( 1 + \Delta_{\mathrm{Th}}(E) \right),
+\end{equation}
+
+\noindent where $\Delta_{\mathrm{Th}}(E)$ is the energy dependent systematic shift in the
+asymmetry due to theory corrections like finite mass effects and radiative 
+corrections to name a few. The energy dependence will be dropped for neatness from here on.
+
+If one were to assume we could perfectly measure our super-ratio asymmetry, free of
+systematic effects with only statistical uncertainty, we could write down from 
+equation \ref{eq:finalA_SR}:
+
+\begin{equation}
+A_{\mathrm{SR}}^{\mathrm{pure}} = P \cdot A(E) \cdot \frac{\beta}{2}, 
+\end{equation}
+
+\begin{equation}
+A_{\mathrm{SR}}^{\mathrm{pure}} = P \cdot A_0 \cdot \left(1 + \Delta_{\mathrm{Th}} \right) \cdot \frac{\beta}{2}, 
+\end{equation}
+
+\noindent and finally
+
+\begin{equation}
+A_0 = \frac{A_{\mathrm{SR}}^{\mathrm{pure}}}{P \cdot \left( 1+\Delta_{\mathrm{Th}} \right) \cdot \beta/2}. 
+\end{equation}
+
+Obviously our measurement of the super-ratio is not free of systematic errors, so 
+this equation alone provides us with little, but we can assume that, providing our
+simulation and detector response model has been properly benchmarked against data (both conversion electron and 
+$\beta$-decay), we can characterize the systematic effects on a bin-by-bin basis
+by comparing pure simulation super-ratios to those from processed simulation data. The 
+processed simulation data refers to data which has been run through the detector 
+response model and thus treated like ``real" data. If this is the case, then we can say:
+
+\begin{equation}
+A_{\mathrm{SR}}^{\mathrm{pure}} = A_{\mathrm{SR}}^{\mathrm{Exp}} \cdot \left(1+\Delta_{\mathrm{Exp}}(E) \right).
+\end{equation}
+
+At this point it's straighforward to write down $A_0$ as a function of quantities 
+which are either measured directly, well defined in the theory, or determined via simulation studies as:
+
+\begin{equation}
+A_0 = \frac{A_{\mathrm{SR}}^{\mathrm{Exp}} \cdot \left(1 + \Delta_{\mathrm{Exp}} \right) }{P \cdot \left( 1 + \Delta_{\mathrm{Th}} \right) \cdot \beta/2},
+\end{equation}
+
+\noindent where the energy dependence on $\Delta_{\mathrm{Exp}}$ was also dropped for 
+aesthetics. The super-ratios are calculated and systematic effects applied 
+over discrete energy bins, and ultimately one can fit over a well chosen energy range to determine $A_0$.
+The optimization of this energy range is discussed elsewhere.
+
+
+%--------------------------------------------------------------------------------------------------
+\section{Systematic Correctons}
+
+\subsection{Extracting $\Delta_{\mathrm{Exp}}$}
+
+\subsubsection{Determining Relative Contributions to $\Delta_{\mathrm{Exp}}$}
+
+\subsection{$\Delta_{\mathrm{Th}}$ Contributions}
+
+\subsection{Polarimetry}
+
+\subsection{Energy Reconstruction}
+
+%--------------------------------------------------------------
+
+\section{Analysis Choices}
+
+
+
+
+
+
+
+
+
+
+
+

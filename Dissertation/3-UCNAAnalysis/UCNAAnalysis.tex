@@ -5,44 +5,192 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Designing an experiment and collecting the right data are non-trivial alone,
-but calibrating the system and analyzing the data holds the meat and bones of
-any trustworthy scientific result. The calibration is a beautiful combination
-of simulation and data manipulation which allows one to extract the energy of
-an event based solely on some electronic signal. Imagine a baseball pitcher
-throwing a fastball into a sheet, and the observer behind the sheet must
-determine the velocity of the ball from only seeing the impression the pitch
-made on the sheet. This is the task every nuclear physics experiment is faced
-with, only the baseball is a particle and the sheet is our detecotr system.
-Below we focus on the energy calibration of our apparatus.
+but interpreting the results lends itself to a whole new train of thought.
+The rest of this thesis is spent describing the details of such an
+analysis, with this chapter summarizing important aspects,
+such as terminology to be used later and the
+model used to characterize our detector response.
+
+%--------------------------------------------------------------
 
 
-\section{Simulation}
-\label{sec:Simulation}
+\section{Interpreting Detector Response}
+While all pertinent components of the experimental apparatus were included
+in the simulation, the detector response is not inherent within our
+output. You may notice from (figure with quenched energy) that this
+doesn't resemble the gaussian peaks normally seen in a detector signal.
+The gaussian-like peaks arise from finite resolution effects and
+must be put in defacto using parameters calculated
+from real data. The better we understand the conversion from a pure simulation
+energy output to a response which mimics that from our actual detectors, the
+more credence we can put in our calibration.For the time being, the model will be introduced with parameter determination addressed as it arises. 
 
-The simulation work for this thesis was completed using the Geant4 simulation software
-package. The geometry of the apparatus was duplicated to the best precision possible
-and benchmarked against data. The structure of the simulation code did not change from
-those in the previous analysis as described in \cite{mpmThesis}, although minor changes
-were made to the geometry.
+\subsection{PMT Response Model} \label{sssec:pmtModel}
+In the experiment, we have rather precise access to the energy signal via the four PMTs coupled to each scintillator. The energy manifests itself initially as a voltage
+which is converted to a digital signal. The system is designed such that this channel
+read-out is proportional to the energy seen by each PMT. The reponse of an individual
+PMT, say PMT $i$, for an event with quenched energy $E_Q$ at position $(x,y)$ 
+is given by the following: 
+
+\begin{equation} \label{eq:pmtResponse}
+ADC_i = f_i^{-1}\left(\eta_i(x,y) \cdot E_Q \right)/g_i(t) + p_i(t) + \delta p_i(t) ,
+\end{equation}
+
+\noindent where 
+\begin{align*}
+&f_i^{-1} = \textrm{inverse of the linearity relation from ADC channels to Energy,}\\
+&\eta_i(x,y) = \textrm{PMT correction factor for position dependence,} \\
+&p(t) = \textrm{mean pedestal value for PMT } i,\\
+&\delta p(t) = \textrm{randomly sampled pedestal width for PMT }i,\\
+&g(t) = \textrm{gain correction factor for PMT }i.
+\end{align*}
 
 
-\section{Gain correction and pedestal subtraction}
 
-\section{Activated Xenon}
+\section{Time-dependent Detector Corrections}
+
+Obviously the system is not immune to drifts in signals due to variations
+in time. There are many sources of such drifts, ranging from simple
+electronic noise to changes in temperature. We deal with such time-dependent
+effects using pedestal subtraction, gain correction, and constant monitoring
+of backgrounds.
+
+\subsection{Pedestal Subtraction}
+The pedestal is a measure of the inherent detector signal, or baseline, 
+upon which all other data signals lie. In terms of PMT signals, you can imagine 
+the pedestal as a non-zero $ADC$ value corresponding to zero input, or an offset.
+You might say that the experiment can be run without caring about an offset
+because the calibration will take this into account, which would be the case 
+if the pedestals were constant or if we calibrated each run against itself, but 
+neither is the case. We use a collection of subsequent runs to form our 
+calibration sets, and these sets then calibrate data which is often taken hours,
+or even days, earlier or later. Thus changing pedestals can be worrisome, and care
+must be taken to determine the pedestals and subtract them from data.
+
+To determine a pedestal, events must be chosen where there was a global trigger, but
+the pedestal of interest does not trigger. Obvious choices for these events are
+UCN monitor triggers, opposite side 2-fold PMT triggers, and high-threshold $^{207}$Bi
+pulser triggers. Once there is a global trigger, the TDC for the PMT of interest can 
+be cut on to be sure there was no individual trigger and the events can be 
+histogrammed. The mean of this peak can be taken as the average pedestal over whatever
+time period the data was taken (nominally a single run), and this value can be 
+subtracted from every subsequent reading of this PMT.
+
+One interesting thing to note is that the discriminators for all PMTs are housed 
+together, which leads to correlations between the PMT signals. In a perfect world, 
+each PMT would have one pedestal, and that pedestal wouldn't care about other PMTs.
+Instead, what we see in figure \ref{fig:peds_types} is a pedestal dependence on what 
+type of events are chosen to construct the pedestal. 
+
+\begin{figure}[h] \label{fig:peds_types}
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Pedestal values determined using different types of events to illustrate
+the cross-talk between PMTs.}
+\end{figure}
+
+Talk about why we choose the same events which go into the threshold function...
+
+
+\subsection{Gain Correction}
+
+\subsection{Time-dependent backgrounds}
+Here I just want to elude to the fact that these are taken into account in
+the super-ratio.
+
+%----------------------------------------------------
+
+\section{Position Dependence}
+
+\subsection{Activated Xenon}
+
+
+\subsection{Position Maps}
+
+%----------------------------------------------------------
+
+\section{Trigger Thresholds}
+An integral piece of the PMT Response Model from section \ref{sssec:pmtModel} 
+is the sampling of the threshold functions to determine whether or not a detector
+triggered. I'll repeat here that a 2-fold PMT trigger from one of the two electron
+detectors is required to create a global electron trigger from the DAQ. In simulation
+we only see the energy deposition as a whole from an individual scintillator, and then
+we model the four-pmt response for that side. At low energies, this response is 
+intimately entwined with the trigger threshold.
+
+\subsection{General Model for Trigger Determination}
+Obviously one must rely on data to determine the trigger thresholds of a detector, since
+the non-step-functional shape is directly related to the stochastic nature of the detector and  
+electronics. If we knew with infinite precision and accuracy the signal produced in a detector
+and could read out the response in real time with infinite precision, there wouldn't be much
+need for a model to estimate trigger probabilities. Instead, to understand the trigger threshold, a functional 
+form for the probability of a trigger need be determined using real data which may or 
+may not have created a trigger in a detector/PMT. 
+
+The most important part of determining the trigger threshold shape for any detector is the 
+availability of data which was collected no matter if the detector or component (PMT) produced 
+a trigger. If such a subset of data is available and plentiful, it is straightforward to estimate
+the trigger probability by binning the data in some unit proportional to energy (whether in energy
+or something like it isn't important) and taking the bin-by-bin ratio of those events that triggered to 
+all of the events in the sample. 
+
+The not-so transparent part of the trigger probability comes when calculating the error of the estimate in 
+each bin, since the numerator and denominator in the ratio are correlated. But as demonstrated in \cite{casadei2009efficiency}, the ROOT analysis framework handles efficiency errors effectively via use of Bayesian Statistics. 
+
+PUT IN DISCUSSION OF BAYESIAN STATISTICS FOR EACH BIN AND ASYMMETRIC ERROR BARS
+AND CONFIDENCE LIMITS.
+
+
+
+\subsection{Determining the Trigger Probability}
+One option for determining the trigger probability function (and probably the 
+most straightforward) is to calculate the trigger probability for an entire detector as 
+a whole as a function of the energy deposited by an event. What you get is a function that
+provides the probability that an event of energy $ E_i $ produces some sort of trigger, either
+2-fold, 3-fold, or 4-fold, in that detector. Initially this method was used for sake of 
+simplicity, and it produced reasonable agreement between simulation and data, but there is one 
+glaring concern: Determining this trigger function from data requires that the data be calibrated 
+first. At first glance this may not seem like much of an issue, but the calibration hinges upon the 
+simulated peaks at low energy, which in turn rely on the trigger functions. This cyclical dependence
+hinders one from truly understanding any discrepancy between simulation and data at low energies, which 
+is exactly the reason this method was abandoned.  
+
+\subsection{Trigger Data Selection}
+
+
+%-----------------------------------------------------------
+
+
+\section{Calibration Overview}
+
+\subsection{PMT Calibration}
+
 \subsection{Wirechamber Calibration}
 
-Blah Blah
+ 
+\section{Backscattering}
 
-\subsection{Position Dependence}
+Show the schematic of the different backscattering types. Also explain the 
+angular dependence, maybe even show plots of backscattering types vs energy 
+and angle from simulation.
 
-Blah Blah
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Different event types as defined by the type of backscattering.}
+\end{figure}
 
-\subsection{Trigger Thresholds}
+\section{Data Structure}
 
-\section{Energy Calibration}
-\subsection{Electron Conversion Sources}
-\subsection{Linearity Curves}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Schematic of the Octet run sequence.}
+\end{figure}
 
+Discuss the use of the octet analysis
+
+\section{Polarimetry}
 
 
 

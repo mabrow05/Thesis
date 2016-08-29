@@ -1,0 +1,115 @@
+\chapter{UCNA Analysis}
+\label{ch:UCNA_Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Detector calibrations are a beautiful combination
+of simulation and data manipulation which allows one to extract the energy of
+an event based solely on some electronic signal. Imagine a baseball pitcher
+throwing a fastball into a sheet, and the observer behind the sheet must
+determine the velocity of the ball from only seeing the impression the pitch
+made on the sheet. This is the task every nuclear physics experiment is faced
+with, only the baseball is a particle and the sheet is our detecotr system.
+Below we focus on the energy calibration of our apparatus.
+
+%--------------------------------------------------------------
+
+\section{Simulation}
+\label{sec:Simulation}
+
+The simulations and application of the
+detector response model provide a suitable starting
+point for discussing the analysis, as the calibration of the data hinges
+strongly on the simulation results. There is a notable dependence of the
+response model which depends on data, but this will be addressed as needed
+when describing the calibration.
+
+The simulation work for this thesis was completed
+using the Geant4 simulation software package. The geometry of the
+apparatus was duplicated
+to the best precision possible and benchmarked against data after
+the detector response model was applied. The structure
+of the simulation code did not change from those in the previous analysis
+as described in \cite{mpmThesis}, although minor changes were
+made to the geometry to reflect real adjustments to the experimental
+apparatus.
+
+\subsection{Input}
+\subsubsection{Conversion Electron Sources}
+make sure to show figures or a table with the conversion lines
+\subsubsection{Activated Xenon}
+\subsubsection{$\beta$-decay Electrons}
+
+\subsection{Output}
+The Geant4 simulation provides adequate trajectory tracking along with
+the energy deposition along these tracks. Obviously we have access to far
+more information in the simulation than we do with actual data, so the first
+task is to construct observables related to those coming from the detectors.
+
+\subsubsection{Energy Deposition}
+By tallying the energy deposited along an entire track within some subset
+of the geometry, one can reconstruct the energy deposited anywhere within
+the SCS. The areas of highest interest for the sake of analysis are the
+wirechambers and the scintillators. The energy deposited in the scintillator
+is of utmost importance, as the analysis can be completed without knowledge
+of the energy deposition in the wirechamber, where determination of energy
+deposition is only used for type II/III separation. From here on,
+the energy lost in the scintillator, as determined from simulation, will be
+referred to as $E_{dep}$. This is the maximum energy which could be detectable
+for an event in the data if no inconspicuous energy losses existed.
+
+\subsubsection{Quenched Energy}
+Show Birk's law. Talk about MPM and jianglai's analysis to determine
+quenching parameters. Then talk about the modification using BradF's note
+and show the shift to the functional form. Also show a figure which shows
+the quenched energy vs Edep.
+
+\subsubsection{Position of Detector hits}
+Talk briefly of importance of position dependence, and maybe address
+the way the position for the wirechamber and scintillator are calculated.
+I believe this was a weighted average of the track positions where the
+weights are given by the energy deposition.
+
+\subsection{Simulating Detector Response}
+While all pertinent components of the experimental apparatus were included
+in the simulation, the detector response is not inherent within our
+output. You may notice from (figure with quenched energy) that this
+doesn't resemble the gaussian peaks normally seen in a detector signal.
+The gaussian-like peaks arise from finite resolution effects and
+must be put in defacto using parameters calculated
+from real data. The better we understand the conversion from a pure simulation
+energy output to a response which mimics that from our actual detectors, the
+more credence we can put in our calibration.For the time being, the model will be introduced with parameter determination addressed as it arises. 
+
+\subsubsection{Application of the PMT Response Model}
+
+Recall from section \ref{sssec:pmtModel} that we can relate a digital signal
+in a PMT, $ADC_i$, to it's light output using Equation \ref{eq:pmtResponse}.
+By reverse engineering this process, we can use a purely simulated $E_Q$ and
+simulate an ADC channel, so that we can process the simulated data in
+exactly the same way we process real data.
+
+
+
+\subsubsection{$E_{true}$ reconstruction}
+%----------------------------------------------------------
+
+\subsection{Wirechamber Calibration}
+
+Blah Blah
+
+%----------------------------------------------------------
+
+\section{Energy Calibration}
+\subsection{Electron Conversion Sources}
+\subsection{Linearity Curves}
+\subsection{PMT Resolution}
+
+
+
+
+
+
+
+
