@@ -68,7 +68,8 @@ or even days, earlier or later. Thus changing pedestals can be worrisome, and ca
 must be taken to determine the pedestals and subtract them from data.
 
 To determine a pedestal, events must be chosen where there was a global trigger, but
-the pedestal of interest does not trigger. Obvious choices for these events are
+the PMT of interest does not trigger and preferably there is no photon signal
+whatsoever in the scintillator on that side. Obvious choices for these events are
 UCN monitor triggers, opposite side 2-fold PMT triggers, and high-threshold $^{207}$Bi
 pulser triggers. Once there is a global trigger, the TDC for the PMT of interest can 
 be cut on to be sure there was no individual trigger and the events can be 
@@ -79,18 +80,48 @@ subtracted from every subsequent reading of this PMT.
 One interesting thing to note is that the discriminators for all PMTs are housed 
 together, which leads to correlations between the PMT signals. In a perfect world, 
 each PMT would have one pedestal, and that pedestal wouldn't care about other PMTs.
-Instead, what we see in figure \ref{fig:peds_types} is a pedestal dependence on what 
-type of events are chosen to construct the pedestal. 
+Instead, what we see in figure \ref{fig:peds_types} is that the pedestals
+are substantially dependent on the type of events that are chosen 
+to construct the pedestal. 
+
+The influence of event type on pedestal values heavily influenced the decision made
+to eliminate the UCN monitor events and only use $^{207}$Bi pulser event 
+triggers to construct the pedestals in this analysis. While the best 
+choice would be UCN monitor events due to there being zero signal 
+in the electronics box housing the PMT electronics, these aren't readily 
+available for most source runs due to beam being off, which could lead to 
+us introducing pedestal drifts based solely on the events chosen to 
+construct them. To further reduce correlations in signals across PMTs, the pulser
+events were also limited to those coming from opposite side PMTs.
+Consistency amongst all runs 
+is key, mainly due to the fact that we are using pedestal subtracted source runs
+to calibrate the detectors, and then we are applying these calibrations to the 
+$\beta$-decay data. A pedestal shift of ~5-10 channels maps to an offset of roughly
+~5-10 keV as well as the PMTs show a 1:1 correspondence between ADC and keV on 
+average. 
 
 \begin{figure}[h] \label{fig:peds_types}
 \centering
 \includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
-\caption{Pedestal values determined using different types of events to illustrate
-the cross-talk between PMTs.}
+\caption{Pedestal values for a $\beta$-decay run determined using different 
+types of events to illustrate the cross-talk between PMTs. (UCN Monitors, 
+Bi triggers, Opposite side triggers, same side 2-fold triggers. Also shown 
+is the dependence of the pedestal on which PMT triggers in the Bi Pulser. NOTE:
+Choose West PMT4 in an early 2012/2013 beta run) }
 \end{figure}
 
-Talk about why we choose the same events which go into the threshold function...
+\begin{figure}[h] \label{fig:peds_timeDep}
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Pedestal means as a function of run number. Error bars are the
+RMS of the measured pedestal. }
+\end{figure}
 
+\begin{figure}[h] \label{fig:peds_timeDep}
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Example pedestals from all 8 PMTs}
+\end{figure}
 
 \subsection{Gain Correction}
 
@@ -118,45 +149,97 @@ we only see the energy deposition as a whole from an individual scintillator, an
 we model the four-pmt response for that side. At low energies, this response is 
 intimately entwined with the trigger threshold.
 
-\subsection{General Model for Trigger Determination}
+\subsection{General Model for Trigger Determination} \label{ssec:genTrigModel}
 Obviously one must rely on data to determine the trigger thresholds of a detector, since
-the non-step-functional shape is directly related to the stochastic nature of the detector and  
-electronics. If we knew with infinite precision and accuracy the signal produced in a detector
-and could read out the response in real time with infinite precision, there wouldn't be much
-need for a model to estimate trigger probabilities. Instead, to understand the trigger threshold, a functional 
+the non-step-functional shape is directly related to the stochastic nature 
+of the detector and electronics. If we knew with infinite precision and 
+accuracy the signal produced in a detector
+and could read out the response in real time with infinite precision, 
+there wouldn't be muchneed for a model to estimate trigger probabilities. 
+Instead, to understand the trigger threshold, a functional 
 form for the probability of a trigger need be determined using real data which may or 
 may not have created a trigger in a detector/PMT. 
 
-The most important part of determining the trigger threshold shape for any detector is the 
-availability of data which was collected no matter if the detector or component (PMT) produced 
-a trigger. If such a subset of data is available and plentiful, it is straightforward to estimate
-the trigger probability by binning the data in some unit proportional to energy (whether in energy
-or something like it isn't important) and taking the bin-by-bin ratio of those events that triggered to 
-all of the events in the sample. 
+The most important part of determining the trigger threshold shape for 
+any detector is the availability of data which was collected no matter if 
+the detector or component (PMT) produced a trigger. If such a subset of 
+data is available and plentiful, it is straightforward to estimate
+the trigger probability by binning the data in some unit proportional to 
+energy (whether in energy or something like it isn't important) and taking 
+the bin-by-bin ratio of those events that triggered to all of the events in the 
+sample. Plotting these ratios as a function of whatever metric was chosen tells 
+you how probable an event of some value is to create a trigger.
+Once you have mapped this probability, you can then sample these curves within 
+simulation to apply your true trigger threshold to simulated data.
 
-The not-so transparent part of the trigger probability comes when calculating the error of the estimate in 
-each bin, since the numerator and denominator in the ratio are correlated. But as demonstrated in \cite{casadei2009efficiency}, the ROOT analysis framework handles efficiency errors effectively via use of Bayesian Statistics. 
+The not-so transparent part of the trigger probability comes when calculating the error of the estimate in each bin, since the numerator and denominator in the ratio are correlated. But as demonstrated in \cite{casadei2009efficiency}, the ROOT analysis framework handles efficiency errors effectively via use of Bayesian Statistics. 
 
 PUT IN DISCUSSION OF BAYESIAN STATISTICS FOR EACH BIN AND ASYMMETRIC ERROR BARS
 AND CONFIDENCE LIMITS.
 
-
+\subsection{Trigger Data Selection}
+As mentioned before, the data used for constructing trigger thresholds must not be 
+biased towards triggering the PMT of interest. Thus that PMT must not be a mandatory 
+component of the global trigger for that event, so care must be taken to choose only 
+events which would trigger regardless of the behavior of the PMT of interest. One
+other stipulation placed on these events is that they have an opportunity to 
+deposit energy in a particular scintillator. The best choice of events which 
+satisfy these conditions are those which have a two-fold trigger on the opposite side 
+and then backscatter and those which trigger at least three PMTs on the side of 
+interest. 
 
 \subsection{Determining the Trigger Probability}
 One option for determining the trigger probability function (and probably the 
 most straightforward) is to calculate the trigger probability for an entire detector as 
-a whole as a function of the energy deposited by an event. What you get is a function that
-provides the probability that an event of energy $ E_i $ produces some sort of trigger, either
-2-fold, 3-fold, or 4-fold, in that detector. Initially this method was used for sake of 
-simplicity, and it produced reasonable agreement between simulation and data, but there is one 
-glaring concern: Determining this trigger function from data requires that the data be calibrated 
-first. At first glance this may not seem like much of an issue, but the calibration hinges upon the 
-simulated peaks at low energy, which in turn rely on the trigger functions. This cyclical dependence
-hinders one from truly understanding any discrepancy between simulation and data at low energies, which 
-is exactly the reason this method was abandoned.  
+a whole as a function of the energy deposited by an event. What you get is a 
+function that provides the probability that an event of energy $ E_i $ 
+produces some sort of trigger, either 2-fold, 3-fold, or 4-fold, in that 
+detector. Initially this method was used for sake of simplicity, and it produced 
+reasonable agreement between simulation and data, but there is one 
+glaring concern: Determining this trigger function from data requires that the data be 
+calibrated first. At first glance this may not seem like much of an issue, but the 
+calibration hinges upon the 
+simulated peaks at low energy, which in turn rely on the trigger functions. This 
+cyclical dependence hinders one from truly understanding any discrepancy between 
+simulation and data at low energies, which is exactly the reason this method was 
+abandoned.  
 
-\subsection{Trigger Data Selection}
+Instead, similarly to previous analyses, we decided to calculate the trigger
+function on a PMT-by-PMT basis as a function of ADC channels above threshold. This
+encompasses a true characteristic of each component of the detector rather than some
+average effect as seen by a detector package, which is what the aforementioned 
+method produces. A typical trigger threshold is seen in figure \ref{fig:trigger_thresh}.
+As illustrated in section \ref{ssec:genTrigModel}, the ratio of triggering events
+to all events was taken in each ADC bin and then fit using the method described
+in the following section.
+  
 
+\begin{figure}[h] \label{fig:trigger_thresh}
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Typical trigger threshold functions with Bayesain errors 
+applied. }
+\end{figure}
+
+\subsubsection{Functional Fit of the Trigger Threshold}
+
+\subsubsection{Effects of cross-talk on trigger thresholds}
+
+A subset of runs in the 2012/2013 data set show severe correlation between 
+which PMTs cause the global trigger and the side for which the trigger thresholds 
+are being determined. In short, an electron backscattered from the primary trigger
+side samples a very different trigger threshold when impinging on the opposite detector 
+than it would have if it only struck the opposite detector. This is depicted 
+in figure \ref{fig:evtTypeTriggers}, where we see ~(insert number)
+ADC shift in the $P=0.5$ ADC channel for backscattering events which triggered the
+opposite detector and those which only triggered the detector of interest.
+
+\begin{figure}[h] \label{fig:evtTypeTriggers}
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Trigger threshold functions for Type 0/2/3 events vs. Type 1 events for the 
+West detector in an early 2012/2013 beta decay run. }
+\end{figure}
 
 %-----------------------------------------------------------
 
