@@ -1330,14 +1330,14 @@ which consists of eight $\beta$-decay runs, eight background runs, and eight dep
 runs, with the spin-state changing for each pair of runs so that there are
 four runs from each $\pm$ spin state.
 The details of this method can be found in \cite{plaster2012}. This method allows for
-construction of octet asymmetries (utilizing all eight background subtracted
+construction of three different super-ratio asymmetries: octet asymmetries (utilizing all eight background subtracted
 $\beta$-decay runs in the asymmetry), quartet asymmetries (using four consecutive spin-flipped
 runs in the asymmetry), and pair asymmetries (using two consecutive spin-flipped runs). We use
-the octet asymmetries in the extraction of the asymmetry, as this structure lends to more
+the octet asymmetries in the extraction of the final asymmetry, as this structure lends to more
 efficient cancellation of time varying backgrounds. Figure \ref{fig:RawAsymms} shows the
 raw asymmetries extracted from all three types of data groups. The results are consistent
 within statistical uncertainties, and the $\xi^2/\textrm{NDF}$ indicates the fluctuations
-are statistical.
+are statistical. 
 
 \begin{figure}
   \centering
@@ -1350,6 +1350,24 @@ are statistical.
 \end{figure}
 
 \subsubsection{Analysis Choices}
+
+We have identified four detected electron event types thus far in this analysis, namely Type 0, 1,
+2, and 3. In summary, Type 0 events are those which are identified as single detector events, meaning they
+trigger on detector package only, and they make up almost 95\% of detected events. Types 1, 2, and 3
+are identified as backscattering events, with Type 1 events triggering both scintillators, while 2 and 3
+trigger both wirechambers but only one scintillator. Based on solely trigger logic, a Type 2 cannot be
+distinguished from a Type 3, but a delineation can be made between them given their energy deposition
+in the MWPC. See section \ref{sec:Backsc} for a detailed description of the backscattering events and
+the MWPC calibration used to separate them.
+
+Inclusion of any subset of the aforementioned event types in the analysis produces different
+asymmetries, where any choices that
+have like event types are correlated at the level of the fractional statistical uncertainty of the like
+types. One may also decide to include the Type 2/3 events as unseparated or separated by the MWPC energy
+cut, giving yet another set of analysis choices. For this analysis, we used all event types with the
+Type 2 and Type 3 separated. This choice includes maximal statistics, while separating the Type 2/3 events
+requires smaller systematic corrections and uncertainties. 
+
 
 \begin{figure}
   \centering

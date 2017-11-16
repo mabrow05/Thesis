@@ -1,5 +1,5 @@
-\chapter{UCNA Analysis}
-\label{ch:UCNA_Analysis}
+\chapter{UCNA Calibrations}
+\label{ch:UCNA_Calibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,7 +10,7 @@ an event based solely on some electronic signal. Imagine a baseball pitcher
 throwing a fastball into a sheet, and the observer behind the sheet must
 determine the velocity of the ball from only seeing the impression the pitch
 made on the sheet. This is the task every nuclear physics experiment is faced
-with, only the baseball is a particle and the sheet is our detecotr system.
+with, only the baseball is a particle and the sheet is our detector system.
 Below we focus on the energy calibration of our apparatus.
 
 %--------------------------------------------------------------
@@ -22,7 +22,7 @@ The simulations and application of the
 detector response model provide a suitable starting
 point for discussing the analysis, as the calibration of the data hinges
 strongly on the simulation results. There is a notable dependence of the
-response model which depends on data, but this will be addressed as needed
+response model on data, but this will be addressed as needed
 when describing the calibration.
 
 The simulation work for this thesis was completed
@@ -33,13 +33,13 @@ the detector response model was applied. The structure
 of the simulation code did not change from those in the previous analysis
 as described in \cite{mpmThesis}, although minor changes were
 made to the geometry to reflect real adjustments to the experimental
-apparatus.
+apparatus. 
 
 \subsection{Input}
 \subsubsection{Conversion Electron Sources}
 make sure to show figures or a table with the conversion lines
 \subsubsection{Activated Xenon}
-\subsubsection{$\beta$-decay Electrons}
+\subsubsection{$\beta$-decay Electrons} \label{sssec:betaSim}
 
 \subsection{Output}
 The Geant4 simulation provides adequate trajectory tracking along with
@@ -80,17 +80,27 @@ The gaussian-like peaks arise from finite resolution effects and
 must be put in defacto using parameters calculated
 from real data. The better we understand the conversion from a pure simulation
 energy output to a response which mimics that from our actual detectors, the
-more credence we can put in our calibration.For the time being, the model will be introduced with parameter determination addressed as it arises. 
+more credence we can put in our calibration. For the time being, the model will
+be introduced with parameter determination addressed as it arises. 
 
-\subsubsection{Application of the PMT Response Model}
+\subsubsection{PMT Response Model}
 
 Recall from section \ref{sssec:pmtModel} that we can relate a digital signal
-in a PMT, $ADC_i$, to it's light output using Equation \ref{eq:pmtResponse}.
+in a PMT, $ADC_i$, to the energy deposited in the scintillator
+using Equation \ref{eq:EnergyResponse}.
 By reverse engineering this process, we can use a purely simulated $E_Q$ and
 simulate an ADC channel, so that we can process the simulated data in
-exactly the same way we process real data.
+exactly the same way we process real data. The following equation comes directly
+from \ref{eq:EnergyResponse}:
 
+\begin{equation} \label{eq:pmtResponse}
+ADC_i = f_i^{-1}\left(\eta_i(x,y) \cdot E_{Q} \right)/g_i(t) + p_i(t) + \delta p_i(t) 
+\end{equation}
 
+This relationship is somewhat incomplete though, as it does not address the
+stochastic nature of the PMTs themselves. Let's rewrite ************To properly incorporate this into our
+model we must utilize the fact that a PMT consists of several dynodes, each of which
+introduces stochasticity into the final voltage read out. 
 
 \subsubsection{$E_{true}$ reconstruction}
 %----------------------------------------------------------

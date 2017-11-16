@@ -1,7 +1,11 @@
 \documentclass[final]{ukthesis}
 %you must include these 2 packages.
+\usepackage{amsmath}
+
 \usepackage[pdfauthor={Michael A-P Brown},
-            pdftitle={The UCNA Experiment: Analysis of the 2011-2013 Data},
+  pdftitle={Determination of the neutron $\beta$-decay
+    correlation coefficient $A_0$ using parity violation in
+    neutron $\beta$-decay},
             pdfsubject={The Subject},
             pdfkeywords={Some Keywords},
             pdfproducer={Latex with hyperref},
@@ -10,8 +14,9 @@
             bookmarksopen=true,
             bookmarksnumbered=true]{hyperref}
 \usepackage{memhfixc}
+\usepackage{float}
 \usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{subfig}
 %\usepackage[small]{titlesec}
 %\setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{3}
@@ -33,7 +38,8 @@ style=alphabetic,
 \begin{document}
 %author data
 \author{Michael A-P Brown}
-\title{The UCNA Experiment: Analysis of the 2011-2013 Data}
+\title{Determination of the neutron beta-decay asymmetry
+    parameter $A_0$ using polarized ultracold neutrons}
 \abstract{
   The UCNA Experiment at the Los Alamos Neutron Science Center (LANSCE) is the first measurement
   of the $\beta$-decay asymmetry parameter $A_0$ using polarized ultracold neutrons (UCN). $A_0$,
@@ -81,6 +87,7 @@ style=alphabetic,
 %----------------------------------------------
 
 \mainmatter
+%\DoubleSpacing
 \OnehalfSpacing
 
 % Chapter 1
@@ -104,10 +111,10 @@ style=alphabetic,
 \include{5-UCNAResults/UCNAResults}
 \copyrightnotice
 
+% Appendix 1
+\include{Appendix1_magField/Append1}
+\copyrightnotice
 
-\appendix
-\addappheadtotoc
-\chapter{Here is an Appendix}
 
 %-----------------------------------------------
 \backmatter

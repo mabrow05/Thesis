@@ -23,17 +23,19 @@ The gaussian-like peaks arise from finite resolution effects and
 must be put in defacto using parameters calculated
 from real data. The better we understand the conversion from a pure simulation
 energy output to a response which mimics that from our actual detectors, the
-more credence we can put in our calibration.For the time being, the model will be introduced with parameter determination addressed as it arises. 
+more credence we can put in our calibration. For the time being, the model
+will be introduced with parameter determination addressed as it arises. 
 
-\subsection{PMT Response Model} \label{sssec:pmtModel}
-In the experiment, we have rather precise access to the energy signal via the four PMTs coupled to each scintillator. The energy manifests itself initially as a voltage
+\subsection{Energy Response} \label{sssec:EnergyResponse}
+In the experiment, we have rather precise access to the energy signal via the
+four PMTs coupled to each scintillator. The energy manifests itself initially as a voltage
 which is converted to a digital signal. The system is designed such that this channel
-read-out is proportional to the energy seen by each PMT. The reponse of an individual
-PMT, say PMT $i$, for an event with quenched energy $E_Q$ at position $(x,y)$ 
+read-out is proportional to the energy seen by each PMT. The visible energy $E_{vis}$ deposited
+in the scintillator as seen by a single PMT, say PMT $i$, for an event at position $(x,y)$ 
 is given by the following: 
 
-\begin{equation} \label{eq:pmtResponse}
-ADC_i = f_i^{-1}\left(\eta_i(x,y) \cdot E_Q \right)/g_i(t) + p_i(t) + \delta p_i(t) ,
+\begin{equation} \label{eq:EvisResponse}
+E_{vis} = \eta^-1(x,y) \cdot f_i\left( \left( ADC_i - (p_i(t) + \delta p_i(t))\right) \cdot g_i(t) \right)  ,
 \end{equation}
 
 \noindent where 
@@ -45,6 +47,12 @@ ADC_i = f_i^{-1}\left(\eta_i(x,y) \cdot E_Q \right)/g_i(t) + p_i(t) + \delta p_i
 &g(t) = \textrm{gain correction factor for PMT }i.
 \end{align*}
 
+This expression is exact in the case where all values are determined with infinite
+precision and without stochastic fluctuations. Unfortunately, each parameter on the right
+side of this equation is either stochastic in itself (as is the ADC response), or it was
+determined via observation of a stochastic process (the gain and pedestal). Thus what we
+really resolve is an approximation to the energy, which comes with some uncertainty. This
+uncertainty will be addressed later.
 
 
 \section{Time-dependent Detector Corrections}
@@ -186,7 +194,8 @@ other stipulation placed on these events is that they have an opportunity to
 deposit energy in a particular scintillator. The best choice of events which 
 satisfy these conditions are those which have a two-fold trigger on the opposite side 
 and then backscatter and those which trigger at least three PMTs on the side of 
-interest. 
+interest, which guarantees that the scintillator would have triggered with or without 
+whatever PMT one is interested in.	
 
 \subsection{Determining the Trigger Probability}
 One option for determining the trigger probability function (and probably the 
@@ -251,7 +260,7 @@ West detector in an early 2012/2013 beta decay run. }
 \subsection{Wirechamber Calibration}
 
  
-\section{Backscattering}
+\section{Backscattering} \label{sec:backscattering}
 
 Show the schematic of the different backscattering types. Also explain the 
 angular dependence, maybe even show plots of backscattering types vs energy 
@@ -273,7 +282,7 @@ and angle from simulation.
 
 Discuss the use of the octet analysis
 
-\section{Polarimetry}
+\section{Polarimetry} \label{sec:polarimetry}
 
 
 
