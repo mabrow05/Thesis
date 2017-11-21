@@ -712,19 +712,14 @@ all event types indicates the energy dependent Monte Carlo corrections are self-
   \label{fig:MCasymm}
 \end{figure}
 
-\subsection{Theory Corrections, $\Delta_{\mathrm{Th}}$} \label{ssec:deltaTh}
+\subsection{Theory Modifications, $\Delta_{\mathrm{Th}}$} \label{ssec:deltaTh}
 
 The $\beta$-decay asymmetry parameter of interest, $A_0$, assumes an infinitely massive,
 neutral proton in the final state and electrons that, once emitted in the decay, can be
 detected with precisely their emission energy and direction. This is not the practical scenario
 though, as the proton has charge and finite mass, and the electron is immersed in the coulomb
 field of the proton. Taking such non-ideal conditions into consideration means relying on
-theoretical corrections to the asymmetry we measure in order to extract $A_0$.
-
-The theory corrections come in two flavors: recoil-order corrections to address the finite
-mass of the final state proton and radiative corrections to remove effects from the electron
-interacting with the field of the proton.
-
+theoretical modifications to the asymmetry we measure in order to extract $A_0$.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.7]{5-UCNAResults/TheoryUncert2011.pdf} 
@@ -733,9 +728,59 @@ interacting with the field of the proton.
   \label{fig:theoryCorr}
 \end{figure}
 
-\subsubsection{Recoil-order Corrections}
+The theoretical effects come in two flavors: recoil-order modifications to address the finite
+mass of the final state proton and radiative corrections to remove effects from the electron
+interacting with the field of the proton. The energy dependence of each
+can be seen in \ref{fig:theoryCorr}.
 
-\subsubsection{Radiative Corrections}
+\subsubsection{Recoil Order Modification}
+
+The recoil order and weak magnetism modification
+applied are those from Bilen'ki\u\i \textit{et al.}
+\cite{bilenkii1960} and further upheld by Wilkinson \cite{wilkinson1982}. 
+The correction takes the form 
+%
+\begin{multline}
+  A(E) = A_0 \bigg(1+ \frac{\lambda+\mu}{\lambda\left(1-\lambda\right)\left(1+3\lambda^2\right)}\frac{1}{M}
+  \Big(\lambda^2+\frac{2}{3}\lambda-\frac{1}{3}\Big)E_0 \\
+  -\Big(\lambda^3+3\lambda^2+\frac{5}{3}\lambda-\frac{1}{3}\Big)E
+  +\Big(2\lambda^2\left(1-\lambda\right)\Big)\frac{1}{E}\bigg),
+\end{multline}
+%
+\noindent where E is the electron kinetic energy, $E_0$ is
+the endpoint energy of the electron, $\lambda\equiv\frac{g_A}{g_V}$,
+and $\mu\equiv\mu_p-\mu_n$. The correction is reported at the 0.001\%
+level on $\lambda$, or roughly 0.004\% on $A_0$ \cite{wilkinson1982}.
+
+The correction to the asymmetry, when integrated over the analysis window
+and weighted by statistics, is -1.68(3)\% and -1.67(3)\% for 2011-2012 and
+2012-2013 respectively. The uncertainties are conservative and carried over
+from the previous analysis.
+
+It should be noted that the formalism above includes only the usual vector and
+axial vector terms in the hadronic current. Other work form Gardner and Zhang
+\cite{gardner2001} includes all potential interaction terms, including
+BSM couplings. The results agree with those from Wilkinson when the BSM terms
+are neglected.
+
+\subsubsection{Radiative Modification}
+
+Sirlin first calculated the $O(\alpha)$ corrections to the unpolarized neutron
+$\beta$-decay electron energy spectrum \cite{sirlin1967}, followed a few years
+later by Shann's extension of the formalism for polarized neutrons. The asymmetry is
+modified by the amount $\frac{\alpha}{2\pi }(h-g)$, where
+%
+\begin{multline}
+  h-g = 4 \bigg( \frac{E_0-E}{3E\beta^2} \bigg)
+  \bigg( \frac{\tanh^{-1}\beta}{\beta}-1 \bigg)
+  \bigg(1-\beta^2+ \frac{E_0-E}{8E} \bigg) \\
+  + \frac{\tanh^{-1}\beta}{\beta}
+  \bigg( 2-2\beta^2-\frac{\left(E-E_0\right)^2}{6E^2} \bigg),
+\end{multline}
+%
+\noindent $E$ and $E_0$ are the electron energy and endpoint energy, and
+$\beta\equiv v/c$. The correction over the analysis energy window
+is -0.12(5)\% for both 2011-2012 and 2012-2013. 
 
 \subsection{Polarimetry Correction}
 
@@ -886,6 +931,71 @@ to the final uncertainty on the asymmetry.
 
 \subsection{Energy Reconstruction} \label{ssec:energyRecon}
 
+The energy enters the calculation of the asymmetry in the $\beta$ term (speed of the
+electron) in equation \ref{eq:A_SR}, and thus it is essential to assess how well
+we can reconstruct the initial energy of an electron. The obvious choice for determining
+the efficacy of our energy calibration is to use the calibration peaks themselves and
+compare to Monte Carlo simulation. We apply the calibrations from
+chapter \ref{ch:UCNA_Calibrations} to the data source peaks in all
+individual source runs,
+which maps the detector response to a reconstructed peak energy ($E_{\mathrm{recon}}^{\mathrm{data}}$),
+and then we apply our
+detector response model to the simulation peaks and extract a Monte Carlo reconstructed peak energy
+($E_{\mathrm{recon}}^{\mathrm{MC}}$). We can then calculate a residual for every single run (and each
+conversion peak within that run) via
+$Residual = E_{\mathrm{recon}}^{\mathrm{data}} - E_{\mathrm{recon}}^{\mathrm{MC}}$. Upon collecting all
+of the residuals for each of the conversion electron peaks (Figures \ref{fig:residuals2011}
+and \ref{fig:residuals2012}), we calculate
+\footnote{The mean and sigma are calculated rather than fit so as to not neglect any
+  non-gaussian tails in the distributions.} the mean and sigma of the distributions, with
+values reported in table \ref{tab:residuals}, and use
+them as the data points seen in figure \ref{fig:errEnv}. These points are a measure
+of the accuracy of the energy calibration at four discrete energies.
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular} {c c}
+    \subfloat[Cerium Conversion Line]{\includegraphics[page=11,scale=0.35]{5-UCNAResults/final_residuals_1-12.pdf}} &
+    \subfloat[Tin Conversion Line]{\includegraphics[page=13,scale=0.35]{5-UCNAResults/final_residuals_1-12.pdf}} \\
+    \subfloat[Lower Bismuth Conversion Line]{\includegraphics[page=14,scale=0.35]{5-UCNAResults/final_residuals_1-12.pdf}} &
+    \subfloat[Upper Bismuth Conversion Line]{\includegraphics[page=15,scale=0.35]{5-UCNAResults/final_residuals_1-12.pdf}}
+  \end{tabular}
+  \caption{Distributions of the residuals for each conversion electron source line used in the 2011-2012 calibration.
+    The mean and sigma reported in the fit box are not the same as those used in the energy uncertainty.}
+  \label{fig:residuals2011}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular} {c c}
+    \subfloat[Cerium Conversion Line]{\includegraphics[page=11,scale=0.35]{5-UCNAResults/final_residuals_16-24.pdf}} &
+    \subfloat[Tin Conversion Line]{\includegraphics[page=13,scale=0.35]{5-UCNAResults/final_residuals_16-24.pdf}} \\
+    \subfloat[Lower Bismuth Conversion Line]{\includegraphics[page=14,scale=0.35]{5-UCNAResults/final_residuals_16-24.pdf}} &
+    \subfloat[Upper Bismuth Conversion Line]{\includegraphics[page=15,scale=0.35]{5-UCNAResults/final_residuals_16-24.pdf}}
+  \end{tabular}
+  \caption{Distributions of the residuals for each conversion electron source line used in the 2012-2013 calibration.
+    The mean and sigma reported in the fit box are not the same as those used in the energy uncertainty.}
+  \label{fig:residuals2012}
+\end{figure}
+
+%\setlength{\tabcolsep}{12pt}
+\begin{table}[h]
+  \caption{Mean and $\sigma$ of each conversion electron residual distribution
+  as used in the energy uncertainty, figure \ref{fig:errEnv}.} 
+  \centering
+  \begin{tabular}{c c c}
+    \hline \hline \\ [-1.75ex]
+    & 2011-2012 & 2011-2012 \\
+    \hline \\ [-1.75ex]
+    $^{137}\mathrm{Ce}$ & $-1.43\pm1.81$~keV & $-0.80\pm2.00$~keV \\
+    $^{133}\mathrm{Sn}$ & $0.91\pm2.52$~keV & $-2.24\pm2.87$~keV \\
+    $^{207}\mathrm{Bi}$ (lower) & $-1.36\pm3.81$~keV & $-0.39\pm3.90$~keV \\
+    $^{207}\mathrm{Bi}$ (upper) & $-1.55\pm5.77$~keV & $0.01\pm6.40$~keV \\
+    \hline
+  \end{tabular}
+  \label{tab:residuals}
+\end{table}
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=.65]{5-UCNAResults/energyErrorEnvelope_color.pdf}
@@ -897,25 +1007,20 @@ to the final uncertainty on the asymmetry.
 \label{fig:errEnv}
 \end{figure}
 
-The energy calibration as described in chapter \ref{ch:UCNA_Calibrations} produced estimates
-for all of the source peaks used for the calibration. The true values of these peaks lie at
-four distinct electron energies, allowing one to define four separate calibration points to
-quantify the validity of our calibration method. Taking the residuals between the Monte
-Carlo predicted peak and our data peaks indicates systematically how well we did, and
-the spread in the residuals indicates the uncertainty in the energy reconstruction
-at the given source energy. Figure \ref{fig:errEnv} shows the calibration points and their
-uncertainties at the four source energies.
-
-Now having determined how well we did at the four discrete electron energies does not
-in itself tell us how well we do at intermediate energies. In the past, a conservative
-uncertainty envelope was drawn  to encompass the calibration points. For the analysis
-presented here, a more quantitaive determination of the uncertainty envelope was employed
+The residuals at these discrete energies do not
+themselves tell us how well we do at intermediate energies. In the past, a conservative
+uncertainty envelope was drawn to encompass the calibration points
+\cite{mendenhall2013,mpmThesis}. For the analysis
+presented here, a more quantitative determination of the uncertainty envelope was employed
 via methods developed by K. Hickerson for determination of limits on $b_n$ from the previous
-UCNA spectrum (\cite{hickerson2017}). In short, the envelope is produced from the set
-of all quadratic calibration curves that could
-produce the residuals seen in figure \ref{fig:errEnv} with $1\sigma$ deviation. This
-obviously results in an asymmetric uncertainty band, but our conservative approach is
-to take the worst case uncertainty at every energy and use this as our final uncertainty band.
+UCNA spectrum (\cite{hickerson2017}). In short, the envelope is produced by sampling
+the coefficients of a quadratic, $f(E_{\mathrm{recon}}$, from distributions that reproduce
+the residual data points seen in figure \ref{fig:errEnv} with $1\sigma$ deviation.
+This
+obviously results in an asymmetric uncertainty band due to the asymmetric distribution
+of the data points about zero, but our conservative approach is
+to take the worst case uncertainty at every energy and use this as our
+symmetric final uncertainty.
 This produces the symmetric uncertainty band in figure \ref{fig:errEnv}.
 
 The symmetric worst case uncertainty band allows us to report a systematic uncertainty
@@ -1271,7 +1376,7 @@ detector calibrations, all systematic corrections, and the polarimetry analysis 
 unblinding, at which point all rates were recalculated using the proper global time $t$,
 generating the final unblinded asymmetries.
 
-\subsection{Data Selection}
+\subsection{Data Selection and Processing}
 
 The data selection step generally involves choosing events that are ``good'' electron
 events, trying to preserve as many as possible to increase statistical power while avoiding
@@ -1330,43 +1435,235 @@ which consists of eight $\beta$-decay runs, eight background runs, and eight dep
 runs, with the spin-state changing for each pair of runs so that there are
 four runs from each $\pm$ spin state.
 The details of this method can be found in \cite{plaster2012}. This method allows for
-construction of octet asymmetries (utilizing all eight background subtracted
+construction of three different super-ratio asymmetries: octet asymmetries (utilizing all eight background subtracted
 $\beta$-decay runs in the asymmetry), quartet asymmetries (using four consecutive spin-flipped
 runs in the asymmetry), and pair asymmetries (using two consecutive spin-flipped runs). We use
-the octet asymmetries in the extraction of the asymmetry, as this structure lends to more
+the octet asymmetries in the extraction of the final asymmetry, as this structure lends to more
 efficient cancellation of time varying backgrounds. Figure \ref{fig:RawAsymms} shows the
 raw asymmetries extracted from all three types of data groups. The results are consistent
-within statistical uncertainties, and the $\xi^2/\textrm{NDF}$ indicates the fluctuations
-are statistical.
+within statistical uncertainties, and the $\chi^2/\textrm{NDF}$ indicates the fluctuations
+are statistical. 
 
 \begin{figure}
   \centering
   \subfloat[Pair Asymmetries]{\includegraphics[page=1,scale=0.5]{5-UCNAResults/UnCorr_PairAsymmetries_AnaChC_190-740_Octets_0-121.pdf}} \\
   \subfloat[Quartet Asymmetries]{\includegraphics[page=1,scale=0.5]{5-UCNAResults/UnCorr_QuartetAsymmetries_AnaChC_190-740_Octets_0-121.pdf}} \\ 
   \subfloat[Octet Asymmetries]{\includegraphics[page=1,scale=0.5]{5-UCNAResults/UnCorr_OctetAsymmetries_AnaChC_190-740_Octets_0-121.pdf}} 
-  \caption{Total background spectra summed over all background runs for each event type in
-    2011-2012.}
+  \caption{All raw super-ratio asymmetries as a function of group number, whether octet, quartet, or pair.
+    There are no systematic corrections applied, and the asymmetries are integrated over the analysis window 190-740~keV.
+    The split in the data is a batch of data from 2012-2013 that had to be discarded due to bad timing information.}
   \label{fig:RawAsymms}
 \end{figure}
 
 \subsubsection{Analysis Choices}
 
+We have identified four detected electron event types thus far in this analysis, namely Type 0, 1,
+2, and 3. In summary, Type 0 events are those which are identified as single detector events, meaning they
+trigger on detector package only, and they make up almost 95\% of detected events. Types 1, 2, and 3
+are identified as backscattering events, with Type 1 events triggering both scintillators, while 2 and 3
+trigger both wirechambers but only one scintillator. Based on solely trigger logic, a Type 2 cannot be
+distinguished from a Type 3, but a delineation can be made between them given their energy deposition
+in the MWPC. See section \ref{sec:Backsc} for a detailed description of the backscattering events and
+the MWPC calibration used to separate them.
+
 \begin{figure}
   \centering
   \subfloat[2011-2012]{\includegraphics[page=1,scale=0.70]{5-UCNAResults/CorrVsUncorr_singleAxis_color.pdf}} \\
-  \subfloat[2011-2012]{\includegraphics[page=2,scale=0.70]{5-UCNAResults/CorrVsUncorr_singleAxis_color.pdf}} 
-  \caption{Total background spectra summed over all background runs for each event type in
-    2011-2012.}
+  \subfloat[2012-2013]{\includegraphics[page=2,scale=0.70]{5-UCNAResults/CorrVsUncorr_singleAxis_color.pdf}} 
+  \caption{Asymmetries for different subsets of data. The * signifies unseparated Type 2 and Type 3 events.
+    The inset shows the asymmetries that include Type 0 events, as the uncertainties
+    are too small to see in the main figure. The only corrections applied to these asymmetries are
+    the energy dependent Monte Carlo corrections and the polarization correction. The error bars are
+    purely statistical, so the observed agreement between asymmetries is a lower limit.}
   \label{fig:anaChAsymms}
 \end{figure}
 
-\subsection{Optimization of energy range} \label{ssec:enRange} % maybe remove this and just discuss it
+Inclusion of any subset of the aforementioned event types in the analysis produces different
+asymmetries, where any choices that
+have like event types are correlated at the level of the fractional statistical uncertainty of the like
+types. One may also decide to include the Type 2/3 events as unseparated or separated by the MWPC energy
+cut, giving yet another set of analysis choices. For this analysis, we used all event types with the
+Type 2 and Type 3 separated. This choice utilizes maximal statistics, while separating the Type 2/3 events
+requires smaller systematic corrections and uncertainties than leaving them unseparated.
 
-\subsection{Results}
+Figure \ref{fig:anaChAsymms} shows the asymmetries for all analysis choices considered, with the
+event types included in the asymmetry extraction listed on the horizontal axis. There is a
+noticeable improvement in the agreement across all analysis choices compared to previous analyses,
+indicating that Monte Carlo corrections may show improvement. The uncertainties in the figure are
+purely statistical also, so the agreement seen is a worst case scenario.
+
+\subsection{Determining $A_0$}
+
+
+\subsubsection{Combining Results} \label{sssec:comboResult}
+
+After selecting the data to be used in the final determination of the asymmetry, one is left with
+two separate blinded results, one from each geometry (2011-2012 and 2012-2013). The results
+are then combined via a method developed for the previous analysis by M. Mendenhall
+\cite{mpmThesis}. In summary, the combination is a modified weighted average that takes into
+account correlations between all uncertainties. Uncorrelated uncertainties will improve
+the final uncertainty, while correlated uncertainties cannot. The method inherently solves for
+the weighting factors that minimize the total uncertainty of the combined final result.
+
+For this analysis, the individual systematic uncertainties from each geometry (i.e. $\Delta_2$ from
+2011-2012 and 2012-2013)
+are taken to be completely correlated, but they are uncorrelated with all other uncertainties.
+The statistical uncertainty of one geometry is the only uncertainty treated as
+uncorrelated with its counterpart from the other geometry, as we would like to take advantage of
+the statistical power of each. 
+
+\subsubsection{Optimization of energy range} \label{ssec:enRange} % maybe remove this and just discuss it
+
+Once the framework for combining results is in place, the energy analysis window must be determined.
+Ideally, the analysis window should be one that minimizes the total uncertainty given the subset of data chosen
+for the final result, but, because several of the integrated corrections require the analysis window
+as input, we only consider the uncertainties from statistics, energy reconstruction,
+and energy dependent Monte Carlo corrections during minimization.
+
+\begin{figure}
+  \centering
+  \subfloat[Statistical Uncertainty]{\includegraphics[page=1,scale=0.4]{5-UCNAResults/TwoDimUncert.pdf}} \\
+  \subfloat[Systematic Uncertainty (Combined Energy Uncertainty and Monte Carlo uncertainty)]{\includegraphics[page=2,scale=0.4]{5-UCNAResults/TwoDimUncert.pdf}} \\
+  \subfloat[Combined systematic and statistical uncertainty]{\includegraphics[page=3,scale=0.4]{5-UCNAResults/TwoDimUncert.pdf}} \\ 
+  \caption{Plots of the fractional uncertainty on the extracted asymmetry for given minimum and maximum limits
+    on the analysis window. The minimum of the combined systematic and statistical uncertainty is used for the
+  final analysis window, $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$.}
+  \label{fig:enWindow}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=5,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}
+\caption{Statistical and systematic errors used in minimization of the energy window. This is a projection
+  of the \ref{fig:enWindow} about the minimum window cut of 190~keV to show the dependence on energy cut
+  more effectively.}
+\label{fig:enWindow1D}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=4,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}
+\caption{Ratio of the asymmetry for every possible energy window divided by the
+  asymmetry of the window with the minimum uncertainty. The closer to the lower right
+  hand corner, the larger the analysis window. We see that there is a region of highly
+  consistent asymmetries covering the bottom right hand corner. When comparing
+  to figure \ref{fig:enWindow}, we also see that, given the uncertainties for every
+  analysis window, nearly all asymmetries are consistent within error.}
+\label{fig:enWindowAsymm}
+\end{figure}
+
+The final energy window is calculated by scanning all possible energy windows with a minimum
+$>100$~keV and a maximum $<780$~keV. The width is set to start at 100~keV to save on computation
+time. Upon exploring all energy windows, the minimum combined uncertainty
+occurs at $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$.
+Figure \ref{fig:enWindow} shows the uncertainty contributions as a function of energy window. The
+final plot shows the combined uncertainty from all three contributions, and we
+see that the window $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$ falls within the area
+of the minimum uncertainty. Once we choose the minimum edge of our window, we can view the
+dependence of the final uncertainty as a function of the upper edge of the analysis window
+as seen in figure \ref{fig:enWindow1D}. Here we see the total uncertainty becomes essentially
+constant beyond an upper window cut of 690~keV.
+The dependence of the asymmetry on energy window can be seen in figure \ref{fig:enWindowAsymm}.
+It is shown that the asymmetry is stable within $\pm0.3\%$ upon changing the analysis window
+by roughly 100~keV in either direction about the minimum window, as evidenced by the uniform
+area in the lower right hand corner of the plot.
+
+
+\subsubsection{Unblinded Result}
+
+\begin{figure}
+  \centering
+  \subfloat[2011-2012 Asymmetry with energy dependence ($\frac{\beta}{2}A_0$)]{\includegraphics[page=1,scale=0.38]{5-UCNAResults/asymm_2011-2012.pdf}} 
+  \subfloat[Final 2011-2012 $A_0$]{\includegraphics[page=2,scale=0.38]{5-UCNAResults/asymm_2011-2012.pdf}} \\
+  \subfloat[2012-2013 Asymmetry with energy dependence ($\frac{\beta}{2}A_0$)]{\includegraphics[page=1,scale=0.38]{5-UCNAResults/asymm_2012-2013.pdf}}  
+  \subfloat[Final 2012-2013 $A_0$]{\includegraphics[page=2,scale=0.38]{5-UCNAResults/asymm_2012-2013.pdf}} 
+  \caption{Final unblinded 2011-2012 and 2012-2013 asymmetry with all systematic corrections applied. The dashed line in
+    a.) and c.) uses PDG $A_0=-0.1184$ for comparison. The fits in b.) and d.) are over the
+    final analysis window, $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$. The uncertainties are statistical only.}
+  \label{fig:FinalA}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{5-UCNAResults/SuperSumTotal.pdf} 
+  \caption{Final beta decay spectrum from data (open circles), Monte Carlo (solid line),
+    and the subtracted background (closed circles). The bottom shows the difference between the
+    Monte Carlo spectrum and the data.}
+  \label{fig:FinalSpectrum}
+\end{figure}
+
+On August 16, 2017, upon completion of all systematic studies and the asymmetry analysis code, the data
+was unblinded and the asymmetries recalculated using the proper time stamps. The energy dependent asymmetries
+and final asymmetries for the two geometries, 2011-2012 and 2012-2013, are shown in figure \ref{fig:FinalA},
+with fits over the final analysis window of $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$.
+The unblinded asymmetries with both statistical and systematic uncertainties accounted for
+are $A_0=-0.12026(54)_{\mathrm{stat}}(67)_{\mathrm{syst}}$ and $A_0=-0.12111(74)_{\mathrm{stat}}(69)_{\mathrm{syst}}$
+for 2011-2012 and 2012-2013 respectively.
+Utilizing the method described in section
+\ref{sssec:comboResult} for combining results, the 2011-2012 and 2012-2013 asymmetries were combined
+with weights of 0.67 (2011-2012) and 0.33 (2012-2013), yielding a final value of
+$A_0=-0.12054(44)_{\mathrm{stat}}(68)_{\mathrm{syst}}$ corresponding to a
+value for the ratio of the axial-vector to vector coupling constants of
+$\lambda\equiv \frac{g_{A}}{g_{V}}=-1.2783(22)$, where the statistical and systematic
+uncertainties have been added in quadrature.
+
+We also report a combined result using our previous measurement \cite{mendenhall2013} and a
+similar weighting method as above, where all systematic uncertainties were
+set to the smallest reported value between the
+two measurements
+and treated as completely correlated so as to avoid artificially small combined
+systematic uncertainties. 
+We obtain the values $A_0=-0.12015(34)_{\mathrm{stat}}(63)_{\mathrm{syst}}$ 
+and $\lambda\equiv \frac{g_{A}}{g_{V}}=-1.2772(20)$, with weights of 0.39 for the previous
+result \cite{mendenhall2013} and 0.61 for the result from this analysis.
+
+We can also report a combined result using the result from this analysis and our previous UCNA result
+\cite{mendenhall2013} using a similar method as above, only now we set all systematic uncertainties
+to the smallest reported value between the two measurements and treat them as completely correlated.
+This in turn means we do not benefit beyond the best measurement of any systematic uncertainty, but
+that we take advantage of the increased statistics. This culminates in the combined UCNA results of
+$A_0=-0.12015(34)_{\mathrm{stat}}(63)_{\mathrm{syst}}$ 
+and $\lambda\equiv \frac{g_{A}}{g_{V}}=-1.2772(20)$, with weights of 0.39 for the previous
+result \cite{mendenhall2013} and 0.61 for the result from this analysis.
+
 
 \section{Future Outlook for UCNA and $A_0$ Measurements}
 % include plot of Vud crossing, but add new Perkeo measurement if it has been released
 % Talk about UCNA+
+
+While this measurement concludes results for $A_0$ from the UCNA experiment in its current
+capacity, there are hopes for a next generation UCNA$+$ experiment. The limitations of
+the current experiment, namely the backscattering, $\cos\theta$, and energy reconstruction
+uncertainties, prevent UCNA from achieving future competitive results of much more precision
+than that reported above.
+
+With this in mind, UCNA$+$ intends to take actions to drastically reduce
+the $\Delta_3$, or $\cos\theta$ correction, which can be achieved by decreasing the fraction
+of electrons that are lost due to inefficiencies within the spectrometer. These mainly come from
+the existence of the foils at the end of the decay trap, so the idea is to remove the foils. With
+the recent upgrades in the UCN source performance, trapping the neutrons within the decay volume is
+less important than it was during previous UCNA runs. Another interesting proposal is to have annular
+endcaps with a hole in the middle. This would allow one to make a radial position cut on the electron
+events to use events which either originated in the region with effectively no endcap or in the outer
+region where the electron would see an endcap. Comparisons between these two types of events sheds
+light on the behavior of the correction from data itself, and when compared to Monte Carlo can help
+determine the level at which the Monte Carlo corrections are accurate. This comparison with Monte Carlo
+may improve both the backscattering and $\cos\theta$ systematic uncertainties.
+
+As for the energy reconstruction, detectors with better linearity and perhaps built in position
+reconstruction would be useful. T
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.6]{5-UCNAResults/vud_vs_lambda_color.pdf}
+\caption{}
+\label{fig:vud_vs_lambda}
+\end{figure}
+
+
+
 
 
 
