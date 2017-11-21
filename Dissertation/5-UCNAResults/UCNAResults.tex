@@ -1014,7 +1014,7 @@ uncertainty envelope was drawn to encompass the calibration points
 presented here, a more quantitative determination of the uncertainty envelope was employed
 via methods developed by K. Hickerson for determination of limits on $b_n$ from the previous
 UCNA spectrum (\cite{hickerson2017}). In short, the envelope is produced by sampling
-the coefficients of a quadratic, $f(E_{\mathrm{recon}}$, from distributions that reproduce
+the coefficients of a quadratic, $f(E_{\mathrm{recon}})$, from distributions that reproduce
 the residual data points seen in figure \ref{fig:errEnv} with $1\sigma$ deviation.
 This
 obviously results in an asymmetric uncertainty band due to the asymmetric distribution
@@ -1651,14 +1651,47 @@ light on the behavior of the correction from data itself, and when compared to M
 determine the level at which the Monte Carlo corrections are accurate. This comparison with Monte Carlo
 may improve both the backscattering and $\cos\theta$ systematic uncertainties.
 
-As for the energy reconstruction, detectors with better linearity and perhaps built in position
-reconstruction would be useful. T
+As for the energy reconstruction, detectors with better linearity and perhaps a
+self-position-reconstructing scintillator would be useful. With position reconstruction accomplished
+within the scintillator, the wirechambers could be removed thus reducing the $\cos\theta$ correction
+further. Another potential improvement, although admittedly difficult,
+would be the development of a calibration method
+which samples the entire fiducial volume, or at least a larger fraction of the detector face. The activated
+Xenon spectrum highlights the promise of such a method, as it fills the entire specrometer during position
+map calibration runs, but the existence of discrete conversion lines within the calibration gas would create
+a completely determined calibration for every ``pixel'' of the detector. This would remove the
+potential bias from measuring the position dependence of the detector with a characteristic of the Xenon
+spectrum that is beyond the endpoint of the electron spectrum, an imperfect method when the detector
+shows any non-linear behavior.
+
+The future of $A_0$ and $\lambda$ measurements is quite promising given the status of recent results. Figure
+\ref{fig:vud_vs_lambda} illustrates the current dilemma facing the eperimental nuclear physics community regarding
+weak interactions. 
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=.6]{5-UCNAResults/vud_vs_lambda_color.pdf}
-\caption{}
+\caption{Status of $V_{ud}$, the neutron lifetime, and $\lambda$
+  measurements. The $\lambda$
+  result bands (vertical) are divided into pre-2002 \cite{bopp1986,yerozolimsky1997,liaud1997}
+  and post-2002 \cite{mostovoi2001,schumann2008,mund2013,mendenhall2013}
+  results, where the distinction is made using the date of the
+  most recent result from each experiment. The right axis
+  shows publication year for the individual lambda measurements 
+  included in the calculation of the $\lambda$ bands (closed markers for post-2002,
+  open markers for pre-2002). Note that the result of this work (Brown \textit{et al.})
+  is the combined UCNA result from \cite{mendenhall2013} and the current analysis, and the
+  Mund \textit{et al.} result is the combined PERKEOII result from \cite{abele2002,mund2013}.
+  The diagonal bands
+  are derived from neutron lifetime measurements 
+  and are separated into neutron beam \cite{yue2013,byrne1996} and UCN bottle
+  experiments, which consist of material bottle storage \cite{serebrov2005,
+    arzumanov2015,steyerl2012,pichlmaier2010,mampe1993} and magnetic bottle storage \cite{pattie2017}.
+  The $V_{ud}$ band (horizontal) comes from
+  superallowed $0^+ \rightarrow 0^+$ nuclear $\beta$-decay
+  measurements \cite{pdg}. The error bands include scale factors
+  as prescribed by the Particle Data Group \cite{pdg}.}
 \label{fig:vud_vs_lambda}
 \end{figure}
 
