@@ -1,6 +1,13 @@
 \chapter{Introduction to the theory of neutron $\beta$-decay}
 \label{ch:Introduction}
 
+The purpose of this dissertation is to describe in detail
+the methods used in extracting the $\beta$-decay asymmetry parameter
+for the UCNA Experiment. This chapter hopes to motivate the inception
+of the parameter of interest and its role in the theory of $\beta$-decay.
+Also introduced are characteristics of the neutron itself with an
+emphasis on ultracold neutrons (UCN), the namesake of the UCNA experiment.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -18,8 +25,15 @@ and $\beta$-decay.
 
 \subsection{Symmetries}
 
-\section{Properties of the neutron}
-\label{sec:neutronProperties}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{$\beta$-decay of the neutron}
+
+\subsection{Properties of the neutron}
+\label{ssec:neutronProperties}
 Let us take a moment to give a very brief introduction to the neutron to motivate the
 upcoming sections. This will also serve as a useful tool for those who are
 unfamiliar with nuclear and field theories, as the following sections become
@@ -30,13 +44,16 @@ so the properties of the neutron are a natural starting point.
 The neutron is a net neutrally charged composite particle. The terms net and
 composite hint at the inner structure of the neutron, made up of fundamental
 particles called quarks, in this case two down ($d$) quarks and one up ($u$) quark.
-The quarks do carry charge, with the up charge $+1/2$ and the down charge
-$-2/3$, so that the net charge of the neutron is zero. Four other quarks exist,
+The quarks do carry charge, with the $u$ charge $+2/3$ and the $d$ charge
+$-1/3$, so that the net charge of the neutron is zero. This can be compared
+to the proton, another composite particle made up of three quarks (two $u$ and
+one $d$ quark), whose net charge is $+1$ and the other nucleon found
+within a nucleaus along with the neutron. Four other quarks exist,
 the charm, strange, bottom, and top in order of increasing mass. The neutron
-is the second lightest three-quark composite particle (baryon) one can imagine
+is the second lightest three-quark composite particle (baryon) 
 behind only the proton.
 
-The neutron undergoes $\beta$-decay, defined as a transition from the neutron
+The free neutron undergoes $\beta$-decay, defined as a transition from the neutron
 to a proton, electron, and electron anti-neutrino,
 \begin{equation*}
   n\rightarrow p + e^- + \bar{\nu}_{e}.
@@ -44,22 +61,88 @@ to a proton, electron, and electron anti-neutrino,
 \noindent The three-body decay gives rise to a continuous energy spectrum
 for the proton, electron, and anti-neutrino by conservation of energy and momentum
 as seen in figure \ref{fig:spectralShapes}. The lifetime of the free neutron is
-approximately fifteen minutes. 
+approximately fifteen minutes.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The neutron is spin $1/2$ particle with magnetic moment...
 
-\section{$\beta$-decay of the neutron}
+\subsection{Fermi's Theory of $\beta$-decay}
+After Pauli postulated the existence of the neutrino to explain the continuous energy
+distribution of the $\beta$-decay electron, Fermi attempted to theoretically describe
+the process in a similar manner to
 
-\subsection{The weak interaction}
+\subsection{Parity Violation in Weak Decays}
+
+\subsection{Correlation Coefficients}
+Taking the interaction Hamiltonian from Lee and Yang with all generalized terms included,
+Jackson, Trieman, and Wyld \cite{jackson1957a,jackson1957b} first derived an expression
+for the differential decay rate for polarized nuclei as a function of the emitted electron momentum
+and spin, the neutrino momentum, and the nuclear spin of the decaying nucleus.
+Ebel and Feldman \cite{ebel1957} added terms to the expression of Jackson, Trieman, and Wyld,
+and under the assumption that the spin of the mother nucleus and the spin of the outgoing electron
+are observable this gives
+%
+\begin{multline}
+  \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
+  p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
+  \Bigg\{ 1 + a\frac{\boldsymbol{p_e \cdot p_\nu}}{E_e E_\nu} + b\frac{m_e}{E_e} 
+  + \frac{\boldsymbol{\langle J \rangle}}{J} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
+    + B\frac{\boldsymbol{p_\nu}}{E_\nu} + D\frac{\boldsymbol{p_e \times p_\nu}}{E_e E_\nu}\Bigg] \\
+  + \Bigg[ \frac{J(J+1)-3\langle (\boldsymbol{J \cdot \hat{\jmath}})^2 \rangle}{J(2J-1)} \Bigg]
+  \Bigg( c\Bigg[ \frac{\boldsymbol{p_e} \times \boldsymbol{p_\nu}}{3E_eE_\nu} -
+    \frac{(\boldsymbol{p_e\cdot \hat{\jmath}})(\boldsymbol{p_\nu\cdot \hat{\jmath}}) }{E_eE_\nu} \Bigg]
+  + I \Bigg[ \frac{1}{3}\frac{\boldsymbol{\sigma \cdot p_\nu}}{E_\nu}
+    - \frac{(\boldsymbol{\sigma \cdot \hat{\jmath}})(\boldsymbol{p_\nu \cdot \hat{\jmath}})}{E_\nu} \Bigg] \\
+  + K'\frac{\boldsymbol{\sigma \cdot p_e}}{E_e+m_e} \Bigg[ \frac{1}{3}\frac{\boldsymbol{p_e \cdot p_\nu}}{E_e E_\nu}
+    - \frac{(\boldsymbol{p_e \cdot \hat{\jmath}})(\boldsymbol{p_\nu \cdot \hat{\jmath}})}{E_e E_\nu} \Bigg] 
+  + M \Bigg[ \frac{1}{3}\frac{\boldsymbol{\sigma \cdot p_e \times p_\nu}}{E_e E_\nu}
+    - \frac{(\boldsymbol{\sigma \cdot \hat{\jmath}})(\boldsymbol{\hat{\jmath} \cdot p_e \times p_\nu })}{E_e E_\nu} \Bigg] \Bigg) \\
+  + \boldsymbol{\sigma} \cdot \Bigg[ N\frac{\langle \boldsymbol{J} \rangle}{J}
+    + Q\frac{\boldsymbol{p_e}}{E_e+m_e}\Bigg(\frac{\langle \boldsymbol{J} \rangle}{J}\boldsymbol{\cdot} \frac{\boldsymbol{p_e}}{E_e}\Bigg)
+    + R\frac{\langle \boldsymbol{J} \rangle}{J}\boldsymbol{\times} \frac{\boldsymbol{p_e}}{E_e}
+    + S\frac{\langle \boldsymbol{J} \rangle}{J} \frac{\boldsymbol{p_e\cdot p_\nu}}{E_e E_\nu} \\
+    + T\frac{\boldsymbol{p_e}}{E_e}\frac{\langle \boldsymbol{J} \rangle}{J} \boldsymbol{\cdot} \frac{\boldsymbol{p_\nu}}{E_\nu}
+    + U\frac{\boldsymbol{p_\nu}}{E_\nu}\frac{\langle \boldsymbol{J} \rangle}{J} \boldsymbol{\cdot} \frac{\boldsymbol{p_e}}{E_e}
+    + W\frac{\boldsymbol{p_e}}{E_e+m_e}\frac{\langle \boldsymbol{J} \rangle}{J} \boldsymbol{\cdot} \frac{\boldsymbol{p_e \times p_\nu}}{E_e E_\nu}
+    \Bigg]
+  + V\frac{\langle \boldsymbol{J} \rangle}{J} \boldsymbol{\cdot} \frac{\boldsymbol{\sigma \times p_\nu}}{E_\nu}
+  \Bigg\}
+  \label{eq:jackson}
+\end{multline}
+%
+where $F(\pm Z, E_e)$ is the Fermi function, $E$ is the energy of a given particle, $E^0$ is the endpoint
+energy of the electron, $\boldsymbol{p}$ is the particle momentum, $\boldsymbol{J}$ is the spin of the
+decaying nucleus (or nucleon), and $\sigma$ is the spin of the electron. All of the correlation coefficients
+are functions of the coupling constants in the weak Lagrangian (see equation \ref{eq:leeyang}),
+as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi and Gamow-Teller
+transition amplitudes. For the complete defitions see
+\cite{jackson1957a,jackson1957b,ebel1957}.
+
+In the case of $\beta$-decay of polarized free neutrons and assuming the electron spin is undetectable,
+equation \ref{eq:jackson} simplifies drastically,
+%
+\begin{multline}
+  \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
+  p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
+  \Bigg\{ 1 + a\frac{\boldsymbol{p_e \cdot p_\nu}}{E_e E_\nu} + b\frac{m_e}{E_e} 
+  + \frac{\boldsymbol{\langle J \rangle}}{J} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
+    + B\frac{\boldsymbol{p_\nu}}{E_\nu} + D\frac{\boldsymbol{p_e \times p_\nu}}{E_e E_\nu}\Bigg]
+  \Bigg\}.
+  \label{eq:jacksonSimple}
+\end{multline}
+%
+
+From \cite{jackson1957a}, we can write down the full expression (ignoring coulomb corrections)
+for $A\xi$ 
+
+
+
+\subsection{Weak Interaction in the Standard Model}
 Talk about the existence of the weak interaction within the standard model and
 the vertices and maybe write down the leptonic and hadronic current.
 
-\subsection{Correlation Coefficients}
-\subsection{Parity violation}
-Maximally violates parity, talk about Wu's experiment. Emphasize that this is
-precisely what we are measuring. Connect back to the relationship in the hadronic
-current
+
+\subsection{Summary}
+
 
 \section{Ultracold Neutrons}
 
