@@ -1,4 +1,4 @@
-\chapter{Introduction to the theory of neutron $\beta$-decay}
+\chapter{Introduction}
 \label{ch:Introduction}
 
 The purpose of this dissertation is to describe in detail
@@ -30,10 +30,8 @@ and $\beta$-decay.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{$\beta$-decay of the neutron}
-
-\subsection{Properties of the neutron}
-\label{ssec:neutronProperties}
+\section{Properties of the neutron}
+\label{sec:neutronProperties}
 Let us take a moment to give a very brief introduction to the neutron to motivate the
 upcoming sections. This will also serve as a useful tool for those who are
 unfamiliar with nuclear and field theories, as the following sections become
@@ -63,21 +61,111 @@ for the proton, electron, and anti-neutrino by conservation of energy and moment
 as seen in figure \ref{fig:spectralShapes}. The lifetime of the free neutron is
 approximately fifteen minutes.
 
-The neutron is spin $1/2$ particle with magnetic moment...
+
+\section{$\beta$-decay of the neutron}
+
+Prior to 1930, $\beta$-decay of nuclei was a polarizing topic of debate. Originally
+only the decay electron was detected, and given such a two-body decay (the recoil
+nucleus and the emitted electron being the two bodies) one would expect a discrete
+electron energy defined by the difference in mass between mother and daughter
+nuclei. Instead, a continuous energy spectrum was observed for the electron, which
+initially led some to believe that energy conservation was moot. Pauli was not
+convinced that energy conservation was violated and postulated that a neutral particle
+was also emitted in the decay. This third particle would share the energy available
+in the reaction, explain the continuous energy distribution of the electron, and go
+on undetected as it would not interact electromagnetically. The particle was termed
+the neutrino by Fermi, and it would be a crux of Fermi's theory of $\beta$-decay.
+A quarter century later, the existence of the neutrino would be confirmed \cite{cowan1956detection}.
 
 \subsection{Fermi's Theory of $\beta$-decay}
 After Pauli postulated the existence of the neutrino to explain the continuous energy
 distribution of the $\beta$-decay electron, Fermi attempted to theoretically describe
-the process in a similar manner to
+the process in a similar manner to the theory of emission of
+gamma radiation from an excited nucleus \cite{fermi1934,wilson1968fermi}.
+His theory relied on two postulates: the existence of the neutrino and that the nucleus consisted
+of heavy particles only, the neutron and the proton. Both of these would turn out to be true.
+
+\begin{table}[h]
+  \caption{Transformation behavior of all possible bilinear covariants.} 
+  \centering
+  \begin{tabular}{l c }
+    \hline \hline \\ [-1.75ex]
+    $\bar{\psi}\psi$ & scalar \\ [0.50ex]
+    $\bar{\psi}\gamma^5\psi$ & pseudoscalar \\ [0.50ex]
+    $\bar{\psi}\gamma^{\mu}\psi$ & vector \\ [0.50ex]
+    $\bar{\psi}\gamma^{\mu}\gamma^5\psi$ & axial vector \\ [0.50ex]
+    $\bar{\psi}\sigma^{\mu\nu}\psi$ & antisymmetric tensor \\ [0.50ex]   
+    \hline
+  \end{tabular}
+  \label{tab:bilinearCov}
+\end{table}
+
+Fermi's Hamiltonian took the form (written in a different manner from Fermi's original
+paper on the subject for the sake of clarity) 
+%
+\begin{equation}
+  H = C_V\big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \psi_\nu \big), 
+\end{equation}
+%
+where $\bar{\psi} \gamma_\mu \psi$ is a vector current when remembering how the
+bilinear covariants transform under parity (see table \ref{tab:bilinearCov}). The assumption
+that the current-current interaction would be of the vector-vector variety was a natural
+choice as this is the case for electromagnetism.
+
+Fermi's theory of $\beta$-decay treats the decay as a four-point contact interaction, where
+the currents are evaluated at the same point in space and time \cite{renton1990}. The theory
+worked well at predicting the energy spectrum of the electron from which
+Fermi deduced that the neutrino must be nearly massless, but suffered one flaw. The vector
+nature of the theory didn't allow for the observed allowed nuclear $\beta$-decay transitions
+which transform the spin of the decaying nucleus. This was pointed out by Gamow and Teller in
+1936 \cite{gamow1936}, where they show that a current-current interaction that transforms like
+a pseudovector properly assigns the spins of the products in thorium decays. As such,
+one can generalize Fermi's theory by including all possible bilinear covariant terms that
+satisfy both Lorentz and translational invariance:
+%
+\begin{multline}
+  H = C_S\big( \bar{\psi}_p \psi_n \big) \big( \bar{\psi}_e  \psi_\nu \big) 
+  +C_V\big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \psi_\nu \big) \\
+  +C_T\big( \bar{\psi}_p \sigma^{\mu\nu} \psi_n \big) \big( \bar{\psi}_e \sigma^{\mu\nu} \psi_\nu \big) 
+  +C_A\big( \bar{\psi}_p \gamma_\mu \gamma^5 \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu \big) 
+  +C_P\big( \bar{\psi}_p  \gamma^5 \psi_n \big) \big( \bar{\psi}_e  \gamma^5 \psi_\nu \big),
+\end{multline}
+%
+where the coefficients quantify the coupling to each respective current.
+
+\subsubsection{Gamow-Teller vs. Fermi Transitions}
+
+With the mention of the extension of Fermi's theory of $\beta$-decay by Gamow and Teller,
+this is a natural place to introduce the 
+
+
 
 \subsection{Parity Violation in Weak Decays}
 
+\subsubsection{Lee and Yang}
+Talk about the theta-tau conundrum.
+Mention that inserting a pseudovector like term automatically violates parity
+by mixing currents with opposite parity transformations thus causing the
+Hamiltonian and the Parity operator to not commute.
+%
+\begin{multline}
+  H =\big( \bar{\psi}_p \psi_n \big) \big(  C_S\bar{\psi}_e  \psi_\nu + C'_S\bar{\psi}_e \gamma^5 \psi_\nu \big) \\
+  + \big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( C_V\bar{\psi}_e \gamma^\mu \psi_\nu + C'_V\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu \big) 
+  + \big( \bar{\psi}_p \sigma^{\mu\nu} \psi_n \big) \big( C_T\bar{\psi}_e \sigma^{\mu\nu} \psi_\nu + C'_T\bar{\psi}_e \sigma^{\mu\nu}\gamma^5 \psi_\nu \big) \\
+  + \big( \bar{\psi}_p \gamma_\mu \gamma^5 \psi_n \big) \big( C_A\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu + C'_A\bar{\psi}_e \gamma^\mu  \psi_\nu\big)
+  + \big( \bar{\psi}_p  \gamma^5 \psi_n \big) \big( C_P\bar{\psi}_e  \gamma^5 \psi_\nu + C'_P\bar{\psi}_e \psi_\nu \big),
+\end{multline}
+%
+
+Mention the experiments that can probe parity violation.
+Talk about C. S. Wu experiment
+
 \subsection{Correlation Coefficients}
 Taking the interaction Hamiltonian from Lee and Yang with all generalized terms included,
-Jackson, Trieman, and Wyld \cite{jackson1957a,jackson1957b} first derived an expression
+Jackson, Treiman, and Wyld \cite{jackson1957a,jackson1957b} first derived an expression
 for the differential decay rate for polarized nuclei as a function of the emitted electron momentum
 and spin, the neutrino momentum, and the nuclear spin of the decaying nucleus.
-Ebel and Feldman \cite{ebel1957} added terms to the expression of Jackson, Trieman, and Wyld,
+Ebel and Feldman \cite{ebel1957} added terms to the expression of Jackson, Treiman, and Wyld,
 and under the assumption that the spin of the mother nucleus and the spin of the outgoing electron
 are observable this gives
 %
@@ -117,6 +205,34 @@ as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi 
 transition amplitudes. For the complete defitions see
 \cite{jackson1957a,jackson1957b,ebel1957}.
 
+Talk about the predictions Jackson makes given different conditions for the coefficients.
+
+
+
+From \cite{jackson1957a}, we can write down the full expression (ignoring coulomb corrections)
+for $A\xi$
+
+\subsubsection{$V-A$ structure}
+
+Discuss two component neutrino theory of Lee and Yang and the coupling of the fields to only
+left handed fermions(?). Show how this selects maximal parity violation and talk about
+experiments that confirm this ( i think in griffiths)
+
+
+
+\subsection{Modern Weak Interaction in the Standard Model}
+Talk about the existence of the weak interaction within the standard model and
+the vertices and maybe write down the leptonic and hadronic current. Make it clear
+that at low q squared, the Fermi's theory and Electroweak theory converge.
+
+\subsubsection{Charged Weak Current}
+
+\subsubsection{CKM Mixing Matrix}
+
+\subsubsection{Neutral Current}
+
+\section{What does this mean for the neutron?}
+
 In the case of $\beta$-decay of polarized free neutrons and assuming the electron spin is undetectable,
 equation \ref{eq:jackson} simplifies drastically,
 %
@@ -131,20 +247,21 @@ equation \ref{eq:jackson} simplifies drastically,
 \end{multline}
 %
 
-From \cite{jackson1957a}, we can write down the full expression (ignoring coulomb corrections)
-for $A\xi$ 
-
-
-
-\subsection{Weak Interaction in the Standard Model}
-Talk about the existence of the weak interaction within the standard model and
-the vertices and maybe write down the leptonic and hadronic current.
-
-
-\subsection{Summary}
-
+Switch to the more often used definitions of the coupling constants for consistency with modern literature
+maybe...
 
 \section{Ultracold Neutrons}
+
+Talk about the typical energy spectra of neutrons from reactors and spallation sources. Show the
+energy ranges and what we call each of the neutrons.
+
+\subsection{Interactions}
+
+\subsubsection{Fermi Potential}
+
+\subsubsection{Gravity and Magnetic Fields}
+
+\section{Summary}
 
 
 
