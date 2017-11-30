@@ -69,13 +69,15 @@ only the decay electron was detected, and given such a two-body decay (the recoi
 nucleus and the emitted electron being the two bodies) one would expect a discrete
 electron energy defined by the difference in mass between mother and daughter
 nuclei. Instead, a continuous energy spectrum was observed for the electron, which
-initially led some to believe that energy conservation was moot. Pauli was not
-convinced that energy conservation was violated and postulated that a neutral particle
-was also emitted in the decay. This third particle would share the energy available
+initially led some to believe that energy conservation was moot. Others, like
+Wolfgang Pauli, were not ready
+to abandon energy conservation. He postulated that a neutral particle
+could also be emitted in the decay. This third particle would share the energy available
 in the reaction, explain the continuous energy distribution of the electron, and go
 on undetected as it would not interact electromagnetically. The particle was termed
 the neutrino by Fermi, and it would be a crux of Fermi's theory of $\beta$-decay.
-A quarter century later, the existence of the neutrino would be confirmed \cite{cowan1956detection}.
+A quarter century later, the existence of the neutrino would be confirmed
+experimentally \cite{cowan1956detection}.
 
 \subsection{Fermi's Theory of $\beta$-decay}
 After Pauli postulated the existence of the neutrino to explain the continuous energy
@@ -83,7 +85,7 @@ distribution of the $\beta$-decay electron, Fermi attempted to theoretically des
 the process in a similar manner to the theory of emission of
 gamma radiation from an excited nucleus \cite{fermi1934,wilson1968fermi}.
 His theory relied on two postulates: the existence of the neutrino and that the nucleus consisted
-of heavy particles only, the neutron and the proton. Both of these would turn out to be true.
+of heavy particles only, the neutron and the proton, both of which would turn out to be true.
 
 \begin{table}[h]
   \caption{Transformation behavior of all possible bilinear covariants.} 
@@ -107,17 +109,19 @@ paper on the subject for the sake of clarity)
   H = C_V\big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \psi_\nu \big), 
 \end{equation}
 %
-where $\bar{\psi} \gamma_\mu \psi$ is a vector current when remembering how the
-bilinear covariants transform under parity (see table \ref{tab:bilinearCov}). The assumption
+where $\bar{\psi} \gamma_\mu \psi$ is a vector current (see table \ref{tab:bilinearCov}). The assumption
 that the current-current interaction would be of the vector-vector variety was a natural
 choice as this is the case for electromagnetism.
 
 Fermi's theory of $\beta$-decay treats the decay as a four-point contact interaction, where
-the currents are evaluated at the same point in space and time \cite{renton1990}. The theory
+the currents are evaluated at the same point in space and time \cite{renton1990}. For those
+familiar with quantum field theory within the Standard Model, this differs from the typical
+interaction Hamiltonian as there is no propagator, or force carrier, to mediate the
+interaction between the two currents (more on this later). The theory
 worked well at predicting the energy spectrum of the electron from which
 Fermi deduced that the neutrino must be nearly massless, but suffered one flaw. The vector
-nature of the theory didn't allow for the observed allowed nuclear $\beta$-decay transitions
-which transform the spin of the decaying nucleus. This was pointed out by Gamow and Teller in
+nature of the theory did not permit the observed allowed nuclear $\beta$-decay transitions
+which can transform the spin of the decaying nucleus. This was pointed out by Gamow and Teller in
 1936 \cite{gamow1936}, where they show that a current-current interaction that transforms like
 a pseudovector properly assigns the spins of the products in thorium decays. As such,
 one can generalize Fermi's theory by including all possible bilinear covariant terms that
@@ -133,32 +137,85 @@ satisfy both Lorentz and translational invariance:
 %
 where the coefficients quantify the coupling to each respective current.
 
-\subsubsection{Gamow-Teller vs. Fermi Transitions}
-
-With the mention of the extension of Fermi's theory of $\beta$-decay by Gamow and Teller,
-this is a natural place to introduce the 
-
-
+This shortcoming of Fermi's original vector-vector interaction
+lends itself to the definition of
+two types of allowed $\beta$-decay transitions. The Fermi transition proceeds through the
+scalar and vector currents with $\Delta J=0$ and no parity change. Gamow-Teller transitions
+correspond to the axial vector and tensor currents and have $\Delta J=0,\pm1$ with no parity change,
+but excluding the $0^+\rightarrow 0^+$ nuclear transitions. The pseudoscalar terms does not
+contribute to the amplitude in the low energy limit \cite{renton1990}.
+ 
 
 \subsection{Parity Violation in Weak Decays}
 
 \subsubsection{Lee and Yang}
-Talk about the theta-tau conundrum.
-Mention that inserting a pseudovector like term automatically violates parity
-by mixing currents with opposite parity transformations thus causing the
-Hamiltonian and the Parity operator to not commute.
+
+Prior to the 1950's, all discrete symmetries (parity, charge conjugation, and time reversal)
+were thought to be conserved separately for all interactions in nature. A dilemma arose when
+two particles, called the $\tau$ and $\theta$ mesons at the time, posessed the same mass
+and charge as the $K^+$ meson, but decayed to different final states of parity. The $\tau$ decayed into three pions
+and the $\theta$ into two pions. The initial classification of the two observably identical particles into
+two different particles was logical given that parity conservation was a given as it ,
+but in 1956 Lee and Yang proposed a very different solution to the problem. They realized that
+there was no evidence that parity must be conserved in the weak interaction.
+In the full expression of Fermi's theory (equation \ref{eq:FermiFull}),
+while including all possible combinations of bilinear covariants, there was no mixing between the
+individual currents and each individual current-current term transforms like a scalar. For example,
+two individual axial vector currents would each transform as
+$P(\bar{\psi}_p \gamma_\mu \gamma^5 \psi_n) \rightarrow -\bar{\psi}_p \gamma_\mu \gamma^5 \psi_n$ under parity, but the
+muliplication of two such terms transforms like a scalar. Thus, none of the terms in \ref{eq:FermiFull})
+are capable of violating parity, as the Hamiltonian would remain invariant. 
+
+In their 1956 paper \cite{leeyang1956}, Lee and Yang modified the weak ineraction Hamiltonian
+by including the possibility of a pseudoscalar current-current interaction, namely
 %
 \begin{multline}
-  H =\big( \bar{\psi}_p \psi_n \big) \big(  C_S\bar{\psi}_e  \psi_\nu + C'_S\bar{\psi}_e \gamma^5 \psi_\nu \big) \\
-  + \big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( C_V\bar{\psi}_e \gamma^\mu \psi_\nu + C'_V\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu \big) 
-  + \big( \bar{\psi}_p \sigma^{\mu\nu} \psi_n \big) \big( C_T\bar{\psi}_e \sigma^{\mu\nu} \psi_\nu + C'_T\bar{\psi}_e \sigma^{\mu\nu}\gamma^5 \psi_\nu \big) \\
-  + \big( \bar{\psi}_p \gamma_\mu \gamma^5 \psi_n \big) \big( C_A\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu + C'_A\bar{\psi}_e \gamma^\mu  \psi_\nu\big)
-  + \big( \bar{\psi}_p  \gamma^5 \psi_n \big) \big( C_P\bar{\psi}_e  \gamma^5 \psi_\nu + C'_P\bar{\psi}_e \psi_\nu \big),
+  H = \bar{\psi}_p \psi_n \big( C_S\bar{\psi}_e  \psi_\nu + C'_S\bar{\psi}_e \gamma^5 \psi_\nu \big) \\
+  + \bar{\psi}_p \gamma_\mu \psi_n  \big( C_V\bar{\psi}_e \gamma^\mu \psi_\nu + C'_V\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu \big) 
+  + \bar{\psi}_p \sigma^{\mu\nu} \psi_n \big( C_T\bar{\psi}_e \sigma^{\mu\nu} \psi_\nu + C'_T\bar{\psi}_e \sigma^{\mu\nu} \gamma^5 \psi_\nu \big)\\
+  + \bar{\psi}_p \gamma_\mu \gamma^5 \psi_n \big( C_A\bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu + C'_A\bar{\psi}_e \gamma^\mu \psi_\nu \big) 
+  + \bar{\psi}_p  \gamma^5 \psi_n \big( C_P\bar{\psi}_e  \gamma^5 \psi_\nu + C'_P\bar{\psi}_e \psi_\nu \big).
+  \label{eq:leeyang}
 \end{multline}
 %
+If any of the $C'_i$ coefficents are nonzero, parity would not be conserved due to
+the scalar-pseudoscalar form of the current-current interactions that are labelled by
+the primed coefficients.
 
-Mention the experiments that can probe parity violation.
-Talk about C. S. Wu experiment
+Along with the inclusion of potential parity violating terms in the Hamiltonian, Lee and Yang
+presented several potential tests of parity violation in the weak sector. One such proposition
+was the measurement of the correlation between the spin of a polarized nucleus and
+the momentum of the $\beta$-decay electron.
+
+\subsubsection{C. S. Wu Discovers Parity Violation}
+
+Following the publication of Lee and Yang's newly modified theory of $\beta$-decay, C. S. Wu
+and collaborators designed an experiment \cite{wu1957} to test the potential violation
+of parity in the $\beta$-decay of $^{60}\mathrm{Co}$
+($^{60}\mathrm{Co} \rightarrow {^{60}\mathrm{Ni}} + e^- + \bar{\nu}_e$). The premise of the experiment
+was simple: place an electron detector along the $+z$ axis, polarize the $^{60}\mathrm{Co}$ nuclei
+using a magnetic field in the $\pm z$ direction, and measure the electron rate in each polarization
+configuration. If parity is violated, a clear asymmetry would be present between the two polarizations,
+which is precisely what was discovered.
+
+The measurement showed that the electrons were preferentially
+emitted in the direction opposite the spin of the nuclei, indicating that the $C'_i=-C_i$ for whichever
+interaction current was responsible for the symmetry breaking. From the theory presented thus far,
+the interaction involved was either axial vector or tensor, because decay of
+$^{60}\mathrm{Co} (J^p=5^+) \rightarrow {^{60}\mathrm{Ni}}(J^p=4^+)$ proceeds stricly through
+the Gamow-Teller transition. Whether the tensor or axial vector current (or both) was responsible
+was yet to be determined.
+
+It should be noted that, following the news of Wu's result, Garwin, Lederman, and
+Weinrich \cite{garwin1957} from Columbia confirmed
+that parity is violated using the subsequent decays of $\pi^+ \rightarrow \mu^++\nu_\mu$
+followed by $\mu^+ \rightarrow e^+ + \bar{\nu}_e + \nu_\mu$. This was another process
+recommended by Lee and Yang. The premise is that the chiral odd neutrino in the first decay
+forces the muon to be polarized in the direction of its momentum to conserve angular
+momentum. The polarized muon then decays and can thus be analyzed much like one would analyze the
+$\beta$-decay of a polarized nucleus, looking for correlations between the polarization and
+the decay electron. The results were again conclusive that parity is not conserved in the weak
+interaction.
 
 \subsection{Correlation Coefficients}
 Taking the interaction Hamiltonian from Lee and Yang with all generalized terms included,
@@ -197,13 +254,15 @@ are observable this gives
   \label{eq:jackson}
 \end{multline}
 %
-where $F(\pm Z, E_e)$ is the Fermi function, $E$ is the energy of a given particle, $E^0$ is the endpoint
+where $F(\pm Z, E_e)$ is the Fermi function (a shape correction to the spectrum
+from coulomb interactions), $E$ is the energy of a given particle, $E^0$ is the endpoint
 energy of the electron, $\boldsymbol{p}$ is the particle momentum, $\boldsymbol{J}$ is the spin of the
 decaying nucleus (or nucleon), and $\sigma$ is the spin of the electron. All of the correlation coefficients
 are functions of the coupling constants in the weak Lagrangian (see equation \ref{eq:leeyang}),
 as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi and Gamow-Teller
-transition amplitudes. For the complete defitions see
-\cite{jackson1957a,jackson1957b,ebel1957}.
+transition amplitudes \footnote{For the complete defitions see \cite{jackson1957a,jackson1957b,ebel1957}}.
+
+
 
 Talk about the predictions Jackson makes given different conditions for the coefficients.
 
@@ -213,7 +272,7 @@ From \cite{jackson1957a}, we can write down the full expression (ignoring coulom
 for $A\xi$
 
 \subsubsection{$V-A$ structure}
-
+Use page 16 from Greiner Muller and maybe look for another description.
 Discuss two component neutrino theory of Lee and Yang and the coupling of the fields to only
 left handed fermions(?). Show how this selects maximal parity violation and talk about
 experiments that confirm this ( i think in griffiths)
