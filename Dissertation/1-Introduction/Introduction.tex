@@ -113,7 +113,18 @@ where $\bar{\psi} \gamma_\mu \psi$ is a vector current (see table \ref{tab:bilin
 that the current-current interaction would be of the vector-vector variety was a natural
 choice as this is the case for electromagnetism.
 
-Fermi's theory of $\beta$-decay treats the decay as a four-point contact interaction, where
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.50]{1-Introduction/pointInteraction.pdf}  
+  \caption{The point interaction of Fermi's theory of $\beta$-decay. The theory is
+    capable of describing other processes which move one of the outgoing particle lines
+    to the left side, like electron capture by the proton producing a neutron and an
+    electron neutrino.}
+  \label{fig:pointInteraction}
+\end{figure}
+
+Fermi's theory of $\beta$-decay treats the decay as a four-point contact interaction
+(see figure \ref{fig:pointInteraction}), where
 the currents are evaluated at the same point in space and time \cite{renton1990}. For those
 familiar with quantum field theory within the Standard Model, this differs from the typical
 interaction Hamiltonian as there is no propagator, or force carrier, to mediate the
@@ -155,7 +166,7 @@ were thought to be conserved separately for all interactions in nature. A dilemm
 two particles, called the $\tau$ and $\theta$ mesons at the time, posessed the same mass
 and charge as the $K^+$ meson, but decayed to different final states of parity. The $\tau$ decayed into three pions
 and the $\theta$ into two pions. The initial classification of the two observably identical particles into
-two different particles was logical given that parity conservation was a given as it ,
+two different particles was logical given that parity conservation was then sacrosanct,
 but in 1956 Lee and Yang proposed a very different solution to the problem. They realized that
 there was no evidence that parity must be conserved in the weak interaction.
 In the full expression of Fermi's theory (equation \ref{eq:FermiFull}),
@@ -187,7 +198,7 @@ presented several potential tests of parity violation in the weak sector. One su
 was the measurement of the correlation between the spin of a polarized nucleus and
 the momentum of the $\beta$-decay electron.
 
-\subsubsection{C. S. Wu Discovers Parity Violation}
+\subsubsection{Discovery of Parity Violation}
 
 Following the publication of Lee and Yang's newly modified theory of $\beta$-decay, C. S. Wu
 and collaborators designed an experiment \cite{wu1957} to test the potential violation
@@ -196,10 +207,32 @@ of parity in the $\beta$-decay of $^{60}\mathrm{Co}$
 was simple: place an electron detector along the $+z$ axis, polarize the $^{60}\mathrm{Co}$ nuclei
 using a magnetic field in the $\pm z$ direction, and measure the electron rate in each polarization
 configuration. If parity is violated, a clear asymmetry would be present between the two polarizations,
-which is precisely what was discovered.
+which is precisely what was discovered and can be seen in figure \ref{fig:wuData}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.50]{1-Introduction/wuData.png}  
+  \caption{Data from C. S. Wu's experiment measuring the correlation between the emitted
+    direction of the electron from the decay of polarized $^{60}\mathrm{Co}$. The two
+    curves represent the counting rates when the nuclei were oriented in opposite
+    directions with respect to the electron detector. The existence of a splitting
+    indicatesa violation of parity as the electrons are preferentially emitted in the
+    direction opposite the spin.}
+  \label{fig:wuData}
+\end{figure}
 
 The measurement showed that the electrons were preferentially
-emitted in the direction opposite the spin of the nuclei, indicating that the $C'_i=-C_i$ for whichever
+emitted in the direction opposite the spin of the nuclei, which indicates parity violation due to
+the position inverted scenario not being observable. This is evident when considering that
+a correlation between the the spin and the momentum takes the form $\boldsymbol{\sigma \cdot p}$.
+The spin is a type of angular momentum and transforms as an axial vector under spatial inversion
+($P\boldsymbol{\sigma}=\boldsymbol{\sigma}$), while the momentum is normal vector and
+simply changes sign under parity ($P\boldsymbol{p}=-\boldsymbol{p}$). Thus the existence of
+such a term in the decay rate (as will be shown in section \ref{ssec:correlations}) makes the
+decay rate noninvariant under a parity transformation, and the position inverted scenario
+is automatically impossible since the spin vector would not change but we would expect to see
+the electron direction flip. The fact that the electrons prefer emission in the direction opposite
+to the spin indicates that the $C'_i=-C_i$ for whichever
 interaction current was responsible for the symmetry breaking. From the theory presented thus far,
 the interaction involved was either axial vector or tensor, because decay of
 $^{60}\mathrm{Co} (J^p=5^+) \rightarrow {^{60}\mathrm{Ni}}(J^p=4^+)$ proceeds stricly through
@@ -217,14 +250,14 @@ $\beta$-decay of a polarized nucleus, looking for correlations between the polar
 the decay electron. The results were again conclusive that parity is not conserved in the weak
 interaction.
 
-\subsection{Correlation Coefficients}
+\subsection{Correlation Coefficients} \label{ssec:correlations}
 Taking the interaction Hamiltonian from Lee and Yang with all generalized terms included,
 Jackson, Treiman, and Wyld \cite{jackson1957a,jackson1957b} first derived an expression
 for the differential decay rate for polarized nuclei as a function of the emitted electron momentum
 and spin, the neutrino momentum, and the nuclear spin of the decaying nucleus.
 Ebel and Feldman \cite{ebel1957} added terms to the expression of Jackson, Treiman, and Wyld,
-and under the assumption that the spin of the mother nucleus and the spin of the outgoing electron
-are observable this gives
+and, under the assumption that the spin of the mother nucleus and the spin of the outgoing electron
+are observable, this gives
 %
 \begin{multline}
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
@@ -262,16 +295,57 @@ are functions of the coupling constants in the weak Lagrangian (see equation \re
 as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi and Gamow-Teller
 transition amplitudes \footnote{For the complete defitions see \cite{jackson1957a,jackson1957b,ebel1957}}.
 
+Foreshadowing upcoming sections, we write down the definitions of $\xi$ and $A\xi$ (ignoring Coulomb
+corrections):
+%
+\begin{equation}
+  \xi = |M_F|^2\big(|C_s|^2+|C_v|^2+|C'_S|^2+|C'_v|^2\big)+|M_{GT}|^2\big(|C_T|^2+|C_A|^2+|C'_T|^2+|C'_A|^2\big)
+\end{equation}
+%
+\begin{multline}
+  A\xi = 2\mathrm{Re}\bigg[\pm |M_{GT}|^2 \lambda_{J'J}\big(C_TC'^*_T-C_AC'^*_A \big) \\
+    + \delta_{J'J}|M_F||M_{GT}|\bigg( \frac{J}{J+1} \bigg)^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
+\end{multline}
+where
+\begin{equation}
+\lambda_{J'J} =
+\begin{dcases}
+  1, & J\rightarrow J'=J-1 \\
+  \frac{1}{J+1}, &  J\rightarrow J'=J \\
+  \frac{-J}{J+1}, &  J\rightarrow J'=J+1 \\
+\end{dcases}
+\end{equation}
+The rest of the coefficients have varying combinations of the the complex coupling
+constants $C$, $C'$, and the Fermi and
+Gamow-Teller amplitudes.
 
+Jackson, Treiman, and Wyld concisely state the impact these terms have on tests of C, P, and
+T invariance:
+\begin{displayquote}
+Invariance with respect to space inversion implies that the coupling constants $C'$
+vanish (or alternatively the $C$ vanish). Invariance with respect to charge
+conjugation implies that the constants $C$ are real and the constants $C'$
+pure imaginary, up to an overall phase. Invariance under time reversal
+would imply that all coupling constants $C$, $C'$ are real, again up to an
+overall phase.
+\end{displayquote}
 
-Talk about the predictions Jackson makes given different conditions for the coefficients.
+Measurements of the correlation parameters in nuclear systems shed light on the
+relationships between the different coupling constants, but it would take observations
+of the behavior of the observed neutrinos and electrons to determine the true structure
+of the interaction Hamiltonian.
 
+\subsection{$V-A$ Structure}
 
+The theory of the weak interaction had developed from a purely vector current-current
+process to
+a combination of all possible Lorentz invarient current-current interactions to the potential mixture
+of current-current terms that transform as scalars and pseudoscalars to accomodate
+parity violation. At this point, the theory needed to rely on experiment to determine
+which couplings were nonzero.
 
-From \cite{jackson1957a}, we can write down the full expression (ignoring coulomb corrections)
-for $A\xi$
+By considering the helicity ($\boldsymbol{\sigma \cdot p}/p$) of the decay products
 
-\subsubsection{$V-A$ structure}
 Use page 16 from Greiner Muller and maybe look for another description.
 Discuss two component neutrino theory of Lee and Yang and the coupling of the fields to only
 left handed fermions(?). Show how this selects maximal parity violation and talk about
