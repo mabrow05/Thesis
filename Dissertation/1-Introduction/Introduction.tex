@@ -116,7 +116,7 @@ choice as this is the case for electromagnetism.
 \begin{figure}
   \centering
   \includegraphics[scale=0.50]{1-Introduction/pointInteraction.pdf}  
-  \caption{The point interaction of Fermi's theory of $\beta$-decay. The theory is
+  \caption{The contact interaction of Fermi's theory of $\beta$-decay. The theory is
     capable of describing other processes which move one of the outgoing particle lines
     to the left side, like electron capture by the proton producing a neutron and an
     electron neutrino.}
@@ -144,9 +144,12 @@ satisfy both Lorentz and translational invariance:
   +C_T\big( \bar{\psi}_p \sigma^{\mu\nu} \psi_n \big) \big( \bar{\psi}_e \sigma^{\mu\nu} \psi_\nu \big) 
   +C_A\big( \bar{\psi}_p \gamma_\mu \gamma^5 \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \gamma^5 \psi_\nu \big) 
   +C_P\big( \bar{\psi}_p  \gamma^5 \psi_n \big) \big( \bar{\psi}_e  \gamma^5 \psi_\nu \big),
+  \label{eq:FermiFull}
 \end{multline}
 %
 where the coefficients quantify the coupling to each respective current.
+
+\subsubsection{Fermi and Gamow-Teller Transitions}
 
 This shortcoming of Fermi's original vector-vector interaction
 lends itself to the definition of
@@ -175,7 +178,7 @@ individual currents and each individual current-current term transforms like a s
 two individual axial vector currents would each transform as
 $P(\bar{\psi}_p \gamma_\mu \gamma^5 \psi_n) \rightarrow -\bar{\psi}_p \gamma_\mu \gamma^5 \psi_n$ under parity, but the
 muliplication of two such terms transforms like a scalar. Thus, none of the terms in \ref{eq:FermiFull})
-are capable of violating parity, as the Hamiltonian would remain invariant. 
+are capable of violating parity, as the Hamiltonian would remain invariant under a parity transformation. 
 
 In their 1956 paper \cite{leeyang1956}, Lee and Yang modified the weak ineraction Hamiltonian
 by including the possibility of a pseudoscalar current-current interaction, namely
@@ -201,9 +204,9 @@ the momentum of the $\beta$-decay electron.
 \subsubsection{Discovery of Parity Violation}
 
 Following the publication of Lee and Yang's newly modified theory of $\beta$-decay, C. S. Wu
-and collaborators designed an experiment \cite{wu1957} to test the potential violation
+and collaborators designed an experiment to test the potential violation
 of parity in the $\beta$-decay of $^{60}\mathrm{Co}$
-($^{60}\mathrm{Co} \rightarrow {^{60}\mathrm{Ni}} + e^- + \bar{\nu}_e$). The premise of the experiment
+($^{60}\mathrm{Co} \rightarrow {^{60}\mathrm{Ni}} + e^- + \bar{\nu}_e$) \cite{wu1957}. The premise of the experiment
 was simple: place an electron detector along the $+z$ axis, polarize the $^{60}\mathrm{Co}$ nuclei
 using a magnetic field in the $\pm z$ direction, and measure the electron rate in each polarization
 configuration. If parity is violated, a clear asymmetry would be present between the two polarizations,
@@ -226,12 +229,14 @@ emitted in the direction opposite the spin of the nuclei, which indicates parity
 the position inverted scenario not being observable. This is evident when considering that
 a correlation between the the spin and the momentum takes the form $\boldsymbol{\sigma \cdot p}$.
 The spin is a type of angular momentum and transforms as an axial vector under spatial inversion
-($P\boldsymbol{\sigma}=\boldsymbol{\sigma}$), while the momentum is normal vector and
+($P\boldsymbol{\sigma}=\boldsymbol{\sigma}$), while the momentum is a normal vector and
 simply changes sign under parity ($P\boldsymbol{p}=-\boldsymbol{p}$). Thus the existence of
 such a term in the decay rate (as will be shown in section \ref{ssec:correlations}) makes the
 decay rate noninvariant under a parity transformation, and the position inverted scenario
 is automatically impossible since the spin vector would not change but we would expect to see
-the electron direction flip. The fact that the electrons prefer emission in the direction opposite
+the electron direction flip. This would result in electrons emitted aligned with the direction
+of the spin, which is not the observed case. As indicated by Wu,
+the fact that the electrons prefer emission in the direction opposite
 to the spin indicates that the $C'_i=-C_i$ for whichever
 interaction current was responsible for the symmetry breaking. From the theory presented thus far,
 the interaction involved was either axial vector or tensor, because decay of
@@ -291,7 +296,7 @@ where $F(\pm Z, E_e)$ is the Fermi function (a shape correction to the spectrum
 from coulomb interactions), $E$ is the energy of a given particle, $E^0$ is the endpoint
 energy of the electron, $\boldsymbol{p}$ is the particle momentum, $\boldsymbol{J}$ is the spin of the
 decaying nucleus (or nucleon), and $\sigma$ is the spin of the electron. All of the correlation coefficients
-are functions of the coupling constants in the weak Lagrangian (see equation \ref{eq:leeyang}),
+are functions of the coupling constants in the weak Hamiltonian (see equation \ref{eq:leeyang}),
 as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi and Gamow-Teller
 transition amplitudes \footnote{For the complete defitions see \cite{jackson1957a,jackson1957b,ebel1957}}.
 
@@ -299,7 +304,7 @@ Foreshadowing upcoming sections, we write down the definitions of $\xi$ and $A\x
 corrections):
 %
 \begin{equation}
-  \xi = |M_F|^2\big(|C_s|^2+|C_v|^2+|C'_S|^2+|C'_v|^2\big)+|M_{GT}|^2\big(|C_T|^2+|C_A|^2+|C'_T|^2+|C'_A|^2\big)
+  \xi = |M_F|^2\big(|C_S|^2+|C_V|^2+|C'_S|^2+|C'_V|^2\big)+|M_{GT}|^2\big(|C_T|^2+|C_A|^2+|C'_T|^2+|C'_A|^2\big)
 \end{equation}
 %
 \begin{multline}
@@ -337,34 +342,143 @@ of the interaction Hamiltonian.
 
 \subsection{$V-A$ Structure}
 
-The theory of the weak interaction had developed from a purely vector current-current
+By 1956, the theory of the weak interaction had developed from a purely vector current-current
 process to
-a combination of all possible Lorentz invarient current-current interactions to the potential mixture
-of current-current terms that transform as scalars and pseudoscalars to accomodate
+a combination of all possible Lorentz invariant current-current interactions to the potential mixture
+of current-current terms that transform as scalars and pseudoscalars in order to accomodate
 parity violation. At this point, the theory needed to rely on experiment to determine
 which couplings were nonzero.
 
-By considering the helicity ($\boldsymbol{\sigma \cdot p}/p$) of the decay products
+In early 1957, upon Wu reporting preliminary results regarding the large asymmetry seen in the $\beta-decay$
+of $^{60}\mathrm{Co}$ to Lee and Yang, the duo developed a two component theory
+of the neutrino where a massless neutrino exists in a predefined polarization, or that
+its spin is always oriented in the same direction with respect to its momentum \cite{lee1957}
+\footnote{Technically this only applies to neutrinos that interact via
+  the weak interaction, but seeing as neutrinos are only
+  observed to interact weakly, this can be generalized to all observable neutrinos. Also, Lee and
+  Yang's theory had the wrong sign for the $\boldsymbol{\sigma \cdot p}$ of the neutrino.}.
+This was the first theory to indicate that the weak interaction coupled only to particles
+of a certain handedness, where right (left) handedness refers to states of the
+chirality projection operator ($P_{\pm} = (1\pm \gamma^5)/2$) of $+\mathrm{ }(-)$. This operator
+should look familiar, as it is the term Lee and Yang inserted into Fermi's theory of $\beta$-decay
+when $C_i=C'_i$. 
 
-Use page 16 from Greiner Muller and maybe look for another description.
-Discuss two component neutrino theory of Lee and Yang and the coupling of the fields to only
-left handed fermions(?). Show how this selects maximal parity violation and talk about
-experiments that confirm this ( i think in griffiths)
+In 1958, Feynman and Gell-Mann \cite{feynman1958} (and separately Sudarshan and Marshak
+\cite{sudarshan1958}) would report the currently accepted V-A (vector minus axial vector)
+theory of the weak interaction. The name derives from the form of the two currents in the
+current-current Hamiltonian.
+The new theory involved the coupling of the weak current to strictly left-handed particles and right-handed
+antiparticles. More simply, a massless neutrino will always have helicity
+$\boldsymbol{\sigma \cdot p}/p = -1$ while an anti-neutrino will have $\boldsymbol{\sigma \cdot p}/p = +1$,
+where the fact that helicity and chirality are one in the same for massless particles is utilized.
+The form of the V-A interaction Hamiltonian
+%
+\begin{equation}
+  H = G_F \Big(\bar{\psi}_n \gamma_\mu(1-\gamma^5)\psi_p \Big)\Big(\bar{\psi}_{\bar{\nu}} \gamma^\mu(1-\gamma^5)\psi_e \Big),
+\end{equation}
+%
+where $G_F$ is the Fermi coupling constant of the weak interaction,
+assumes that the V-A structure is universal within the weak interaction\footnote{This is
+  only strictly true for the charged weak interaction (so a change in charge occurs in each current),
+  but at this time only the charged weak interaction
+  was known.}.
+
+The theories of Feynman and Gell-Mann (and Sudarshan and Marshak)
+explained the observations of the time
+regarding the weak interaction, and, also in 1958, confirmation of the V-A theory arrived when
+Goldhaber, Gradzins, and Sunyar indirectly measured
+the helicity of the neutrino in electron capture on $^{152}\mathrm{Eu}$ and determined the
+emitted neutrino was indeed left-handed
+\cite{goldhaber1958,greiner1996}. It should be noted that these two theories differed from that of
+Lee and Yang in the definition of the chirality of the particles ($-$) and anti-particles ($+$), where
+Lee and Yang had the opposite definition.
+
+Now one may be tempted to ask why only the vector and axial vector components of the original
+parity violating Hamiltonian remain, and this is easily answered by imagining that the
+left-handed coupling was discovered prior to modification of the Hamiltonian in equation
+\ref{eq:FermiFull} by Lee and Yang to account for parity violation. We can define the left-handed
+particle states as (up to a factor of $1/2$ left off for convenience)
+%
+\begin{equation}
+  \psi_L = (1-\gamma^5)\psi.
+\end{equation}
+%
+Then using this in the current yields
+%
+\begin{equation}
+  \bar{\psi}_{1,L} O_i \psi_{2,L} = \overline{(1-\gamma^5)\psi_{1}} O_i (1-\gamma^5)\psi_{2}
+\end{equation}
+%
+where $O_i$ refers to all of the operators which produce S, V, T, A, and P bilinear covariants
+from table \ref{tab:bilinearCov} and subscript 1,2 refers to two different particle states.
+The $O_i$ are those that are present in \ref{eq:FermiFull}.
+
+Now it can be shown that
+%
+\begin{align*}
+  \bar{\psi}_{1,L} O_i \psi_{2,L} &= \overline{(1-\gamma^5)\psi}_{1} O_i (1-\gamma^5)\psi_{2} \\
+  &= \Big((1-\gamma^5)\psi_{1}\Big)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}(1-\gamma^5)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}(1-\gamma^5) \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}\gamma^0(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} \\
+  &= \bar{\psi_{1}}(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} 
+\end{align*}
+%
+where the relations ${\gamma^5}^\dagger = \gamma^5$ and $\{\gamma^5,\gamma^i\}=0$ were used.
+
+\begin{table}[h]
+  \caption{The chirality projected operators.} 
+  \centering
+  \begin{tabular}{c c c }
+    \hline \hline \\ [-1.75ex]
+    Type & $O_i$ & $O'_i$ \\ [0.50ex]
+    \hline \\ 
+    S & $1$ & 0 \\ [0.50ex]
+    P & $\gamma^5$ & 0 \\ [0.50ex]
+    V & $\gamma^{\mu}$ & $\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
+    A & $\gamma^{\mu}\gamma^5$ & $-\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
+    T & $\sigma^{\mu\nu}$ & 0 \\ [0.50ex]   
+    \hline
+  \end{tabular}
+  \label{tab:operatorPrime}
+\end{table}
+
+Then, if we define
+\begin{equation*}
+  O'_i = (1+\gamma^5) O_i (1-\gamma^5),
+\end{equation*}
+we can calculate how all of the S, V, T, A, and P operators transform. This is shown in table
+\ref{tab:operatorPrime}, where we see that only the vector and axial terms remain, and they
+appear with the same $\gamma^\mu(1-\gamma^5)$ factor up to a sign! Thus, these are the only
+currents which can contribute in the interaction Hamiltonian \cite{greiner1996}.
 
 
 
-\subsection{Modern Weak Interaction in the Standard Model}
-Talk about the existence of the weak interaction within the standard model and
-the vertices and maybe write down the leptonic and hadronic current. Make it clear
-that at low q squared, the Fermi's theory and Electroweak theory converge.
+%Several experimental efforts (cite experiments) at the time indicated that the emitted particles
+%(antiparticles) from weak decay processes were in helicity states of $-1$ ($+1$), where helicity
+%is defined as $\Lambda = \boldsymbol{\sigma \cdot p}/p$ and the spin and momentum are both of the emitted
+%particle. This means that in $\beta^-$-decay, the emitted electron has negative helicity and the
+%antineutrino has positive helicity. This may lead one to believe that the weak force couples only
+%to negative (positive) helicity eigenstates for particles (antiparticles), and as such the
+%Hamiltonian would include the helicity projection operator $P_{\pm} = (1\pm \Lambda)/2$ to select
+%only the proper helicity states from the wavefunction. This has one major issue: the helicity
+%operator is not Lorentz invariant for massive particles. Thus a Lorentz boost to a
+%reference frame moving in the direction of particle motion but with speed greater than that of
+%the particle 
 
-\subsubsection{Charged Weak Current}
+\subsection{Renormalizing the Hadronic Current}
 
-\subsubsection{CKM Mixing Matrix}
 
-\subsubsection{Neutral Current}
+\subsection{CKM Mixing Matrix}
+
+\subsection{Matrix Element}
+
+\subsection{Induced Terms}
+
 
 \section{What does this mean for the neutron?}
+
+\subsection{Neutron $\beta$-decay Asymmetry Parameter A}
 
 In the case of $\beta$-decay of polarized free neutrons and assuming the electron spin is undetectable,
 equation \ref{eq:jackson} simplifies drastically,
@@ -382,6 +496,10 @@ equation \ref{eq:jackson} simplifies drastically,
 
 Switch to the more often used definitions of the coupling constants for consistency with modern literature
 maybe...
+
+\subsection{Neutron Lifetime}
+
+
 
 \section{Ultracold Neutrons}
 

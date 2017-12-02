@@ -262,6 +262,44 @@ West detector in an early 2012/2013 beta decay run. }
  
 \section{Backscattering} \label{sec:backscattering}
 
+Backscattering identification plays
+an important role in our Monte Carlo corrections and asymmetry extraction.
+Based on which detector components trigger, we classify events
+into those that do not backscatter
+(Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster12}. Type 0 events
+trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
+both scintillators and both MWPCs. For such events, we assign the initial
+direction to the triggering detector for Type 0 and to the earlier triggering detector
+for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
+MWPCs, but only trigger a single scintillator.
+The initial direction of such events can
+not be determined from trigger logic alone, as can be demonstrated by considering two events
+which look identical under trigger logic.
+For example, let ``Event 1'' denote an event that initially backscatters off
+of MWPC 1 before reaching scintillator 1
+and then traverses the length of the decay
+trap to trigger both MWPC 2 and scintillator 2 on the opposite side.
+Then, suppose ``Event 2'' denotes another event emitted
+in the opposite direction to event 1. Suppose this event
+triggers MWPC 2 and scintillator 2
+only to backscatter from the scintillator and travel to MWPC 1 and stop short
+of scintillator 1. Both events trigger MWPC 1 and 2 and scintillator 2,
+but the two events had opposite initial directions, so inclusion of the
+two events without further knowledge of their initial direction creates
+a dilution to the asymmetry.
+An important distinction, however, does exist between Type 2 and Type 3 events:
+Type 2 events only pass through the MWPC on the
+triggering scintillator side once, whereas Type 3 events scatter from
+the scintillator, and therefore pass through the MWPC twice on
+the triggering side. We can consequently apply a cut on the energy deposited in
+the MWPC on the triggering side to statistically assign
+Type 2/3 events to the correct side.
+This drastically reduces
+Monte Carlo corrections for such backscattering events as simulation indicates we
+properly identify $>80\%$ of all Type 2/3 events across all energies using this
+technique, a marked
+improvement over the roughly $50\%$ misidentification rate without separation.
+
 Show the schematic of the different backscattering types. Also explain the 
 angular dependence, maybe even show plots of backscattering types vs energy 
 and angle from simulation.
