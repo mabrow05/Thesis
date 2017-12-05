@@ -33,16 +33,14 @@ and $\beta$-decay.
 \section{Properties of the neutron}
 \label{sec:neutronProperties}
 Let us take a moment to give a very brief introduction to the neutron to motivate the
-upcoming sections. This will also serve as a useful tool for those who are
-unfamiliar with nuclear and field theories, as the following sections become
-quite technical. The majority of this dissertation can be read and mostly understood
+upcoming sections. The majority of this dissertation can be read and mostly understood
 without much knowledge of the theoretical description behind neutron $\beta$-decay,
 so the properties of the neutron are a natural starting point.
 
 The neutron is a net neutrally charged composite particle. The terms net and
 composite hint at the inner structure of the neutron, made up of fundamental
 particles called quarks, in this case two down ($d$) quarks and one up ($u$) quark.
-The quarks do carry charge, with the $u$ charge $+2/3$ and the $d$ charge
+The quarks carry charge, with the $u$ charge $+2/3$ and the $d$ charge
 $-1/3$, so that the net charge of the neutron is zero. This can be compared
 to the proton, another composite particle made up of three quarks (two $u$ and
 one $d$ quark), whose net charge is $+1$ and the other nucleon found
@@ -51,18 +49,30 @@ the charm, strange, bottom, and top in order of increasing mass. The neutron
 is the second lightest three-quark composite particle (baryon) 
 behind only the proton.
 
+\begin{figure}
+  \centering
+  \includegraphics[page=1,scale=0.4]{1-Introduction/betaSpectrum.pdf}
+    \caption{The electron kinetic energy spectrum in free neutron $\beta$-decay. The horizontal
+      axis has units of energy in MeV in this case, but the shape of the spectrum
+      is of general interest. Note that the decay probality does go to zero at zero
+      MeV.}
+  \label{fig:betaSpectrum}
+\end{figure}
+
 The free neutron undergoes $\beta$-decay, defined as a transition from the neutron
 to a proton, electron, and electron anti-neutrino,
 \begin{equation*}
-  n\rightarrow p + e^- + \bar{\nu}_{e}.
+  n\rightarrow p + e^- + \bar{\nu}_{e},
 \end{equation*}
-\noindent The three-body decay gives rise to a continuous energy spectrum
-for the proton, electron, and anti-neutrino by conservation of energy and momentum
-as seen in figure \ref{fig:spectralShapes}. The lifetime of the free neutron is
+\noindent as is also seen in figure \ref{fig:pointInteraction}.
+The three-body decay gives rise to a continuous energy spectrum
+for the proton, electron, and anti-neutrino by conservation of energy and momentum.
+The electron energy spectrum, the measurement of which is a primary focus of this
+dissertation, is seen in figure \ref{fig:betaSpectrum}. The lifetime of the free neutron is
 approximately fifteen minutes.
 
 
-\section{$\beta$-decay of the neutron}
+\section{$\beta$-decay and weak interactions: A brief history}
 
 Prior to 1930, $\beta$-decay of nuclei was a polarizing topic of debate. Originally
 only the decay electron was detected, and given such a two-body decay (the recoil
@@ -79,7 +89,7 @@ the neutrino by Fermi, and it would be a crux of Fermi's theory of $\beta$-decay
 A quarter century later, the existence of the neutrino would be confirmed
 experimentally \cite{cowan1956detection}.
 
-\subsection{Fermi's Theory of $\beta$-decay}
+\subsection{Fermi's theory of $\beta$-decay}
 After Pauli postulated the existence of the neutrino to explain the continuous energy
 distribution of the $\beta$-decay electron, Fermi attempted to theoretically describe
 the process in a similar manner to the theory of emission of
@@ -102,7 +112,7 @@ of heavy particles only, the neutron and the proton, both of which would turn ou
   \label{tab:bilinearCov}
 \end{table}
 
-Fermi's Hamiltonian took the form (written in a different manner from Fermi's original
+Fermi's interaction Hamiltonian took the form (written in a different manner from Fermi's original
 paper on the subject for the sake of clarity) 
 %
 \begin{equation}
@@ -115,11 +125,17 @@ choice as this is the case for electromagnetism.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.50]{1-Introduction/pointInteraction.pdf}  
-  \caption{The contact interaction of Fermi's theory of $\beta$-decay. The theory is
+  \centering
+  %\begin{tabular} {cc}
+  \subfloat[Contact Interaction at the particle level]{\includegraphics[page=1,scale=0.4]{1-Introduction/pointInteraction.pdf}}\\
+  \subfloat[Quark level decay]{\includegraphics[page=1,scale=0.4]{1-Introduction/quarkInteraction.pdf}}
+  %\end{tabular}
+  \caption{The contact interaction of Fermi's theory of $\beta$-decay is shown in a.). The theory is
     capable of describing other processes which move one of the outgoing particle lines
     to the left side, like electron capture by the proton producing a neutron and an
-    electron neutrino.}
+    electron neutrino. b.) shows the decay at the quark level, where the initial state is the
+    quark makeup of the neutron, and the subsequent decay of one of the down quarks into an up
+    quark creates the W boson which decays into the electron and electron anti-neutrino.}
   \label{fig:pointInteraction}
 \end{figure}
 
@@ -128,7 +144,9 @@ Fermi's theory of $\beta$-decay treats the decay as a four-point contact interac
 the currents are evaluated at the same point in space and time \cite{renton1990}. For those
 familiar with quantum field theory within the Standard Model, this differs from the typical
 interaction Hamiltonian as there is no propagator, or force carrier, to mediate the
-interaction between the two currents (more on this later). The theory
+interaction between the two currents. The small momentum transfer in nuclear
+$\beta$-decay compared to the mass of the $W$ bosons makes this point interaction a good
+approximation at low energies.  The theory
 worked well at predicting the energy spectrum of the electron from which
 Fermi deduced that the neutrino must be nearly massless, but suffered one flaw. The vector
 nature of the theory did not permit the observed allowed nuclear $\beta$-decay transitions
@@ -136,7 +154,7 @@ which can transform the spin of the decaying nucleus. This was pointed out by Ga
 1936 \cite{gamow1936}, where they show that a current-current interaction that transforms like
 a pseudovector properly assigns the spins of the products in thorium decays. As such,
 one can generalize Fermi's theory by including all possible bilinear covariant terms that
-satisfy both Lorentz and translational invariance:
+satisfy Lorentz invariance:
 %
 \begin{multline}
   H = C_S\big( \bar{\psi}_p \psi_n \big) \big( \bar{\psi}_e  \psi_\nu \big) 
@@ -268,7 +286,7 @@ are observable, this gives
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
   p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
   \Bigg\{ 1 + a\frac{\boldsymbol{p_e \cdot p_\nu}}{E_e E_\nu} + b\frac{m_e}{E_e} 
-  + \frac{\boldsymbol{\langle J \rangle}}{J} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
+  + \frac{\boldsymbol{\langle J \rangle}}{J} \boldsymbol{\cdot} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
     + B\frac{\boldsymbol{p_\nu}}{E_\nu} + D\frac{\boldsymbol{p_e \times p_\nu}}{E_e E_\nu}\Bigg] \\
   + \Bigg[ \frac{J(J+1)-3\langle (\boldsymbol{J \cdot \hat{\jmath}})^2 \rangle}{J(2J-1)} \Bigg]
   \Bigg( c\Bigg[ \frac{\boldsymbol{p_e} \times \boldsymbol{p_\nu}}{3E_eE_\nu} -
@@ -343,13 +361,13 @@ of the interaction Hamiltonian.
 \subsection{$V-A$ Structure}
 
 By 1956, the theory of the weak interaction had developed from a purely vector current-current
-process to
-a combination of all possible Lorentz invariant current-current interactions to the potential mixture
+process into
+a combination of all possible Lorentz invariant current-current interactions and finally to the potential mixture
 of current-current terms that transform as scalars and pseudoscalars in order to accomodate
 parity violation. At this point, the theory needed to rely on experiment to determine
 which couplings were nonzero.
 
-In early 1957, upon Wu reporting preliminary results regarding the large asymmetry seen in the $\beta-decay$
+In early 1957, upon Wu reporting preliminary results regarding the large asymmetry seen in the $\beta$-decay
 of $^{60}\mathrm{Co}$ to Lee and Yang, the duo developed a two component theory
 of the neutrino where a massless neutrino exists in a predefined polarization, or that
 its spin is always oriented in the same direction with respect to its momentum \cite{lee1957}
@@ -358,8 +376,8 @@ its spin is always oriented in the same direction with respect to its momentum \
   observed to interact weakly, this can be generalized to all observable neutrinos. Also, Lee and
   Yang's theory had the wrong sign for the $\boldsymbol{\sigma \cdot p}$ of the neutrino.}.
 This was the first theory to indicate that the weak interaction coupled only to particles
-of a certain handedness, where right (left) handedness refers to states of the
-chirality projection operator ($P_{\pm} = (1\pm \gamma^5)/2$) of $+\mathrm{ }(-)$. This operator
+of a certain handedness, where right (left) handedness refers to eigenstates with eigenvalues of the
+chirality projection operator ($P_{\pm} = (1\pm \gamma^5)/2$) equal to $+1\mathrm{ }(-1)$. This operator
 should look familiar, as it is the term Lee and Yang inserted into Fermi's theory of $\beta$-decay
 when $C_i=C'_i$. 
 
@@ -375,6 +393,7 @@ The form of the V-A interaction Hamiltonian
 %
 \begin{equation}
   H = G_F \Big(\bar{\psi}_n \gamma_\mu(1-\gamma^5)\psi_p \Big)\Big(\bar{\psi}_{\bar{\nu}} \gamma^\mu(1-\gamma^5)\psi_e \Big),
+  \label{eq:VminusA}
 \end{equation}
 %
 where $G_F$ is the Fermi coupling constant of the weak interaction,
@@ -384,8 +403,8 @@ assumes that the V-A structure is universal within the weak interaction\footnote
   was known.}.
 
 The theories of Feynman and Gell-Mann (and Sudarshan and Marshak)
-explained the observations of the time
-regarding the weak interaction, and, also in 1958, confirmation of the V-A theory arrived when
+explained the observations at that time
+regarding the weak interaction. Then, also in 1958, confirmation of the V-A theory arrived when
 Goldhaber, Gradzins, and Sunyar indirectly measured
 the helicity of the neutrino in electron capture on $^{152}\mathrm{Eu}$ and determined the
 emitted neutrino was indeed left-handed
@@ -413,19 +432,6 @@ where $O_i$ refers to all of the operators which produce S, V, T, A, and P bilin
 from table \ref{tab:bilinearCov} and subscript 1,2 refers to two different particle states.
 The $O_i$ are those that are present in \ref{eq:FermiFull}.
 
-Now it can be shown that
-%
-\begin{align*}
-  \bar{\psi}_{1,L} O_i \psi_{2,L} &= \overline{(1-\gamma^5)\psi}_{1} O_i (1-\gamma^5)\psi_{2} \\
-  &= \Big((1-\gamma^5)\psi_{1}\Big)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}(1-\gamma^5)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}(1-\gamma^5) \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}\gamma^0(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} \\
-  &= \bar{\psi_{1}}(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} 
-\end{align*}
-%
-where the relations ${\gamma^5}^\dagger = \gamma^5$ and $\{\gamma^5,\gamma^i\}=0$ were used.
-
 \begin{table}[h]
   \caption{The chirality projected operators.} 
   \centering
@@ -443,12 +449,25 @@ where the relations ${\gamma^5}^\dagger = \gamma^5$ and $\{\gamma^5,\gamma^i\}=0
   \label{tab:operatorPrime}
 \end{table}
 
+Now it can be shown that
+%
+\begin{align*}
+  \bar{\psi}_{1,L} O_i \psi_{2,L} &= \overline{(1-\gamma^5)\psi}_{1} O_i (1-\gamma^5)\psi_{2} \\
+  &= \Big((1-\gamma^5)\psi_{1}\Big)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}(1-\gamma^5)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}(1-\gamma^5) \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
+  &= \psi^\dagger_{1}\gamma^0(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} \\
+  &= \bar{\psi_{1}}(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} 
+\end{align*}
+%
+where the relations ${\gamma^5}^\dagger = \gamma^5$ and $\{\gamma^5,\gamma^i\}=0$ were used.
+
 Then, if we define
 \begin{equation*}
   O'_i = (1+\gamma^5) O_i (1-\gamma^5),
 \end{equation*}
 we can calculate how all of the S, V, T, A, and P operators transform. This is shown in table
-\ref{tab:operatorPrime}, where we see that only the vector and axial terms remain, and they
+\ref{tab:operatorPrime}, where we see that only the vector and axial vector terms remain, and they
 appear with the same $\gamma^\mu(1-\gamma^5)$ factor up to a sign! Thus, these are the only
 currents which can contribute in the interaction Hamiltonian \cite{greiner1996}.
 
@@ -468,15 +487,163 @@ currents which can contribute in the interaction Hamiltonian \cite{greiner1996}.
 
 \subsection{Renormalizing the Hadronic Current}
 
+The forms of both the hadronic current ($\bar{\psi}_p \gamma_\mu(1-\gamma^5)\psi_n$) and
+leptonic current ($\bar{\psi}_\nu \gamma_e(1-\gamma^5)\psi_{\bar{\nu}}$) in \ref{eq:VminusA} indicate
+that the vector and axial vector currents possess the same coupling constants, or that
+they contribute equally in the weak interaction. For the leptonic current this is the case
+as the particles participating are true point particles (and the equal relative strengths are
+what is meant by parity is violated maximally in the weak interaction), but what about the
+hadronic current? To account for potential differences in the hadronic current, the
+Hamiltonian is modified slightly,
+%
+\begin{equation}
+  H = G_F \Big(\bar{\psi}_p \gamma_\mu(g_V-g_A\gamma^5)\psi_n \Big)\Big(\bar{\psi}_{e} \gamma^\mu(1-\gamma^5)\psi_{\bar{\nu}} \Big),
+  \label{eq:VminusA2}
+\end{equation}
+%
+which lends itself to the definition
+%
+\begin{equation}
+  \lambda \equiv \frac{g_A}{g_V}.
+\end{equation}
+
+Within the nucleon, there exists a sea of spectator quarks and gluons
+which can effectively renormalize the interaction.
+The observed measurements of the Fermi constant ($G_F$) seemed
+universal when comparing measurements from
+purely leptonic ineractions and purely Fermi transitions (vector transitions).
+Thus the vector portion, in analogy with
+electromagnetism, is taken to be conserved, as was postulated by Feynman and Gell-Mann in
+1958 \cite{feynman1958}. 
+
+The conservation of the vector current can be imagined by considering the disocciation of the neutron
+into a proton and a $\pi^{-}$, which then weakly decays via $\pi^- \rightarrow \pi^0+e^- + \overline{\nu}$,
+a Fermi transition as $J^\pi=0^- \rightarrow J^\pi=0^-$. This loop diagram and others like it contribute to the
+conservation of the vector current by projecting
+the potentiality of neutron decay onto the disocciated pion \cite{grotz1990}. So, while one may naively
+think that the neutron could not decay while the pion exists, the probability of the pion also decaying
+via the same interaction conserves the vector current.
+This conservation of vector current is now called the
+Conserved Vector Current (CVC) hypothesis, and the value of $g_V$ is taken to be unity ($g_V = 1$).
+
+The same conservation of coupling to the axial vector current can not be assumed, as was also 
+considered by Feynman and Gell-Mann \cite{feynman1958}:
+%
+\begin{displayquote}
+Now with present knowledge it is not so easy to say
+whether or not a pseudovector current like
+$\bar{\psi}i\gamma^5\gamma^\mu\tau^+\psi$
+can be arranged to be not renormalized. The present
+experiments in $\beta$ decay indicate that the ratio of the
+coupling constant squared for Gamow-Teller (axial vector) and Fermi
+(vector)
+is about $1.3\pm0.1$. This departure from 1 might be a
+renormalization effect.
+\end{displayquote}
+%
+The value of $g_A$ can then only be determined experimentally and is directly related to measurements
+of the correlation coefficients in section \ref{ssec:correlations}.
+
 
 \subsection{CKM Mixing Matrix}
+The weak interaction as introduced thus far describes, within the hadronic current, the transitions
+between quarks with charge $-1/3$ and $+2/3$. This included observed interactions between the heavier
+strange quark (charge $-1/3$) and the up quark. 
+A shortcoming of the interaction in equation \ref{eq:VminusA2} was the inability to describe
+the decay rate of strangeness altering processes with respect to strangeness conserving
+decays, where the strangeness is measured by the number of strange quarks in the state of interest.
+This led Cabibbo \cite{cabibbo1963} to introduce the following correction to the hadronic current:
+%
+\begin{equation}
+  J^\mu_H = \cos\theta_C J^\mu_H(\Delta S=0) + \sin\theta_C J^\mu_H(|\Delta S|=1),
+  \label{eq:cabibbo}
+\end{equation}
+%
+where $J^\mu_H = \bar{\psi}_1 \gamma_\mu(g_V-g_A\gamma^5)\psi_2$ is the hadronic current between
+hadrons 1 and 2. Cabibbo found that $\theta_C \approx 13\degree$ described the observed differences.
 
-\subsection{Matrix Element}
+At the time Cabibbo introduced his modification, only the up, down and strange quarks were known
+to exist. Glashow, Iliopoulos, and Maiani proposed the existence of a fourth quark, the charm quark,
+with charge $+2/3$ as a complimentary particle in the weak doublet with the strange quark, to explain
+an observed discrepancy in the decay rate of $K^0 \rightarrow \mu^+ + \mu^-$ \cite{glashow1970}.
+Validation of the GIM mechanism arrived with the discovery of the
+charm quark in 1974.
 
-\subsection{Induced Terms}
+Even prior to the discovery of the charm quark, Kobayashi and Maskawa generalized the ideas of
+Cabibbo, Glashow, Iliopoulos, and Maiani to include three generations of quarks \cite{kobayashi1973}. The single
+Cabibbo angle was replaced with three angles relating couplings between each generation of quarks and a complex
+phase. We now know that three generations of quarks exist, and they appear in the weak interaction as part of weak
+doublets rather than particle doublets, i.e.
+%
+\begin{equation}
+  \begin{pmatrix} u \\ d' \end{pmatrix} ,
+  \begin{pmatrix} c \\ s' \end{pmatrix} ,
+  \begin{pmatrix} t \\ b' \end{pmatrix}.
+\end{equation}
+%
+The weak states for the down (d), strange (s), and bottom (b) quarks are related to the particle states
+by the CKM matrix: 
+%
+\begin{equation}
+  \begin{pmatrix} d' \\s' \\ b' \end{pmatrix} =
+  \begin{pmatrix} V_{ud} & V_{us} & V_{ub} \\
+    V_{cd} & V_{cs} & V_{cb} \\
+    V_{td} & V_{ts} & V_{tb} \\
+  \end{pmatrix}
+  \begin{pmatrix} d \\s \\ b \end{pmatrix}
+\end{equation}
+%
+Each element of the CKM matrix, $V_{ij}$, quantifies the coupling of quark $i$
+to quark $j$, or in comparison to Cabibbo's modification to the hadronic current
+above, the CKM matrix elements take the place of the $\cos\theta_C$ and $\sin\theta_C$
+when extended to three generations of quarks. As a matter of fact, if we assume no mixing
+with the third generation of quarks, the CKM matrix becomes the matrix developed by
+Glashow, Iliopoulos, and Maiani and the only quantity needed to fully determine
+the relationships between the weak states and the quark states is the Cabibbo angle $\theta_C$
+\cite{griffiths2008}.
+Thus, direct comparison with equation \ref{eq:cabibbo} indicates that the proper
+$V_{ij}$ should accompany the hadronic current
+of the process being considered in the Hamiltonian, i.e. $V_{ud}$ accompanies the hadronic
+current in neutron $\beta$-decay.
+
+The existence of non-zero off diagonal terms means that there is non-zero probability for a
+weak interaction between quarks of different generations, given that it is energetically
+allowed. The complex phase present in the CKM
+matrix also accounts for CP-violation in weak interactions.
+The elements of the CKM matrix must be measured experimentally, and the unitarity of the matrix
+is an important test of the Standard Model. If
+%
+\begin{equation}
+  |V_{ud}|^2 + |V_{us}|^2 + |V_{ub}|^2 = 1,
+\end{equation}
+then the Standard Model contains only the three observed generations of quarks.
 
 
 \section{What does this mean for the neutron?}
+
+\subsection{Matrix Element}
+Written in the form of citeThe matrix element for $\beta$-decay is given by
+%
+\begin{equation}
+  \mathcal{M} = \frac{G_FV_{ud}}{\sqrt{2}} J^\mu L_\mu\
+  %\langle p |J^\mu| n\rangle
+\end{equation}
+%
+where $L_\mu = \bar{u}_e \gamma_\mu (1-\gamma^5) u_{\bar{\nu}}$ is the leptonic current
+and the hadronic current $J^\mu$ is given by
+%
+\begin{multline}
+  J^\mu = \bar{u}_p \bigg[ g_V(q^2) - i \frac{g_{WM}(q^2)}{2M}\sigma^{\mu\nu}q_\nu + \frac{g_S(q^2)}{2M}q^\mu
+    + g_A(q^2)\gamma^5 \\- i \frac{g_{T}(q^2)}{2M}\sigma^{\mu\nu}\gamma^5q_\mu 
+    +  \frac{g_P(q^2)}{2M}\gamma^5q^\mu \bigg] u_n
+\end{multline}
+%
+where the terms included are all those that satisfy translational and Lorentz invariance. Notice the
+usual $g_V$ and $g_A$ terms from the previous construction of the weak interaction. The other terms
+are referred to as induced terms, inferring that 
+\subsection{Induced Terms}
+
+
 
 \subsection{Neutron $\beta$-decay Asymmetry Parameter A}
 
@@ -487,7 +654,7 @@ equation \ref{eq:jackson} simplifies drastically,
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
   p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
   \Bigg\{ 1 + a\frac{\boldsymbol{p_e \cdot p_\nu}}{E_e E_\nu} + b\frac{m_e}{E_e} 
-  + \frac{\boldsymbol{\langle J \rangle}}{J} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
+  + \frac{\boldsymbol{\langle J \rangle}}{J} \boldsymbol{\cdot} \Bigg[ A\frac{\boldsymbol{p_e}}{E_e}
     + B\frac{\boldsymbol{p_\nu}}{E_\nu} + D\frac{\boldsymbol{p_e \times p_\nu}}{E_e E_\nu}\Bigg]
   \Bigg\}.
   \label{eq:jacksonSimple}
