@@ -625,25 +625,34 @@ then the Standard Model contains only the three observed generations of quarks.
 The matrix element for $\beta$-decay is given by
 %
 \begin{equation}
-  \mathcal{M} = \frac{G_FV_{ud}}{\sqrt{2}} J^\mu L_\mu\
+  \mathcal{M} = \frac{G_FV_{ud}}{\sqrt{2}} J^\mu L_\mu
   %\langle p |J^\mu| n\rangle
 \end{equation}
 %
 where $L_\mu = \bar{u}_e \gamma_\mu (1-\gamma^5) u_{\bar{\nu}}$ is the leptonic current
-and the hadronic current $J^\mu$ is given by
+and the hadronic current $J^\mu$, written in the style of \cite{gardner2001}, is given by
 %
 \begin{multline}
-  J^\mu = \bar{u}_p \bigg[ g_V(q^2) - i \frac{g_{WM}(q^2)}{2M}\sigma^{\mu\nu}q_\nu + \frac{g_S(q^2)}{2M}q^\mu
-    + g_A(q^2)\gamma^5 \\- i \frac{g_{T}(q^2)}{2M}\sigma^{\mu\nu}\gamma^5q_\mu 
-    +  \frac{g_P(q^2)}{2M}\gamma^5q^\mu \bigg] u_n
+  J^\mu = \bar{u}_p \bigg[ f_1(q^2) - i \frac{f_{2}(q^2)}{M}\sigma^{\mu\nu}q_\nu + \frac{f_3(q^2)}{M}q^\mu
+    + g_1(q^2)\gamma^5 \\- i \frac{g_{2}(q^2)}{M}\sigma^{\mu\nu}\gamma^5q_\mu 
+    +  \frac{g_3(q^2)}{M}\gamma^5q^\mu \bigg] u_n
 \end{multline}
+%\begin{multline}
+%  J^\mu = \bar{u}_p \bigg[ g_V(q^2) - i \frac{g_{WM}(q^2)}{2M}\sigma^{\mu\nu}q_\nu + \frac{g_S(q^2)}{2M}q^\mu
+%    + g_A(q^2)\gamma^5 \\- i \frac{g_{T}(q^2)}{2M}\sigma^{\mu\nu}\gamma^5q_\mu 
+%    +  \frac{g_P(q^2)}{2M}\gamma^5q^\mu \bigg] u_n
+%\end{multline}
 %
 where the terms included are all those that satisfy translational and Lorentz invariance. Notice the
-usual $g_V$ and $g_A$ terms from the previous construction of the weak interaction. The other couplings
-are referred to as induced terms, inferring that the hadronic current may be modified in ways other
-than those captured by the axial vector and vector currents. The subscripts describe the type of
-coupling (Scalar, Pseudoscalar, Tensor), and $g_{WM}$ accounts for weak magnetism as described by
-Gell-Mann in 1958 \cite{gellmann1958}. Two of the terms, 
+usual $f_1(0)=g_V$ and $g_1(0) = g_A$ terms from the previous construction of the weak interaction. The other couplings
+account for modifications to the hadronic current from other mechanisms (nuclear recoil and Coulomb for example)
+that may transform in ways not described by the typical axial vector and vector currents. Also note that all terms
+included in the current are either axial vector or vector, as is ensured by the proper inclusion of the momentum
+transfer $q_\nu$. This must be the case since all terms in the current-current multiplication $J^\mu L_\mu$ must be
+scalar of pseudoscalar.
+
+If we write the hadronic current as a function of an axial vector current
+(weak magnetism)  \cite{gellmann1958}.  
 
 
 \subsection{Induced Terms}
