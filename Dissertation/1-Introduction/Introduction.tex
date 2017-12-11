@@ -326,9 +326,10 @@ corrections):
   \label{eq:xi}
 \end{equation}
 %
+and
 \begin{multline}
   A\xi = 2\mathrm{Re}\bigg[\pm |M_{GT}|^2 \lambda_{J'J}\big(C_TC'^*_T-C_AC'^*_A \big) \\
-    + \delta_{J'J}|M_F||M_{GT}|\bigg( \frac{J}{J+1} \bigg)^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
+    + \delta_{J'J}M_FM_{GT}\bigg( \frac{J}{J+1} \bigg)^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
   \label{eq:XiA}
 \end{multline}
 where
@@ -340,6 +341,8 @@ where
   \frac{-J}{J+1}, &  J\rightarrow J'=J+1 \\
 \end{dcases}
 \end{equation}
+and the $\pm$ sign indicates $\beta^-(\beta^+)$ decay respectively (So the plus sign goes with
+$\beta^-$ to be clear).
 The rest of the coefficients have varying combinations of the the complex coupling
 constants $C$, $C'$, and the Fermi and
 Gamow-Teller amplitudes.
@@ -629,6 +632,7 @@ The matrix element for $\beta$-decay is given by
 \begin{equation}
   \mathcal{M} = \frac{G_FV_{ud}}{\sqrt{2}} J^\mu L_\mu
   %\langle p |J^\mu| n\rangle
+  \label{eq:M}
 \end{equation}
 %
 where $L_\mu = \bar{u}_e \gamma_\mu (1-\gamma^5) u_{\bar{\nu}}$ is the leptonic current
@@ -707,13 +711,14 @@ The Fierz interference term can be written as
     + |M_{GT}|^2\big(C_TC^*_A-C'_TC'^*_A \big) \bigg]
   \label{eq:b}
 \end{equation}
-%where $\gamma = (1-\alpha ^2 Z^2)^{1/2}$, $\alpha$ is the fine structure constant, and $\xi$ is given in
-%equation \ref{eq:xi}. From equation \ref{eq:b}, we see that $b=0$ under the V-A structure
-of the weak interaction within the Standard Model. Measurements of $b$ allow for constraints on
+where $\gamma = (1-\alpha ^2 Z^2)^{1/2}$, $\alpha$ is the fine structure constant, and $\xi$ is given in
+equation \ref{eq:xi}. From equation \ref{eq:b}, we see that $b=0$ under the V-A structure
+of the weak interaction within the Standard Model, as
+$C_s = C'_s = C_T = C'_T = 0$. Measurements of $b$ provide constraints on
 beyond Standard Model physics, but these measurements are difficult because they
 require precise determination of the shape of the electron energy spectrum. A measurement of
 $b$ using the 2010 UCNA energy spectrum exists, with a value of
-$b_n = 0.067 \pm 0.005_{\mathrm{stat}}{}^{+ 0.090}_{-0.091}{}_{\mathrm{syst}}$, which is consistent with
+$b_n = 0.067 \pm 0.005_{\mathrm{stat}}{}^{+ 0.090}_{-0.091}{}_{\mathrm{syst}}$ \cite{hickerson2017}, which is consistent with
 $b=0$. A result using the energy
 spectra presented in this dissertation is currently under analysis, with hopes of reducing the
 systematic uncertainty.
@@ -723,36 +728,168 @@ weak interaction is V-A and couples to left-handed fermions ($C_A=C'_A$ and $C_V
 are pure real, and using the fact that
 $\Delta J = {\frac{1}{2}}^+ - {\frac{1}{2}}^+ = 0$ we have
 %
-\begin{multline}
-  A\xi = -\frac{4}{3} |M_{GT}|^2 C_A^2 
-    + \frac{1}{3}M_FM_{GT}\frac{1}{3}^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
-  \label{eq:XiA}
-\end{multline}
+\begin{align}
+  A\xi &= 2\bigg[ \frac{2}{3} |M_{GT}|^2 \Big(-C_A^2\Big) 
+    + M_FM_{GT}\Big(\frac{1}{3}\Big)^{\frac{1}{2}}\big(-2C_VC_A \big) \bigg] \\
+  &=-4 \bigg( \frac{1}{3}C_A^2|M_{GT}|^2 + \frac{1}{\sqrt{3}} C_VC_A M_FM_{GT} \bigg)
+  \label{eq:XiAsimple}
+\end{align}
+%
+and from \ref{eq:xi} under the same assumptions,
+%
+\begin{equation}
+  \xi = 2|M_F|^2C_V^2+2|M_{GT}|^2C_A^2.
+\end{equation}
 %
 
+For the neutron, the Fermi and Gamow-Teller matrix elements are $M_F=1$ and
+$M_{GT} = \sqrt{3}$, with the simplicity resulting from there being no
+overlapping nucleon wavefunctions as there would be in nuclear $\beta$-decay
+\cite{grotz1990}. Using this in the equations above we have
+%
+\begin{align}
+  A & =\frac{-4 \big( C_A^2 +  C_VC_A \big)}{2 \big(C_V^2 + 3C_A^2\big)} \\
+  A & = -2 \frac{ \lambda \big(\lambda+1\big)}{ 1 + 3\lambda^2}
+\end{align}
+%
+where
+%
+\begin{equation}
+  \lambda = \frac{C_A}{C_V} = \frac{g_A}{g_V}.
+\end{equation}
 
-
+This expression for $A$ is free of recoil order and Coulomb corrections, and so it is
+often referred to as $A_0$. Thus we see that upon measuring the $\beta$-decay
+asymmetry parameter $A$, we must make modifications to the measured value to extract
+$A_0$. From $A_0$, a direct determination of $\lambda = \frac{g_A}{g_V}$, the ratio of the axial-vector to vector
+coupling constants in the hadronic weak interaction, follows.
+These corrections are addressed in section \ref{ssec:deltaTh}.
 
 \subsection{Neutron Lifetime}
+The neutron lifetime is another observable of the free neutron, and it is calculated using the matrix
+element in equation \ref{eq:M} and then integrating over the allowable phase space for the decay.
+The neutron lifetime is given by
+%
+\begin{equation}
+  \frac{1}{\tau_n} = \frac{G_F^2 m_e^5}{2\pi^3}V_{ud}^2 \big(1+3\lambda^2)f(1+\mathrm{RC})
+\end{equation}
+%
+where $f$ is the phase space factor and $(1+\mathrm{RC})$ accounts for recoil order
+corrections \cite{czarnecki2004precision}. If we take $G_F$ to be known from muon decay and $\lambda$ from
+measurements of correlation paramaters (like $A$), then we see that upon measuring the
+neutron lifetime $\tau_n$, there is only one unknown: the CKM matrix element $V_{ud}$.
+We can rewrite the lifetime equation as
+%
+\begin{equation}
+  |V_{ud}|^2 = \frac{4908.7(1.9)\mathrm{s}}{\tau_n}\big(1+3\lambda^2\big),
+\end{equation}
+where the known values from $G_F$, $f$, and $(1+\mathrm{RC})$ have been combined.
+The uncertainty on the numerator comes from the combined uncertainties on
+the recoil corrections and the small uncertainty on $G_F$. Here we see that
+by measuring the neutron lifetime and $\lambda$ from free neutron decay,
+one can determine $V_{ud}$ solely from neutron decay. 
+To date, the most precise determination of $V_{ud}$ come from nuclear
+$\beta$-decay of $0^+ \rightarrow 0^+$ which is purely a vector interaction
+and thus does not contain the axial-vector renormalization $g_A$.
 
 
 
 \section{Ultracold Neutrons}
 
-Talk about the typical energy spectra of neutrons from reactors and spallation sources. Show the
-energy ranges and what we call each of the neutrons.
+While neutrons have a magnetic moment and a mass, the typical energy scale
+of a free neutron is much larger than any potential energy associated with
+the interaction of the neutron with materials, gravititational fields,
+or magnetic fields. But what happens if the neutron is cooled down
+to where its kinetic energy almost vanishes? The neutron begins to interact
+quite differently than typically expected!
 
-\subsection{Interactions}
+In the UCNA experiment, neutrons
+with kinetic energies $<350$~neV and speeds $<8$~m/s are utilized to measure
+the neutron $\beta$-decay asymmetry parameter $A$. Neutron's of such energies
+are called ultracold neutrons, and will often be referred to simply as UCN. The
+low energy of these neutrons means they can be trapped in material bottles, manipulated
+with magnetic fields, and even affected by gravity.
 
-\subsubsection{Fermi Potential}
+\subsubsection{Fermi Potential} \label{sssec:fermipotential}
 
-\subsubsection{Gravity and Magnetic Fields}
+As mentioned, UCN can be confined within material bottles, meaning that they are
+totally internally reflected from certain surfaces no matter the angle of incidence.
+Thus the slow moving neutrons behave more like a diffuse gas than a typical neutron
+beam.
 
-\section{Previous measurements of $A_{0}$}
-\label{sec:Previous_results}
+UCN see an effective Fermi potential when encountering a surface, given by
+%
+\begin{equation}
+  V_{\mathrm{eff}} = \frac{2\pi\hbar^2}{m}Na,
+\end{equation}
+where $a$ is the bound atom coherent scattering length of the material and $N$ is the number density of
+the material. This potential can be treated as a one-dimensional non-relativistic quantum mechanics problem,
+and what one finds is that when the energy of the incoming wave is less than $V_{\mathrm{eff}}$, the neutron will be
+totally reflected, although there is a transmitted component of the wave function which penetrates the
+material. This transmitted component can lead to losses of UCN via interactions with the nuclei through
+neutron capture or upscattering \cite{golub1991ultra}. A table of typical effective potentials is seen
+in table \ref{tab:fermipotential}.
+By constructing the critical guides and other components of the UCNA experiment using materials with high
+Fermi potentials, UCN can be guided to our experiemental volume and then held until they decay.
 
-\subsection{2010 UCNA Analysis}
-\subsection{PERKEO}
+\begin{table}[h]
+  \caption{Effective potentials for some UCN reflecting materials.} 
+  \centering
+  \begin{tabular}{l c }
+    \hline \\ [-1.75ex]
+    Material & $V_{\mathrm{eff}}$ (neV) \\
+    \hline \hline \\ [-1.75ex]
+    $^{58}\mathrm{Ni}$ & 342 \\
+    Stainless Steel & 189 \\
+    Cu & 168 \\
+    Fe & 210 \\
+    Be & 252 \\
+    \hline
+  \end{tabular}
+  \label{tab:fermipotential}
+\end{table}
+
+
+\subsubsection{Gravity}
+
+As in classical physics, the neutron posesses gravitational potential energy of the form
+%
+\begin{equation}
+  V_g = m_ngh \approx \big(102 \mathrm{~neV/m}\big) \cdot h.
+\end{equation}
+
+Normally this is inconsequential for a neutron with typical energies on the MeV scale,
+but for UCN with energies comparable to the potential energy associated with only a few
+meters change in height, gravity can have a great influence. One might consider using
+a change in height to lower the UCN energy to a regime which can be guided by certain
+materials as seen in section \ref{sssec:fermipotential}, or they can be accelerated using
+a decrease in height to assist in detection of the UCN \cite{golub1991ultra}.
+
+\subsubsection{Magnetic Fields}
+
+The neutron has an instrinsic magnetic moment given by
+$\vec{\mu}_n = -1.91304272(45)\vec{\mu}_N$ \cite{pdg} which arises from the quark makeup of the neutron.
+The nucleon magnetic moment is taken to be aligned with the spin, and therefore the neutron magnetic moment
+is anti-aligned with its spin.
+
+A magnetic moment interacts with a magnetic field through the $-\vec{\mu} \cdot \vec{B}$ potential, so for
+a neutron we have
+%
+\begin{equation}
+  V_m = -\vec{\mu}_n \cdot \vec{B} = \mu_n \hat{\sigma} \cdot \vec{B} \approx \pm \big(60 \mathrm{~neV/T}\big)
+  \hat{\sigma} \cdot \vec{B}, 
+\end{equation}
+where $\hat{\sigma}$ is a unit vector in the direction of the spin. From this it is apparent that a spin which is
+aligned to the field will feel a repulsive force from the potential, while a spin of the opposite orientation
+will see an attractive potential. The strength of the potential also indicates that a modest magnet of several
+Tesla will completely reflect a spin aligned with the field. We'll return to this in the next chapter.
+
+
+%\section{Previous measurements of $A_{0}$}
+%\label{sec:Previous_results}
+
+%\subsection{2010 UCNA Analysis}
+%\subsection{PERKEO}
 
 \section{Summary}
 
