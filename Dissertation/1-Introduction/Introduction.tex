@@ -323,11 +323,13 @@ corrections):
 %
 \begin{equation}
   \xi = |M_F|^2\big(|C_S|^2+|C_V|^2+|C'_S|^2+|C'_V|^2\big)+|M_{GT}|^2\big(|C_T|^2+|C_A|^2+|C'_T|^2+|C'_A|^2\big)
+  \label{eq:xi}
 \end{equation}
 %
 \begin{multline}
   A\xi = 2\mathrm{Re}\bigg[\pm |M_{GT}|^2 \lambda_{J'J}\big(C_TC'^*_T-C_AC'^*_A \big) \\
     + \delta_{J'J}|M_F||M_{GT}|\bigg( \frac{J}{J+1} \bigg)^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
+  \label{eq:XiA}
 \end{multline}
 where
 \begin{equation}
@@ -644,7 +646,8 @@ and the hadronic current $J^\mu$, written in the style of \cite{gardner2001}, is
 %\end{multline}
 %
 where the terms included are all those that satisfy translational and Lorentz invariance. Notice the
-usual $f_1(0)=g_V$ and $g_1(0) = g_A$ terms from the previous construction of the weak interaction. The other couplings
+usual $f_1(0)=g_V$ and $g_1(0) = g_A$ terms from the previous construction of the weak interaction. The
+rest of the couplings
 account for modifications to the hadronic current from other mechanisms (nuclear recoil and Coulomb for example)
 that may transform in ways not described by the typical axial vector and vector currents. Also note that all terms
 included in the current are either axial vector or vector, as is ensured by the proper inclusion of the momentum
@@ -654,23 +657,19 @@ scalar of pseudoscalar.
 The $f_2$ term is often called the weak magnetism contribution \cite{gellmann1958}, as it, in
 the words of Gell-Mann,
 ``bears the same relation to the allowed Fermi coupling that magnetism bears to electricity''.
-As $q^2\rightarrow0$, $f_2(0) = (\mu_p - \mu_n)/2$. The $g_3$ term is the induced pseudoscalar term
-which is 
+As $q^2\rightarrow0$ and assuming the CVC hypothesis,
+$f_2(0) = (\mu_p - \mu_n)/2$, where $\mu$ denotes the anomalous magnetic moment.
+The $g_3$ term is the induced pseudoscalar term and is predicted to be of order $5\times 10^{-5}$ as
+$q^2\rightarrow0$ \cite{holstein1974recoil}.
 
-Th
-
-
-
-
-\subsection{Induced Terms}
-
-\subsubsection{Weak Magnetism}
-
-The weak magnetism term was first posited by Murray Gell-Mann in 1958 \ 
+The remaining $f_3$ and $g_2$ couplings are considered second-class currents \cite{weinberg1958charge}.
+They arise from violations of G parity, defined as $G = Ce^{i\pi I_2}$. If G parity is conserved in
+weak interactions as it is in strong interactions, then $f_3=g_2=0$. Even if nonzero, the effects
+from either are expected to small, as they appear in the energy spectrum at order $m_e^2/ME_e \approx 10^{-4}$
+\cite{plaster2012,holstein1974recoil}.
 
 
-
-\subsection{Neutron $\beta$-decay Asymmetry Parameter A}
+\subsection{Neutron $\beta$-decay Asymmetry Parameter $A$}
 
 In the case of $\beta$-decay of polarized free neutrons and assuming the electron spin is undetectable,
 equation \ref{eq:jackson} simplifies drastically,
@@ -685,9 +684,54 @@ equation \ref{eq:jackson} simplifies drastically,
   \label{eq:jacksonSimple}
 \end{multline}
 %
+Now in the case of UCNA, only the polarization of the initial neutron population and the momentum
+of the decay electron are observable, which further simplifies equation \ref{eq:jacksonSimple} to
+%
+\begin{multline}
+  \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
+  p_e E_e \big( E^0 - E_e \big)^2 \times \xi 
+  \Bigg\{ 1 + b\frac{m_e}{E_e} 
+  + A \frac{\boldsymbol{\langle J \rangle}}{J} \boldsymbol{\cdot}\frac{\boldsymbol{p_e}}{E_e}
+  \Bigg\}.
+  \label{eq:jacksonSimple2}
+\end{multline}
+%
 
-Switch to the more often used definitions of the coupling constants for consistency with modern literature
-maybe...
+The $b$ term is known as the Fierz interference term, and, if nonzero, it presents itself
+within the electron energy spectrum as an energy shift. The other term is the asymmetry parameter
+$A$ between the neutron spin and the electron momentum that is being measured in the UCNA experiment.
+
+The Fierz interference term can be written as
+\begin{equation}
+  b\xi = \pm 2\gamma \mathrm{Re}\bigg[|M_{F}|^2 \lambda_{J'J}\big(C_SC^*_V-C'_SC'^*_V \big) 
+    + |M_{GT}|^2\big(C_TC^*_A-C'_TC'^*_A \big) \bigg]
+  \label{eq:b}
+\end{equation}
+%where $\gamma = (1-\alpha ^2 Z^2)^{1/2}$, $\alpha$ is the fine structure constant, and $\xi$ is given in
+%equation \ref{eq:xi}. From equation \ref{eq:b}, we see that $b=0$ under the V-A structure
+of the weak interaction within the Standard Model. Measurements of $b$ allow for constraints on
+beyond Standard Model physics, but these measurements are difficult because they
+require precise determination of the shape of the electron energy spectrum. A measurement of
+$b$ using the 2010 UCNA energy spectrum exists, with a value of
+$b_n = 0.067 \pm 0.005_{\mathrm{stat}}{}^{+ 0.090}_{-0.091}{}_{\mathrm{syst}}$, which is consistent with
+$b=0$. A result using the energy
+spectra presented in this dissertation is currently under analysis, with hopes of reducing the
+systematic uncertainty.
+
+The asymmetry parameter $A$ was given in equation \ref{eq:XiA}, but under the assumptions that the
+weak interaction is V-A and couples to left-handed fermions ($C_A=C'_A$ and $C_V=C'_V$), the couplings
+are pure real, and using the fact that
+$\Delta J = {\frac{1}{2}}^+ - {\frac{1}{2}}^+ = 0$ we have
+%
+\begin{multline}
+  A\xi = -\frac{4}{3} |M_{GT}|^2 C_A^2 
+    + \frac{1}{3}M_FM_{GT}\frac{1}{3}^{\frac{1}{2}}\big(C_SC'^*_T+C'_SC^*_T -C_VC'^*_A-C'_VC^*_A \big) \bigg]
+  \label{eq:XiA}
+\end{multline}
+%
+
+
+
 
 \subsection{Neutron Lifetime}
 
