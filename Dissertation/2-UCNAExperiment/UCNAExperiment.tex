@@ -341,28 +341,87 @@ electron scintillator as seen in figure \ref{fig:detector}. The primary detector
 stops all $\beta$-decay electrons, so a coincident signal in the ``backing veto''
 indicates that a muon or some other event passed through the detector package.
 
-\section{Trigger Logic}
+\section{Data Signals and Trigger Logic}
 
 Details regarding the data acquisition system can be found in \cite{plaster2012,mpmThesis}, and
-so the electronics will be left of of this discussion. Instead, what is of more importance for
+so the electronics will be left out of this discussion. Instead, what is more important for
 understanding the work contained within this dissertation is the primary logic used to
-determine an electron event.
+determine an electron event, and the terminology used when discussing different signals.
+
+The two primary types of signals we will use are ADC and TDC signals.
+An ADC signal is a number related to a voltage output by a detector component, and this
+signal may either be an integrated signal or a peak sensing signal. Either way, it is related
+to the ``strength'' of the signal as seen by the detector component, or the energy deposited
+in most cases. An example of an ADC signal can be seen in figure \ref{fig:ADCsig}, where we show the
+detector output over one run for a single PMT during a $\beta$-decay run.
+The second signal used is a TDC signal, which for our purposes is
+just a timing signal to indicate when a detector component triggered, or if it triggered at all.
+An example TDC signal can be
+seen in figure \ref{TDCsig}.
+
+\begin{figure}
+  \centering
+  \subfloat[Raw ADC signal]{\includegraphics[page=1,scale=0.38]{2-UCNAExperiment/rawADCsignal17126.pdf}}
+  \subfloat[Raw ADC signal with two-fold scintillator trigger applied]{\includegraphics[page=1,scale=0.38]{2-UCNAExperiment/rawADCsignal17126_betaEast.pdf}}
+  \caption{Comparison of the raw ADC signal from a single PMT for any global trigger a.) and upon requiring a two-fold PMT trigger
+    on the side of the PMT of interest b.). This type of cut is part of the electron trigger along with a coincidence with the wirechamber.}
+  \label{fig:ADCsig}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[page=1,scale=0.60]{2-UCNAExperiment/TDCSignal.pdf}
+  \caption{Example TDC signal (converted to nanoseconds) from a $\beta$-decay run.
+    Note that the horizontal axis is technically time since trigger, so a longer time indicates an earlier
+    trigger.The dashed line
+    indicates the cut used to separate a self-trigger (right of the dashed line) from a backscattering trigger
+    (left of the dashed line).  The events at $t=0$ are events which did not create a self-trigger.}
+  \label{fig:TDCsig}
+\end{figure}
+
 
 Several types of signals can generate a global trigger, where the data acquisition system (DAQ)
-reads all possible inputs. These include UCN monitor detectors with a signal over threshold,
-a single PMT high energy trigger which indicates a $^{207}\mathrm{Bi}$ gain monitor trigger,
-or a two-fold PMT trigger. The two-fold PMT trigger is of most importance for us, as this indicates
-that there was sufficient energy deposition in the scintillator. The hardware trigger does not
-discriminate between what type of event may have created the trigger though. For this, we rely
+reads all possible inputs. These include:
+%
+\begin{itemize}
+\item UCN monitor $-$ used to monitor the UCN production at various
+  stages along the experimental apparatus
+\item $^{207}\mathrm{Bi}$ pulser event $-$ This is a high threshold, single PMT trigger, so if one PMT
+  has a trigger above a preset high threshold, but no other PMT has any trigger, this indicates the
+  pulser created the trigger at the PMT and not the scintillator. This will be addressed more in the
+  next chapter.
+\item LED pulser $-$ An LED system was in place to assist in correcting any non-linearity in the
+  PMT response. This was not utilized in this analysis.
+\item Two-fold PMT trigger $-$ two of the four PMTs on one side must have signal above a pre-set
+  threshold. This two-fold trigger indicates a particle deposited energy in the scintillator,
+  distinguishing it from noise in a single PMT, a $^{207}\mathrm{Bi}$ pulser event, or an LED event.
+\end{itemize}
+
+
+%UCN monitor detectors with a signal over threshold,
+%a single PMT high energy trigger which indicates a $^{207}\mathrm{Bi}$ gain monitor trigger,
+%or a two-fold PMT trigger.
+
+The two-fold PMT trigger is of most importance for us, as this indicates
+that there was sufficient energy deposition in the scintillator to be an electron event.
+The hardware trigger does not
+discriminate between what type of event may have created the trigger though, so any particle
+that can deposit energy in the scintillator could have been the culprit. For this, we rely
 on methods already highlighted in above sections. By applying a software trigger to
 the wirechamber, we can require that any event which created a two-fold scintillator trigger
 in detector 1 must also pass the software trigger in MWPC 1. This essentially removes the
-gamma background. Then by checking for veto signals above some software threshold we eliminate
-cosmic ray muon backgrounds.
+gamma background, as the wirechamber is virtually transparent to a gamma.
+Then by checking for muon veto signals above some software threshold we eliminate
+cosmic ray muon backgrounds, leaving us with almost all electron events. Of course there are
+some background events that always make it into the analysis, but these are also accounted for
+as will be discussed.
 
 Along with ADC signals proportional to energy deposition, all PMTs also report hardware trigger
-timing information. For backscattering events which trigger both detectors, we use the timing
-to determine the primary side, or the initial direction of the electron.
+timing information (TDC signal). For backscattering events which trigger both detectors, we use the timing
+to determine the primary side, or the initial direction of the electron. This can be seen in
+figure \ref{TDCsig}. The dashed line indicates the position of a cut to separate a primary trigger
+from a backscattering trigger. An acceptable event either has a single primary trigger or a primary
+trigger on one side and a backscattering trigger on the other side. 
 
 
 

@@ -4,55 +4,193 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\iffalse
 Designing an experiment and collecting the right data are non-trivial alone,
 but interpreting the results lends itself to a whole new train of thought.
 The rest of this thesis is spent describing the details of such an
 analysis, with this chapter summarizing important aspects,
 such as terminology to be used later and the
 model used to characterize our detector response.
+\fi
+
+This chapter is dedicated to introducing important aspects of the analysis that
+is not strictly tied to calibrations and asymmetry extraction, but rather
+data collection and processing to turn raw detector signals into values that
+can be calibrated and analyzed. 
+
+\section{Data Taking Structure}
+
+The data is broken into three types of run periods, namely $\beta$-decay data, source calibration, and
+Xe position mappping. The latter two determine the parameters of the energy calibration to be
+applied to the data runs. The source calibration and Xe position mapping run periods
+occur periodically throughout each data set and are applied to surrounding $\beta$-decay runs. This
+creates different subsets of data to which each calibration is applied, as will be illustrated
+throughout the rest of this dissertation. Here we simply highlight the structure of the
+$\beta$-decay runs, and one should take note that the source calibrations and Xe position map periods
+are spaced throughout.
+
+\subsection{$\beta$-decay run structure}
+We utilize what we call an octet run structure, where each octet contains a total of twenty-four
+runs, eight of which are $\beta$-decay data runs, eight of which are background runs, and eight
+of which are depolarization runs. The octet is further split into two halves, A and B, which define
+the order of the runs within them as seen in table \ref{tab:octetStructure}. Whether the A structure
+or the B structure comes first within an octet is determined randomly. There are four $\beta$-decay
+runs of each spin-state (aligned and anti-aligned to the magnetic field in the spectrometer), and their
+accompanying background runs allow for background subtraction. 
+
+\begin{table}[h]
+  \caption{Octet structure, where $\pm$ indicates spin flipper on/off,
+    B refers to background run, D refers to depolarization run, and $\beta$
+    refers to $\beta$-decay runs.} 
+  \centering
+  \begin{tabular}{llllllllllll}
+    \hline \hline \\ [-1.75ex]
+    A1 & A2 & A3 & A4 & A5 & A6 & A7 & A8 & A9 & A10 & A11 & A12 \\ 
+    B$^-$ & $\beta^-$ & D$^-$ & B$^+$ & $\beta^+$ & D$^+$ & $\beta^+$ & D$^+$ & B$^+$ & $\beta^-$ & D$^-$ & B$^-$ \\
+    \hline \\ [-1.75ex]
+    B1 & B2 & B3 & B4 & B5 & B6 & B7 & B8 & B9 & B10 & B11 & B12 \\
+    B$^+$ & $\beta^+$ & D$^+$ & B$^-$ & $\beta^-$ & D$^-$ & $\beta^-$ & D$^-$ & B$^-$ & $\beta^+$ & D$^+$ & B$^+$ \\
+    \hline
+  \end{tabular}
+  \label{tab:octetStructure}
+\end{table}
+
+
+
+\section{Backscattering} \label{sec:backscattering}
+Before moving forward, it is important to formally introduce the different
+backscattering events, as they will be referenced often. A backscattering
+event is an electron event initially emitted towards one detector, but that
+is scattered through a large enough angle that its momentum is reversed and
+it travels to the opposite detector. Some of these events are backscattered
+by a detector component and can therefore be identified as having backscattered
+due to energy deposition on both sides,
+while others backscatter without depositing enough energy (or backscatter prior
+to reaching the detector) and therefore become what we call ``missed''
+backscattering events. Missed backscattering events are problematic as they
+are assigned the wrong intitial direction and therefore systematically effect
+the asymmetry.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.4]{3-UCNAAnalysis/backscatterSchematic.png}
+\caption{Schematic of different event types and the trigger logic involved with identifying
+  each type \cite{plaster2012}.}
+\label{fig:backscatterSchematic}
+\end{figure}
+
+Based on which detector components trigger, we classify events
+into those that do not backscatter
+(Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster2012}.
+A schematic of the different event types can be seen in figure \ref{backscatterSchematic}.
+Type 0 events
+trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
+both scintillators and both MWPCs. For such events, we assign the initial
+direction to the triggering detector for Type 0 and to the earlier triggering detector
+for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
+MWPCs, but only trigger a single scintillator.
+The initial direction of such events can
+not be determined from trigger logic alone, as can be demonstrated by considering two events
+which look identical under trigger logic.
+For example, let ``Event 1'' denote an event that initially backscatters off
+of MWPC 1 before reaching scintillator 1
+and then traverses the length of the decay
+trap to trigger both MWPC 2 and scintillator 2 on the opposite side.
+Then, suppose ``Event 2'' denotes another event emitted
+in the opposite direction to event 1. Suppose this event
+triggers MWPC 2 and scintillator 2
+only to backscatter from the scintillator and travel to MWPC 1 and stop short
+of scintillator 1. Both events trigger MWPC 1 and 2 and scintillator 2,
+but the two events had opposite initial directions, so inclusion of the
+two events without further knowledge of their initial direction creates
+a dilution to the asymmetry.
+
+An important distinction, however, does exist between Type 2 and Type 3 events:
+Type 2 events only pass through the MWPC on the
+triggering scintillator side once, whereas Type 3 events scatter from
+the scintillator, and therefore pass through the MWPC twice on
+the triggering side. We can consequently apply a cut on the energy deposited in
+the MWPC on the triggering side to statistically assign
+Type 2/3 events to the correct side.
+This drastically reduces
+Monte Carlo corrections for such backscattering events as simulation indicates we
+properly identify $>80\%$ of all Type 2/3 events across all energies using this
+technique, a marked
+improvement over the roughly $50\%$ misidentification rate without separation.
+
+
+
+
 
 %--------------------------------------------------------------
 
+\section{Outline of Analysis Steps}
 
-\section{Interpreting Detector Response}
-While all pertinent components of the experimental apparatus were included
-in the simulation, the detector response is not inherent within our
-output. You may notice from (figure with quenched energy) that this
-doesn't resemble the gaussian peaks normally seen in a detector signal.
-The gaussian-like peaks arise from finite resolution effects and
-must be put in defacto using parameters calculated
-from real data. The better we understand the conversion from a pure simulation
-energy output to a response which mimics that from our actual detectors, the
-more credence we can put in our calibration. For the time being, the model
-will be introduced with parameter determination addressed as it arises. 
+To preface the rest of this chapter, we can highlight
+the general process of the analysis beginning with a raw detector
+ADC value from each PMT and finishing with an asymmetry.
+Below are the general steps:
 
-\subsection{Energy Response} \label{sssec:EnergyResponse}
-In the experiment, we have rather precise access to the energy signal via the
-four PMTs coupled to each scintillator. The energy manifests itself initially as a voltage
-which is converted to a digital signal. The system is designed such that this channel
-read-out is proportional to the energy seen by each PMT. The visible energy $E_{vis}$ deposited
-in the scintillator as seen by a single PMT, say PMT $i$, for an event at position $(x,y)$ 
+\begin{itemize}
+\item Determine pedestals for each PMT and subtract the pedestal from each data event.
+\item Measure the gain of each PMT and divide the drifts out of the signal.
+\item Apply a PMT-by-PMT calibration to determine the expected position dependent
+  energy deposited in the scintillator
+  for each event.
+\item Correct for the position dependent response of each PMT
+  to return a visible energy as seen by each PMT, $E_{\mathrm{vis},i}$.
+\item Combine the four PMT energies into a single deposited energy, $E_{\mathrm{vis}}$.
+\item Convert this combined estimate of the energy deposition to a final
+  reconstructed energy, $E_{\mathrm{recon}}$, to use in analysis.
+\item Calculate an asymmetry and apply all systematic corrections.
+\end{itemize}
+
+It is important to point out early on the difference between $E_{\mathrm{vis}}$ and
+$E_{\mathrm{recon}}$. The deposited or visible energy, $E_{\mathrm{vis}}$, is the energy
+physically deposited in the
+scintillator by a particle, while the reconstructed energy, $E_{\mathrm{recon}}$, is an estimate of
+the true initial energy of an event. The two are different due to the electron losing energy
+as it traverses through the windows of the decay trap, the windows of the MWPC,
+the MWPC itself, and the dead layer of the scintillator. Of course the analysis could be
+done in terms of $E_{\mathrm{vis}}$, but it is more convenient to express the results
+in terms of the true electron energy spectrum, and also the energy dependent theory modifications
+are in terms of the true initial energy of an event.
+
+
+\section{Energy Response from Detector Response} \label{sec:EnergyResponse}
+Following the process outlined in the previous section, we can derive an
+expression which takes a detector signal to an energy estimate for each PMT.
+The visible energy $E_{\mathrm{vis},i}$ deposited
+in the scintillator as seen by a single PMT $i$ for an event at position $(x,y)$ 
 is given by the following: 
 
 \begin{equation} \label{eq:EvisResponse}
-E_{vis} = \eta^-1(x,y) \cdot f_i\left( \left( ADC_i - (p_i(t) + \delta p_i(t))\right) \cdot g_i(t) \right)  ,
+E_{\mathrm{vis},i} = \eta_i^{-1}(x,y) \cdot f_i\Big[ \Big( \mathrm{ADC}_i - p_i(t) \Big) \cdot g_i(t) \Big]  ,
 \end{equation}
 
 \noindent where 
 \begin{align*}
-&f_i^{-1} = \textrm{inverse of the linearity relation from ADC channels to Energy,}\\
+&f_i = \textrm{linearity relation from ADC channels to Energy,}\\
 &\eta_i(x,y) = \textrm{PMT correction factor for position dependence,} \\
 &p(t) = \textrm{mean pedestal value for PMT } i,\\
-&\delta p(t) = \textrm{randomly sampled pedestal width for PMT }i,\\
 &g(t) = \textrm{gain correction factor for PMT }i.
 \end{align*}
 
 This expression is exact in the case where all values are determined with infinite
 precision and without stochastic fluctuations. Unfortunately, each parameter on the right
 side of this equation is either stochastic in itself (as is the ADC response), or it was
-determined via observation of a stochastic process (the gain and pedestal). Thus what we
+determined via observation of a stochastic process (the gain and pedestal), and so
+the underlying value for any given event may not be the same as the value applied in the
+above expression. Thus what we
 really resolve is an approximation to the energy, which comes with some uncertainty. This
-uncertainty will be addressed later.
+uncertainty will be addressed later in section \ref{ssec:energyRecon}.
+For the time being, keep in mind the above list of
+input parameters which take us from an ADC signal (detector signal) to an energy signal. 
+
+\subsection{Combining PMT Responses}
+
+\subsection{$E_{\mathrm{vis}}$ to $E_{\mathrm{recon}}$}
+
 
 
 \section{Time-dependent Detector Corrections}
@@ -66,7 +204,7 @@ of backgrounds.
 \subsection{Pedestal Subtraction}
 The pedestal is a measure of the inherent detector signal, or baseline, 
 upon which all other data signals lie. In terms of PMT signals, you can imagine 
-the pedestal as a non-zero $ADC$ value corresponding to zero input, or an offset.
+the pedestal as a non-zero ADC value corresponding to zero input, or an offset.
 You might say that the experiment can be run without caring about an offset
 because the calibration will take this into account, which would be the case 
 if the pedestals were constant or if we calibrated each run against itself, but 
@@ -76,39 +214,46 @@ or even days, earlier or later. Thus changing pedestals can be worrisome, and ca
 must be taken to determine the pedestals and subtract them from data.
 
 To determine a pedestal, events must be chosen where there was a global trigger, but
-the PMT of interest does not trigger and preferably there is no photon signal
+the PMT of interest does not trigger and preferably there is no signal
 whatsoever in the scintillator on that side. Obvious choices for these events are
-UCN monitor triggers, opposite side 2-fold PMT triggers, and high-threshold $^{207}$Bi
-pulser triggers. Once there is a global trigger, the TDC for the PMT of interest can 
-be cut on to be sure there was no individual trigger and the events can be 
-histogrammed. The mean of this peak can be taken as the average pedestal over whatever
-time period the data was taken (nominally a single run), and this value can be 
+UCN monitor triggers, opposite side two-fold PMT triggers, and high-threshold $^{207}\mathrm{Bi}$
+pulser triggers from other PMTs. Once there is a global trigger, we can use the individual TDC
+to ensure there was no individual trigger, and the events can be 
+histogrammed for the PMT of interest. This leads to pedestals like those seen in
+figure \ref{fig:peds_ind}. The mean of this peak can be taken as the average pedestal for a single run,
+and this value can be 
 subtracted from every subsequent reading of this PMT.
 
-One interesting thing to note is that the discriminators for all PMTs are housed 
-together, which leads to correlations between the PMT signals. In a perfect world, 
-each PMT would have one pedestal, and that pedestal wouldn't care about other PMTs.
+One interesting thing to note is that the discriminators, which determine whether
+a component triggers,
+for all PMTs are housed 
+together, which leads to correlations between the PMT triggers. In a perfect world, 
+each PMT would have one pedestal, and that pedestal wouldn't care about other PMT's signals.
 Instead, what we see in figure \ref{fig:peds_types} is that the pedestals
-are substantially dependent on the type of events that are chosen 
-to construct the pedestal. 
+can be dependent on the type of events that are chosen 
+to construct the pedestal. This indicates that the pedestal for one PMT may be dependent
+on the signal present in another PMT. These shifts are important as a
+pedestal shift of ~5-10 channels maps to an offset of roughly
+~5-10 keV, as the PMTs show roughly 1:1 correspondence between ADC and keV.
 
-The influence of event type on pedestal values heavily influenced the decision made
-to eliminate the UCN monitor events and only use $^{207}$Bi pulser event 
-triggers to construct the pedestals in this analysis. While the best 
-choice would be UCN monitor events due to there being zero signal 
-in the electronics box housing the PMT electronics, these aren't readily 
-available for most source runs due to beam being off, which could lead to 
-us introducing pedestal drifts based solely on the events chosen to 
-construct them. To further reduce correlations in signals across PMTs, the pulser
-events were also limited to those coming from opposite side PMTs.
-Consistency amongst all runs 
-is key, mainly due to the fact that we are using pedestal subtracted source runs
-to calibrate the detectors, and then we are applying these calibrations to the 
-$\beta$-decay data. A pedestal shift of ~5-10 channels maps to an offset of roughly
-~5-10 keV as well as the PMTs show a 1:1 correspondence between ADC and keV on 
-average. 
+The influence of event type on pedestal values means we must carefully choose which events
+to use when calculating the pedestal.
+The best choice would be UCN monitor events due to there being zero signal 
+in the electronics box housing the PMT electronics, and these thus would give
+the cleanest measurement of the PMT pedestal.
+These are unfortunately the first event type we can eliminate as they are only present
+during $\beta$-decay runs (when UCN are produced and thus create UCN monitor triggers)
+and not during calibration runs (taken during the day when the beam is off). 
+Of the remaining two options, the choice was made to use the
+two-fold PMT triggers from the opposite detector rather than $^{207}\mathrm{Bi}$ pulser
+events. The choice is somewhat arbitrary, because what is important is that we choose
+a consistent subset of data for both calibration and $\beta$-decay data, but the
+opposite side two-fold triggers do better represent the baseline present in each PMT
+for data events when compared to the much higher signal present from the $^{207}\mathrm{Bi}$
+pulser.
 
-\begin{figure}[h] \label{fig:peds_types}
+
+\begin{figure}[h] 
 \centering
 \includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
 \caption{Pedestal values for a $\beta$-decay run determined using different 
@@ -116,26 +261,142 @@ types of events to illustrate the cross-talk between PMTs. (UCN Monitors,
 Bi triggers, Opposite side triggers, same side 2-fold triggers. Also shown 
 is the dependence of the pedestal on which PMT triggers in the Bi Pulser. NOTE:
 Choose West PMT4 in an early 2012/2013 beta run) }
+\label{fig:peds_types}
 \end{figure}
 
-\begin{figure}[h] \label{fig:peds_timeDep}
-\centering
-\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
-\caption{Pedestal means as a function of run number. Error bars are the
-RMS of the measured pedestal. }
-\end{figure}
-
-\begin{figure}[h] \label{fig:peds_timeDep}
+\begin{figure}[h] 
 \centering
 \includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
 \caption{Example pedestals from all 8 PMTs}
+\label{fig:peds_ind}
+\end{figure}
+
+With the event type chosen, we extract the mean and RMS of the pedestal peak (see figure
+\ref{fig:peds_ind}) for each PMT in every run. The pedestal mean (referred to as simply
+the pedestal) is then subtracted from the ADC values for all events. This effectively
+removes the time-dependent baseline from the detector signals. The time dependence of
+the pedestals can be seen for the East PMTs from 2011-2012 in figure \ref{fig:peds_timeDep}.
+Most of the PMTs have pedestals which remain quite stable, but PMT East 3 shows the
+importance of a run-by-run pedestal subtraction.
+
+\begin{figure}[p]
+\centering
+\includegraphics[page=1,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
+\caption{Pedestal means as a function of run number for 2011-2012 East Detectors. Error bars are the
+  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
+  different calibration periods, and the red marker is the calibration reference run,
+  which will be discussed in later sections.}
+ \label{fig:peds_timeDep}
+\end{figure}
+
+\begin{figure}[p] 
+\centering
+\includegraphics[page=2,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
+\caption{Pedestal means as a function of run number for 2011-2012 West Detectors. Error bars are the
+  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
+  different calibration periods, and the red marker is the calibration reference run,
+  which will be discussed in later sections.}
+\label{fig:peds_timeDep}
 \end{figure}
 
 \subsection{Gain Correction}
 
+\subsubsection{$^{207}\mathrm{Bi}$ Pulser}
+%The goal of the $^{207}\mathrm{Bi}$ gain monitoring pulser system is to create a standard
+%candle type signal present in all PMTs to be tracked over time. 
+The primary gain monitoring system consists of a small amount $^{207}\mathrm{Bi}$
+deposited within a small block of scintillator. The scintillator was surrounded by
+light reflecting material on three sides, with the fourth side covered with an optical
+attenuator to attempt to match the light output of the \~1~MeV conversion line in the $^{207}\mathrm{Bi}$
+to the light output of 1~MeV of energy deposited in the detector scintillator. The pulser was then
+attached directly to the PMT next to where the light guides attached to the PMT.
+To allow for a single-PMT high threshold trigger, the signal was split off to a different
+discriminator than the one used when determining a two-fold trigger. These high threshold
+discriminators then allowed for pulser triggers with a distinct pulser identification \cite{mpmThesis}.
+
+An unfortunate but low impact issue with the pulser involves the amount of attenuation applied to the
+pulser signal. The pulser peak lies well beyond the equivalent of 1~MeV of light as would be produced
+in the detector scintillator, and therefore far outside the range of the $\beta$-decay spectrum. This
+is not a serious issue as the PMTs seem to be quite linear, so even a peak well outside the
+energy range of interest should suffice.
+
+\begin{figure}[h] 
+\centering
+\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
+\caption{Example pedestals from all 8 PMTs}
+\label{fig:biPulser}
+\end{figure}
+
+The $^{207}\mathrm{Bi}$ pulser peak is fit on a run-by-run basis, allowing for gain corrections on the time
+scale of a single run. The fit was done iteratively, with the initial guesses for mean and fit range determined
+by stepping backwards from the last bin and using a self-written algorithm to search for the peak. Then the the peak
+was fit five times consecutively, with each successive fit being fed the previous fit's mean and sigma. This
+made sure the fit converged as best as possible on the mean of the pulser peak. An example pulser peak and fit
+can be seen in figure \ref{fig:biPulser}.
+
+The method for applying the gain correction is as follows. First, a reference gain must be determined
+to normalize all other gains against. This was chosen to be what is called the ``reference run'', and it
+typically consists of a manually inspected source run within each source calibration period. The gain factor
+is then calculated as the ratio of the pulser peak in a given run divided by the pulser peak in the reference
+run, or
+%
+\begin{equation}
+  g_i = \frac{\mu_i}{\mu_{\mathrm{ref}}}
+\end{equation}
+%
+This automatically defines the gain of the reference run to be $g_{\mathrm{ref}}=1$. Then all other runs which are
+calibrated by a certain run period have gain factors which vary based on the fitted pulser value. The time
+dependence of the gain values in 2011-2012 can be seen in figures \ref{fig:2011-2012pulser_East}
+and \ref{fig:2011-2012pulser_West}. The behavior is similar in 2012-2013.
+
+Some problems with the $^{207}\mathrm{Bi}$ pulser did occur. There were several periods where the pulser
+simply did not work for a certain PMT. This was always limited to a single PMT not working, and when this
+was the case the PMT without a pulser signal was not used when reconstructing the energy. This has
+minimal effect on the energy reconstruction though, as the ``bad'' PMT is still used when determining
+a two-fold trigger, and the remaining three PMTs contain sufficient information for reconstructing the
+energy deposited. Periods where $^{207}\mathrm{Bi}$ pulser information is missing are evident in
+figures \ref{fig:2011-2012pulser_West} where there is missing data for certain PMTs over extended ranges.
+It should be noted that in 2012-2013, West PMT4 never had a functioning pulser.
+
+\begin{figure}[p] 
+  \centering
+  \includegraphics[page=3,scale=.8]{3-UCNAAnalysis/2011-2012_gain.pdf}
+  \caption{Gain factors, $g_i$, as a function of run number for 2011-2012 East Detectors.
+    The red lines indicate what ranges of runs belong to
+    different calibration periods, and the red marker is the calibration reference run.}
+  \label{fig:2011-2012pulser_East}
+\end{figure}
+
+\begin{figure}[p] 
+  \centering
+  \includegraphics[page=4,scale=.8]{3-UCNAAnalysis/2011-2012_gain.pdf}
+  \caption{Gain factors, $g_i$, as a function of run number for 2011-2012 West Detectors.
+    The red lines indicate what ranges of runs belong to
+    different calibration periods, and the red marker is the calibration reference run.}
+  \label{fig:2011-2012pulser_West}
+\end{figure}
+
+\subsubsection{Endpoint Stabilization}
+
+There are unexplained longer term gain fluctuations that do not seem to be captured by the
+$^{207}\mathrm{Bi}$ gain monitoring system that can be seen by monitoring the endpoint of the
+$\beta$-decay spectrum. These are corrected by fitting the endpoint using a Kurie plot for each
+PMT and comparing to the expected endpoint from simulation. Then a secondary gain correction
+factor can be applied to match the endpoint of each PMT to the expected endpoint. The endpoints
+before and after such a correction can be seen in figure \ref{fig:endpoints}, where the
+large deviation over runs xxx-xxx was corrected.
+
+
+
 \subsection{Time-dependent backgrounds}
-Here I just want to elude to the fact that these are taken into account in
-the super-ratio.
+Background events which may have some time dependence are removed from the analysis
+via dedicated background runs that accompany every $\beta$-decay run.
+Subtracting these background rates from the data rates accounts for backgrounds
+with roughly a one hour time variation.
+Any backgrounds that vary at the sub one hour level may go unnoticed, but
+with a signal to background better than 50:1 the contribution from such is minimal.
+The background run scheme will be addressed later in this chapter, with the background
+subtraction addressed in chapter 5. 
 
 %----------------------------------------------------
 
@@ -260,65 +521,7 @@ West detector in an early 2012/2013 beta decay run. }
 \subsection{Wirechamber Calibration}
 
  
-\section{Backscattering} \label{sec:backscattering}
 
-Backscattering identification plays
-an important role in our Monte Carlo corrections and asymmetry extraction.
-Based on which detector components trigger, we classify events
-into those that do not backscatter
-(Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster12}. Type 0 events
-trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
-both scintillators and both MWPCs. For such events, we assign the initial
-direction to the triggering detector for Type 0 and to the earlier triggering detector
-for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
-MWPCs, but only trigger a single scintillator.
-The initial direction of such events can
-not be determined from trigger logic alone, as can be demonstrated by considering two events
-which look identical under trigger logic.
-For example, let ``Event 1'' denote an event that initially backscatters off
-of MWPC 1 before reaching scintillator 1
-and then traverses the length of the decay
-trap to trigger both MWPC 2 and scintillator 2 on the opposite side.
-Then, suppose ``Event 2'' denotes another event emitted
-in the opposite direction to event 1. Suppose this event
-triggers MWPC 2 and scintillator 2
-only to backscatter from the scintillator and travel to MWPC 1 and stop short
-of scintillator 1. Both events trigger MWPC 1 and 2 and scintillator 2,
-but the two events had opposite initial directions, so inclusion of the
-two events without further knowledge of their initial direction creates
-a dilution to the asymmetry.
-An important distinction, however, does exist between Type 2 and Type 3 events:
-Type 2 events only pass through the MWPC on the
-triggering scintillator side once, whereas Type 3 events scatter from
-the scintillator, and therefore pass through the MWPC twice on
-the triggering side. We can consequently apply a cut on the energy deposited in
-the MWPC on the triggering side to statistically assign
-Type 2/3 events to the correct side.
-This drastically reduces
-Monte Carlo corrections for such backscattering events as simulation indicates we
-properly identify $>80\%$ of all Type 2/3 events across all energies using this
-technique, a marked
-improvement over the roughly $50\%$ misidentification rate without separation.
-
-Show the schematic of the different backscattering types. Also explain the 
-angular dependence, maybe even show plots of backscattering types vs energy 
-and angle from simulation.
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
-\caption{Different event types as defined by the type of backscattering.}
-\end{figure}
-
-\section{Data Structure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
-\caption{Schematic of the Octet run sequence.}
-\end{figure}
-
-Discuss the use of the octet analysis
 
 \section{Polarimetry} \label{sec:polarimetry}
 
