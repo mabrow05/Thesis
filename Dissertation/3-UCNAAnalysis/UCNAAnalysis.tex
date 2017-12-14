@@ -428,6 +428,13 @@ is then released into spectrometer during position mapping periods, and the deca
 are detected \cite{mpmThesis}. The various radioactive isotopes provide several features to fit across the entire
 detector surface.
 
+\begin{figure}[h] 
+\centering
+\includegraphics[scale=.5]{3-UCNAAnalysis/xenonSpectrum.pdf}
+\caption{Example energy spectrum of the neutron-activated xenon used for position map determination. }
+\label{fig:xenonSpectrum}
+\end{figure}
+
 The spectral shape of the activated xenon changes with time due to the different half-lives
 of the isotopes, but this is not a concern as the PMT will see the same shape at all positions
 across the detector, just with different ADC scales due to the position dependence of the light
@@ -448,15 +455,28 @@ factor in pixel $i$ for a single PMT defined as
 %
 where $Q_i$ is the fitted ADC value of the feature in pixel $i$ and $Q_0$ is the fitted ADC value of the
 feature in the center pixel. This normalizes the position response for a PMT to the center pixel. The
-position response at some position $(x,y)$ is then calculated via a two-dimensional Catmull-Rom
+position response at some position $(x,y)$, referred to as the continuous variable $\eta(x,y)$,
+is then calculated via a two-dimensional Catmull-Rom
 cubic interpolating spline \cite{catmull1974}. The same interpolation is used in the plots of the
 position dependence in figure \ref{fig:posmaps}.
 
+
+\begin{figure}[hp] 
+\centering
+\subfloat[East Detector]{\includegraphics[page=1,scale=.55]{3-UCNAAnalysis/position_map_4_5mm_endpoint.pdf}} \\
+\subfloat[East Detector]{\includegraphics[page=2,scale=.55]{3-UCNAAnalysis/position_map_4_5mm_endpoint.pdf}}
+\caption{Typical set of position maps from a xenon position mapping period. The position maps
+  remain fairly constant throughout the two run periods.}
+\label{fig:posmaps}
+\end{figure}
+
 \begin{figure}[h] 
 \centering
-\includegraphics[scale=.5]{3-UCNAAnalysis/xenonSpectrum.pdf}
-\caption{Example energy spectrum of the neutron-activated xenon used for position map determination. }
-\label{fig:xenonSpectrum}
+\includegraphics[scale=.55]{3-UCNAAnalysis/posmapComp_4_5mm_endpoint_vs_peak.pdf}
+\caption{Ratio of $\eta_{\mathrm{peak}} / \eta_{\mathrm{endpoint}}$ for the East side PMTs. The differences
+  are most pronounced in areas of high and low light collection. The West side shows more
+  consistency when comparing maps calculated using the different features.}
+\label{fig:posmapCompare}
 \end{figure}
 
 A typical xenon energy spectrum can be seen in figure \ref{fig:xenonSpectrum}. The two obvious features one could
@@ -492,20 +512,80 @@ ratio of the two methods is plotted.
 %----------------------------------------------------------
 
 
-
-
 \section{Calibration Overview}
+
+In the next chapter, we will take an in depth look at the calibrations of both
+the wirechamber and the scintillator. Here we simply highlight their use in the analysis.
 
 \subsection{PMT Calibration}
 
+The PMT calibration uses well known conversion electron sources from table \ref{tab:conversionSources}
+to understand the detector response to these well-defined energies. By comparing the detector
+response (coupling both ADC values and position map values) to simulated responses,
+we can map ADC signals from each PMT to visible energies deposited
+in the scintillator. These calibrations parameterize the detector response so that the
+functional form of the calibration can be applied to the $\beta$-decay data. 
+
 \subsection{Wirechamber Calibration}
 
+The wirechamber calibration maps the anode signal in the MWPC to an energy deposited in the MWPC. This is
+primarily only useful for separating the Type 2/3 backscattering events as the
+energy deposition in the MWPC is not used within the reconstruction of an electron's initial
+energy. This separation is important though as it drastically reduces the systematic
+correction for these backscattering events.
  
-
 
 \section{Polarimetry} \label{sec:polarimetry}
 
+The polarimatry analysis was carried out Eric Dees of North Carolina State University and
+deserves the attention of an entire dissertation itself. The previous polarimetry measurement
+is described in detail in a dissertation by Adam Holley \cite{holley2012ultracold}. A major
+difference between the previous depolarization measurement and the current depolarization
+hinges upon the installation of the shutter between the spin flipper and decay trap. An
+update of the new polarimetry measurement method can be found in the publication of the result
+presented within this dissertation \cite{brown2017}.
 
+\begin{figure}[h] 
+\centering
+\includegraphics[scale=.55]{3-UCNAAnalysis/Switcher_signals.pdf}
+\caption{Figure courtesy of E. Dees and A. R. Young as published in \cite{brown2017}.
+  ``Switcher signal as a function of time, during ``D''-type runs: (1) the shutter
+  closes and the switcher state changes, permitting UCN in the
+  guide outside the decay volume to drain to the switcher UCN detector, (2) the AFP
+  spin-flipper changes state, allowing depolarized neutrons in the guides outside the
+  decay volume to drain to the switcher, (3) the shutter opens, permitting depolarized
+  neutrons within the decay volume to drain to the switcher detector, (4) the AFP
+  spin-flipper returns to its initial state, allowing the initially loaded spin state
+  to drain from the decay volume, (5) backgrounds are measured after the UCN
+  population in the decay volume has drained away.  The presented data were taken in 2011
+  and UCN loaded into the decay volume with the spin-flipper off.''}
+\label{fig:switcherSignal}
+\end{figure}
+
+Here is a brief description of the polarimetry measurement.
+The polarimetry measurement determines the average neutron polarization in each spin state using
+the depolarization runs that follow every $\beta$-decay run. As detailed in section
+\ref{sec:polarization}, the neutrons are initially polarized by traversing the 7~T primary
+polarizing magnet, and then the desired spin is chosen using the AFP spin flipper.
+
+After a $\beta$-decay run, the depolarization run begins by closing the shutter and changing the switcher
+state to allow
+the UCN to flow into the switcher detector for measurement of UCN populations. The switcher signal
+as a function of time can be found in figure \ref{fig:switcherSignal}. The guides are cleaned of UCN while
+the UCN population in the trap remains contained. Then the spin flipper state is changed allowing the
+neutrons that were trapped between the 7~T magnet and the decay trap to pass back through the high
+field region (these trapped neutrons result from UCN who underwent an unwanted spin flip after passing
+the high field region, subsequently keeping them passing the 7~T field). Now that the guides are cleaned,
+the shutter is opened and all UCN with spins not equal to the desired loaded spin are emptied (remember that
+the spin flipper is switched from its original state). Once this population has been measured in the
+switcher detector, the spin-flipper state is again changed back to its original state, and the
+properly polarized UCN population is measured in the switcher detector. This process is followed by a short
+background measurement in the switcher detector.
+
+The ratio of these populations is then extrapolated back to the equilibrium population as established
+during $\beta$-decay running by utilizing further \textit{ex situ} measurements and comparisons with
+simulation. The results of these measurements as well as the correction to the uncertainty resulting
+from imperfect polarization ($P<1$) can be found in section \ref{ssec:polCorr}.
 
 
 
