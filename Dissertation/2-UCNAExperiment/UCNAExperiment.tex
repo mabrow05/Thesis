@@ -428,6 +428,108 @@ trigger on one side and a backscattering trigger on the other side.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\section{Data Taking Structure}
+
+The data is broken into three types of run periods, namely $\beta$-decay data, source calibration, and
+Xe position mappping. The latter two determine the parameters of the energy calibration to be
+applied to the data runs. The source calibration and Xe position mapping run periods
+occur periodically throughout each data set and are applied to surrounding $\beta$-decay runs. This
+creates different subsets of data to which each calibration is applied, as will be illustrated
+throughout the rest of this dissertation. Here we simply highlight the structure of the
+$\beta$-decay runs, and one should take note that the source calibrations and Xe position map periods
+are spaced throughout.
+
+\subsection{$\beta$-decay run structure}
+We utilize what we call an octet run structure, where each octet contains a total of twenty-four
+runs, eight of which are $\beta$-decay data runs, eight of which are background runs, and eight
+of which are depolarization runs. The octet is further split into two halves, A and B, which define
+the order of the runs within them as seen in table \ref{tab:octetStructure}. Whether the A structure
+or the B structure comes first within an octet is determined randomly. There are four $\beta$-decay
+runs of each spin-state (aligned and anti-aligned to the magnetic field in the spectrometer), and their
+accompanying background runs allow for background subtraction. 
+
+\begin{table}[h]
+  \caption{Octet structure, where $\pm$ indicates spin flipper on/off,
+    B refers to background run, D refers to depolarization run, and $\beta$
+    refers to $\beta$-decay runs.} 
+  \centering
+  \begin{tabular}{llllllllllll}
+    \hline \hline \\ [-1.75ex]
+    A1 & A2 & A3 & A4 & A5 & A6 & A7 & A8 & A9 & A10 & A11 & A12 \\ 
+    B$^-$ & $\beta^-$ & D$^-$ & B$^+$ & $\beta^+$ & D$^+$ & $\beta^+$ & D$^+$ & B$^+$ & $\beta^-$ & D$^-$ & B$^-$ \\
+    \hline \\ [-1.75ex]
+    B1 & B2 & B3 & B4 & B5 & B6 & B7 & B8 & B9 & B10 & B11 & B12 \\
+    B$^+$ & $\beta^+$ & D$^+$ & B$^-$ & $\beta^-$ & D$^-$ & $\beta^-$ & D$^-$ & B$^-$ & $\beta^+$ & D$^+$ & B$^+$ \\
+    \hline
+  \end{tabular}
+  \label{tab:octetStructure}
+\end{table}
+
+
+
+\section{Backscattering} \label{sec:backscattering}
+Before moving forward, it is important to formally introduce the different
+backscattering events, as they will be referenced often. A backscattering
+event is an electron event initially emitted towards one detector, but that
+is scattered through a large enough angle that its momentum is reversed and
+it travels to the opposite detector. Some of these events are backscattered
+by a detector component and can therefore be identified as having backscattered
+due to energy deposition on both sides,
+while others backscatter without depositing enough energy (or backscatter prior
+to reaching the detector) and therefore become what we call ``missed''
+backscattering events. Missed backscattering events are problematic as they
+are assigned the wrong intitial direction and therefore systematically effect
+the asymmetry.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.4]{3-UCNAAnalysis/backscatterSchematic.png}
+\caption{Schematic of different event types and the trigger logic involved with identifying
+  each type \cite{plaster2012}.}
+\label{fig:backscatterSchematic}
+\end{figure}
+
+Based on which detector components trigger, we classify events
+into those that do not backscatter
+(Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster2012}.
+A schematic of the different event types can be seen in figure \ref{backscatterSchematic}.
+Type 0 events
+trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
+both scintillators and both MWPCs. For such events, we assign the initial
+direction to the triggering detector for Type 0 and to the earlier triggering detector
+for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
+MWPCs, but only trigger a single scintillator.
+The initial direction of such events can
+not be determined from trigger logic alone, as can be demonstrated by considering two events
+which look identical under trigger logic.
+For example, let ``Event 1'' denote an event that initially backscatters off
+of MWPC 1 before reaching scintillator 1
+and then traverses the length of the decay
+trap to trigger both MWPC 2 and scintillator 2 on the opposite side.
+Then, suppose ``Event 2'' denotes another event emitted
+in the opposite direction to event 1. Suppose this event
+triggers MWPC 2 and scintillator 2
+only to backscatter from the scintillator and travel to MWPC 1 and stop short
+of scintillator 1. Both events trigger MWPC 1 and 2 and scintillator 2,
+but the two events had opposite initial directions, so inclusion of the
+two events without further knowledge of their initial direction creates
+a dilution to the asymmetry.
+
+An important distinction, however, does exist between Type 2 and Type 3 events:
+Type 2 events only pass through the MWPC on the
+triggering scintillator side once, whereas Type 3 events scatter from
+the scintillator, and therefore pass through the MWPC twice on
+the triggering side. We can consequently apply a cut on the energy deposited in
+the MWPC on the triggering side to statistically assign
+Type 2/3 events to the correct side.
+This drastically reduces
+Monte Carlo corrections for such backscattering events as simulation indicates we
+properly identify $>80\%$ of all Type 2/3 events across all energies using this
+technique, a marked
+improvement over the roughly $50\%$ misidentification rate without separation.
+
+
+
 
 
 

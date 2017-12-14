@@ -18,106 +18,6 @@ is not strictly tied to calibrations and asymmetry extraction, but rather
 data collection and processing to turn raw detector signals into values that
 can be calibrated and analyzed. 
 
-\section{Data Taking Structure}
-
-The data is broken into three types of run periods, namely $\beta$-decay data, source calibration, and
-Xe position mappping. The latter two determine the parameters of the energy calibration to be
-applied to the data runs. The source calibration and Xe position mapping run periods
-occur periodically throughout each data set and are applied to surrounding $\beta$-decay runs. This
-creates different subsets of data to which each calibration is applied, as will be illustrated
-throughout the rest of this dissertation. Here we simply highlight the structure of the
-$\beta$-decay runs, and one should take note that the source calibrations and Xe position map periods
-are spaced throughout.
-
-\subsection{$\beta$-decay run structure}
-We utilize what we call an octet run structure, where each octet contains a total of twenty-four
-runs, eight of which are $\beta$-decay data runs, eight of which are background runs, and eight
-of which are depolarization runs. The octet is further split into two halves, A and B, which define
-the order of the runs within them as seen in table \ref{tab:octetStructure}. Whether the A structure
-or the B structure comes first within an octet is determined randomly. There are four $\beta$-decay
-runs of each spin-state (aligned and anti-aligned to the magnetic field in the spectrometer), and their
-accompanying background runs allow for background subtraction. 
-
-\begin{table}[h]
-  \caption{Octet structure, where $\pm$ indicates spin flipper on/off,
-    B refers to background run, D refers to depolarization run, and $\beta$
-    refers to $\beta$-decay runs.} 
-  \centering
-  \begin{tabular}{llllllllllll}
-    \hline \hline \\ [-1.75ex]
-    A1 & A2 & A3 & A4 & A5 & A6 & A7 & A8 & A9 & A10 & A11 & A12 \\ 
-    B$^-$ & $\beta^-$ & D$^-$ & B$^+$ & $\beta^+$ & D$^+$ & $\beta^+$ & D$^+$ & B$^+$ & $\beta^-$ & D$^-$ & B$^-$ \\
-    \hline \\ [-1.75ex]
-    B1 & B2 & B3 & B4 & B5 & B6 & B7 & B8 & B9 & B10 & B11 & B12 \\
-    B$^+$ & $\beta^+$ & D$^+$ & B$^-$ & $\beta^-$ & D$^-$ & $\beta^-$ & D$^-$ & B$^-$ & $\beta^+$ & D$^+$ & B$^+$ \\
-    \hline
-  \end{tabular}
-  \label{tab:octetStructure}
-\end{table}
-
-
-
-\section{Backscattering} \label{sec:backscattering}
-Before moving forward, it is important to formally introduce the different
-backscattering events, as they will be referenced often. A backscattering
-event is an electron event initially emitted towards one detector, but that
-is scattered through a large enough angle that its momentum is reversed and
-it travels to the opposite detector. Some of these events are backscattered
-by a detector component and can therefore be identified as having backscattered
-due to energy deposition on both sides,
-while others backscatter without depositing enough energy (or backscatter prior
-to reaching the detector) and therefore become what we call ``missed''
-backscattering events. Missed backscattering events are problematic as they
-are assigned the wrong intitial direction and therefore systematically effect
-the asymmetry.
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.4]{3-UCNAAnalysis/backscatterSchematic.png}
-\caption{Schematic of different event types and the trigger logic involved with identifying
-  each type \cite{plaster2012}.}
-\label{fig:backscatterSchematic}
-\end{figure}
-
-Based on which detector components trigger, we classify events
-into those that do not backscatter
-(Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster2012}.
-A schematic of the different event types can be seen in figure \ref{backscatterSchematic}.
-Type 0 events
-trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
-both scintillators and both MWPCs. For such events, we assign the initial
-direction to the triggering detector for Type 0 and to the earlier triggering detector
-for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
-MWPCs, but only trigger a single scintillator.
-The initial direction of such events can
-not be determined from trigger logic alone, as can be demonstrated by considering two events
-which look identical under trigger logic.
-For example, let ``Event 1'' denote an event that initially backscatters off
-of MWPC 1 before reaching scintillator 1
-and then traverses the length of the decay
-trap to trigger both MWPC 2 and scintillator 2 on the opposite side.
-Then, suppose ``Event 2'' denotes another event emitted
-in the opposite direction to event 1. Suppose this event
-triggers MWPC 2 and scintillator 2
-only to backscatter from the scintillator and travel to MWPC 1 and stop short
-of scintillator 1. Both events trigger MWPC 1 and 2 and scintillator 2,
-but the two events had opposite initial directions, so inclusion of the
-two events without further knowledge of their initial direction creates
-a dilution to the asymmetry.
-
-An important distinction, however, does exist between Type 2 and Type 3 events:
-Type 2 events only pass through the MWPC on the
-triggering scintillator side once, whereas Type 3 events scatter from
-the scintillator, and therefore pass through the MWPC twice on
-the triggering side. We can consequently apply a cut on the energy deposited in
-the MWPC on the triggering side to statistically assign
-Type 2/3 events to the correct side.
-This drastically reduces
-Monte Carlo corrections for such backscattering events as simulation indicates we
-properly identify $>80\%$ of all Type 2/3 events across all energies using this
-technique, a marked
-improvement over the roughly $50\%$ misidentification rate without separation.
-
 
 
 
@@ -398,18 +298,16 @@ with a signal to background better than 50:1 the contribution from such is minim
 The background run scheme will be addressed later in this chapter, with the background
 subtraction addressed in chapter 5. 
 
-%----------------------------------------------------
-
-\section{Position Dependence}
-
-\subsection{Activated Xenon}
-
-
-\subsection{Position Maps}
-
-%----------------------------------------------------------
-
 \section{Trigger Thresholds}
+
+Looking ahead to the detector response model that will be implemented in the
+simulation to take well-defined simulated particle energies and transform them into
+signals that mimic those from our detectors, we here define the determination
+of the trigger thresholds for each PMT. The PMT does not trigger at a single
+predefined ADC value (like a step function), but instead a smooth transition
+from zero trigger probability to trigger probability of one occurs. This is primarily
+due to the random nature
+
 An integral piece of the PMT Response Model from section \ref{sssec:pmtModel} 
 is the sampling of the threshold functions to determine whether or not a detector
 triggered. I'll repeat here that a 2-fold PMT trigger from one of the two electron
@@ -493,25 +391,107 @@ applied. }
 
 \subsubsection{Functional Fit of the Trigger Threshold}
 
-\subsubsection{Effects of cross-talk on trigger thresholds}
-
-A subset of runs in the 2012/2013 data set show severe correlation between 
-which PMTs cause the global trigger and the side for which the trigger thresholds 
-are being determined. In short, an electron backscattered from the primary trigger
-side samples a very different trigger threshold when impinging on the opposite detector 
-than it would have if it only struck the opposite detector. This is depicted 
-in figure \ref{fig:evtTypeTriggers}, where we see ~(insert number)
-ADC shift in the $P=0.5$ ADC channel for backscattering events which triggered the
-opposite detector and those which only triggered the detector of interest.
-
-\begin{figure}[h] \label{fig:evtTypeTriggers}
-\centering
-\includegraphics[scale=.25]{3-UCNAAnalysis/ImageHolder.pdf}
-\caption{Trigger threshold functions for Type 0/2/3 events vs. Type 1 events for the 
-West detector in an early 2012/2013 beta decay run. }
-\end{figure}
 
 %-----------------------------------------------------------
+
+
+\section{Wirechamber Position Reconstruction}
+
+%----------------------------------------------------
+
+
+\section{Position Dependent Light Transport Maps}
+
+As mentioned in the experimental description, each PMT is coupled to a quadrant of
+the scintillator and collects the most light from this quadrant. The light collection
+is therefore position dependent, and an individual PMT will receive a different
+amount of light for an event of energy $E_i$ depending on where that event strikes
+the scintillator. To properly map the PMT signal to energy, this position dependence
+must be accounted for on a PMT-by-PMT basis. The collection of values which correct for this
+dependence will appropriately be called position maps from here on.
+
+
+\subsection{Activated Xenon}
+
+To map the position response of the scintillator, signals must be present across the
+entire face of the detector. The $\beta$-decay spectrum
+is an obvious option, and was used for these position maps prior to 2010,
+but the event rate is low when divided into small position bins across the scintillator.
+Prior to running in 2010, a method using activated xenon was developed to provide
+a higher event rate and also full fiducial coverage.
+
+The xenon is activated by placing a small amount of natural xenon in the volume that
+normally holds the $\mathrm{SD}_2$ source, freezing it, and then exposing it to the moderated
+neutron flux for several minutes. This produces a plethora of radioactive isotopes
+with various half-lives. The xenon is then warmed up to a gas and stored. The gas
+is then released into spectrometer during position mapping periods, and the decay products
+are detected \cite{mpmThesis}. The various radioactive isotopes provide several features to fit across the entire
+detector surface.
+
+The spectral shape of the activated xenon changes with time due to the different half-lives
+of the isotopes, but this is not a concern as the PMT will see the same shape at all positions
+across the detector, just with different ADC scales due to the position dependence of the light
+collection. Therefore one only needs to choose a feature of the spectrum to fit in different
+positions to map the relative response.
+
+\subsection{Position Maps}
+
+The scintillator is divided into a grid of $5\times5\mathrm{~mm}^2$ squares (in the 1~T
+decay trap coordinates) with one square directly in the center,
+and the xenon events are collected for each of these ``pixels''. A key feature
+from the spectrum is then chosen and fit in every pixel, with the position dependent response
+factor in pixel $i$ for a single PMT defined as
+%
+\begin{equation}
+  \eta_i = \frac{Q_i}{Q_0},
+\end{equation}
+%
+where $Q_i$ is the fitted ADC value of the feature in pixel $i$ and $Q_0$ is the fitted ADC value of the
+feature in the center pixel. This normalizes the position response for a PMT to the center pixel. The
+position response at some position $(x,y)$ is then calculated via a two-dimensional Catmull-Rom
+cubic interpolating spline \cite{catmull1974}. The same interpolation is used in the plots of the
+position dependence in figure \ref{fig:posmaps}.
+
+\begin{figure}[h] 
+\centering
+\includegraphics[scale=.5]{3-UCNAAnalysis/xenonSpectrum.pdf}
+\caption{Example energy spectrum of the neutron-activated xenon used for position map determination. }
+\label{fig:xenonSpectrum}
+\end{figure}
+
+A typical xenon energy spectrum can be seen in figure \ref{fig:xenonSpectrum}. The two obvious features one could
+fit are the peak between 100~keV and 200~keV or the 915~keV $\beta$-decay endpoint. The peak is a
+superposition of several isotopes, while the endpoint comes from the
+$^{135}\mathrm{Xe~}\frac{3}{2}+$ isotope. The position maps are fit in terms of pedestal and gain corrected ADC,
+so unfortunately the luxury of knowing an initial guess for the feature position is not afforded as it would
+be if the fit was done in the energy domain. This makes
+fitting the peak more reliable upon first inspection, as the endpoint fit (done via a Kurie fit as described
+in appendix \ref{app:kurieFit}) is more sensitive to the range of the fit especially when the spectrum is not
+purely a $\beta$-spectrum. There is a problem with using the peak though, as areas with low light collection
+for a given PMT lose a portion of the peak below the trigger threshold. This changes the feature shape
+compared to regions of higher light output, thus biasing the position map. The better choice is then the
+$^{135}\mathrm{Xe~}\frac{3}{2}+$ endpoint. 
+
+The problem with fitting the endpoint in pixels with different light collection efficiencies is illustrated by
+imagining that every pixel sees the same xenon energy spectrum (as in figure \ref{xenonSpectrum}), but that
+the spectrum is compressed or stretched when compared to the spectrum in the center pixel depending on where
+the pixel is located. Since each pixel has the same ADC range, choosing the proper fit range becomes difficult
+as it is different in every pixel. To avoid this issue, a secondary feature was derived to be used as a
+seed to the endpoint fit range. This secondary feature is calculated by first fitting the peak with a Gaussian
+and extracting the mean ($\mu$) and sigma ($\sigma$), and then calculating the average ADC value, $\xi$, of the spectrum
+from $\mu+1.5\sigma$ and beyond. Then the endpoint fit is done over the range $(\xi,2\xi)$. The range used to
+calculate $\xi$ and the range over which the endpoint were fit were determined via trial and error, and produce
+consistent results across the entire detector.
+
+It should also be noted that the position maps were calculated using both the peak and the endpoint as the key
+feature, and the differences are small. This is illustrated in figure \ref{fig:posmapCompare}, where the
+ratio of the two methods is plotted.
+
+
+
+%----------------------------------------------------------
+
+
 
 
 \section{Calibration Overview}
