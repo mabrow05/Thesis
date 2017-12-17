@@ -59,7 +59,7 @@ the energy lost in the scintillator, as determined from simulation, will be
 referred to as $E_{dep}$. This is the maximum energy which could be detectable
 for an event in the data if no inconspicuous energy losses existed.
 
-\subsubsection{Quenched Energy}
+\subsubsection{Quenched Energy} \label{sssec:Equenched}
 Show Birk's law. Talk about MPM and jianglai's analysis to determine
 quenching parameters. Then talk about the modification using BradF's note
 and show the shift to the functional form. Also show a figure which shows
@@ -83,7 +83,7 @@ energy output to a response which mimics that from our actual detectors, the
 more credence we can put in our calibration. For the time being, the model will
 be introduced with parameter determination addressed as it arises. 
 
-\subsubsection{PMT Response Model}
+\subsection{Detector Response Model}
 
 Recall from section \ref{sssec:pmtModel} that we can relate a digital signal
 in a PMT, $ADC_i$, to the energy deposited in the scintillator
@@ -102,19 +102,28 @@ stochastic nature of the PMTs themselves. Let's rewrite ************To properly 
 model we must utilize the fact that a PMT consists of several dynodes, each of which
 introduces stochasticity into the final voltage read out. 
 
-\subsubsection{$E_{true}$ reconstruction}
+\subsubsection{Determining $E_{recon}$}
 %----------------------------------------------------------
 
-\subsection{Wirechamber Calibration}
+\section{Wirechamber Calibration}
 
-Blah Blah
+\subsection{Position Dependence}
+
+\subsection{Relating Anode Signal to $E_{\mathrm{MWPC}}$}
+
+\subsection{Backscattering Separation for Type 2/3 Events}
+Should we put the 2/3 separation in the results chapter?
 
 %----------------------------------------------------------
 
 \section{Energy Calibration}
-\subsection{Electron Conversion Sources}
+
+\subsection{Method}
+Talk about the parameters needed (resolution, trigger thresholds, pedestals, position maps, etc.)
+Talk about the cyclical nature.
 \subsection{Linearity Curves}
-\subsection{PMT Resolution}
+\subsection{PMT Resolution Factors} \label{ssec:PMTresolution}
+\subsection{MC to Data Agreement}
 
 
 
