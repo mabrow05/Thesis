@@ -611,7 +611,7 @@ run can be seen in figure \ref{fig:trigger_thresh}.
 Determining the position of the spiraling electrons is vital for every component of the analysis
 that follows. Before now, the gain, pedestals, and trigger thresholds are determined with no
 knowledge of the position of an event, but rather basic trigger logic. As will be seen in
-the next section, the actual response of the PMT is position dependent, and so we introduce the
+the section \ref{sec:posmaps}, the actual response of the PMT is position dependent, and so we introduce the
 position reconstruction algorithm now.
 
 \subsection{Wirechamber signals}
@@ -648,8 +648,9 @@ number of clipped wires can be seen in figure \ref{fig:nClipped}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.38]{3-UCNAAnalysis/ImageHolder.pdf} 
-  \caption{Clipping in the x-plane. Could do a 2d clipping plot?}
+  \includegraphics[scale=0.6,page=1]{3-UCNAAnalysis/mwpc_position.pdf} 
+  \caption{Number of clipped wires in the x-plane of the East detector. Most of the events
+    (\~92~\%) exhibit no clipping.}
   \label{fig:nClipped}
 \end{figure}
 
@@ -681,21 +682,27 @@ of the event is then given by $(\bar{x}, \bar{y})$, where $\bar{y}$ is calculate
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.38]{3-UCNAAnalysis/ImageHolder.pdf} 
-  \caption{1d wirechamber position for events with no clipping.}
-  \label{fig:wirechamberPosNoClip}
+  \begin{tabular}{cc}
+    \subfloat[East Detector]{\includegraphics[scale=0.37,page=2]{3-UCNAAnalysis/mwpc_position.pdf}} &
+    \subfloat[West Detector]{\includegraphics[scale=0.37,page=3]{3-UCNAAnalysis/mwpc_position.pdf}}
+    \end{tabular}
+    \caption{Wirechamber reconstructed positions for all electron events in a single octet of
+      $\beta$-decay data. The black dashed line indicates the 50~mm fiducial cut applied to the
+      data during asymmetry extraction.}
+  \label{fig:wirechamberPos}
 \end{figure}
 
 For well-behaved wires (no clipping, no missing or ``dead'' wire segments), this method produces
-a continuous reconstruction of the events based on where they pass through the wirechamber, as shown
-in figure \ref{fig:wirechamberPosNoClip}.
+a continuous reconstruction of the events based on where they pass through the wirechamber.
+An example of the position dependence can be seen in figure \ref{fig:wirechamberPos}.
 
 \subsubsection{Events with cathode clipping or missing wire signals}
 
 In the event of a clipped wire or the rare case of a missing wire signal, the basic average method
 shown above will not work. Using the clipped wire in the average can systematically shift the
 reconstructed position if the signal is not symmetric about the clipped wire, and the same can
-be said of a missing signal. While this may not show up in the plotted distribution, the method
+be said of a missing signal. While this may not appear a visible distortion to the
+position distribution, the method
 loses its integrity.
 
 To handle these types of events, a method similar to that used in the previous analysis
@@ -727,11 +734,11 @@ maximum wire were the edge wire. The extraction of the mean is the approximation
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.38]{3-UCNAAnalysis/ImageHolder.pdf} 
+  \includegraphics[scale=0.5,page=7]{3-UCNAAnalysis/mwpc_position.pdf} 
   \caption{Collection of extraced $\sigma$ values for the Gaussian determination of event position. The
     average of this distribution is an estimate of the characteristic width of the wirechamber charge cloud,
     $\sigma_c$, used when only two wires are usable in the position reconstruction.}
-  \label{fig:wirechamberPosNoClip}
+  \label{fig:meanSigma}
 \end{figure}
 
 Now there is also the special case where there are only two usable wires above the individual cathode
@@ -741,7 +748,7 @@ equation \ref{eq:gaussPos} requires three wire signals to estimate a position, s
 to use this method. Again, if we assume that all signals follow a typical Gaussian shape, then the width of the
 charge cloud should be roughly constant. Thus we can determine a characteristic width, $\sigma_c$, from the
 mean extracted $\sigma$ from the rest of the events (including the non-clipped events). An histogram of the
-extracted $\sigma$ can be seen in figure \ref{fig:meanSigma}. A value of $\sigma_c = 8\text{~channels}$ was used
+extracted $\sigma$ can be seen in figure \ref{fig:meanSigma}. A value of $\sigma_c = 6\text{~mm}$ was used
 for these type events, and then the mean was calculated by solving \ref{eq:gaussPos} with two unknowns.
 
 Last of all, there is the situation where only one wire was above the individual threshold. For this type of event,
@@ -803,11 +810,12 @@ for every wire grouping (64/run) in every $\beta$-decay run (\~1000).
 \begin{figure}[h]
   \centering
   \begin{tabular}{cc}
-  \subfloat[Multiplicity]{\includegraphics[scale=0.3]{3-UCNAAnalysis/ImageHolder.pdf}}  &
-  \subfloat[Number of clipped wires]{\includegraphics[scale=0.3]{3-UCNAAnalysis/ImageHolder.pdf}}
+  \subfloat[Multiplicity]{\includegraphics[scale=0.3,page=5]{3-UCNAAnalysis/mwpc_position.pdf}}  &
+  \subfloat[Number of clipped wires]{\includegraphics[scale=0.3,page=4]{3-UCNAAnalysis/mwpc_position.pdf}}
   \end{tabular}
-  \caption{Comparisons between data (blue open squares) and simulation (red closed circles) after
-    the application of the single wire trigger and clipping model.}
+  \caption{Comparisons between data (blue line) and simulation (red dashed line) after
+    the application of the single wire trigger and clipping model. There is a discrepancy in the multiplicity,
+    but the general features are captured. The number of clipped wires in data and simulation is in better agreement.}
   \label{fig:multDataSim}
 \end{figure}
 
@@ -823,9 +831,10 @@ generally be much higher for the simulation.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.38]{3-UCNAAnalysis/ImageHolder.pdf} 
-  \caption{Position dependence of clipped events for data (blue open squares) and simulation (red closed circles) after
-    the application of the single wire trigger and clipping model.}
+  \includegraphics[scale=0.6,page=6]{3-UCNAAnalysis/mwpc_position.pdf} 
+  \caption{Position dependence of clipped events for data (blue line) and simulation (red dashed line) after
+    the application of the single wire trigger and clipping model to the simulation. The model captures the
+    position dependence of the clipping nicely.}
   \label{fig:clippedPos}
 \end{figure}
 
@@ -846,7 +855,7 @@ MWPC systematic effects from the efficiency of the MWPC trigger described in sec
 %----------------------------------------------------
 
 
-\section{Position Dependent Light Transport Maps}
+\section{Position Dependent Light Transport Maps} \label{sec:posmaps}
 
 As mentioned in the experimental description, each PMT is coupled to a quadrant of
 the scintillator and collects the most light from this quadrant. The light collection
