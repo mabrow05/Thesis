@@ -413,7 +413,7 @@ function on a PMT-by-PMT basis as a function of ADC channels above pedestal. Thi
 encompasses a true characteristic of each component of the detector rather than some
 average effect as seen by a detector package, which is what the aforementioned 
 method produces. A typical trigger threshold is seen in figure \ref{fig:trigger_thresh}.
-As illustrated in section \ref{ssec:genTrigModel}, the ratio of triggering events
+As illustrated in Section \ref{ssec:genTrigModel}, the ratio of triggering events
 to all events was taken in each ADC bin and then fit using the method described
 in the following section.
   
@@ -528,7 +528,7 @@ be introduced with parameter determination addressed as it arises.
 
 \subsection{Detector Response Model}
 
-Recall from section \ref{sssec:pmtModel} that we can relate a digital signal
+Recall from Section \ref{sssec:pmtModel} that we can relate a digital signal
 in a PMT, $ADC_i$, to the energy deposited in the scintillator
 using Equation \ref{eq:EnergyResponse}.
 By reverse engineering this process, we can use a purely simulated $E_Q$ and
@@ -575,7 +575,7 @@ determined via observation of a random process (the gain and pedestal), and so
 the underlying value for any given event may not be the same as the value applied in the
 above expression. Thus what we
 really resolve is an approximation to the energy, which comes with some uncertainty. This
-uncertainty will be addressed later in section \ref{ssec:energyRecon}.
+uncertainty will be addressed later in Section \ref{ssec:energyRecon}.
 For the time being, keep in mind the above list of
 input parameters which take us from an ADC signal (detector signal) to an energy signal. 
 
@@ -600,22 +600,22 @@ a weighted average, upon definition of the weights, will suffice:
 where $w_i=\frac{1}{\sigma_i^2}$ are the weights for each $E_{\mathrm{vis},i}^{\mathrm{E,W}}$. We will drop the superscript
 E/W for now, understanding that what follows is done for each detector.
 
-Now let's assume that the $E_{\mathrm{vis},i}$ from equation \ref{eq:EvisResponse} is an approximation
+Now let's assume that the $E_{\mathrm{vis},i}$ from Equation \ref{eq:EvisResponse} is an approximation
 for an event which deposited exactly the energy $E_Q$ (the $Q$ stands for ``quenched'', which will
-be described in section \ref{sssec:Equenched}). A certain amount of this $E_Q$ is visible to each
+be described in Section \ref{sssec:Equenched}). A certain amount of this $E_Q$ is visible to each
 PMT, given by $\eta_i(x,y)E_Q$, as each PMT only captures a portion of the total number of photons produced
 in the scintillator.
 Now if we want to relate this to the signal read out by the DAQ
 from the PMT, we must multiply by a PMT resolution factor $\alpha_i$ to convert from energy
 to photoelectrons, giving $N_i = \alpha_i \eta_i(x,y) E_Q$.
 These PMT resolution factors are calculated during the calibration process
-and will be discussed in section \ref{ssec:PMTresolution}, but for now, assume they are known.
+and will be discussed in Section \ref{ssec:PMTresolution}, but for now, assume they are known.
 
 The number of photoelectrons produced by a PMT is a stochastic process, so we can write the actual
 measured number of photoelectrons as $\overline{N_i} = N_i \pm \sqrt{N_i}$. The fractional uncertainty
 is then $1/\sqrt{N_i} = 1/\sqrt{\alpha_i \eta_i(x,y) E_Q}$. Now, since the measured number of photoelectrons,
 $\overline{N_i}$, is directly proportional to the ADC signal of the PMT and thus also the visible energy
-of the PMT by equation \ref{eq:EvisResponse}, we have
+of the PMT by Equation \ref{eq:EvisResponse}, we have
 %
 \begin{equation}
   E_{\mathrm{vis},i} = E_Q \pm \frac{E_Q}{\sqrt{\alpha_i \eta_i(x,y) E_Q}} =  E_Q \pm \sqrt{\frac{E_Q}{\alpha_i \eta_i(x,y)}}.
@@ -632,7 +632,7 @@ Then the final combined $E_{\mathrm{vis}}$ for a single detector becomes
   = \frac{\sum_{i=1}^{4} \alpha_i f_i(q)}{\sum_{i=1}^{4} \alpha_i \eta_i(x,y)}
 \end{align}
 %
-where we have used equation \ref{eq:EvisResponse} with $q=\big( \mathrm{ADC}_i - p_i(t) \big) \cdot g_i(t)$.
+where we have used Equation \ref{eq:EvisResponse} with $q=\big( \mathrm{ADC}_i - p_i(t) \big) \cdot g_i(t)$.
 The uncertainty on the final weighted average above is given by
 \begin{equation}
   \delta E_{\mathrm{vis}} = \frac{1}{\sqrt{\sum_{i=1}^{4} w_i}} = \frac{1}{\sqrt{\sum_{i=1}^{4} \frac{\alpha_i \eta_i(x,y)}{E_Q}}}
@@ -646,7 +646,7 @@ values $\eta_i$ should be minimized.
 
 \subsection{$E_{\mathrm{vis}}$ to $E_{\mathrm{recon}}$}
 
-As mentioned in section \ref{sec:outline}, $E_{\mathrm{vis}}$ is an estimate of the
+As mentioned in Section \ref{sec:outline}, $E_{\mathrm{vis}}$ is an estimate of the
 energy visible to the PMT from deposition in the scintillator. The more meaningful
 initial energy of the particle must be determined using a separate parameterization.
 To determine such a parameterization, simulated data is used so that the initial
@@ -775,7 +775,7 @@ background measurement in the switcher detector.
 The ratio of these populations is then extrapolated back to the equilibrium population as established
 during $\beta$-decay running by utilizing further \textit{ex situ} measurements and comparisons with
 simulation. The results of these measurements as well as the correction to the uncertainty resulting
-from imperfect polarization ($P<1$) can be found in section \ref{ssec:polCorr}.
+from imperfect polarization ($P<1$) can be found in Section \ref{ssec:polCorr}.
 
 
 
