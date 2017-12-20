@@ -164,7 +164,7 @@ With the event type chosen, we extract the mean and RMS of the pedestal peak
 for each PMT in every run. The pedestal mean (referred to as simply
 the pedestal) is then subtracted from the ADC values for all events. This effectively
 removes the time-dependent baseline from the detector signals. The time dependence of
-the pedestals can be seen for the East PMTs from 2011-2012 in figure \ref{fig:peds_timeDep}.
+the pedestals can be seen for the East PMTs from 2011-2012 in Figure \ref{fig:peds_timeDep}.
 Most of the PMTs have pedestals which remain quite stable, but PMT East 3 shows the
 importance of a run-by-run pedestal subtraction.
 
@@ -207,7 +207,7 @@ scale of a single run. The fit was done iteratively, with the initial guesses fo
 by stepping backwards from the last bin and using a self-written algorithm to search for the peak. Then the peak
 was fit five times consecutively, with each successive fit being fed the previous fits mean and sigma. This
 made sure the fit converged as best as possible on the mean of the pulser peak. An example pulser peak and fit
-can be seen in figure \ref{fig:biPulser}. The asymmetric fit (range extends farther above the peak than below)
+can be seen in Figure \ref{fig:biPulser}. The asymmetric fit (range extends farther above the peak than below)
 is actually a characteristic part of the iterative
 fitting algorithm developed for use throughout this analysis. For Gaussian like peaks occurring as a result of
 a process like energy loss in a scintillator followed by PMT amplification, the upper end of the peak is
@@ -301,7 +301,7 @@ From this we see that a linear equation (the Kurie plot) can be formed:
 \end{equation}
 %
 where the $y$-intercept and $x$-intercept both determine the endpoint energy $E_0$.
-An example Kurie plot can be seen in figure \ref{fig:kuriePlot}.
+An example Kurie plot can be seen in Figure \ref{fig:kuriePlot}.
 
 Now we assume that the measured kinetic energy spectrum $T_{\mathrm{meas}}$ is different from the expected
 kinetic energy spectrum $T_{\mathrm{sim}}$ by the gain factor $g_{\mathrm{ep}}$ such that
@@ -412,7 +412,7 @@ Instead, similarly to previous analyses, we decided to calculate the trigger
 function on a PMT-by-PMT basis as a function of ADC channels above pedestal. This
 encompasses a true characteristic of each component of the detector rather than some
 average effect as seen by a detector package, which is what the aforementioned 
-method produces. A typical trigger threshold is seen in figure \ref{fig:trigger_thresh}.
+method produces. A typical trigger threshold is seen in Figure \ref{fig:trigger_thresh}.
 As illustrated in Section \ref{ssec:genTrigModel}, the ratio of triggering events
 to all events was taken in each ADC bin and then fit using the method described
 in the following section.
@@ -428,7 +428,7 @@ in the following section.
 \end{figure}
 
 \subsubsection{Functional Fit of the Trigger Threshold}
-From the sigmoid shape of the threshold data in figure \ref{fig:trigger_thresh}, one might guess
+From the sigmoid shape of the threshold data in Figure \ref{fig:trigger_thresh}, one might guess
 the shape of the curve to be a hyperbolic tangent or an error function. The data tends to show
 a sharper turn on at lower ADC channels and a softer levelling off to unit probability, which
 prompted the use of both the $\mathrm{erf}(x)$ (lower end of transition region)
@@ -453,7 +453,7 @@ where $q$ is the ADC value and
 the free parameters are $\mu$ ($f(q=\mu)\approx 0.5$), $w_1$ (width of $\mathrm{erf}$), $w_2$ (width of $\tanh$), and $R$ (severity of turn on/off).
 This function, while motivated purely by inspection of the shape of the trigger threshold, fits the data
 quite well with only these four free parameters. An example of the fits for a single $\beta$-decay
-run can be seen in figure \ref{fig:trigger_thresh}. 
+run can be seen in Figure \ref{fig:trigger_thresh}. 
 
 %-----------------------------------------------------------
 
@@ -673,7 +673,7 @@ but really this is the true energy of the events), with the histograms correspon
 to 10~keV groups from 0~keV to 790~keV. Then each of these histograms are fit to
 determine the average $E_{\mathrm{vis}}$ value for a given $E_{\mathrm{recon}}$. The results
 of these fits for each event type in each detector for 2011-2012 is shown as the data
-points in figure \ref{fig:Erecon}. The other geometries look very similar and thus are
+points in Figure \ref{fig:Erecon}. The other geometries look very similar and thus are
 left out. Data points with low statistics at low energies were dropped.
 
 The fit to the data is of the form
@@ -761,7 +761,7 @@ polarizing magnet, and then the desired spin is chosen using the AFP spin flippe
 After a $\beta$-decay run, the depolarization run begins by closing the shutter and changing the switcher
 state to allow
 the UCN to flow into the switcher detector for measurement of UCN populations. The switcher signal
-as a function of time can be found in figure \ref{fig:switcherSignal}. The guides are cleaned of UCN while
+as a function of time can be found in Figure \ref{fig:switcherSignal}. The guides are cleaned of UCN while
 the UCN population in the trap remains contained. Then the spin flipper state is changed allowing the
 neutrons that were trapped between the 7~T magnet and the decay trap to pass back through the high
 field region (these trapped neutrons result from UCN who underwent an unwanted spin flip after passing

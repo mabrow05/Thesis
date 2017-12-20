@@ -50,7 +50,7 @@ Low energy event deposit a substantial amount of energy in the MWPC, and thus cr
 signals in one or more wires in cathode planes. This can create a signal which is beyond the
 range of the ADC, thus creating an overflow event which is read out as the max value of the ADC.
 These events are called ``clipped'' events. A plot of the typical ratio of clipped events and the
-number of clipped wires can be seen in figure \ref{fig:nClipped}.
+number of clipped wires can be seen in Figure \ref{fig:nClipped}.
 
 \begin{figure}[h]
   \centering
@@ -106,7 +106,7 @@ of the event is then given by $(\bar{x}, \bar{y})$, where $\bar{y}$ is calculate
 
 For well-behaved wires (no clipping, no missing or ``dead'' wire segments), this method produces
 a continuous reconstruction of the events based on where they pass through the wirechamber.
-An example of the position dependence can be seen in figure \ref{fig:wirechamberPos}.
+An example of the position dependence can be seen in Figure \ref{fig:wirechamberPos}.
 
 \subsubsection{Events with cathode clipping or missing wire signals}
 
@@ -160,7 +160,7 @@ equation \ref{eq:gaussPos} requires three wire signals to estimate a position, s
 to use this method. Again, if we assume that all signals follow a typical Gaussian shape, then the width of the
 charge cloud should be roughly constant. Thus we can determine a characteristic width, $\sigma_c$, from the
 mean extracted $\sigma$ from the rest of the events (including the non-clipped events). An histogram of the
-extracted $\sigma$ can be seen in figure \ref{fig:meanSigma}. A value of $\sigma_c = 6\text{~mm}$ was used
+extracted $\sigma$ can be seen in Figure \ref{fig:meanSigma}. A value of $\sigma_c = 6\text{~mm}$ was used
 for these type events, and then the mean was calculated by solving \ref{eq:gaussPos} with two unknowns.
 
 Last of all, there is the situation where only one wire was above the individual threshold. For this type of event,
@@ -235,7 +235,7 @@ for every wire grouping (64/run) in every $\beta$-decay run (\~1000).
 \subsubsection{Results of individual wire model}
 
 The agreement between data and simulation from application
-of the trigger threshold can be seen in figure \ref{fig:multDataSim} a.), where
+of the trigger threshold can be seen in Figure \ref{fig:multDataSim} a.), where
 the multiplicity of triggered wires for both data and simulation is shown. Without the
 the application of a nonzero individual trigger threshold, the multiplicity would
 generally be much higher for the simulation.
@@ -251,7 +251,7 @@ generally be much higher for the simulation.
 \end{figure}
 
 The application of the clipping threshold to the simulation also provides nice agreement
-as seen in figure \ref{fig:multDataSim} b.). More importantly, the position dependence
+as seen in Figure \ref{fig:multDataSim} b.). More importantly, the position dependence
 of the clipped events is properly accounted for in the simulation as shown in figure
 \ref{fig:clippedPos}.
 
@@ -325,7 +325,7 @@ feature in the center pixel. This normalizes the position response for a PMT to 
 position response at some position $(x,y)$, referred to as the continuous variable $\eta(x,y)$,
 is then calculated via a two-dimensional Catmull-Rom
 cubic interpolating spline \cite{catmull1974}. The same interpolation is used in the plots of the
-position dependence in figure \ref{fig:posmaps}.
+position dependence in Figure \ref{fig:posmaps}.
 
 
 \begin{figure}[hp] 
@@ -346,7 +346,7 @@ position dependence in figure \ref{fig:posmaps}.
 \label{fig:posmapCompare}
 \end{figure}
 
-A typical xenon energy spectrum can be seen in figure \ref{fig:xenonSpectrum}. The two obvious features one could
+A typical xenon energy spectrum can be seen in Figure \ref{fig:xenonSpectrum}. The two obvious features one could
 fit are the peak between 100~keV and 200~keV or the 915~keV $\beta$-decay endpoint. The peak is a
 superposition of several isotopes, while the endpoint comes from the
 $^{135}\mathrm{Xe~}\frac{3}{2}+$ isotope. The position maps are fit in terms of pedestal and gain corrected ADC,
@@ -360,7 +360,7 @@ compared to regions of higher light output, thus biasing the position map. The b
 $^{135}\mathrm{Xe~}\frac{3}{2}+$ endpoint. 
 
 The problem with fitting the endpoint in pixels with different light collection efficiencies is illustrated by
-imagining that every pixel sees the same xenon energy spectrum (as in figure \ref{xenonSpectrum}), but that
+imagining that every pixel sees the same xenon energy spectrum (as in Figure \ref{xenonSpectrum}), but that
 the spectrum is compressed or stretched when compared to the spectrum in the center pixel depending on where
 the pixel is located. Since each pixel has the same ADC range, choosing the proper fit range becomes difficult
 as it is different in every pixel. To avoid this issue, a secondary feature was derived to be used as a
@@ -371,7 +371,7 @@ calculate $\xi$ and the range over which the endpoint were fit were determined v
 consistent results across the entire detector.
 
 It should also be noted that the position maps were calculated using both the peak and the endpoint as the key
-feature, and the differences are small. This is illustrated in figure \ref{fig:posmapCompare}, where the
+feature, and the differences are small. This is illustrated in Figure \ref{fig:posmapCompare}, where the
 ratio of the two methods is plotted.
 
 

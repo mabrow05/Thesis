@@ -361,7 +361,7 @@ misidentified Type 0 events. There is almost no effect on the other event types,
 be expected due to no dramatic change in event type fractions or triggering efficiencies
 for the two detector sides. Another way to think of this is that once an event passes through the
 decay trap endcap, it's likelihood of triggering the detector approaches $100\%$ fairly quickly
-(see figure \ref{fig:effic}) and is not dependent on the changing geometry, so the corrections for
+(see Figure \ref{fig:effic}) and is not dependent on the changing geometry, so the corrections for
 backscattering events are robust. Differing endcap thicknesses do however modify the number of misidentified
 Type 0 events, decreasing them in the case of thinner windows as more electrons should pass through without
 scattering, thus decreasing the magnitude of the
@@ -511,7 +511,7 @@ down an expression for $\Delta_{3,i}$ in terms of known values:
 \end{equation}
 %
 
-The energy dependent $\Delta_{3,i}$ corrections are shown in figure \ref{fig:delta3}.
+The energy dependent $\Delta_{3,i}$ corrections are shown in Figure \ref{fig:delta3}.
 The impact of applying the combined $\Delta_{3}$ correction is to decrease the magnitude of the
 measured asymmetry. This comes from the dominance of the $\Delta_{3,0}$ portion, or the correction
 due to the acceptance of Type 0 events. Type 0 events are more likely lost when they are high pitch
@@ -587,7 +587,7 @@ that comes from simply propagating the statistics of the simulation through the 
 which we will call
 $\delta^{\mathrm{pure}}_{\mathrm{stat}}\Delta_{i,j}$.
 This uncertainty doesn't seem to account for the fluctuations we see in the correction though, as
-seen in figure \ref{fig:effStat} panel (a) where the correction, when plotted for each
+seen in Figure \ref{fig:effStat} panel (a) where the correction, when plotted for each
 energy bin, oscillates at the roughly 0.25\% correction level at higher energies. This
 oscillation may be due to correlations between the Monte Carlo events used to simulate each
 run, as there are only 200 million events for each geometry and the events are chosen
@@ -697,7 +697,7 @@ can be found in table \ref{tab:effStat}.
 Assigning values for the fractional uncertainties on each correction is more straightforward
 and comes from looking at the spectral discrepancies of each event type. We have a Monte
 Carlo predicted spectrum and a data spectrum for each of our event types, so we can construct
-a fractional residual between these spectra as seen in figure \ref{fig:fracResid} simply using
+a fractional residual between these spectra as seen in Figure \ref{fig:fracResid} simply using
 $\frac{\mathrm{MC}}{\mathrm{Data}}-1$. Then by choosing approximately
 the maximum fractional residual over energies of interest (180-700~keV, starting at roughly the lower
 limit on our analysis energy window and ending when the statistics drop below 10\% of the maximum rate),
@@ -989,7 +989,7 @@ and \ref{fig:residuals2012}), we calculate
 \footnote{ \label{fn:sourceMean}The mean and sigma are calculated rather than fitted so as to not neglect any
   non-Gaussian tails in the distributions.} the mean and sigma of the distributions, with
 values reported in table \ref{tab:residuals}, and use
-them as the data points seen in figure \ref{fig:errEnv}. These points are a measure
+them as the data points seen in Figure \ref{fig:errEnv}. These points are a measure
 of the accuracy of the energy calibration at four discrete energies, the mean energies of the
 conversion electron lines themselves.
 
@@ -1024,7 +1024,7 @@ conversion electron lines themselves.
 %\setlength{\tabcolsep}{12pt}
 \begin{table}[h]
   \caption{Mean and $\sigma$ of each conversion electron residual distribution
-  as used in the energy uncertainty, figure \ref{fig:errEnv}.} 
+  as used in the energy uncertainty, Figure \ref{fig:errEnv}.} 
   \centering
   \begin{tabular}{c c c}
     \hline \hline \\ [-1.75ex]
@@ -1069,18 +1069,18 @@ presented here, a more quantitative determination of the uncertainty envelope wa
 via methods developed by K. Hickerson for determination of limits on $b_n$ from the previous
 UCNA spectrum (\cite{hickerson2017}). In short, the envelope is produced by sampling
 the coefficients of a quadratic, $f(E_{\mathrm{recon}})$, from distributions that reproduce
-the residual data points seen in figure \ref{fig:errEnv} with $1\sigma$ deviation.
+the residual data points seen in Figure \ref{fig:errEnv} with $1\sigma$ deviation.
 This
 obviously results in an asymmetric uncertainty band due to the asymmetric distribution
 of the data points about zero, but our conservative approach is
 to take the worst case uncertainty at every energy and use this as our
 symmetric final uncertainty.
-This produces the symmetric uncertainty band in figure \ref{fig:errEnv}.
+This produces the symmetric uncertainty band in Figure \ref{fig:errEnv}.
 
 The symmetric worst case uncertainty band allows us to report a systematic uncertainty
 rather than a correction and an uncertainty from the energy reconstruction. The energy
 dependent uncertainty on $A_0$ for the maximal energy uncertainty (outer edge of the
-uncertainty envelope) is shown in figure \ref{fig:energyUncert}.
+uncertainty envelope) is shown in Figure \ref{fig:energyUncert}.
 The uncertainty is then weighted by the data statistics in each bin to determine the
 total uncertainty in the final asymmetry, producing energy uncertainties of $0.17\%$ and
 $0.25\%$ for 2011-2012 and 2012-2013 respectively.
@@ -1514,7 +1514,7 @@ developed for the Monte Carlo in this analysis, these same cuts could be applied
 simulation to account for any systematic effect if these events are not simply random.
 
 The last cut applied is an energy cut where we check that each event lies within the
-energy range $190\mathrm{~keV} < KE_e < 740\mathrm{~keV}$.
+energy range $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$.
 Within this energy range, the events are further separated into
 10~keV energy bins for energy dependent asymmetry extraction. The determination
 of this analysis energy window is described below in Section \ref{ssec:enRange}.
@@ -1624,30 +1624,30 @@ and energy dependent Monte Carlo corrections during minimization.
   \subfloat[Combined systematic and statistical uncertainty]{\includegraphics[page=3,scale=0.4]{5-UCNAResults/TwoDimUncert.pdf}} \\ 
   \caption{Plots of the fractional uncertainty on the extracted asymmetry for given minimum and maximum limits
     on the analysis window. The minimum of the combined systematic and statistical uncertainty is used for the
-  final analysis window, $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$.}
+    final analysis window, $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$.}
   \label{fig:enWindow}
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[page=5,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}
+\includegraphics[page=6,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}
 \caption{Statistical and systematic errors used in minimization of the energy window. This is a projection
-  of figure \ref{fig:enWindow} about the minimum window cut of 190~keV to show the dependence on energy cut
+  of Figure \ref{fig:enWindow} about the minimum window cut of 190~keV to show the dependence on energy cut
   more effectively.}
 \label{fig:enWindow1D}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[page=4,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}
-\caption{Ratio of the asymmetry for every possible energy window divided by the
-  asymmetry of the window with the minimum uncertainty. The closer to the lower right
-  hand corner, the larger the analysis window. We see that there is a region of highly
-  consistent asymmetries covering the bottom right hand corner, which is where our analysis
-  window of choice lies. When comparing
-  to figure \ref{fig:enWindow}, we also see that, given the uncertainties for every
-  analysis window, nearly all asymmetries are consistent within error.}
+\begin{figure}[h]
+  \centering
+  \subfloat[$\frac{A-A_{\mathrm{min}}}{\delta A}$]{\includegraphics[page=4,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}} \\
+  \subfloat[Plot of $1\sigma$ agreement]{\includegraphics[page=5,scale=.5]{5-UCNAResults/TwoDimUncert.pdf}}
+  \caption{Panel (a) shows the ratio of $(A-A_{\mathrm{min}})$ to $\delta A$, where $\delta A$ is the $1\sigma$ total uncertainty
+  taken from Figure \ref{fig:enWindow} panel (c). The $z$-axis is a measure of agreement between
+  the asymmetry in a bin with the overall minimum uncertainty bin, $A_{\mathrm{min}}$, in units of $\sigma$ of
+  the bin being used. Values between $-1$ and $+1$ indicate that the asymmetry in the bin is in agreement with
+  $A_{\mathrm{min}}$ at the $1\sigma$ level. Panel (b) shows the bins for which this $1\sigma$ agreement is met. The black
+  circle in each figure indicates the location of $A_{\mathrm{min}}$.}
 \label{fig:enWindowAsymm}
 \end{figure}
 
@@ -1656,22 +1656,21 @@ The final energy window is calculated by scanning all possible energy windows in
 $>100$~keV and a maximum upper bound of $<780$~keV. The total width of the energy window
 is set to start at 100~keV to save on computation
 time but is not limited beyond that. Upon exploring all energy windows, the minimum combined uncertainty
-occurs at $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$ shown.
+occurs at $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$ shown.
 Figure \ref{fig:enWindow} shows the uncertainty contributions as a function of energy window. The
 final plot shows the combined uncertainty from all three contributions, and we
-see that the window $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$ falls within the area
+see that the window $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$ falls within the area
 of the minimum uncertainty. Once we choose the minimum edge of our window, we can view the
 dependence of the final uncertainty as a function of the upper edge of the analysis window
-as seen in figure \ref{fig:enWindow1D}. Here we see the total uncertainty becomes essentially
+as seen in Figure \ref{fig:enWindow1D}. Here we see the total uncertainty becomes essentially
 constant beyond an upper window cut of 690~keV.
-The dependence of the asymmetry on energy window can be seen in figure \ref{fig:enWindowAsymm}.
-The asymmetry is stable within $\pm0.3\%$ upon changing the analysis window
-by roughly 100~keV in either direction about the minimum window, as evidenced by the uniform
-area in the lower right hand corner of the plot. Thus the asymmetry is fairly stable among
-reasonable choices for the analysis window. Even in regions of figure \ref{fig:enWindowAsymm}
-where the asymmetry appears to change noticeably, when taking into account the uncertainty
-for that asymmetry as plotted in \ref{fig:enWindow}, one sees that the majority of
-asymmetries remain consistent.
+The dependence of the asymmetry on energy window can be seen in Figure \ref{fig:enWindowAsymm} panel (a),
+where the ratio $(A-A_{\mathrm{min}})/\delta A$ is plotted. The asymmetry is consistent with the
+minimum energy window asymmetry ($A_{\mathrm{min}}$) within
+a $1\sigma$ uncertainty over a large portion of the sampled analysis windows. Figure
+\ref{fig:enWindowAsymm} panel (b) shows all of the energy windows that produce a $1\sigma$ agreement.
+The minimum energy window chosen is indicated in the figure by the black dashed circle, well within
+a region where the asymmetry is stable.
 
 
 \subsubsection{Unblinded Result}
@@ -1693,14 +1692,14 @@ asymmetries remain consistent.
   \subfloat[Final 2012-2013 $A_0$]{\includegraphics[page=2,scale=0.38]{5-UCNAResults/asymm_2012-2013.pdf}} 
   \caption{Final unblinded 2011-2012 and 2012-2013 asymmetry with all systematic corrections applied. The dashed line in
     a.) and c.) uses PDG $A_0=-0.1184$ for comparison. The fits in b.) and d.) are over the
-    final analysis window, $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$. The uncertainties are statistical only.}
+    final analysis window, $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$. The uncertainties are statistical only.}
   \label{fig:FinalA}
 \end{figure}
 
 On August 16, 2017, upon completion of all systematic studies and the asymmetry analysis code, the data
 was unblinded and the asymmetries recalculated using the proper time stamps. The energy dependent asymmetries
-and final asymmetries for the two geometries, 2011-2012 and 2012-2013, are shown in figure \ref{fig:FinalA},
-with fits over the final analysis window of $190\mathrm{~keV} < E_e < 740\mathrm{~keV}$.
+and final asymmetries for the two geometries, 2011-2012 and 2012-2013, are shown in Figure \ref{fig:FinalA},
+with fits over the final analysis window of $190\mathrm{~keV} < T_e < 740\mathrm{~keV}$.
 The unblinded asymmetries with both statistical and systematic uncertainties accounted for
 are $A_0=-0.12026(54)_{\mathrm{stat}}(67)_{\mathrm{syst}}$ and $A_0=-0.12111(74)_{\mathrm{stat}}(69)_{\mathrm{syst}}$
 for 2011-2012 and 2012-2013 respectively.
@@ -1727,10 +1726,9 @@ result \cite{mendenhall2013} and 0.61 for the result from this analysis.
 % Talk about UCNA+
 
 While this measurement concludes results for $A_0$ from the UCNA experiment in its current
-capacity, there are hopes for a next generation UCNA$+$ experiment. The limitations of
-the current experiment, namely the backscattering, $\cos\theta$, and energy reconstruction
-uncertainties, prevent UCNA from achieving future competitive results of much more precision
-than that reported above.
+capacity, there are hopes for a next generation UCNA$+$ experiment. The uncertainties described
+within this thesis, namely the backscattering, $\cos\theta$, and energy reconstruction
+uncertainties,  limit the UCNA Experiment as currently configured to the present precision.
 
 \begin{figure}[h]
 \centering
@@ -1784,10 +1782,11 @@ a completely determined calibration for every ``pixel'' of the detector. This wo
 maps altogether and would avoid any
 potential bias from measuring the position dependence of the detector with a characteristic of the Xenon
 spectrum that is beyond the endpoint of the electron spectrum, an imperfect method when the detector
-shows any non-linear behavior.
+shows any non-linear behavior. Obviously a method like this, especially one that fills the entire
+spectrometer rather than just the decay trap, would require systematic studies of its own.
 
 The future of $A_0$ and $\lambda$ measurements is quite promising given the status of recent results. Figure
-\ref{fig:vud_vs_lambda} illustrates the current dilemma facing the eperimental nuclear physics community regarding
+\ref{fig:vud_vs_lambda} illustrates the current dilemma facing the experimental nuclear physics community regarding
 weak interactions and the neutron itself.
 Of measurements included in the current 2017 Particle Data Group (PDG) average, 
 there is a several $\sigma$ discrepancy between $\lambda$ measurements prior to 2002 and those
@@ -1796,7 +1795,7 @@ with the difference seemingly arising between experiments using neutron beams \c
 and those using UCN (both
 material bottle \cite{serebrov2005,arzumanov2015,steyerl2012,pichlmaier2010,mampe1993}
 and magnetic bottle \cite{pattie2017} measurements). When combined with measurements of the CKM
-matrix element $V_{ud}$ from super-allowed $0^+\rightarrow 0^+$ nuclear $\beta$-decays, a clearly favorable
+matrix element $V_{ud}$ from superallowed $0^+\rightarrow 0^+$ nuclear $\beta$-decays, a clearly favorable
 scenario presents itself, and further precision measurements of both $\lambda$ and $\tau_n$ will assist
 in settling the matter.
 
@@ -1814,7 +1813,8 @@ they drastically affect the $\chi^2$. One solution to this issue is to improve t
 modern $A_0$ and $\lambda$ measurements, as inclusion of a 0.1\% result for $A_0$ (yielding a 0.025\% result for
 $\lambda$), removes the pre-2002 results for $\lambda$
 from those that enter the calculation of the
-scale factor. Current results from PERKEOII are already $<0.3\%$ on $A_0$, and hopefully a next generation
+scale factor. An expected result from PERKEOII is expected to have an
+uncertainty $<0.3\%$ on $A_0$, and hopefully a next generation
 UCNA$+$ experiment can contribute the disired precision to remove the scale factor from the PDG average values
 for $A_0$ and $\lambda$ altogether.
 
