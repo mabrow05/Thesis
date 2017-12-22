@@ -266,10 +266,7 @@ such a term in the decay rate (as will be shown in Section \ref{ssec:correlation
 decay rate noninvariant under a parity transformation, and the position inverted scenario
 is automatically impossible since the spin vector would not change but we would expect to see
 the electron direction flip. This would result in electrons emitted aligned with the direction
-of the spin, which is not the observed case. As indicated by Wu,
-the fact that the electrons prefer emission in the direction opposite
-to the spin indicates that the $C'_i=-C_i$ for whichever
-interaction current was responsible for the symmetry breaking. From the theory presented thus far,
+of the spin, which is not the observed case. From the theory presented thus far,
 the interaction involved was either axial vector or tensor, because decay of
 $^{60}\mathrm{Co} (J^p=5^+) \rightarrow {^{60}\mathrm{Ni}}(J^p=4^+)$ proceeds stricly through
 the Gamow-Teller transition. Whether the tensor or axial vector current (or both) was responsible
@@ -282,8 +279,8 @@ followed by $\mu^+ \rightarrow e^+ + \bar{\nu}_e + \nu_\mu$. This was another pr
 recommended by Lee and Yang. The premise is that the chiral odd neutrino in the first decay
 forces the muon to be polarized in the direction of its momentum to conserve angular
 momentum. The polarized muon then decays and can thus be analyzed much like one would analyze the
-$\beta$-decay of a polarized nucleus, looking for correlations between the polarization and
-the decay electron. The results were again conclusive that parity is not conserved in the weak
+$\beta$-decay of a polarized nucleus, looking for correlations between the muon and
+electron polarizations. The results were again conclusive that parity is not conserved in the weak
 interaction.
 
 \subsection{Correlation Coefficients} \label{ssec:correlations}
@@ -354,8 +351,8 @@ where
   \frac{-J}{J+1}, &  J\rightarrow J'=J+1 \\
 \end{dcases}
 \end{equation}
-and the $\pm$ sign indicates $\beta^-(\beta^+)$ decay respectively (So the plus sign goes with
-$\beta^-$ to be clear).
+and the $\pm$ sign indicates $\beta^-(\beta^+)$ decay respectively (the plus sign goes with
+$\beta^-$, the $-$ with $\beta^+$ to be clear).
 The rest of the coefficients have varying combinations of the the complex coupling
 constants $C$, $C'$, and the Fermi and
 Gamow-Teller amplitudes.
@@ -392,7 +389,7 @@ its spin is always oriented in the same direction with respect to its momentum \
 \footnote{Technically this only applies to neutrinos that interact via
   the weak interaction, but seeing as neutrinos are only
   observed to interact weakly, this can be generalized to all observable neutrinos. Also, Lee and
-  Yang's theory had the wrong sign for the $\boldsymbol{\sigma \cdot p}$ of the neutrino.}.
+  Yang's theory had the wrong sign for the $\vec{\sigma} \cdot \vec{p}$ of the neutrino.}.
 This was the first theory to indicate that the weak interaction coupled only to particles
 of a certain handedness, where right (left) handedness refers to eigenstates with eigenvalues of the
 chirality projection operator ($P_{\pm} = (1\pm \gamma^5)/2$) equal to $+1\mathrm{ }(-1)$. This operator
@@ -405,7 +402,7 @@ theory of the weak interaction. The name derives from the form of the two curren
 current-current Hamiltonian.
 The new theory involved the coupling of the weak current to strictly left-handed particles and right-handed
 antiparticles. More simply, a massless neutrino will always have helicity
-$\boldsymbol{\sigma \cdot p}/p = -1$ while an anti-neutrino will have $\boldsymbol{\sigma \cdot p}/p = +1$,
+$\vec{\sigma} \cdot \vec{p}/p = -1$ while an anti-neutrino will have $\vec{\sigma} \cdot \vec{p}/p = +1$,
 where the fact that helicity and chirality are one in the same for massless particles is utilized.
 The form of the V-A interaction Hamiltonian
 %
@@ -434,16 +431,16 @@ Now one may be tempted to ask why only the vector and axial vector components of
 parity violating Hamiltonian remain, and this is easily answered by imagining that the
 left-handed coupling was discovered prior to modification of the Hamiltonian in equation
 \ref{eq:FermiFull} by Lee and Yang to account for parity violation. We can define the left-handed
-particle states as (up to a factor of $1/2$ left off for convenience)
+particle states as 
 %
 \begin{equation}
-  \psi_L = (1-\gamma^5)\psi.
+  \psi_L = \frac{1}{2}\big(1-\gamma^5\big)\psi.
 \end{equation}
 %
 Then using this in the current yields
 %
 \begin{equation}
-  \bar{\psi}_{1,L} O_i \psi_{2,L} = \overline{(1-\gamma^5)\psi_{1}} O_i (1-\gamma^5)\psi_{2}
+  \bar{\psi}_{1,L} O_i \psi_{2,L} = \frac{1}{4}\overline{\big(1-\gamma^5\big)\psi_{1}} O_i \big(1-\gamma^5\big)\psi_{2}
 \end{equation}
 %
 where $O_i$ refers to all of the operators which produce S, V, T, A, and P bilinear covariants
@@ -459,8 +456,8 @@ The $O_i$ are those that are present in \ref{eq:FermiFull}.
     \hline \\ 
     S & $1$ & 0 \\ [0.50ex]
     P & $\gamma^5$ & 0 \\ [0.50ex]
-    V & $\gamma^{\mu}$ & $\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
-    A & $\gamma^{\mu}\gamma^5$ & $-\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
+    V & $\gamma^{\mu}$ & $\frac{1}{2}\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
+    A & $\gamma^{\mu}\gamma^5$ & $-\frac{1}{2}\gamma^\mu(1-\gamma^5)$ \\ [0.50ex]
     T & $\sigma^{\mu\nu}$ & 0 \\ [0.50ex]   
     \hline
   \end{tabular}
@@ -470,24 +467,24 @@ The $O_i$ are those that are present in \ref{eq:FermiFull}.
 Now it can be shown that
 %
 \begin{align*}
-  \bar{\psi}_{1,L} O_i \psi_{2,L} &= \overline{(1-\gamma^5)\psi}_{1} O_i (1-\gamma^5)\psi_{2} \\
-  &= \Big((1-\gamma^5)\psi_{1}\Big)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}(1-\gamma^5)^\dagger \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}(1-\gamma^5) \gamma^0 O_i (1-\gamma^5)\psi_{2} \\
-  &= \psi^\dagger_{1}\gamma^0(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} \\
-  &= \bar{\psi_{1}}(1+\gamma^5) O_i (1-\gamma^5)\psi_{2} 
+  \bar{\psi}_{1,L} O_i \psi_{2,L} &= \frac{1}{4}\overline{\big(1-\gamma^5\big)\psi}_{1} O_i \big(1-\gamma^5\big)\psi_{2} \\
+  &= \frac{1}{4}\Big(\big(1-\gamma^5\big)\psi_{1}\Big)^\dagger \gamma^0 O_i \big(1-\gamma^5\big)\psi_{2} \\
+  &= \frac{1}{4}\psi^\dagger_{1}\big(1-\gamma^5\big)^\dagger \gamma^0 O_i \big(1-\gamma^5\big)\psi_{2} \\
+  &= \frac{1}{4}\psi^\dagger_{1}\big(1-\gamma^5\big) \gamma^0 O_i \big(1-\gamma^5\big)\psi_{2} \\
+  &= \frac{1}{4}\psi^\dagger_{1}\gamma^0\frac{1+\gamma^5}{2} O_i \big(1-\gamma^5\big)\psi_{2} \\
+  &= \frac{1}{4}\bar{\psi_{1}}\frac{1+\gamma^5}{2} O_i \big(1-\gamma^5\big)\psi_{2} 
 \end{align*}
 %
 where the relations ${\gamma^5}^\dagger = \gamma^5$ and $\{\gamma^5,\gamma^i\}=0$ were used.
 
 Then, if we define
 \begin{equation*}
-  O'_i = (1+\gamma^5) O_i (1-\gamma^5),
+  O'_i = \frac{1}{4}(1+\gamma^5) O_i (1-\gamma^5),
 \end{equation*}
 we can calculate how all of the S, V, T, A, and P operators transform. This is shown in table
 \ref{tab:operatorPrime}, where we see that only the vector and axial vector terms remain, and they
 appear with the same $\gamma^\mu(1-\gamma^5)$ factor up to a sign! Thus, these are the only
-currents which can contribute in the interaction Hamiltonian \cite{greiner1996}.
+currents that can contribute in the weak interaction Hamiltonian \cite{greiner1996}.
 
 
 
@@ -511,10 +508,14 @@ that the vector and axial vector currents possess the same coupling constants, o
 they contribute equally in the weak interaction. For the leptonic current this is the case
 as the particles participating are true point particles (and the equal relative strengths are
 what is meant by parity is violated maximally in the weak interaction), but what about the
-hadronic current? To account for potential differences in the hadronic current, the
+hadronic current? One must remember that the hadronic process that occurs is actually the decay
+of a single quark, and that the other two quarks (and the sea of quarks and gluons confined within the hadron)
+are spectators to the process.
+It is conceivable then that the spectator quarks could modify the couplings.
+To account for potential differences in the hadronic current, the
 Hamiltonian is modified slightly,
 %
-\begin{equation}
+\begin{equation} 
   H = G_F \Big(\bar{\psi}_p \gamma_\mu(g_V-g_A\gamma^5)\psi_n \Big)\Big(\bar{\psi}_{e} \gamma^\mu(1-\gamma^5)\psi_{\bar{\nu}} \Big),
   \label{eq:VminusA2}
 \end{equation}
@@ -525,8 +526,13 @@ which lends itself to the definition
   \lambda \equiv \frac{g_A}{g_V}.
 \end{equation}
 
-Within the nucleon, there exists a sea of spectator quarks and gluons
-which can effectively renormalize the interaction.
+The presence of the spectator quarks in the hadron
+can effectively renormalize the interaction, creating
+nonzero values for $g_V$ and $g_A$, and thus making them different from the
+couplings in the leptonic current.
+
+\subsubsection{Conserved Vector Current Hypothesis}
+
 The observed measurements of the Fermi constant ($G_F$) seemed
 universal when comparing measurements from
 purely leptonic ineractions and purely Fermi transitions (vector transitions).
@@ -535,12 +541,15 @@ electromagnetism, is taken to be conserved, as was postulated by Feynman and Gel
 1958 \cite{feynman1958}. 
 
 The conservation of the vector current can be imagined by considering the disocciation of the neutron
-into a proton and a $\pi^{-}$, which then weakly decays via $\pi^- \rightarrow \pi^0+e^- + \overline{\nu}$,
+into a proton and a $\pi^{-}$ for a short period of time, until the proton absorbs the
+$\pi^{-}$ and becomes a neutron again. If during this time when the proton and $\pi^{-}$ exist separately
+the decay process is not allowed, then we would expect that the current would be renormalized.
+Instead, the $\pi^{-}$ can weakly decay via $\pi^- \rightarrow \pi^0+e^- + \overline{\nu}$,
 a Fermi transition as $J^\pi=0^- \rightarrow J^\pi=0^-$. This loop diagram and others like it contribute to the
 conservation of the vector current by projecting
 the potentiality of neutron decay onto the disocciated pion \cite{grotz1990}. So, while one may naively
 think that the neutron could not decay while the pion exists, the probability of the pion also decaying
-via the same interaction conserves the vector current.
+via the same interaction and giving the same decay products conserves the vector current.
 This conservation of vector current is now called the
 Conserved Vector Current (CVC) hypothesis, and the value of $g_V$ is taken to be unity ($g_V = 1$).
 
@@ -559,14 +568,15 @@ is about $1.3\pm0.1$. This departure from 1 might be a
 renormalization effect.
 \end{displayquote}
 %
-The value of $g_A$ can then only be determined experimentally and is directly related to measurements
+The value of $g_A$ can then only be determined experimentally\footnote{Today it can also be calculated on
+  a lattice as will be discussed in a few sections.} and is directly related to measurements
 of the correlation coefficients in Section \ref{ssec:correlations}.
 
 
 \subsection{CKM Mixing Matrix}
 The weak interaction as introduced thus far describes, within the hadronic current, the transitions
-between quarks with charge $-1/3$ and $+2/3$. This included observed interactions between the heavier
-strange quark (charge $-1/3$) and the up quark. 
+between quarks with charge $-1/3$ and $+2/3$. This includes observed interactions between the heavier
+strange quark (charge $-1/3$) and the up quark (charge $+2/3$). 
 A shortcoming of the interaction in Equation \ref{eq:VminusA2} was the inability to describe
 the decay rate of strangeness altering processes with respect to strangeness conserving
 decays, where the strangeness is measured by the number of strange quarks in the state of interest.
@@ -578,7 +588,9 @@ This led Cabibbo \cite{cabibbo1963} to introduce the following correction to the
 \end{equation}
 %
 where $J^\mu_H = \bar{\psi}_1 \gamma_\mu(g_V-g_A\gamma^5)\psi_2$ is the hadronic current between
-hadrons 1 and 2. Cabibbo found that $\theta_C \approx 13\degree$ described the observed differences.
+hadrons 1 and 2, and $\theta_C$, called the Cabibbo angle, quantifies the relative strength
+of the couplings to the strangeness conserving and strangeness altering processes.
+Cabibbo found that $\theta_C \approx 13\degree$ described the observed differences.
 
 At the time Cabibbo introduced his modification, only the up, down and strange quarks were known
 to exist. Glashow, Iliopoulos, and Maiani proposed the existence of a fourth quark, the charm quark,
@@ -599,7 +611,7 @@ doublets rather than particle doublets, i.e.
   \begin{pmatrix} t \\ b' \end{pmatrix}.
 \end{equation}
 %
-The weak states for the down (d), strange (s), and bottom (b) quarks are related to the particle states
+The weak states for the down ($d$), strange ($s$), and bottom ($b$) quarks are related to the particle states
 by the CKM matrix: 
 %
 \begin{equation}
@@ -608,25 +620,39 @@ by the CKM matrix:
     V_{cd} & V_{cs} & V_{cb} \\
     V_{td} & V_{ts} & V_{tb} \\
   \end{pmatrix}
-  \begin{pmatrix} d \\s \\ b \end{pmatrix}
+  \begin{pmatrix} d \\s \\ b \end{pmatrix} ,
 \end{equation}
 %
+\begin{equation}
+  \begin{pmatrix} d' \\s' \\ b' \end{pmatrix} =
+  \begin{pmatrix} c_{12}c_{13} & s_{12}c_{13} & c_{13}e^{i\delta} \\
+    -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\
+    s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta} &  -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta} & c_{23}c_{13} \\
+  \end{pmatrix}
+  \begin{pmatrix} d \\s \\ b \end{pmatrix},
+\end{equation}
+
+\noindent where $c_{ij}$ $(s_{ij})$ stand for $\cos\theta_{ij}$ ($\sin\theta_{ij}$), $\theta_{ij}$
+are the three angles $\theta_{12}$, $\theta_{13}$, and $\theta_{23}$ that relate the couplings
+between each quark generation, and $\delta$ is a
+complex phase.
+
 Each element of the CKM matrix, $V_{ij}$, quantifies the coupling of quark $i$
 to quark $j$, or in comparison to Cabibbo's modification to the hadronic current
 above, the CKM matrix elements take the place of the $\cos\theta_C$ and $\sin\theta_C$
 when extended to three generations of quarks. As a matter of fact, if we assume no mixing
 with the third generation of quarks, the CKM matrix becomes the matrix developed by
 Glashow, Iliopoulos, and Maiani and the only quantity needed to fully determine
-the relationships between the weak states and the quark states is the Cabibbo angle $\theta_C$
+the relationships between the weak states and the quark states is the Cabibbo angle $\theta_{12}\theta_C$
 \cite{griffiths2008}.
 Thus, direct comparison with Equation \ref{eq:cabibbo} indicates that the proper
 $V_{ij}$ should accompany the hadronic current
 of the process being considered in the Hamiltonian, i.e. $V_{ud}$ accompanies the hadronic
 current in neutron $\beta$-decay.
 
-The existence of non-zero off diagonal terms means that there is non-zero probability for a
-weak interaction between quarks of different generations, given that it is energetically
-allowed. The complex phase present in the CKM
+The existence of non-zero off diagonal terms means that there are non-zero probabilities for
+weak interactions between quarks of different generations, given that it is energetically
+allowed. The complex phase ($\delta$) present in the CKM
 matrix also accounts for CP-violation in weak interactions.
 The elements of the CKM matrix must be measured experimentally, and the unitarity of the matrix
 is an important test of the Standard Model. If
@@ -655,6 +681,7 @@ and the hadronic current $J^\mu$, written in the style of \cite{gardner2001}, is
   J^\mu = \bar{u}_p \bigg[ f_1(q^2) - i \frac{f_{2}(q^2)}{M}\sigma^{\mu\nu}q_\nu + \frac{f_3(q^2)}{M}q^\mu \\
     + g_1(q^2)\gamma^5 - i \frac{g_{2}(q^2)}{M}\sigma^{\mu\nu}\gamma^5q_\mu 
     +  \frac{g_3(q^2)}{M}\gamma^5q^\mu \bigg] u_n
+  \label{eq:hadronicCurrent}
 \end{multline}
 %\begin{multline}
 %  J^\mu = \bar{u}_p \bigg[ g_V(q^2) - i \frac{g_{WM}(q^2)}{2M}\sigma^{\mu\nu}q_\nu + \frac{g_S(q^2)}{2M}q^\mu
@@ -663,27 +690,29 @@ and the hadronic current $J^\mu$, written in the style of \cite{gardner2001}, is
 %\end{multline}
 %
 where the terms included are all those that satisfy translational and Lorentz invariance. Notice the
-usual $f_1(0)=g_V$ and $g_1(0) = g_A$ terms from the previous construction of the weak interaction. The
+usual $f_1(0)=g_V$ and $g_1(0) = -g_A$ terms from the earlier construction of the weak interaction
+(Equation \ref{eq:VminusA2}). The
 rest of the couplings
 account for modifications to the hadronic current from other mechanisms (nuclear recoil and Coulomb for example)
 that may transform in ways not described by the typical axial vector and vector currents. Also note that all terms
 included in the current are either axial vector or vector, as is ensured by the proper inclusion of the momentum
 transfer $q_\nu$. This must be the case since all terms in the current-current multiplication $J^\mu L_\mu$ must be
-scalar of pseudoscalar.
+scalar or pseudoscalar.
 
 The $f_2$ term is often called the weak magnetism contribution \cite{gellmann1958}, as it, in
 the words of Gell-Mann,
 ``bears the same relation to the allowed Fermi coupling that magnetism bears to electricity''.
 As $q^2\rightarrow0$ and assuming the CVC hypothesis,
 $f_2(0) = (\mu_p - \mu_n)/2$, where $\mu$ denotes the anomalous magnetic moment.
-The $g_3$ term is the induced pseudoscalar term and is predicted to be of order $5\times 10^{-5}$ as
-$q^2\rightarrow0$ \cite{holstein1974recoil}.
+The $g_3$ term is the induced pseudoscalar term and is predicted to contribute
+to the energy spectrum at the order $m_e^2/ME_e \approx 10^{-4}$
+\cite{holstein1974recoil,plaster2012}.
 
 The remaining $f_3$ and $g_2$ couplings are considered second-class currents \cite{weinberg1958charge}.
-They arise from violations of G parity, defined as $G = Ce^{i\pi I_2}$. If G parity is conserved in
+They arise from violations of $G$ parity, defined as $G = Ce^{i\pi I_2}$. If $G$ parity is conserved in
 weak interactions as it is in strong interactions, then $f_3=g_2=0$. Even if nonzero, the effects
-from either are expected to small, as they appear in the energy spectrum at order $m_e^2/ME_e \approx 10^{-4}$
-\cite{plaster2012,holstein1974recoil}.
+from either are expected to small, as they also contribute to the energy spectrum at order $m_e^2/ME_e \approx 10^{-4}$
+\cite{holstein1974recoil,plaster2012}.
 
 
 \subsection{Neutron $\beta$-decay Asymmetry Parameter $A$} \label{ssec:neutronAsymmParam}
@@ -694,9 +723,9 @@ Equation \ref{eq:jackson} simplifies drastically,
 \begin{multline}
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
   p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
-  \Bigg\{ 1 + a\frac{\boldsymbol{p_e \cdot p}_\nu}{E_e E_\nu} + b\frac{m_e}{E_e} 
-  + \frac{\boldsymbol{\langle J \rangle}}{J} \boldsymbol{\cdot} \Bigg[ A\frac{\boldsymbol{p}_e}{E_e}
-    + B\frac{\boldsymbol{p}_\nu}{E_\nu} + D\frac{\boldsymbol{p_e \times p}_\nu}{E_e E_\nu}\Bigg]
+  \Bigg\{ 1 + a\frac{\vec{p}_e \cdot \vec{p}_\nu}{E_e E_\nu} + b\frac{m_e}{E_e} 
+  + \frac{\langle \vec{J} \rangle}{J} \cdot \Bigg[ A\frac{\vec{p}_e}{E_e}
+    + B\frac{\vec{p}_\nu}{E_\nu} + D\frac{\vec{p}_e \times \vec{p}_\nu}{E_e E_\nu}\Bigg]
   \Bigg\}.
   \label{eq:jacksonSimple}
 \end{multline}
@@ -708,7 +737,7 @@ of the decay electron are observable, which further simplifies Equation \ref{eq:
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
   p_e E_e \big( E^0 - E_e \big)^2 \times \xi 
   \Bigg\{ 1 + b\frac{m_e}{E_e} 
-  + A \frac{\boldsymbol{\langle J \rangle}}{J} \boldsymbol{\cdot}\frac{\boldsymbol{p}_e}{E_e}
+  + A \frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p}_e}{E_e}
   \Bigg\}.
   \label{eq:jacksonSimple2}
 \end{multline}
@@ -733,8 +762,9 @@ require precise determination of the shape of the electron energy spectrum. A me
 $b$ using the 2010 UCNA energy spectrum exists, with a value of
 $b_n = 0.067 \pm 0.005_{\mathrm{stat}}{}^{+ 0.090}_{-0.091}{}_{\mathrm{syst}}$ \cite{hickerson2017}, which is consistent with
 $b=0$. A result using the energy
-spectra presented in this dissertation is currently under analysis by Xuan Sun, with hopes of reducing the
-systematic uncertainty.
+spectra presented in this dissertation is currently under analysis by Xuan Sun of the California Institure of
+Technology, with intentions of reducing the
+systematic uncertainty from the previous result.
 
 The asymmetry parameter $A$ was given in Equation \ref{eq:XiA}, but under the assumptions that the
 weak interaction is V-A and couples to left-handed fermions ($C_A=C'_A$ and $C_V=C'_V$), the couplings
@@ -776,7 +806,94 @@ often referred to as $A_0$. Thus we see that upon measuring the $\beta$-decay
 asymmetry parameter $A$, we must make modifications to the measured value to extract
 $A_0$. From $A_0$, a direct determination of $\lambda = \frac{g_A}{g_V}$, the ratio of the axial-vector to vector
 coupling constants in the hadronic weak interaction, follows.
-These corrections are addressed in Section \ref{ssec:deltaTh}.
+These corrections are below.
+
+\subsubsection{Recoil order corrections}  \label{sssec:ROCorr}
+
+Gardner and Zhang \cite{gardner2001} present the asymmetry parameter $A$ upon considering recoil order effects
+from a finite mass nucleon. The treatment is completely general in that it includes all possible couplings
+(including induced couplings and second-class currents) from the hadronic current in Equation
+\ref{eq:hadronicCurrent}. Defining the parameters
+%
+\begin{equation*}
+  \tilde{f_i}=f_i(0)/f_1(0),\qquad  \tilde{g_i}=g_i(0)/g_1(0), \qquad
+  R=\frac{E^{\mathrm{max}}_e}{M_n}, \qquad x = \frac{E_e}{E^{\mathrm{max}}_e}, \qquad \epsilon=\Big(\frac{m_e}{M}\Big)^2
+\end{equation*}
+where again $f_1(0)=g_V$ and $g_1(0)=g_A$, Gardner and Zhang report:
+%
+\begin{multline}
+  A = A_0 + \frac{1}{(1+3\lambda^2)^2}\Bigg\{\frac{\epsilon}{Rx}\Big[4\lambda^2
+      (1-|\lambda|)(1+|\lambda|+2\tilde{f}_2)+4|\lambda|(1-|\lambda|)
+      (|\lambda|\tilde{g}_2-\tilde{f}_3)\Big] \\
+    + R\bigg[\frac{2}{3}\big[1+\lambda+2(\tilde{f}_2+\tilde{g}_2)\big]
+      (3\lambda^2+2|\lambda|-1)\bigg] \\
+      +Rx\bigg[\frac{2}{3}(1+|\lambda| + \tilde{f}_2)
+        (1-5|\lambda|-9\lambda^2-3|\lambda|^3)
+        +\frac{4}{3}\tilde{g}_2(1+|\lambda|+3\lambda^2+3|\lambda|^3)\bigg]\Bigg\} \\
+  +O(R^2,\epsilon).
+\end{multline}
+
+The correction to $A_0$ is energy dependent, as the $x$ term is simply the electron energy divided by
+the endpoint energy. The above expression simplifies to the recoil order corrections
+presented elsewhere \cite{bilenkii1960,wilkinson1982} when the second-class currents
+are ignored. The correction as applied within this analysis, shown in Section \ref{sssec:sysROCorr},
+also ignores the second class currents.
+
+Gardner and Zhang provide a similar expression for $a$ (the neutrino-electron correlation),
+which is also of the form $d_0R+d_1Rx+d_{-1}\epsilon/(Rx)$ where the coefficients $d_i$ are functions
+of the three unknowns $\lambda$, $\tilde{f}_2$, and $\tilde{g}_2$.
+They point out that, via a determination of $d_0$ and
+$d_1$ (via the $x^0$ and $x^1$ energy dependence) from measurements of both $A$ and $a$:
+%
+\begin{displayquote}
+  The system is over-constrained, so that we can infer the existence of physics
+  beyond the SM (Standard Model), namely, presence of non-($V-A$) currents
+  \cite{jackson1957a}, if the extracted coupling constants differ from SM bounds or if the
+  values of the extracted couplings are not consistent with each other.
+\end{displayquote}
+
+Current experimental limits are not yet at the precision needed to provide stringent
+limits on the beyond SM physics, but this is motivation to continue to measure
+neutron decay correlation parameters like $A$.
+
+\subsubsection{Electromagnetic Corrections} \label{sssec:RadCorr}
+
+The decay electron is immersed in the Coulomb field of the proton, and thus the observed
+decay kinematics can be affected by both exchanging photons with the other
+constituents or Bremsstrahlung radiation as the electron moves through the field.
+Fermi initially accounted for modifications to the electron wavefunction from the
+presence of a point nucleus \cite{fermi1934versuch,wilkinson1982}, which appears
+as the Fermi correction to the phase space factor as seen the
+angular distribution in Equation \ref{eq:jackson}.
+
+The radiative correction of order $\alpha$ (the fine structure constant) to the
+decay rate of unpolarized nuclei was established
+by Sirlin in 1967 \cite{sirlin1967}, and it takes the form:
+%
+\begin{equation}
+  G(E,E_0) = 1+\frac{\alpha}{2\pi}g(E,E_0),
+\end{equation}
+where the functional form of $g(E,E_0)$ is given in \cite{sirlin1967}. This appears
+as a multiplicative factor in the decay rate.
+
+Shann then readdressed the radiative corrections of Sirlin, only he extended the
+correction to polarized nuclei in the context of the electron asymmetry,
+giving the correction factor \cite{shann1971}:
+%
+\begin{equation}
+  A(E) = A_0\bigg(1+\frac{\alpha}{2\pi}\Big(h(E,E_0)-g(E,E_0)\Big)\bigg),
+\end{equation}
+where
+\begin{multline}
+  h-g = 4 \bigg( \frac{E_0-E}{3E\beta^2} \bigg)
+  \bigg( \frac{\tanh^{-1}\beta}{\beta}-1 \bigg)
+  \bigg(1-\beta^2+ \frac{E_0-E}{8E} \bigg) \\
+  + \frac{\tanh^{-1}\beta}{\beta}
+  \bigg( 2-2\beta^2-\frac{\left(E-E_0\right)^2}{6E^2} \bigg).
+\end{multline}
+%
+The application of this correction within the context of this analysis is given in
+Section \ref{sssec:sysRadCorr}.
 
 \subsection{Neutron Lifetime}
 The neutron lifetime is another observable of the free neutron, and it is calculated using the matrix
