@@ -7,13 +7,14 @@
 The UCNA Experiment is a mature experiment, having taken data from
 2007-2013, that aims to precisely determine $A_{0}$, the neutron
 $\beta$-decay asymmetry parameter. Here a description of the experimental
-apparatus is given, as well as previous measurements
-of $A_{0}$ from other experiments for comparison.
+apparatus is given.
 
 The description which follows applies to data taken from Fall 2011 through
-Spring 2013. The analysis is split into two separate data sets, 2011-2012
-and 2012-2013, due to minor changes in the decay trap geometries. Although
-small, any changes in the geometry prompt new simulations, and so a separate
+Spring 2013. The analysis is split into two separate data sets, denoted
+2011-2012 (data taken from Fall 2011 through Spring 2012)
+and 2012-2013 (data taken from Fall 2012 through Spring 2013),
+due to minor changes in the decay trap geometries. Although
+small, any changes in the geometry require new simulations, and so a separate
 analysis is carried out. From now on, any part of the experiment or analysis
 which is different for the two data sets will be indicated.
 
@@ -24,16 +25,25 @@ Ultracold neutrons are produced in a solid deuterium source which is fed
 neutrons via a spallation source at the end of an $800$ MeV
 proton beam. These UCN are then guided towards a material trap where they
 decay. During travel, the UCN pass through a series of polarizing magnets
-which allows the experimenter to control the spin state of the neutrons in
-the trap during any run. Utilizing a $~1$~T magnetic field along the central
-axis of the decay volume, decay electrons spiral towards detectors at either end of
+which allows the experimenter to control the spin state of the neutrons being
+loaded into
+the decay trap during any run.
+Utilizing a $~1$~T magnetic field along the central
+axis of the decay trap, decay electrons
+spiral towards detectors at either end of
 the spectrometer where their energy can be reconstructed. From knowledge about
-the initial direction and the energy of the neutron, one can construct an
+the initial direction and the energy of the electron, one can construct an
 energy dependent asymmetry and determine a value for $A_{0}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ultracold Neutron Source and Guide System}
+
+Detailed descriptions of the UCN source can be found in
+\cite{saunders2004demonstration,morris2002measurements,saunders2013performance}, with
+more recent improvements given in \cite{ito2017performance}. The state of the
+UCN source today is different than what is described hereafter, with a substantial
+increase in UCN production.
 
 \begin{figure}[h]
   \centering
@@ -42,12 +52,6 @@ energy dependent asymmetry and determine a value for $A_{0}$.
     $\mathrm{SD}_2$ cell \cite{saunders2013performance}.}
   \label{fig:sourceFig}
 \end{figure}
-
-Detailed descriptions of the UCN source can be found in
-\cite{saunders2004demonstration,morris2002measurements,saunders2013performance}, with
-more recent improvements given in \cite{ito2017performance}. The state of the
-UCN source today is different than what is described hereafter, with a substantial
-increase in UCN production.
 
 A schematic to assist in the understanding of the source at the time of data-taking
 for this analysis is found in figure
@@ -122,7 +126,7 @@ measurement. This will be discussed in more detail later.
 
 \section{Neutron Polarization} \label{sec:polarization}
 
-The neutrons are initially polarized utilizing the $\boldsymbol{-\mu\cdot B} \approx \pm 60$~neV/T
+The neutrons are initially polarized utilizing the $-\vec{\mu}\cdot \vec{B} \approx \pm 60$~neV/T
 potential. The UCN pass through the 6~T pre-polarizing magnet and then
 through the 7~T primary AFP polarizing magnet. Neutrons with spin
 aligned to the field (remember that the magnetic moment of the neutron is negative and so is antialigned
@@ -144,8 +148,8 @@ the frequency $\omega$ of the rotating field $B_1$ is equal to the
 Larmor precession frequency $\omega_{\mathrm{L}}$ of the spin about the holding field $B_0$.
 To ensure that $\omega = \omega_L$ at some point
 on the neutron's trajectory through this interval,
-a gradient was introduced in the holding field $B_0$ while the frequency of
-the rotating field was held constant. With proper tuning, the resonance condition is met, and as long
+a gradient is introduced in the holding field $B_0$ while the frequency of
+the rotating field is held constant. With proper tuning, the resonance condition is met, and as long
 as adiabaticity is maintained, the spin flips direction. The conditions for adiabaticity defined in terms
 of pertinent field parameters for this setup can be found in
 \cite{holley2012high}. Testing of the apparatus indicates an efficiency of $0.9985\pm0.0004$ \cite{holley2012high}.
@@ -161,7 +165,7 @@ of pertinent field parameters for this setup can be found in
 
 The spectrometer consists mainly of the superconducting solenoidal magnet designed to produce
 the 1~T central field, a decay trap to contain the UCN until they decay, and detector
-packages located at each end of the spectrometer to detect decay electrons after they spiraled
+packages located at each end of the spectrometer to detect decay electrons after they spiral
 about the field lines towards either detector. The detectors are referred to as
 East and West based on their orientaion in the experimental area.
 Brief descriptions of the main components follow.
@@ -211,10 +215,12 @@ long superconducting solenoid (SCS magnet). Technical details of the magnet can 
 previously is the field expansion from 1~T to 0.6~T beyond the decay trap windows but prior to
 the wirechambers. This field expansion decreases the pitch angle of the electron,
 defined as
-$\theta = \arccos(p_{\parallel}/p)$, as it
+$\theta = \cos^{-1}(p_{\parallel}/p)$, as it
 enters the detector package as seen from the earlier stated adiabatic invariant $p_\perp^2/B$
 coupled with conservation of momentum. Decreasing the pitch angle decreases the probability
-of backscattering substantially.
+of backscattering substantially. One should note here that transverse positions measured using the MWPC
+within the field expansion region need to be converted to decay trap coordinates, which is within
+the 1~T field region, using $x_{\mathrm{trap}} = \sqrt{0.6} \times x_{\mathrm{MWPC}}$.
 
 \begin{figure}[h]
   \centering
@@ -255,8 +261,8 @@ backgrounds. The MWPC consists of an anode plane in between two cathode planes, 
 planes oriented perpendicular to one another to allow for position reconstruction in both directions
 transverse to the axis of the SCS. There are
 64 wires in each plane with 2.54~mm spacing between each wire. The spatial extent of the
-MWPC is $16.3 \times 16.3\mathrm{ cm}^2$ which maps to
-$\sqrt(0.6) (\times 16.3 \times 16.3\mathrm{ cm}^2) = 12.6 \times 12.6\mathrm{ cm}^2$ coverage
+MWPC is $16.3 \times 16.3\mathrm{~cm}^2$ which maps to
+$ (\sqrt{0.6} \times 16.3) \times (\sqrt{0.6} \times 16.3) \mathrm{~cm}^2 = 12.6 \times 12.6\mathrm{~cm}^2$ coverage
 within the decay trap (remember the decay trap is within the 1~T field while the detectors
 are in the field expansion region with field of 0.6~T), thus the wirechamber covers the full
 decay trap exit. The anode wires are $10\mathrm{ \mu{n}}$ in diameter while the cathode

@@ -547,7 +547,7 @@ the decay process is not allowed, then we would expect that the current would be
 Instead, the $\pi^{-}$ can weakly decay via $\pi^- \rightarrow \pi^0+e^- + \overline{\nu}$,
 a Fermi transition as $J^\pi=0^- \rightarrow J^\pi=0^-$. This loop diagram and others like it contribute to the
 conservation of the vector current by projecting
-the potentiality of neutron decay onto the disocciated pion \cite{grotz1990}. So, while one may naively
+the potentiality of neutron decay onto the disocciated pion \cite{grotz1990}. So, while one may na\"{i}vely
 think that the neutron could not decay while the pion exists, the probability of the pion also decaying
 via the same interaction and giving the same decay products conserves the vector current.
 This conservation of vector current is now called the
@@ -643,7 +643,7 @@ above, the CKM matrix elements take the place of the $\cos\theta_C$ and $\sin\th
 when extended to three generations of quarks. As a matter of fact, if we assume no mixing
 with the third generation of quarks, the CKM matrix becomes the matrix developed by
 Glashow, Iliopoulos, and Maiani and the only quantity needed to fully determine
-the relationships between the weak states and the quark states is the Cabibbo angle $\theta_{12}\theta_C$
+the relationships between the weak states and the quark states is the Cabibbo angle $\theta_{12}=\theta_C$
 \cite{griffiths2008}.
 Thus, direct comparison with Equation \ref{eq:cabibbo} indicates that the proper
 $V_{ij}$ should accompany the hadronic current
@@ -745,7 +745,8 @@ of the decay electron are observable, which further simplifies Equation \ref{eq:
 
 The $b$ term is known as the Fierz interference term, and, if nonzero, it presents itself
 within the electron energy spectrum as an energy shift. The other term is the asymmetry parameter
-$A$ between the neutron spin and the electron momentum that is being measured in the UCNA experiment.
+$A$ between the neutron spin and the electron momentum, the measurement of which is the topic of
+this thesis.
 
 The Fierz interference term can be written as
 \begin{equation}
@@ -756,13 +757,14 @@ The Fierz interference term can be written as
 where $\gamma = (1-\alpha ^2 Z^2)^{1/2}$, $\alpha$ is the fine structure constant, and $\xi$ is given in
 Equation \ref{eq:xi}. From Equation \ref{eq:b}, we see that $b=0$ under the V-A structure
 of the weak interaction within the Standard Model, as
-$C_s = C'_s = C_T = C'_T = 0$. Measurements of $b$ provide constraints on
-beyond Standard Model physics, but these measurements are difficult because they
+$C_S = C'_S = C_T = C'_T = 0$. Measurements of $b$ provide constraints on
+beyond Standard Model physics as they probe the existence of scalar and tensor currents,
+but these measurements are difficult because they
 require precise determination of the shape of the electron energy spectrum. A measurement of
 $b$ using the 2010 UCNA energy spectrum exists, with a value of
 $b_n = 0.067 \pm 0.005_{\mathrm{stat}}{}^{+ 0.090}_{-0.091}{}_{\mathrm{syst}}$ \cite{hickerson2017}, which is consistent with
 $b=0$. A result using the energy
-spectra presented in this dissertation is currently under analysis by Xuan Sun of the California Institure of
+spectra presented in this dissertation is currently under analysis by Xuan Sun of the California Institute of
 Technology, with intentions of reducing the
 systematic uncertainty from the previous result.
 
@@ -819,7 +821,7 @@ from a finite mass nucleon. The treatment is completely general in that it inclu
   \tilde{f_i}=f_i(0)/f_1(0),\qquad  \tilde{g_i}=g_i(0)/g_1(0), \qquad
   R=\frac{E^{\mathrm{max}}_e}{M_n}, \qquad x = \frac{E_e}{E^{\mathrm{max}}_e}, \qquad \epsilon=\Big(\frac{m_e}{M}\Big)^2
 \end{equation*}
-where again $f_1(0)=g_V$ and $g_1(0)=g_A$, Gardner and Zhang report:
+where again $f_1(0)=g_V$, $g_1(0)=-g_A$, and $\lambda=g_A/g_V$, Gardner and Zhang report:
 %
 \begin{multline}
   A = A_0 + \frac{1}{(1+3\lambda^2)^2}\Bigg\{\frac{\epsilon}{Rx}\Big[4\lambda^2
@@ -837,7 +839,7 @@ The correction to $A_0$ is energy dependent, as the $x$ term is simply the elect
 the endpoint energy. The above expression simplifies to the recoil order corrections
 presented elsewhere \cite{bilenkii1960,wilkinson1982} when the second-class currents
 are ignored. The correction as applied within this analysis, shown in Section \ref{sssec:sysROCorr},
-also ignores the second class currents.
+also ignores the second-class currents.
 
 Gardner and Zhang provide a similar expression for $a$ (the neutrino-electron correlation),
 which is also of the form $d_0R+d_1Rx+d_{-1}\epsilon/(Rx)$ where the coefficients $d_i$ are functions
@@ -926,7 +928,7 @@ and thus does not contain the axial-vector renormalization $g_A$.
 
 \section{Ultracold Neutrons}
 
-While neutrons have a magnetic moment and a mass, the typical energy scale
+While neutrons have a magnetic moment and mass, the typical energy scale
 of a free neutron is much larger than any potential energy associated with
 the interaction of the neutron with materials, gravititational fields,
 or magnetic fields. But what happens if the neutron is cooled down
@@ -934,7 +936,7 @@ to where its kinetic energy almost vanishes? The neutron begins to interact
 quite differently than typically expected!
 
 In the UCNA experiment, neutrons
-with kinetic energies $<350$~neV and speeds $<8$~m/s are utilized to measure
+with kinetic energies $<~350$~neV and speeds $<~8$~m/s are utilized to measure
 the neutron $\beta$-decay asymmetry parameter $A$. Neutron's of such energies
 are called ultracold neutrons, and will often be referred to simply as UCN. The
 low energy of these neutrons means they can be trapped in material bottles, manipulated
@@ -960,7 +962,7 @@ material. This transmitted component can lead to losses of UCN via interactions 
 neutron capture or upscattering \cite{golub1991ultra}. A table of typical effective potentials is seen
 in Table \ref{tab:fermipotential}.
 By constructing the critical guides and other components of the UCNA experiment using materials with high
-Fermi potentials, UCN can be guided to our experiemental volume and then held until they decay.
+Fermi potentials, UCN can be guided to the experimental volume and then held until they decay.
 
 \begin{table}[h]
   \caption{Effective potentials for some UCN reflecting materials.} 
@@ -1016,7 +1018,100 @@ Tesla will completely reflect a spin aligned with the field. We'll return to thi
 
 \section{Motivation in a nutshell}
 
-The UCNA experiment is 
+The focus of this thesis is describing in detail a new precision
+measurement of the neutron $\beta$-decay asymmetry parameter $A_0$.
+While a measurement of $A_0$ is alone interesting as it presents
+a measure of parity
+violation within the weak interaction, the necessity for continued measurements of $A_0$
+may not be so obvious, given that we already know parity is violated maximally in the
+weak interaction. The motivation
+becomes apparent though when considering the relationships between all of the
+$\beta$-decay correlations and the coupling constants of Lee and Yang's version of Fermi's
+theory of $\beta$-decay
+(first derived by Jackson, Treiman, and Wyld \cite{jackson1957a} and
+described in Section \ref{ssec:correlations}). From this relationship we see that precision
+measurements of any $\beta$-decay observable (i.e. $A_0$) either produces a measurement of the couplings
+known to exist ($g_A$ and $g_V$ or the ratio $\lambda=g_A/g_V$), or tests the couplings believed to not exist within the
+Standard Model (scalar, pseudoscalar, tensor).
+
+\subsection{Why determine $\lambda$?}
+
+Determining $\lambda$ from measurements of the correlation coefficients is more fundamental to
+weak interaction physics, as the value is not determined within the theory. Therefore,
+theoretical calculations involving the weak interaction use as input the experimentally
+determined value for $\lambda$, and the precision of the calculation is limited by the
+precision of the experimental value. One may have even noticed that the recoil order corrections to
+the asymmetry parameter in
+Section \ref{sssec:ROCorr} are themselves dependent on $\lambda$.
+
+Precision measurements of $\lambda$ not only allow for more reliable theoretical calculations, but
+they also serve as complimentary benchmarks for lattice QCD (LQCD) calculations, where the continuous
+field theory of the strong interaction (Quantum Chromodynamics, hence QCD)
+is discretized on a finite four-dimensional lattice (space and time). By solving the theory on
+the lattice and extrapolating to an infinitely large lattice with lattice spacing of zero 
+and physical masses for the particles, one can, for example, extract the coupling constants in the
+hadronic current (Equation \ref{eq:hadronicCurrent}). The limiting factor for lattice QCD
+determinations of any parameter is the statistical precision from finite Monte Carlo sampling
+and systematic uncertainties associated with the extrapolations, but recent improvements in
+LQCD calculatations \cite{bhattacharya2016,capitani2017iso,berkowitz2017accurate}
+show promise in soon reaching comparable precision for $g_A$ in relation to
+experiment. As such, comparison between the measured and LQCD results will allow for limits on
+beyond Standard Model right-handed currents in the weak interaction, as what is actually measured experimentally
+is $g'_A = g_A(1-2\epsilon_R)$, where $\epsilon_R$ denotes the effective right-handed coupling if present
+\cite{cirigliano2013beta,gonzalez2016global,alioli2017right}.
+
+\begin{figure} [h]
+  \centering
+  \includegraphics[scale=0.5,page=1]{1-Introduction/A_results.pdf}
+  \caption{Historical plot of $A_0$ measurements prior to the analysis presented within
+    this thesis
+    \cite{bopp1986,erozolimskii1991new,yerozolimsky1997,liaud1997,abele2002,mund2013,mendenhall2013}.
+    The shaded band indicates the Particle Data Group average value \cite{pdg}
+    for the asymmetry parameter, where the solid data points are included in the average. Thank you
+    to Dr. Plaster for inclusion of this plot.}
+  \label{fig:Ameasurements}
+\end{figure}
+
+
+\subsection{Current status of $A_0$ measurements} \label{ssec:Previous_results}
+
+Measurements of $A_0$ provide the most sensitive value of $\lambda = g_A/g_V$,
+which we now see has profound impact within the physics community.
+Measurements of $a_0$, the correlation between the electron momentum and
+neutrino momentum, are of comparable sensititivity, but such measurements are inherently more difficult.
+They require either the reconstruction of the neutrino momentum through measurement of the recoil proton
+kinetic energy \cite{darius2017measurement}, which is less than 760~eV compared to the $\sim782$~keV endpoint
+of the electron, or through direct measurement of
+the proton energy spectrum \cite{byrne2002determination}. The most precise measurement of $a_0$ to date
+is at the sub-4\% precision level, while current $A_0$ measurements are sub-1\% precision, thus providing
+better determination of $\lambda$ for the time being.
+
+Figure \ref{fig:Ameasurements} shows the evolution of $A_0$ measurements for the neutron dating back to
+1986 and not including the most recent result which is the topic of this thesis. We see that
+with time not only has the precision increased, but a dichotomy has arisen between older measurements
+(pre-2002) and more recent measurements. The difference between the two groups may be attributed
+to the relatively large systematic corrections applied for the older pre-2002 results ($>10\%$) compared to
+all corrections being $<2\%$ for the newer post-2002 results \cite{brown2017}.
+
+The Mendenhall \textit{et al.} result \cite{mendenhall2013} is the UCNA predecessor to the current analysis
+presented within this thesis. It should be noted that all measurements prior to Mendenhall \textit{et al.}
+used cold neutron beams, whereas UCNA utilizes ultracold neutrons, and thus necessitates far different
+systematic corrections to the measured asymmetry compared to the other experiments. This makes the UCNA experiment
+a great compliment to the other measurements to ensure no unforeseen systematic bias to the experimentally
+determined value of $A_0$ and $\lambda$ from cold neutron techniques. Present results from UCNA already
+confirm that the shift in $A_0$ values seems to
+be motivated by better experimental techniques as a whole and that post-2002 results are perhaps more aligned with the
+underlying value. From this point on, we focus on a new analysis of UCNA data in an
+attempt at further reducing the uncertainty on the $\beta$-decay asymmetry parameter $A_0$ using UCN, thereby improving
+the precision on $\lambda=g_A/g_V$.
+
+
+
+
+
+
+
+
 
 %\section{Previous measurements of $A_{0}$}
 %\label{sec:Previous_results}
