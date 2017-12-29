@@ -368,7 +368,7 @@ scattering, thus decreasing the magnitude of the
 $\Delta_{2,0}$ correction by definition.
 
 
-\subsubsection{Angular Acceptance, $\Delta_{3}$} \ref{sssec:cosThetaCorr}
+\subsubsection{Angular Acceptance, $\Delta_{3}$} \label{sssec:cosThetaCorr}
 Remember from Equation \ref{eq:simpleRate} that the asymmetric
 component of the decay rate depends on
 $\beta\cos\theta$ and that we proceeded to integrate over one hemisphere
@@ -907,7 +907,7 @@ electron) in Equation \ref{eq:A_SR}, and thus it is essential to assess how well
 we can reconstruct the initial energy of an electron. The obvious choice for determining
 the efficacy of our energy calibration is to use the calibration peaks themselves and
 compare to Monte Carlo simulation. We apply the calibrations from
-chapter \ref{ch:UCNA_Calibrations} to the data source peaks in all
+Chapter \ref{ch:UCNA_Calibrations} to the data source peaks in all
 individual source runs,
 which maps the detector response to a reconstructed peak energy ($E_{\mathrm{recon}}^{\mathrm{data}}$),
 and then we apply our
@@ -1402,7 +1402,7 @@ from the previous analysis.
 It should be noted that the formalism above includes only the usual vector and
 axial vector terms in the hadronic current, as well as the weak magnetism
 coupling. Other work form Gardner and Zhang
-\cite{gardner2001}, as discussed in Section \ref{ROCorr}, includes all potential interaction terms.
+\cite{gardner2001}, as discussed in Section \ref{sssec:ROCorr}, includes all potential interaction terms.
 The results agree with those from Bilen'ki\u\i \textit{ et al.} and Wilkinson when the second class terms
 are neglected. 
 
@@ -1572,8 +1572,8 @@ trigger one detector package only, and they make up almost 95\% of detected even
 are identified as backscattering events, with Type 1 events triggering both scintillators, while 2 and 3
 trigger both wirechambers but only one scintillator. Based on solely trigger logic, a Type 2 cannot be
 distinguished from a Type 3, but a delineation can be made between them given their energy deposition
-in the MWPC. See Section \ref{sec:Backsc} for a detailed description of the backscattering events and
-the MWPC calibration used to separate them.
+in the MWPC. See Section \ref{sec:backscattering} for a detailed description of the backscattering events and
+Section \ref{sssec:backscSep} for implementation of the MWPC calibration used to separate the Type 2 and Type 3 events.
 
 \begin{figure}[h]
   \centering
@@ -1710,6 +1710,18 @@ a region where the asymmetry is stable.
   \label{fig:FinalA}
 \end{figure}
 
+\begin{figure} [h]
+  \centering
+  \includegraphics[scale=0.5,page=2]{1-Introduction/A_results.pdf}
+  \caption{Historical plot of $A_0$ measurements including the measurement resulting from this analysis
+    \cite{bopp1986,erozolimskii1991new,yerozolimsky1997,liaud1997,abele2002,mund2013,mendenhall2013,brown2017}.
+    The shaded band indicates the Particle Data Group average value \cite{pdg}
+    for the asymmetry parameter, where the solid data points are included in the average (not including
+    the Brown \textit{et al.} point, as this will be included in future averages). Thank you
+    to Dr. Plaster for inclusion of this plot.}
+  \label{fig:AmeasurementsNew}
+\end{figure}
+
 On August 16, 2017, upon completion of all systematic studies and the asymmetry analysis code, the data
 was unblinded and the asymmetries recalculated using the proper time stamps. The energy dependent asymmetries
 and final asymmetries for the two geometries, 2011-2012 and 2012-2013, are shown in Figure \ref{fig:FinalA},
@@ -1723,7 +1735,8 @@ with weights of 0.67 (2011-2012) and 0.33 (2012-2013), yielding a final value of
 $A_0=-0.12054(44)_{\mathrm{stat}}(68)_{\mathrm{syst}}$ corresponding to a
 value for the ratio of the axial-vector to vector coupling constants of
 $\lambda\equiv \frac{g_{A}}{g_{V}}=-1.2783(22)$, where the statistical and systematic
-uncertainties have been added in quadrature.
+uncertainties have been added in quadrature. Figure \ref{fig:AmeasurementsNew} shows schematically
+where the present result lies in comparison to previous measurements of $A_0$. 
 
 We also report a combined result using our previous measurement \cite{mendenhall2013} and a
 similar weighting method as above, only now we set all systematic uncertainties
@@ -1790,11 +1803,11 @@ within the scintillator, the wirechambers could be removed thus reducing the $\c
 further. Another potential improvement, although admittedly difficult,
 would be the development of a calibration method
 which samples the entire fiducial volume, or at least a larger fraction of the detector face. The activated
-Xenon spectrum highlights the promise of such a method, as it fills the entire specrometer during position
+xenon spectrum highlights the promise of such a method, as it fills the entire specrometer during position
 map calibration runs, but the existence of discrete conversion lines within the calibration gas would create
 a completely determined calibration for every ``pixel'' of the detector. This would remove the need for position
 maps altogether and would avoid any
-potential bias from measuring the position dependence of the detector with a characteristic of the Xenon
+potential bias from measuring the position dependence of the detector with a characteristic of the xenon
 spectrum that is beyond the endpoint of the electron spectrum, an imperfect method when the detector
 shows any non-linear behavior. Obviously a method like this, especially one that fills the entire
 spectrometer rather than just the decay trap, would require systematic studies of its own.
