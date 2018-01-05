@@ -13,12 +13,21 @@ made on the sheet. This is the task every nuclear physics experiment is faced
 with, only the baseball is a particle and the sheet is our detector system.
 Below we focus on the energy calibration of our apparatus.
 
+This chapter will begin by discussing the position reconstruction algorithm,
+which relies on signals from the wirechamber (MWPC). Then we will describe
+the energy calibration of the scintillators which utilizes the
+position of the events, as each individual PMT response is highly position
+dependent. Last of all, an energy calibration of the wirechamber will be
+discussed, which, while not imperative to the analysis, provides the ability to
+distinguish between a Type 2 and Type 3 backscattering event more
+effectively.
+
 %--------------------------------------------------------------
 
 
 %----------------------------------------------------------
 
-\section{Wirechamber Calibration}
+\section{Wirechamber Position Reconstruction}
 
 \subsection{Wirechamber signals}
 
@@ -267,6 +276,16 @@ MWPC systematic effects from the efficiency of the MWPC trigger described in sec
 %----------------------------------------------------
 
 
+
+
+
+
+\section{Scintillator Energy Calibration}
+
+\subsection{Method}
+Talk about the parameters needed (resolution, trigger thresholds, pedestals, position maps, etc.)
+Talk about the cyclical nature.
+
 \subsection{Position Dependent Light Transport Maps} \label{ssec:posmaps}
 
 As mentioned in the experimental description, each PMT is coupled to a quadrant of
@@ -375,30 +394,95 @@ feature, and the differences are small. This is illustrated in Figure \ref{fig:p
 ratio of the two methods is plotted.
 
 
-
-\subsection{Wirechamber Energy Calibration}
-
-\subsubsection{Method}
-
-\subsubsection{Position dependence of anode signal}
-
-\subsubsection{Relating Anode Signal to $E_{\mathrm{MWPC}}$}
-
-\subsubsection{Backscattering Separation for Type 2/3 Events} \label{sssec:backscSep}
-Should we put the 2/3 separation in the results chapter?
-
-%----------------------------------------------------------
-
-\section{Scintillator Energy Calibration}
-
-\subsection{Method}
-Talk about the parameters needed (resolution, trigger thresholds, pedestals, position maps, etc.)
-Talk about the cyclical nature.
 \subsection{Linearity Curves}
 \subsection{PMT Resolution Factors} \label{ssec:PMTresolution}
 \subsection{MC to Data Agreement}
 
 
+%------------------------------------------------------------------------
+
+\section{Wirechamber Energy Calibration}
+
+\subsection{Method}
+
+The goal of the wirechamber energy calibration is to provide an estimate of
+the energy deposited within the MWPC, $E_{\mathrm{MWPC}}$, depending on the
+response of the wirechamber. The available information from the wirechamber includes the
+summed anode signal, which is proportional to the total amount of ionization
+within the MWPC gas and thus the total energy deposited, and the reconstructed position from the cathode signals.
+Also available is the reconstructed initial energy of all events, $E_{\mathrm{recon}}$, as a result of the
+previously described scintillator energy calibration. This is important as higher energy events deposit
+less energy in the wirechamber than lower energy events, and thus subsets of events with
+different $E_{\mathrm{recon}}$ will provide different distributions of $E_{\mathrm{MWPC}}$.
+With this in mind, the general idea for calibrating the wirechamber is as follows:
+
+\begin{itemize}
+\item Map out the position dependence of the anode signals in a similar manner to the
+  PMT light transport maps.
+\item Separate data into subsets based on $E_{\mathrm{recon}}$
+  to provide several different distributions of wirechamber signals (anode for data and $E_{\mathrm{MWPC}}$
+  for simulation).
+\item For each $E_{\mathrm{recon}}$ subset, fit the wirechamber ADC signals for the data.
+\item For each $E_{\mathrm{recon}}$ subset, fit the simulated wirechamber deposited energy, $E_{\mathrm{MWPC}}$.
+\item Plot the extracted ADC values from the data vs. the extracted $E_{\mathrm{MWPC}}$ from the simulation to
+  determine the parameterization from anode signal to wirechamber deposited energy.
+\end{itemize}
+
+
+\subsection{Position dependence of anode signal}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[East MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/MWPC_posmap.pdf}}  &
+  \subfloat[West MWPC]{\includegraphics[scale=0.3,page=2]{4-UCNACalibrations/MWPC_posmap.pdf}}
+  \end{tabular}
+  \caption{Position dependent anode response for each MWPC.}
+  \label{fig:mwpcPosMap}
+\end{figure}
+
+
+\subsection{Relating Anode Signal to $E_{\mathrm{MWPC}}$}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[Simulated MWPC response]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}  &
+  \subfloat[Actual MWPC response]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}
+  \end{tabular}
+  \caption{Landau fit of both simulation and data for electron events which deposited between xxx-xxx keV
+    in the scintillator.}
+  \label{fig:landauFits}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[East MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/MWPC_cal_17126.pdf}}  &
+  \subfloat[West MWPC]{\includegraphics[scale=0.3,page=2]{4-UCNACalibrations/MWPC_cal_17126.pdf}}
+  \end{tabular}
+  \caption{Example MWPC calibration curve for a single run in 2011-2012. A calibration like this one
+  is carried out for every $\beta$-decay run.}
+  \label{fig:mwpcCal}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[East MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}  &
+  \subfloat[West MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}
+  \end{tabular}
+  \caption{Simulation vs. Data after application of the wirechamber calibration
+  for a single run.}
+  \label{fig:simVsDataMWPC}
+\end{figure}
+
+
+
+\subsection{Backscattering Separation for Type 2/3 Events} \label{sssec:backscSep}
+Should we put the 2/3 separation in the results chapter?
+
+%----------------------------------------------------------
 
 
 
