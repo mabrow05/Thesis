@@ -327,7 +327,7 @@ across the detector, just with different ADC scales due to the position dependen
 collection. Therefore one only needs to choose a feature of the spectrum to fit in different
 positions to map the relative response.
 
-\subsubsection{Position Maps}
+\subsubsection{Position Maps} \label{sssec:posmaps}
 
 The scintillator is divided into a grid of $5\times5\mathrm{~mm}^2$ squares (in the 1~T
 decay trap coordinates) with one square directly in the center,
@@ -428,8 +428,30 @@ With this in mind, the general idea for calibrating the wirechamber is as follow
   determine the parameterization from anode signal to wirechamber deposited energy.
 \end{itemize}
 
+The energy calibration of the wirechamber is carried out for every individual $\beta$-decay run,
+rather than using the periodic
+source calibration runs as was done for the scintillator energy calibration. This is advantageous as
+it automatically corrects for any changes in the anode gain on the run-by-run time scale. This will
+be illustrated in the coming sections.
+
 
 \subsection{Position dependence of anode signal}
+
+While the wirechamber is constructed to be as homogeneous as possible, there is still a residual
+position dependence to the anode signal. The cause of such position dependence is undetermined,
+but it only affects the energy calibration of the wirechamber, which is
+a non-essential component of the analysis. Also, by mapping the position dependence in a manner
+similar to the PMT position maps (Section \ref{sssec:posmaps}, we can remove any effects altogether.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}
+  \caption{Typical wirechamber energy deposition for a xenon calibration run in a
+    single pixel. The fit function is a TMath::Landau function from the ROOT Data Analysis
+    Framework, and the extracted value is the MPV (most probable value) from the
+    distribution.}
+  \label{fig:xenonMWPCsignal}
+\end{figure}
 
 \begin{figure}[h]
   \centering
@@ -437,12 +459,45 @@ With this in mind, the general idea for calibrating the wirechamber is as follow
     \subfloat[East MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/MWPC_posmap.pdf}}  &
   \subfloat[West MWPC]{\includegraphics[scale=0.3,page=2]{4-UCNACalibrations/MWPC_posmap.pdf}}
   \end{tabular}
-  \caption{Position dependent anode response for each MWPC.}
+  \caption{Example position dependent anode response for each MWPC. These MWPC position maps were
+    created using electrons with $300\mathrm{~keV}<E_{\mathrm{recon}}<350\mathrm{~keV}$.}
   \label{fig:mwpcPosMap}
 \end{figure}
 
+The dedicated xenon calibration runs were used to determine the MWPC position maps.
+The wirechamber anode signal was histogrammed in 5~mm~$\times$~5~mm position bins (pixels) across the detector,
+giving distributions like the one seen in Figure \ref{fig:xenonMWPCsignal}. The distribution
+in each pixel is fit with a TMath::Landau function from the ROOT Data Analysis Framework.
+The most probable value of
+the distribution is returned from the fit for every pixel, and then the position dependent response factor is formed
+via
+%
+\begin{equation}
+  \eta^{\mathrm{MWPC}}_i = \frac{\mathrm{MPV}_i}{\mathrm{MPV}_0},
+\end{equation}
+where $\mathrm{MPV}_0$ is the most probably value of the center pixel.
+The continuous values plotted in Figure \ref{fig:mwpcPosMap} are determined as they were in
+Section \ref{sssec:posmaps}. The position dependent response factor is divided out of the anode signal
+prior to determining the wirechamber calibration, and thus also prior to applying the wirechamber
+calibration to the data.
+
+One should note that the MWPC position maps can be determined for different initial energies of the
+electrons, since the scintillator calibration has already been applied. The position response plots
+in Figure \ref{fig:mwpcPosMap} were made using electrons with $300\mathrm{~keV}<E_{\mathrm{recon}}<350\mathrm{~keV}$,
+although the position maps are stable for any 50~keV window chosen. Thus for ease of application, the MWPC position
+maps from the above energy range were used for electrons of all initial energies.
+
 
 \subsection{Relating Anode Signal to $E_{\mathrm{MWPC}}$}
+
+As mentioned above, the wirechamber energy calibration is carried out on a run-by-run basis, so
+the discussion that follows applies to every individual $\beta$-decay run.
+After dividing out the MWPC position dependent response from the anode signals of all electron events,
+we can attempt to relate the anode response to the expected wirechamber response from simulation.
+To do this, we first separate the electron events by their $E_{\mathrm{recon}}$ into 50~keV energy bins beginning at 100~keV and ending at
+800~keV, giving twelve separate collections of electron events. The lower bound is chosen to avoid any possible
+effects from differences between the simulated and actual scintillator thresholds. The upper bound is just beyond
+the endpoint energy of the $\beta$-decay electrons.
 
 \begin{figure}[h]
   \centering
@@ -466,6 +521,38 @@ With this in mind, the general idea for calibrating the wirechamber is as follow
   \label{fig:mwpcCal}
 \end{figure}
 
+The twelve electron energy groupings provide twelve different distributions
+to be fit with a Landau function, and the MPV of each should be different. This is a result
+of the electrons of interest
+lying in an energy range such that interactions with the wirechamber fill gas produce more energy loss
+per unit length for less energetic electrons, or in other words the lower energy electrons fall below
+the minimum ionizing particle energy for the fill gas. A nice summary of particle interactions with matter
+can be found in \cite{pdg}, but the important takeaway from this is that the twelve different initial energy
+groupings yield twelve different energy deposition distributions in the wirechamber, which provides
+twelve data points to use when comparing simulation with data.
+
+For the simulation, the MPV is extracted in the energy domain, where the energy is the
+amount of energy deposited within the wirechamber gas. For the data, the MPV is an ADC value.
+Examples of each fit for a single $E_{\mathrm{recon}}$ grouping can be seen in Figure \ref{fig:landauFits}.
+If we
+have modeled the wirechamber correctly and as long as the MWPC anode signal is proportional to
+the total ionization created in the wirechamber, then we expect a linear relationship between the
+simulated energy depostion and the anode signal for each of the $E_{\mathrm{recon}}$ groupings. By plotting
+the MPVs from data and simulation and fitting with a straight line, we define the conversion
+from (position corrected) MWPC anode signal to energy deposited within the wirechamber. An example
+calibration is demonstrated in Figure \ref{fig:mwpcCal}. The calibration fit is of the form
+%
+\begin{equation} \label{eq:pureLin}
+  E_{\mathrm{MWPC}}(\mathrm{ADC}) = C_1 + C_2\cdot \mathrm{ADC},
+\end{equation}
+and the fit is extrapolated to the origin in a continuous manner using
+\begin{equation}
+  E_{\mathrm{MWPC}} = C_3 \cdot \mathrm{ADC}^{C_4}
+\end{equation}
+with the parameters $C_3$ and $C_4$ determined by ensuring the two equations are equal at the
+transition point along with their first derivatives. The transition is defined as 50~ADC channels
+below the lowest data point.
+
 \begin{figure}[h]
   \centering
   \begin{tabular}{cc}
@@ -476,6 +563,17 @@ With this in mind, the general idea for calibrating the wirechamber is as follow
   for a single run.}
   \label{fig:simVsDataMWPC}
 \end{figure}
+
+Including the $C_1$ parameter ($y-$intercept) allows for
+imperfections in the MWPC anode pedestal subtraction. The extrapolation to the origin produces better agreement
+with simulation, as data events with very low energy deposition in the wirechamber could otherwise be
+assigned negative energies if only Equation \ref{eq:pureLin} is used and the $y-$intercept is negative.
+Agreement between data and simulation for a single run after application of the wirechamber
+calibration is shown in Figure \ref{fig:simVsDataMWPC}. 
+
+
+
+
 
 
 
