@@ -583,21 +583,123 @@ for comparison with simulation in order to separate the Type 2 and Type 3 backsc
 \ref{sec:backscattering} that the Type 2/3 backscattering events are
 indistinguishable using only detector trigger logic, but that their energy
 deposition in the primary wirechamber is different due to Type 2 events passing
-through once and the Type 3 passing through twice.
+through the primary MWPC once and the Type 3 passing through twice. Thus, if the wirechamber
+energy calibration has been completed, then there should exist a cut that most effectively
+distinguishes the Type 2 from the Type 3 events.
 
-
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[East]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/Thesis_sepPlot_2011-2012.pdf}}  &
+  \subfloat[West]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/Thesis_sepPlot_2011-2012.pdf}}
+  \end{tabular}
+  \caption{2011-2012 simulated wirechamber energy deposition of Type 2 and Type 3 events with
+    $200\mathrm{~keV}<E_{\mathrm{recon}}<300\mathrm{~keV}$. The vertical dashed line indicates the optimal
+    cut on the wirechamber energy deposition to separate the two otherwise identical backscattering
+    events. The position of this cut varies with $E_{\mathrm{recon}}$. The distributions for the other
+    geometries are similar.}
+  \label{fig:two&threeDist}
+\end{figure}
 
 \subsubsection{Monte Carlo Study}
-Monte Carlo studies provide
+Monte Carlo studies provide the
 means for applying the most efficient cuts on the energy deposition in the wirechamber
-to separate the two backscattering events as the true intitial direction of each event
-is known and thus we de facto know the true type of the event. An example of the
+to separate the Type 2/3 backscattering events due to the fact that the true intitial direction of each event
+is known, and thus so is the true type of the event. With this knowledge, one can analyze the fraction of events
+that are assigned the proper side as a function of different separation cuts. When we say we are applying cuts to
+separate the two event types, we mean choosing a wirechamber deposited energy where
+any events above the cut value will be assigned one event type (and thus a certain side), while an event below
+a the chosen cut will be identified as the other event type (and the opposite side). An example of the
 wirechamber energy deposition for the two types of events can be seen in
-Figure \ref{fig:two&threeDist}.The method goes as
-follows
+Figure \ref{fig:two&threeDist}, with the location of the optimal cut indicated by the
+vertical line. Note that this plot uses only electron events satisfying
+$200\mathrm{~keV}<E_{\mathrm{recon}}<300\mathrm{~keV}$.
+From this plot we see that an event with $E_{\mathrm{MWPC}}$
+below the cut would be identified as a Type 2 event, while an event lying above the cut
+would be a Type 3 event. One can also see from this plot that the separation is not perfect,
+as the two event type distributions overlap.
 
-so we must rely on other
-means to disentangle them. 
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.55,page=1]{4-UCNACalibrations/properly_identified_2011_200-300keV.pdf}
+  \caption{Fraction of properly identified events where
+    $200\mathrm{~keV}<E_{\mathrm{recon}}<300\mathrm{~keV}$ as a function of the separation cut.
+    The polynomial fit to the maximum is indicated by the solid red line, from which the location
+    of the most effective separation cut is extacted.}
+  \label{fig:propID}
+\end{figure}
+
+The position of the optimal cut in Figure \ref{fig:two&threeDist}, while arguably obvious
+to the keen observer, is determined quantitatively for eight different groups of $E_{\mathrm{recon}}$ events in
+100~keV increments from $0-800$~keV. For each $E_{\mathrm{recon}}$ group,
+the cut is incrementally moved from 0~keV to 800~keV in 1~keV steps, and then the fraction
+of properly identified events is calculated. The fraction of properly identified events for
+each value of the separation cut is plotted as a function of the position of the cut as shown
+in Figure \ref{fig:propID}. The goal is then to extract the maximum of this distribution, which
+indicates the optimal cut. To determine the maximum, the peak is fit with a second-order polynomial
+of the form
+%
+\begin{equation}
+  f(x) = C_1 + C_2\big(x-C_3\big) + C_4\big(x-C_3\big)^2,
+\end{equation}
+%
+and then the maximum is extracted using the derivative of the fit function. The location
+of this maximum is the optimal cut for separating Type 2/3 events within the $E_{\mathrm{recon}}$  
+range being analyzed.
+
+
+
+\subsubsection{Determining continuous separation cut}
+
+After fitting the location of the optimal cuts of the eight $E_{\mathrm{recon}}$ groups, a
+continuous wirechamber cut can be extracted by plotting the location of the cuts vs. the
+midpoint of the $E_{\mathrm{recon}}$ group, i.e. for the electron events with
+$200\mathrm{~keV}<E_{\mathrm{recon}}<300\mathrm{~keV}$ we use 250~keV. Such plots are shown in
+Figure \ref{fig:separationFit} for the 2011-2012
+and 2012-2013 data sets. Due to the consistency between the two detectors, a fit to the
+average of the data points from each side is carried out, with the fit taking the
+functional form 
+%
+\begin{equation}
+  f(x) = C_1 + C_2e^{-C_3x}.
+\end{equation}
+Then, with the fit parameters saved for each geometry, a continuously varying separation
+cut can be calculated depending on the $E_{\mathrm{recon}}$ of an indivudual event.
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[2011-2012]{\includegraphics[scale=0.38,page=1]{4-UCNACalibrations/EreconVsCut_2011-2012.pdf}}  &
+    \subfloat[2012-2013]{\includegraphics[scale=0.38,page=1]{4-UCNACalibrations/EreconVsCut_2012-2013.pdf}}
+  \end{tabular}
+  \caption{Plot of optimal cuts for each detector from 2011-2012 and 2012-2013. The eight data points for
+    each detector are a result of dividing the simulation data into 100~keV $E_{\mathrm{recon}}$ groups from
+    $0-800$~keV. The average of the two detector sides are fit to determine a continuous function
+    describing the optimal Type 2/3 separation cuts.}
+  \label{fig:separationFit}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}
+  \caption{Fraction of properly identified events when the Type 2/3
+  separation is applied compared to when it is not applied.}
+  \label{fig:sepResults}
+\end{figure}
+
+\subsubsection{Results}
+
+By applying the continuous cut to the processed simulation, we can assess the
+effectiveness of the Type 2/3 separation procedure. The results are shown in
+Figure \ref{fig:sepResults}. When the separation is applied, we see that
+$>80\%$ of the Type 2/3 events are properly identified, compared to the $\sim50\%$
+when no cut is applied. This improvement is very important if all event types
+are to be included in the final analysis, as it drastically reduces the
+Monte Carlo systematic corrections that must be applied to the backscattering events.
+This will be shown in detail in the following chapter.
+
+
+
 
 %----------------------------------------------------------
 
