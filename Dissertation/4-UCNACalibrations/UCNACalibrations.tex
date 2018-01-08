@@ -283,8 +283,40 @@ MWPC systematic effects from the efficiency of the MWPC trigger described in sec
 \section{Scintillator Energy Calibration}
 
 \subsection{Method}
-Talk about the parameters needed (resolution, trigger thresholds, pedestals, position maps, etc.)
-Talk about the cyclical nature.
+
+The goal of the energy calibration is to provide a means of taking as input an ADC value
+from a PMT and returning as output an estimate of the energy deposited in the scintillator
+to which the PMT is coupled. For a given event, one will have up to four estimates from a
+single detector from the four PMTs on each side (less than four if a PMT is not functioning
+properly). Then given the event type and the method for combining multiple PMT responses in
+Section \ref{sec:EnergyResponse}, we can produce a single estimate of the initial energy of
+the event.
+
+Up to this point, the parameters that enter the calibration have been well-defined and only need
+to be determined once (pedestals, gain, event positions, etc.). To determine
+the relationship between the ADC response in a PMT and the energy, we instead turn to a cyclical process which
+depends on both the relationship between ADC and the scintillation light that reaches a PMT,
+what we will call the linearity curves, and the
+PMT resolution factors $\alpha_i$ (first introduced in Section \ref{ssec:combinePMT}), which relate
+the number of photoelectrons produced by a PMT to the incoming light from an event. While the data
+inherently includes the resolution factors given the observed widths of the source peaks, the detector
+response model takes the resolution factors as input, and therefore the linearity curves, which compare
+simulation to data, depend on the $\alpha_i$ values. An easy way to determine the $\alpha_i$ values
+is to compare the observed calibrated data peak widths to the simulation widths, wherein lies the problem
+that the data needs to first be calibrated. To mitigate this inherent dependence of one aspect on the other,
+we simply guess at an initial set of calibration parameters (both the linearity curves and resolution factors
+for each PMT), and then we analyze the resulting source peak widths. By tweaking the values of the $\alpha_i$
+values in the direction which will create better agreement and re-processing the simulation data in the
+detector response model, we find a new set of linearity curves. This process is repeated until the agreement is
+satisfactory, as will be discussed in the upcoming sections.
+
+One last component that was left out of the above cyclical deiscussion is the determination of the position
+dependent response of each PMT to events which occur at different $(x,y)$ locations of the scintillator.
+In the past, these position dependent light transport maps were also part of the cycle, as they were
+determined from an energy spectrum of xenon (to be discussed in the next section), but in this analysis
+we decided to make a single determination of the position dependent response. This dependent response is thus
+another ``well-defined'' input parameter of the calibration.
+
 
 \subsection{Position Dependent Light Transport Maps} \label{ssec:posmaps}
 
@@ -395,6 +427,36 @@ ratio of the two methods is plotted.
 
 
 \subsection{Linearity Curves}
+The next step in in the scintillator energy calibration process is relating a gain and pedestal subtracted signal
+to an energy. In our case, we choose to relate the signal as seen in a single PMT to a quantity that is
+proportional to the light that would have reached the PMT. This quantity is obviously related to the deposited
+energy by the position response factor, and thus we calibrate to $\eta_i(x,y)E_{\mathrm{vis}}$. The final extraction
+of
+
+\begin{figure} [p]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[PMT East 0]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} &
+    \subfloat[PMT East 1]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} \\
+    \subfloat[PMT East 2]{\includegraphics[scale=0.35,page=3]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} &
+    \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=4]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}}
+  \end{tabular}
+  \caption{East linearity response curves for a single calibration run period in 2011-2012.}
+  \label{fig:eastLinCurves}
+\end{figure}
+
+\begin{figure} [p]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[PMT West 0]{\includegraphics[scale=0.35,page=5]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} &
+    \subfloat[PMT West 1]{\includegraphics[scale=0.35,page=6]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} \\
+    \subfloat[PMT West 2]{\includegraphics[scale=0.35,page=7]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}} &
+    \subfloat[PMT West 3]{\includegraphics[scale=0.35,page=8]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}}
+  \end{tabular}
+  \caption{West linearity response curves for a single calibration run period in 2011-2012.}
+  \label{fig:westLinCurves}
+\end{figure}
+  
 \subsection{PMT Resolution Factors} \label{ssec:PMTresolution}
 \subsection{MC to Data Agreement}
 
@@ -445,8 +507,8 @@ similar to the PMT position maps (Section \ref{sssec:posmaps}, we can remove any
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}
-  \caption{Typical wirechamber energy deposition for a xenon calibration run in a
+  \includegraphics[scale=0.5,page=1]{4-UCNACalibrations/MWPCPositionMapSpectrum.pdf}
+  \caption{Typical wirechamber anode signal for a xenon calibration run in a
     single pixel. The fit function is a TMath::Landau function from the ROOT Data Analysis
     Framework, and the extracted value is the MPV (most probable value) from the
     distribution.}
@@ -466,7 +528,9 @@ similar to the PMT position maps (Section \ref{sssec:posmaps}, we can remove any
 
 The dedicated xenon calibration runs were used to determine the MWPC position maps.
 The wirechamber anode signal was histogrammed in 5~mm~$\times$~5~mm position bins (pixels) across the detector,
-giving distributions like the one seen in Figure \ref{fig:xenonMWPCsignal}. The distribution
+giving distributions like the one seen in Figure \ref{fig:xenonMWPCsignal}. Only Type 0 events were used
+for the position dependence of the wirechamber, as these only pass through the wirechamber once and are a better
+representation of the amount of energy deposition as a function of initial event energy. The distribution
 in each pixel is fit with a TMath::Landau function from the ROOT Data Analysis Framework.
 The most probable value of
 the distribution is returned from the fit for every pixel, and then the position dependent response factor is formed
@@ -493,7 +557,8 @@ maps from the above energy range were used for electrons of all initial energies
 As mentioned above, the wirechamber energy calibration is carried out on a run-by-run basis, so
 the discussion that follows applies to every individual $\beta$-decay run.
 After dividing out the MWPC position dependent response from the anode signals of all electron events,
-we can attempt to relate the anode response to the expected wirechamber response from simulation.
+we can attempt to relate the anode response to the expected wirechamber response from simulation (again
+we only use Type 0 events for the energy calibration). 
 To do this, we first separate the electron events by their $E_{\mathrm{recon}}$ into 50~keV energy bins beginning at 100~keV and ending at
 800~keV, giving twelve separate collections of electron events. The lower bound is chosen to avoid any possible
 effects from differences between the simulated and actual scintillator thresholds. The upper bound is just beyond
@@ -502,11 +567,12 @@ the endpoint energy of the $\beta$-decay electrons.
 \begin{figure}[h]
   \centering
   \begin{tabular}{cc}
-    \subfloat[Simulated MWPC response]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}  &
-  \subfloat[Actual MWPC response]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}
+    \subfloat[Simulated MWPC response]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/MWPCcalSim_300-400keV.pdf}}  &
+  \subfloat[Actual MWPC response]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/MWPCcalData_300-400keV.pdf}}
   \end{tabular}
-  \caption{Landau fit of both simulation and data for electron events which deposited between xxx-xxx keV
-    in the scintillator.}
+  \caption{TMath::Landau fit of both simulation and data for electron events which deposited between 300-400 keV
+    in the west scintillator. The fitted MPV (p1 in the statistics box) from each plot make up a single data point
+    in the wirechamber energy calibration plot below (Figure \ref{fig:mwpcCal}).}
   \label{fig:landauFits}
 \end{figure}
 
@@ -556,11 +622,11 @@ below the lowest data point.
 \begin{figure}[h]
   \centering
   \begin{tabular}{cc}
-    \subfloat[East MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}  &
-  \subfloat[West MWPC]{\includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}}
+    \subfloat[East MWPC]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/mwpc_energy_comp.pdf}}  &
+  \subfloat[West MWPC]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/mwpc_energy_comp.pdf}}
   \end{tabular}
   \caption{Simulation vs. Data after application of the wirechamber calibration
-  for a single run.}
+  for a single run in 2011-2012. This plot includes only Type 0 events.}
   \label{fig:simVsDataMWPC}
 \end{figure}
 
@@ -568,11 +634,8 @@ Including the $C_1$ parameter ($y-$intercept) allows for
 imperfections in the MWPC anode pedestal subtraction. The extrapolation to the origin produces better agreement
 with simulation, as data events with very low energy deposition in the wirechamber could otherwise be
 assigned negative energies if only Equation \ref{eq:pureLin} is used and the $y-$intercept is negative.
-Agreement between data and simulation for a single run after application of the wirechamber
-calibration is shown in Figure \ref{fig:simVsDataMWPC}. 
-
-
-
+Comparison between simulation and data of the final calibrated energy deposition for a single
+run is shown in Figure \ref{fig:simVsDataMWPC}, where we see very nice agreement for both detectors.
 
 
 
@@ -681,19 +744,29 @@ cut can be calculated depending on the $E_{\mathrm{recon}}$ of an indivudual eve
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.3,page=1]{4-UCNACalibrations/ImageHolder.pdf}
+  \begin{tabular}{cc}
+    \subfloat[2011-2012]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/backscSepEfficiency_Octet0.pdf}} &
+    \subfloat[2012-2013]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/backscSepEfficiency_Octet95.pdf}} \\
+  \end{tabular}
+  \subfloat[2012-2013 Isobutane in MWPC]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/backscSepEfficiency_Octet75.pdf}} 
   \caption{Fraction of properly identified events when the Type 2/3
-  separation is applied compared to when it is not applied.}
+    separation is applied compared to when it is not applied. The results are shown for a single octet from all possible
+    geometries. The shaded error band is purely statistical.}
   \label{fig:sepResults}
 \end{figure}
 
 \subsubsection{Results}
 
 By applying the continuous cut to the processed simulation, we can assess the
-effectiveness of the Type 2/3 separation procedure. The results are shown in
-Figure \ref{fig:sepResults}. When the separation is applied, we see that
-$>80\%$ of the Type 2/3 events are properly identified, compared to the $\sim50\%$
-when no cut is applied. This improvement is very important if all event types
+effectiveness of the Type 2/3 separation procedure. 
+Figure \ref{fig:sepResults} shows the fraction of the events that are assigned to the correct
+side of the detector as a function of reconstructed initial energy. The plot shows a vast improvement in
+properly assigning the initial direction of the events when using the Type 2/3 separation
+highlighted above (solid line), rather than using no separation at all (dashed line).
+Upon integrating across all energies, the Type 2/3 separation method yields $>81\%$ proper identification
+of the Type 2/3 events,
+compared to the $\sim53\%$
+when no separation is applied. This improvement is very important if all event types
 are to be included in the final analysis, as it drastically reduces the
 Monte Carlo systematic corrections that must be applied to the backscattering events.
 This will be shown in detail in the following chapter.
