@@ -709,19 +709,20 @@ equation for the side that triggered first.
 In the next chapter, we will take an in depth look at the calibrations of both
 the wirechamber and the scintillator. Here we simply highlight their use in the analysis.
 
-\subsection{PMT Calibration}
+\subsection{PMT Calibration} \label{ssec:PMTCal}
 
-The PMT calibration uses well known conversion electron sources from table \ref{tab:conversionSources}
-to understand the detector response to these well-defined energies. By comparing the detector
+The PMT calibration, as mentioned in Section \ref{sssec:scintEnCal},
+uses well known conversion electron sources
+to understand the detector response to there well-defined energies. By comparing the detector
 response (coupling both ADC values and position map values) to simulated responses,
 we can map ADC signals from each PMT to visible energies deposited
 in the scintillator. These calibrations parameterize the detector response so that the
-functional form of the calibration can be applied to the $\beta$-decay data. 
+functional form of the calibration can be applied to the $\beta$-decay data.
 
 \subsection{Wirechamber Calibration}
 
-The wirechamber calibration maps the anode signal in the MWPC to an energy deposited in the MWPC. This is
-primarily only useful for separating the Type 2/3 backscattering events as the
+The wirechamber calibration relates the anode signal in the MWPC to an energy deposited in the MWPC. This is
+primarily useful for separating the Type 2/3 backscattering events, as the
 energy deposition in the MWPC is not used within the reconstruction of an electron's initial
 energy. This separation is important though as it drastically reduces the systematic
 correction for these backscattering events.

@@ -322,12 +322,25 @@ covers one quadrant of the scintillator.
 A hardware two-fold trigger, or two PMTs above discriminator threshold, is required for a
 global trigger to be issued from the PMTs.
 
-\subsubsection{Energy Calibration}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{2-UCNAExperiment/calProcess.pdf}
+  \caption{Schematic showing the mechanics of the scintillator calibration. The sources
+    are located on a source paddle, which is inserted into the decay trap while under
+    vacuum. The sources are then translated across the face of the detector, and a
+    calibration run is completed at each stationary point. There are generally far more
+    than four positions sampled, but for demonstrations sake only four points are
+    included in the figure.}
+  \label{fig:sourceTranslate}
+\end{figure}
+
+\subsubsection{Scintillator Energy Calibration} \label{sssec:scintEnCal}
 
 The scintillator energy calibration utilized the conversion electron lines from
 (with dominant K-shell energies listed) $^{137}\mathrm{Ce}$
 (130.3 keV), $^{113}\mathrm{Sn}$ (363.8 keV), and $^{207}\mathrm{Bi}$ (481.7~keV and 975.7 keV)
-sources. These sources are placed on a source paddle and inserted into the side of the
+sources. As depicted in Figure \ref{fig:sourceTranslate},
+these sources are placed on a source paddle and inserted into the side of the
 decay trap while under vacuum, and then they are translated across the horizontal axis of the decay
 trap. This method probes the position dependence of the scintillator, but only along one axis and
 at discrete points. The full position response is captured using another method as will be
