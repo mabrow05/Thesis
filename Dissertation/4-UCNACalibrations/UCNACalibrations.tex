@@ -460,7 +460,9 @@ ratio of the two methods is plotted.
 
 The PMT resolution factors are key inputs into the detector response model, and they are especially
 important to the calibration. They directly affect the observed width of the simulated conversion
-electron peaks, and improper widths can result in 
+electron peaks, and improper simulated peak widths present a possible bias in the calibration by changing
+the conversion peak being fit. This is especially true for the $^{207}$Bi source, as it has two conversion
+electron lines that appear as a convolution of two Gaussian-like peaks as seen in Figure ...
 
 \subsection{Linearity Curves}
 After determining the position dependent light transport maps for each PMT,
@@ -470,7 +472,44 @@ proportional to the light that would have reached the PMT. This quantity is of c
 energy by the position response factor, and thus we calibrate to $\eta_i(x,y)E_{\mathrm{vis}}$, where $E_{\mathrm{vis}}$ in this
 case comes from simulation.
 
-Both the ADC peaks and  
+\subsubsection{Fitting the source peaks}
+Typical single PMT ADC spectra from the $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$ sources can be
+found in Figure \ref{fig:ADC_source_spectra}. Figure \ref{fig:En_source_spectra} show the
+corresponding simulation spectra for the same PMT
+with the detector response model applied. 
+
+An iterative peak fitting procedure like that from Section \ref{ssec:BiGain} is used to extract the final mean
+of each peak to be used in the calculation of the linearity curves,
+where the fit is performed five times taking the previous mean and sigma as input parameters
+for the next fit. For the  $^{137}\mathrm{Ce}$ and $^{113}\mathrm{Sn}$ sources, which have a single
+electron peak, a single Gaussian with an asymmetric fit range extended farther above the mean is used. Again this is to
+weight the fit more heavily on the portion of the spectrum which exhibits the most Gaussian-like structure. The
+lower tail of the energy distribution has a contribution from events detected that have lost energy elsewhere
+in the spectrometer and is thus broadened compared to the upper tail. For the $^{207}\mathrm{Bi}$ source,
+the two Gaussian peaks are fit simultaneously by
+the summation of two Gaussian functions, so that the effect of one on the other is taken into account by the fit, and
+the proper mean is extracted from each. This helps remove effects from possible use of inaccurate
+resolution factors. Figure \ref{fig:ADC_source_spectra} also shows the fits to each spectrum.
+
+\subsubsection{Fitting the PMT response}
+
+As mentioned above, we calibrate the PMT ADC response to a quantity proportional to the light incoming into
+the PMT, or $\eta_i(x,y)E_{\mathrm{vis}}$, so we need to plot $\eta_i(x,y)E_{\mathrm{vis}}$ vs. ADC response.
+Above we described how we fit the mean of the expected visible energy
+$E_{\mathrm{vis}}$ from simulated spectra and the observed ADC response for each PMT.
+The value of $\eta$ used for each source peak is determined from the average position of the events in the peak.
+For each source calibration run period, all of the data points are plotted for each PMT and the response
+is fit with a quadratic response function,
+%
+\begin{equation} \label{eq:linCurveParam}
+  f(x) = C_1 + C_2x+ C_3x^2,
+\end{equation}
+%
+where $x$ is the gain corrected ADC signal and $f$ is equivalent to $\eta(x,y)E_{\mathrm{vis}}$. The quadratic term
+is constrained to $|C_3|<7.5\times10^{-5}$, which is small compared to $C_2\approx1$. The $C_1$ offset allows
+for imperfections in the pedestal subtraction. If the pedestal subtraction were perfect, one would expect
+$C_1\approx0$. Allowing $C_1$ to be a free parameter generally produces better Monte Carlo to Data agreement
+at low energies.
 
 \begin{figure} [p]
   \centering
@@ -499,9 +538,31 @@ Both the ADC peaks and
     extracted mean from the fits of the data and simulation peaks, but they are smaller than the markers.}
   \label{fig:westLinCurves}
 \end{figure}
-  
-\subsection{MC to Data Agreement}
 
+Example calibration fits for a single calibration run period in 2011-2012
+are illustrated in Figures \ref{fig:eastLinCurves} and \ref{fig:westLinCurves} for the East and West
+PMTs respectively. Beneath each calibration plot are the calibration residuals for each data point
+compared to the fit line reported as a percent residual. The parameters of each linearity curve are
+written to file to be accessed when applying the calibration to data.
+
+\subsection{Applying the calibration}
+
+Application of the calibration to an electron event of any kind requires first reading from the collection
+of calibration variables for each PMT: the position dependent response (interpolated to the exact position of the event),
+the resolution parameters $\alpha_i$, and the linearity curve parameters $C_1, C_2, and C_3$.
+Then, by inserting the gain corrected ADC
+response of each PMT into Equation \ref{eq:linCurveParam} with the proper parameters, the linearity curve returns
+an estimate of the scintillation light as viewed from a given PMT. To reach an estimate of $E_{\mathrm{vis}}$
+from the returned value $f$ (remember that $f = \eta(x,y)E_{\mathrm{vis}}$), one simply divides by the
+position map value for that event. With a value for $E_{\mathrm{vis}}$ from each PMT, a final
+$E_{\mathrm{recon}}$ value is constructed using the methods of Section \ref{ssec:combinePMT}, which rely on $\alpha_i$.
+
+\subsection{Monte Carlo to Data Agreement}
+A final measure of the agreement between Monte Carlo and data is best observed by comparing the $E_{\mathrm{recon}}$
+spectra of the data (after applying the calibration) to the $E_{\mathrm{recon}}$ spectra of the simulation (with
+the full detector response model applied). Figure \ref{fig:MC2DataComp} shows the typical agreement for each source.
+The agreement of all of the source peaks is further analyzed when determining the energy uncertainty contribution
+to the final asymmetry in Section \ref{ssec:energyRecon}.
 
 %------------------------------------------------------------------------
 
