@@ -456,13 +456,7 @@ It should also be noted that the position maps were calculated using both the pe
 feature, and the differences are noticeable for the East detector. This is illustrated in Figure \ref{fig:posmapCompare}, where the
 ratio of the two methods is plotted.
 
-\subsection{PMT Resolution Factors} \label{ssec:PMTresolution}
 
-The PMT resolution factors are key inputs into the detector response model, and they are especially
-important to the calibration. They directly affect the observed width of the simulated conversion
-electron peaks, and improper simulated peak widths present a possible bias in the calibration by changing
-the conversion peak being fit. This is especially true for the $^{207}$Bi source, as it has two conversion
-electron lines that appear as a convolution of two Gaussian-like peaks as seen in Figure ...
 
 \subsection{Linearity Curves}
 After determining the position dependent light transport maps for each PMT,
@@ -473,10 +467,9 @@ energy by the position response factor, and thus we calibrate to $\eta_i(x,y)E_{
 case comes from simulation.
 
 \subsubsection{Fitting the source peaks}
-Typical single PMT ADC spectra from the $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$ sources can be
-found in Figure \ref{fig:ADC_source_spectra}. Figure \ref{fig:En_source_spectra} show the
-corresponding simulation spectra for the same PMT
-with the detector response model applied. 
+Typical single PMT energy spectra for simulation and data from the $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$ sources can be
+found in Figures \ref{fig:Ce_spectra}, \ref{fig:Sn_spectra}, and \ref{fig:Bi_spectra} respectively. These spectra were produced using the final
+calibration, and at this point should only be inspected for their general shape to understand the type of fit required.
 
 An iterative peak fitting procedure like that from Section \ref{ssec:BiGain} is used to extract the final mean
 of each peak to be used in the calculation of the linearity curves,
@@ -489,9 +482,9 @@ in the spectrometer and is thus broadened compared to the upper tail. For the $^
 the two Gaussian peaks are fit simultaneously by
 the summation of two Gaussian functions, so that the effect of one on the other is taken into account by the fit, and
 the proper mean is extracted from each. This helps remove effects from possible use of inaccurate
-resolution factors. Figure \ref{fig:ADC_source_spectra} also shows the fits to each spectrum.
+resolution factors. %Figures \ref{fig:ADC_source_spectra} and \ref{fig:En_source_spectra} also shows the fits to each spectrum.
 
-\subsubsection{Fitting the PMT response}
+\subsubsection{Extracting the PMT response}
 
 As mentioned above, we calibrate the PMT ADC response to a quantity proportional to the light incoming into
 the PMT, or $\eta_i(x,y)E_{\mathrm{vis}}$, so we need to plot $\eta_i(x,y)E_{\mathrm{vis}}$ vs. ADC response.
@@ -545,24 +538,145 @@ PMTs respectively. Beneath each calibration plot are the calibration residuals f
 compared to the fit line reported as a percent residual. The parameters of each linearity curve are
 written to file to be accessed when applying the calibration to data.
 
-\subsection{Applying the calibration}
+\subsection{PMT Resolution Factors} \label{ssec:PMTresolution}
+
+The PMT resolution factors are key inputs into the detector response model, making them especially
+important to the calibration. They directly affect the observed width of the simulated conversion
+electron peaks, and improper simulated peak widths present a possible bias in the calibration by changing
+the shape of the peak being fit.
+
+As mentioned earlier, a ``guess'' is made for the initial resolution factors for the first iteration
+of the energy calibration. This guess is set to a higher resolution for each PMT than is typically observed so that
+the simulation peaks do not suffer from extreme broadening which can make fitting unreliable, especially for
+the double Gaussian peak of $^{207}\mathrm{Bi}$. After the calibration curves are determined, we can assess
+whether or not the resolution factors are correct for each individual calibration run period.
+This involves comparing the widths
+of the data peaks to the widths of the simulation peaks, both in the energy domain. The widths of the simulation
+peaks come directly from the fits used in calculating the linearity curves, as the simulated $E_{\mathrm{vis}}$
+spectra were already fitted, but recall that the PMT ADC spectra were used in determining the lineariry curves. Thus, in order
+to extract the data $E_{\mathrm{vis}}$ widths, the energy calibration for each run period must be applied
+to the conversion electron events themselves (the method for applying the
+calibration is briefly described in the following section). This provides $E_{\mathrm{vis}}$ spectra for each PMT as well as
+an $E_{\mathrm{recon}}$ spectrum from the combination of the individual PMT energies.
+
+\begin{figure} [h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=4]{4-UCNACalibrations/final_width_comp_3.pdf}} &
+    \subfloat[PMT East 0]{\includegraphics[scale=0.35,page=5]{4-UCNACalibrations/final_width_comp_3.pdf}} 
+  \end{tabular}
+  \caption{Plots of the data source widths vs. the simulated source widths for a single PMT on each side of the
+    detector used for determination of
+    the proper PMT resolution factors. When the slope$\approx$1, the resolution factors are recorded to be used
+    in the final calibration.}
+  \label{fig:PMTwidths}
+\end{figure}
+
+With the source widths from both the data and simulation in hand, we plot the simulated widths vs. the data widths.
+If the resolution factors are correct, there will be a 1:1 ratio of the peaks. On the contrary, if the $\alpha_i$ values are
+incorrrect, the slope of the relationship indicates whether or not the resolution is set too high or to low.
+Figure \ref{fig:PMTwidths} exemplifies the desired relationship between the simulation and data peak widths. The slope
+is extracted from a linear fit, and this is carried out for each PMT in a calibration period. The data points
+represent every source run in the respective source calibration period.
+
+\begin{figure} [h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} &
+    \subfloat[PMT East 0]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} 
+  \end{tabular}
+  \caption{Plots of the data source widths vs. the simulated source widths for the final $E_{\mathrm{recon}}$
+    source spectra on each side of the
+    detector. This is a measure of how well the individual PMT resolution factors combine to produce
+    agreement between the final reconstructed energy spectra. The slopes of nearly unity indicate the
+    final detector resolutions were very good for this calibration period.}
+  \label{fig:EvisWidths}
+\end{figure}
+
+A slope of $\sim1$ is not achieved after one iteration of the calibration, but rather several. After extracting
+the slopes, $m_i$, for each PMT following an intermediate iteration of the calibration, a new set of of resolution
+factors are determined in the same manner as in the previous analysis, namely from
+%
+\begin{equation}
+  \alpha_i = m^2 \alpha_i',
+\end{equation}
+%
+where $\alpha_i'$ are the new estimates for the resolution factors.
+
+Once the slopes approach unity for all PMTs, the resolution factors are recorded and the linearity curves
+are calculated as the last step so that they use the best $\alpha_i$ values. This completes the calibration,
+and at this point final $E_{\mathrm{recon}}$ spectra for each source peak exist. The widths of these
+spectra, which are the culmination of all of the PMT information combined, provide a idea as to how well the
+final combined widths agree between simulation and data. Figure \ref{fig:EvisWidths} shows this
+agreement for a single run period.
+
+%The slope is squared in this case
+%because
+%\begin{equation*}
+%  m = \Big\langle \frac{\mathrm{Data Width}}{\mathrm{Simulated Width}} \Big\rangle,
+%\end{equation*}
+%and the resolution factors are proportional to the square of the width.
+
+\subsection{Applying the calibration} \label{ssec:appCal}
 
 Application of the calibration to an electron event of any kind requires first reading from the collection
 of calibration variables for each PMT: the position dependent response (interpolated to the exact position of the event),
-the resolution parameters $\alpha_i$, and the linearity curve parameters $C_1, C_2, and C_3$.
+the resolution parameters $\alpha_i$, and the linearity curve parameters $C_1$, $C_2$, and $C_3$.
 Then, by inserting the gain corrected ADC
 response of each PMT into Equation \ref{eq:linCurveParam} with the proper parameters, the linearity curve returns
 an estimate of the scintillation light as viewed from a given PMT. To reach an estimate of $E_{\mathrm{vis}}$
 from the returned value $f$ (remember that $f = \eta(x,y)E_{\mathrm{vis}}$), one simply divides by the
 position map value for that event. With a value for $E_{\mathrm{vis}}$ from each PMT, a final
 $E_{\mathrm{recon}}$ value is constructed using the methods of Section \ref{ssec:combinePMT}, which rely on $\alpha_i$.
+Examples of the individual calibrated PMT responses for simulation and data
+can be found in Figures \ref{fig:Ce_spectra}, \ref{fig:Sn_spectra}, and \ref{fig:Bi_spectra}.
+These spectra came from a single calibration run that included all three sources within the fiducial volume at the same time.
 
 \subsection{Monte Carlo to Data Agreement}
 A final measure of the agreement between Monte Carlo and data is best observed by comparing the $E_{\mathrm{recon}}$
 spectra of the data (after applying the calibration) to the $E_{\mathrm{recon}}$ spectra of the simulation (with
-the full detector response model applied). Figure \ref{fig:MC2DataComp} shows the typical agreement for each source.
+the full detector response model applied). Figure \ref{fig:EreconSpectra} shows the typical agreement for each source.
 The agreement of all of the source peaks is further analyzed when determining the energy uncertainty contribution
 to the final asymmetry in Section \ref{ssec:energyRecon}.
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[scale=1,page=2]{4-UCNACalibrations/run_17523.pdf}
+  \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{137}\mathrm{Ce}$ conversion electron source
+    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    volume at the same time.}
+  \label{fig:Ce_spectra}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[scale=1,page=3]{4-UCNACalibrations/run_17523.pdf}
+  \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{113}\mathrm{Sn}$ conversion electron source
+    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    volume at the same time.}
+  \label{fig:Sn_spectra}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[scale=1,page=4]{4-UCNACalibrations/run_17523.pdf}
+  \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{207}\mathrm{Bi}$ conversion electron source
+    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    volume at the same time.}
+  \label{fig:Bi_spectra}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[scale=1,page=1]{4-UCNACalibrations/run_17523.pdf}
+  \caption{Example $E_{\mathrm{recon}}$ spectra from combined PMT response
+    for simulation (red dashed line) and data (blue line) for all conversion electron sources
+    after application of the calibration. This plot is from the same run as the plots of the previous individual
+    PMT spectra, showing how the spectra combine to produce a single final energy estimate.}
+  \label{fig:Erecon_spectra}
+\end{sidewaysfigure}
+
+
 
 %------------------------------------------------------------------------
 
