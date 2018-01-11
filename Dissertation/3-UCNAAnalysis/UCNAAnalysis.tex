@@ -26,7 +26,7 @@ can be calibrated and analyzed.
 
 \section{Outline of Analysis Steps} \label{sec:outline}
 
-To preface the rest of this chapter, we can highlight
+To preface the rest of this chapter, we begin by highlighting
 the general process of the analysis beginning with a raw detector
 ADC value from each PMT and finishing with an asymmetry.
 Below are the general steps for processing the data:
@@ -48,9 +48,9 @@ Below are the general steps for processing the data:
 Simulations of the experimental apparatus and particle transport is also intertwined
 in the analysis. By simulating the underlying physical processes, we gain an understanding
 as to what the signals in our detector indicate regarding the initial event. The simulations
-consist of a pure tracking of the particles with the summation of the energy losses throughout
+consist of particle tracking and the summation of energy losses throughout
 the spectrometer, and also a Detector Response Model to transform the simulation variables
-into detector-like signals. This process will be addressed in this chapter as well.
+into detector-like signals. This process will be addressed in Section \ref{sec:DetectorResponseModel}.
 
 It is important to point out early on the difference between $E_{\mathrm{vis}}$ and
 $E_{\mathrm{recon}}$. The deposited or visible energy, $E_{\mathrm{vis}}$, is an estimate of the energy
@@ -61,7 +61,7 @@ as it traverses through the windows of the decay trap, the windows of the MWPC,
 the MWPC itself, and the dead layer of the scintillator. Of course the analysis could be
 done in terms of $E_{\mathrm{vis}}$, but it is more convenient to express the results
 in terms of the true electron energy spectrum, and also the energy dependent theory modifications
-are in terms of the true initial energy of an event.
+are in terms of the true initial energy of the $\beta$-decay electrons.
 
 The majority of the analysis described throughout this thesis was completed using
 the ROOT Data Analysis Framework \cite{brun1997root}. A special thanks goes out to
@@ -76,21 +76,21 @@ and user community, much of this analysis would have been painstakingly more dif
 
 Obviously the system is not immune to drifts in signals due to variations
 in time. There are many sources of such drifts, ranging from simple
-electronic noise to changes in temperature. We deal with such time-dependent
+electronic noise to changes in temperature. We deal with time-dependent
 effects using pedestal subtraction, gain correction, and constant monitoring
 of backgrounds.
 
-\subsection{Pedestal Subtraction}
-The pedestal is a measure of the inherent detector signal, or baseline, 
+\subsection{Pedestal Subtraction} \label{ssec:pedSubtraction}
+The pedestal is a measure of the underlying detector signal, or baseline, 
 upon which all other data signals lie. In terms of PMT signals, you can imagine 
 the pedestal as a non-zero ADC value corresponding to zero input, or an offset.
 You might say that the experiment can be run without caring about an offset
 because the calibration will take this into account, which would be the case 
 if the pedestals were constant or if we calibrated each run against itself, but 
-neither is the case. We use a collection of subsequent runs to form our 
+neither is the case. We use a collection of consecutive runs to form our 
 calibration sets, and these sets then calibrate data which is often taken hours,
-or even days, earlier or later. Thus changing pedestals can be worrisome, and care
-must be taken to determine the pedestals and subtract them from data.
+or even days, earlier or later. Thus time-dependent pedestals can be worrisome, and care
+must be taken to determine the pedestals and subtract them from data signals.
 
 To determine a pedestal, events must be chosen where there was a global trigger, but
 the PMT of interest does not trigger and preferably there is no signal
@@ -98,10 +98,32 @@ whatsoever in the scintillator on that side. Obvious choices for these events ar
 UCN monitor triggers, opposite side two-fold PMT triggers, and high-threshold $^{207}\mathrm{Bi}$
 pulser triggers from other PMTs. Once there is a global trigger, we can use the individual TDC
 to ensure there was no individual trigger, and the events can be 
-histogrammed for the PMT of interest. The mean of pedestal
+histogrammed for the PMT of interest. The mean of the pedestal
 peak can be taken as the average pedestal for a single run,
 and this value can be 
 subtracted from every subsequent reading of this PMT.
+
+\begin{figure}[p]
+\centering
+\includegraphics[page=1,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
+\caption{Pedestal means as a function of run number for 2011-2012 East Detectors. Error bars are the
+  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
+  different calibration periods, and the red marker is the calibration reference run,
+  which will be discussed in later sections. Missing periods of data indicate some sort of failure
+  from that PMT, and so it was removed from the analysis over that period.}
+ \label{fig:peds_timeDep}
+\end{figure}
+
+\begin{figure}[p] 
+\centering
+\includegraphics[page=2,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
+\caption{Pedestal means as a function of run number for 2011-2012 West Detectors. Error bars are the
+  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
+  different calibration periods, and the red marker is the calibration reference run,
+  which will be discussed in later sections. Missing periods of data indicate some sort of failure
+  from that PMT, and so it was removed from the analysis over that period.}
+\label{fig:peds_timeDep}
+\end{figure}
 
 One interesting thing to note is that the discriminators, which determine whether
 a component triggers,
@@ -113,8 +135,8 @@ can be dependent on the type of events that are chosen
 to construct the pedestal, and the effect can be \~10~channels for some PMTs.
 This indicates that the pedestal for one PMT may be dependent
 on the signal present in another PMT. These shifts are important as a
-pedestal shift of ~5-10 channels maps to an offset of roughly
-~5-10 keV, as the PMTs show roughly 1:1 correspondence between ADC and keV.
+pedestal shift of 5-10 channels maps to an offset of roughly
+5-10 keV, as the PMTs show close to 1:1 correspondence between ADC and keV.
 
 The influence of event type on pedestal values means we must carefully choose which events
 to use when calculating the pedestal.
@@ -153,25 +175,7 @@ Choose West PMT4 in an early 2012/2013 beta run) }
 \end{figure}
 \fi
 
-\begin{figure}[p]
-\centering
-\includegraphics[page=1,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
-\caption{Pedestal means as a function of run number for 2011-2012 East Detectors. Error bars are the
-  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
-  different calibration periods, and the red marker is the calibration reference run,
-  which will be discussed in later sections.}
- \label{fig:peds_timeDep}
-\end{figure}
 
-\begin{figure}[p] 
-\centering
-\includegraphics[page=2,scale=0.8]{3-UCNAAnalysis/2011-2012_pedestals.pdf}
-\caption{Pedestal means as a function of run number for 2011-2012 West Detectors. Error bars are the
-  RMS of the measured pedestal. The red lines indicate what ranges of runs belong to
-  different calibration periods, and the red marker is the calibration reference run,
-  which will be discussed in later sections.}
-\label{fig:peds_timeDep}
-\end{figure}
 
 With the event type chosen, we extract the mean and RMS of the pedestal peak
 for each PMT in every run. The pedestal mean (referred to as simply
@@ -191,7 +195,7 @@ importance of a run-by-run pedestal subtraction.
 The primary gain monitoring system consists of a small amount $^{207}\mathrm{Bi}$
 deposited within a small block of scintillator. The scintillator was surrounded by
 light reflecting material on three sides, with the fourth side covered with an optical
-attenuator to attempt to match the light output of the \~1~MeV conversion line in the $^{207}\mathrm{Bi}$
+attenuator to attempt to match the light output of the $\sim$1~MeV conversion line in the $^{207}\mathrm{Bi}$
 to the light output of 1~MeV of energy deposited in the detector scintillator. The pulser was then
 attached directly to the PMT next to where the light guides attached to the PMT.
 To allow for a single-PMT high threshold trigger, the signal was split off to a different
@@ -210,7 +214,7 @@ energy range of interest should suffice.
 \caption{Example $^{207}\mathrm{Bi}$ spectrum and fit for a single PMT over
   the course of a run. The upper and lower bismuth conversion electron peaks are
   seen, along with a distribution from decay gammas. Note that the gamma rays are
-  visible because the pulser is attached directly to PMT and there is no type
+  visible because the pulser is attached directly to the PMT and there is no type
   of veto (like the MWPC) to remove them.}
 \label{fig:biPulser}
 \end{figure}
@@ -218,7 +222,7 @@ energy range of interest should suffice.
 The $^{207}\mathrm{Bi}$ pulser peak is fit by a Gaussian on a run-by-run basis, allowing for gain corrections on the time
 scale of a single run. The fit was done iteratively, with the initial guesses for mean and fit range determined
 by stepping backwards from the last bin and using a self-written algorithm to search for the peak. Then the peak
-was fit five times consecutively, with each successive fit being fed the previous fits mean and sigma. This
+was fit five times consecutively, with each successive fit being fed the previous fit's mean and sigma. This
 made sure the fit converged as best as possible on the mean of the pulser peak. An example pulser peak and fit
 can be seen in Figure \ref{fig:biPulser}. The asymmetric fit (range extends farther above the peak than below)
 is actually a characteristic part of the iterative
@@ -242,13 +246,14 @@ dependence of the gain values in 2011-2012 can be seen in figures \ref{fig:2011-
 and \ref{fig:2011-2012pulser_West}. The behavior is similar in 2012-2013.
 
 Some problems with the $^{207}\mathrm{Bi}$ pulser did occur. There were several periods where the pulser
-simply did not work for a certain PMT. This was always limited to a single PMT not working, and when this
+simply did not work for a certain PMT. This was always limited to a single PMT not working at a given time, and when this
 was the case the PMT without a pulser signal was not used when reconstructing the energy. This has
 minimal effect on the energy reconstruction though, as the ``bad'' PMT is still used when determining
 a two-fold trigger, and the remaining three PMTs contain sufficient information for reconstructing the
 energy deposited. Periods where $^{207}\mathrm{Bi}$ pulser information is missing are evident in
-figures \ref{fig:2011-2012pulser_West} where there is missing data for certain PMTs over extended ranges.
-It should be noted that in 2012-2013, West PMT4 never had a functioning pulser.
+Figure \ref{fig:2011-2012pulser_West} where there is missing data for certain PMTs over extended ranges.
+It should be noted that in 2012-2013, West PMT4 never had a functioning pulser and was never used for
+energy reconstruction purposes.
 
 \begin{figure}[p] 
   \centering
@@ -325,9 +330,9 @@ kinetic energy spectrum $T_{\mathrm{sim}}$ by the gain factor $g_{\mathrm{ep}}$ 
 Then we can write the
 measured total energy as
 \begin{equation}
-  E_{\mathrm{meas}} = m_e + g_{\mathrm{ep}}T_{\mathrm{meas}}
+  E_{\mathrm{meas}} = m_e + g_{\mathrm{ep}}T_{\mathrm{meas}} \quad (c=1).
 \end{equation}
-where $c = 1$ is used. The extracted endpoint for the data is now a function of $g_{\mathrm{ep}}$
+The extracted endpoint for the data is now a function of $g_{\mathrm{ep}}$
 since
 \begin{equation}
   K(E_{\mathrm{meas}}) = \sqrt{\frac{S(E_{\mathrm{meas}})}{pE_{\mathrm{meas}}}} = E_{0,\mathrm{meas}}-E_{\mathrm{meas}},
@@ -362,10 +367,9 @@ Subtracting these background rates from the data rates accounts for backgrounds
 with roughly a one hour time variation.
 Any backgrounds that vary at the sub one hour level may go unnoticed, but
 with a signal to background better than 50:1 the contribution from such is minimal.
-The background run scheme will be addressed later in this chapter, with the background
-subtraction addressed in chapter 5. 
+Background subtraction will be addressed in Section \ref{sssec:bgsubtr}. 
 
-\section{Trigger Thresholds}
+\section{Trigger Thresholds} \label{sec:triggerThresh}
 
 Looking ahead to the detector response model that will be implemented when processing
 the simulated data, we need to determine the trigger thresholds for each of the
@@ -382,10 +386,10 @@ in order to properly model the low energy behavior of the measured spectrum.
 
 The most important part of determining the trigger threshold shape for 
 any detector is the availability of data which was collected no matter if 
-the detector or component (PMT) produced a trigger. If such a subset of 
+the detector produced a trigger. If such a subset of 
 data is available and plentiful, it is straightforward to estimate
 the trigger probability by binning the data in some unit proportional to 
-energy (whether in energy or something like it isn't important) and taking 
+energy (whether in energy or something like it is not important) and taking 
 the bin-by-bin ratio of those events that triggered to all of the events in the 
 sample. Plotting these ratios as a function of whatever energy-like metric was chosen tells 
 you how probable an event of some value is to create a trigger.
@@ -396,12 +400,12 @@ simulation to apply your true trigger threshold to simulated data.
 \subsection{Trigger Data Selection}
 As mentioned before, the data used for constructing trigger thresholds must not be 
 biased towards triggering the PMT of interest. Thus that PMT must not be a mandatory 
-component of the global trigger for that event, so care must be taken to choose only 
+component of the global trigger for that event, and care must be taken to choose only 
 events which would trigger regardless of the behavior of the PMT of interest. One
 other stipulation placed on these events is that they have an opportunity to 
-deposit energy in a particular scintillator. The best choice of events which 
-satisfy these conditions are those which have a two-fold trigger on the opposite side 
-and then backscatter and those which trigger at least three PMTs on the side of 
+deposit energy in a particular scintillator. The best choice of events that 
+satisfy these conditions are those that have a two-fold trigger on the opposite side 
+and then backscatter and those that trigger at least three PMTs on the side of 
 interest, which guarantees that the scintillator would have triggered with or without 
 the PMT of interest.	
 
@@ -410,8 +414,8 @@ One option for determining the trigger probability function (and probably the
 most straightforward) is to calculate the trigger probability for an entire detector as 
 a whole as a function of the energy deposited by an event. What you get is a 
 function that provides the probability that an event of energy $ E_i $ 
-produces some sort of trigger, either 2-fold, 3-fold, or 4-fold, in that 
-detector. Initially this method was used for sake of simplicity, and it produced 
+produces some sort of trigger in that 
+detector. Initially this method was employed in this analysis for sake of simplicity, and it produced 
 reasonable agreement between simulation and data, but there is one 
 glaring concern: Determining this trigger function from data requires that the data be 
 calibrated first. At first glance this may not seem like much of an issue, but the 
@@ -443,7 +447,7 @@ in the following section.
 \subsubsection{Functional Fit of the Trigger Threshold}
 From the sigmoid shape of the threshold data in Figure \ref{fig:trigger_thresh}, one might guess
 the shape of the curve to be a hyperbolic tangent or an error function. The data tends to show
-a sharper turn on at lower ADC channels and a softer levelling off to unit probability, which
+a sharper turn on at lower ADC channels and a softer leveling off to unit probability, which
 prompted the use of both the $\mathrm{erf}(x)$ (lower end of transition region)
 and $\tanh(x)$ (upper end of transition region),
 with a continuous transition between the
@@ -533,7 +537,7 @@ incorporated into the detector construction.
 The magnetic field profile is nominally taken to be 1~T in the decay trap
 with the field expansion to 0.6~T at the wirechambers incorporated also.
 Options to use the measured field maps, one of which is depicted in
-Section \ref{ssec:MagneticField}, were included, but in all source
+Figure \ref{fig:field_profile}, were included, but in all source
 and $\beta$-decay simulations the smooth profile was used to save on
 computation time. Effects on the asymmetry from the non-smooth
 field profile present during data taking is addressed in
@@ -567,7 +571,7 @@ the $r$-component can be calculated from Maxwell's equations:
 \subsubsection{Conversion Electron Sources}
 For the conversion electron sources, the decay probabilities for conversion electrons,
 Auger electrons, and gamma rays are read from files specific to each isotope.
-The energy and event type sample the decay chain probabilities from these files, and
+The energy and radiation type sample the decay chain probabilities from these files, and
 the momentum is chosen isotropically over 4$\pi$. The initial vertex for any source
 event is randomly sampled within a small dot encapsulated in a sealed source holder
 along the center axis of the decay trap, as would be the case for a real sealed
@@ -609,77 +613,91 @@ A special thanks is in order for X. Sun for his contributions to the polarized e
 
 \subsection{Output}
 The \textsc{Geant4} simulation provides trajectory tracking along with
-the energy deposition along these tracks. Obviously we have access to far
-more information in the simulation than we do with actual data, so the first
+the energy deposition along these tracks. Prior to processing the simulation
+for calibration or systematic purposed, the first
 task is to construct observables that are more useful.
 
 \subsubsection{Energy Deposition}
 By tallying the energy deposited along an entire track within some subset
 of the geometry, one can reconstruct the energy deposited anywhere within
-the SCS. The areas of highest interest for the sake of analysis are the
+the SCS. The areas of primary interest for the sake of analysis are the
 wirechambers and the scintillators. The energy deposited in the scintillator
-is of utmost importance, as the analysis can be completed without knowledge
-of the energy deposition in the wirechamber, where determination of energy
-deposition is only used for Type 2/3 backscattering separation. From here on,
-the energy lost in the scintillator, as determined from simulation, will be
+is of highest importance, as the systematic studies depend on scintillator
+reconstructed energy.  From here on,
+the energy lost in the scintillator, as determined from summing the energy loss in simulation, will be
 referred to as $E_{\mathrm{dep}}$. This is the maximum energy which could be detectable
-for an event in the data if no inconspicuous energy losses existed.
+for an event if no inconspicuous energy losses existed.
 
 \subsubsection{Quenched Energy} \label{sssec:Equenched}
 In reality, the energy that is visible in the form of scintillation light is not exactly
 equal to $E_{\mathrm{dep}}$, but rather some of the energy is ``quenched'' when
 the energy deposition per unit length grows large near the end of a track. The
-empirical description for the light output 
+empirical description for the light output by a charged particle traversing a
+scintillator is given by Birk's Law \cite{birks1951scintillations}:
+%
+\begin{equation}
+  \frac{dL}{dx} = S\frac{\frac{dE}{dx}}{1+k_B\frac{dE}{dx}},
+\end{equation}
+%
+where $dL/dx$ is the light output per unit length, $dE/dx$ is the energy deposited per unit
+length, $S$ is the scintillation efficiency, and $k_B$ is Birk's constant which must be
+determined through measurement. For small $dE/dx$,
+$dL/dx \propto dE/dx$, which is the case for the majority of an electron's track inside the scintillator.
+As the electrons slow down and become very low energy, $dE/dx$ increases drastically
+and $dL/dx \approx S/k_B = constant$. It is precisely this quenching effect that creates the difference
+between the deposited energy and energy that may be observed through scintillation light. The energy
+proportional to $dL/dx$ will be called the quenched energy and is defined as
+%
+\begin{equation}
+  E_Q = \int \frac{\frac{dE}{dx}}{1+k_B\frac{dE}{dx}}dx,
+\end{equation}
+%
+with the integration performed over the entirety of the path.
+
+\begin{figure}[h] 
+\centering
+\includegraphics[scale=.6]{3-UCNAAnalysis/dEdx.pdf}
+\caption{Plot of $dE/dx$ for a plastic scintillator. The data (open circles) comes from NIST ESTAR,
+  and the dE/dx functional forms used previously (red dashed line) and presently (blue solid line)
+  are shown.}
+\label{fig:dEdx}
+\end{figure}
+
+In previous analyses, the functional form of $dE/dx $ was extracted from a fit to NIST ESTAR data
+for a plastic scintillator \cite{yuan2006progress}. The fit determined the following relationship:
+%
+\begin{equation}
+  \frac{dE}{dx} = 116.7\bigg(\frac{E}{\mathrm{keV}}\bigg)^{-0.7287} \rho_{\mathrm{scint}} \frac{\mathrm{MeV}}{\mathrm{g/cm}^2},
+\end{equation}
+%
+where $\rho_{\mathrm{scint}}=1.032~\mathrm{g/cm}^2$ is the density of the scintillator. From
+inspection of Figure \ref{fig:dEdx}, one can see that this expression for $dE/dx$ (red dashed line)
+does not fit the data well at higher particle energy. Thus Dr. Brad Filippone suggested that the
+functional form previously used be modified \cite{bradF_ELOG}:
+%
+\begin{equation}
+  \bigg(\frac{dE}{dx}\bigg)_{\mathrm{new}} = \bigg(\frac{dE}{dx}\bigg)_{\mathrm{old}} + 1.35\big(1-e^{-0.00125\frac{E}{\mathrm{keV}}}\big) \rho_{\mathrm{scint}} \frac{\mathrm{MeV}}{\mathrm{g/cm}^2},
+\end{equation}
+%
+which produces much better agreement with the data in Figure \ref{fig:dEdx}. The new $dE/dx$ was implemented for calculations
+of $E_Q$ in the \textsc{Geant4} simulation for the current analysis with the value of $k_B=0.0191\pm0.0020$~cm/MeV as determined in
+\cite{yuan2006progress}.
 
 
-Show Birk's law. Talk about MPM and jianglai's analysis to determine
-quenching parameters. Then talk about the modification using BradF's note
-and show the shift to the functional form. Also show a figure which shows
-the quenched energy vs Edep.
 
 
 \subsubsection{Position of Detector hits}
-Talk briefly of importance of position dependence, and maybe address
-the way the position for the wirechamber and scintillator are calculated.
-I believe this was a weighted average of the track positions where the
-weights are given by the energy deposition.
-
-\subsection{Detector Response Model}
-While all pertinent components of the experimental apparatus were included
-in the simulation, the detector response is not inherent within our
-output. You may notice from (figure with quenched energy) that this
-doesn't resemble the gaussian peaks normally seen in a detector signal.
-The gaussian-like peaks arise from finite resolution effects and
-must be put in defacto using parameters calculated
-from real data. The better we understand the conversion from a pure simulation
-energy output to a response which mimics that from our actual detectors, the
-more credence we can put in our calibration. For the time being, the model will
-be introduced with parameter determination addressed as it arises. 
-
-Recall from Section \ref{sssec:pmtModel} that we can relate a digital signal
-in a PMT, $ADC_i$, to the energy deposited in the scintillator
-using Equation \ref{eq:EnergyResponse}.
-By reverse engineering this process, we can use a purely simulated $E_Q$ and
-simulate an ADC channel, so that we can process the simulated data in
-exactly the same way we process real data. The following equation comes directly
-from \ref{eq:EnergyResponse}:
-
-\begin{equation} \label{eq:pmtResponse}
-ADC_i = f_i^{-1}\left(\eta_i(x,y) \cdot E_{Q} \right)/g_i(t) + p_i(t) + \delta p_i(t) 
-\end{equation}
-
-This relationship is somewhat incomplete though, as it does not address the
-stochastic nature of the PMTs themselves. Let's rewrite ************To properly incorporate this into our
-model we must utilize the fact that a PMT consists of several dynodes, each of which
-introduces stochasticity into the final voltage read out. 
-
+The detector positions in both the scintillator and wirechamber are calculated as the weighted
+average of the step positions, with the weights equal to the energy deposited in that step.
+A more detector-like position response was utilized when analyzing the simulated data as is described
+in Section \ref{ssec:simWirePos}, where the same position reconstruction algorithm used for data
+is applied to simulated wirechamber responses.
 
 
 %----------------------------------------------------------
 
 \section{Energy Response from Detector Response} \label{sec:EnergyResponse}
-Following the process outlined in the previous section, we can derive an
-expression which takes a detector signal to an energy estimate for each PMT.
+
 The visible energy $E_{\mathrm{vis},i}$ deposited
 in the scintillator as seen by a single PMT $i$ for an event at position $(x,y)$ 
 is given by the following: 
@@ -690,10 +708,13 @@ E_{\mathrm{vis},i} = \eta_i^{-1}(x,y) \cdot f_i\bigg( \Big( \mathrm{ADC}_i - p_i
 
 \noindent where 
 \begin{align*}
-  &f_i = \text{linearity relation from ADC channels to light output (proportional to energy),}\\
-  &\eta_i(x,y) = \text{PMT position map factor to correct for position dependence of light response,} \\
-  &p(t) = \text{mean pedestal value for PMT } i,\\
-  &g(t) = \text{gain correction factor for PMT }i.
+  f_i(\mathrm{ADC}) = & \text{ linearity relation from pedestal subtracted and gain corrected} \\
+  & \text{ ADC values to a quantity proportional to scintillation} \\
+  & \text{ light reaching PMT \textit{i} (see Section \ref{ssec:linCurves}),}\\
+  \eta_i(x,y) = &\text{ PMT position dependent response factor to correct for} \\
+    & \text{ position dependence of light response (see Section \ref{sssec:posmaps}),} \\
+  p_i(t) = &\text{ mean pedestal value for PMT } i \text{ (see Section \ref{ssec:pedSubtraction}),} \\
+  g_i(t) = &\text{ gain correction factor for PMT }i \text{ (see Section \ref{ssec:BiGain})}.
 \end{align*}
 
 This expression is exact in the case where all values are determined with infinite
@@ -702,10 +723,10 @@ side of this equation is either stochastic in itself (as is the ADC response), o
 determined via observation of a random process (the gain and pedestal), and so
 the underlying value for any given event may not be the same as the value applied in the
 above expression. Thus what we
-really resolve is an approximation to the energy, which comes with some uncertainty. This
-uncertainty will be addressed later in Section \ref{ssec:energyRecon}.
-For the time being, keep in mind the above list of
-input parameters which take us from an ADC signal (detector signal) to an energy signal. 
+really resolve is an approximation to the energy, which comes with some uncertainty. The uncertainty
+on the asymmetry that results from imperfect energy determination
+will be addressed in Section \ref{ssec:energyRecon}.
+
 
 \subsection{Combining PMT Responses} \label{ssec:combinePMT}
 
@@ -747,6 +768,7 @@ of the PMT by Equation \ref{eq:EvisResponse}, we have
 %
 \begin{equation}
   E_{\mathrm{vis},i} = E_Q \pm \frac{E_Q}{\sqrt{\alpha_i \eta_i(x,y) E_Q}} =  E_Q \pm \sqrt{\frac{E_Q}{\alpha_i \eta_i(x,y)}}.
+  \label{eq:Evisi}
 \end{equation}
 %
 
@@ -775,11 +797,11 @@ values $\eta_i$ should be minimized.
 \subsection{$E_{\mathrm{vis}}$ to $E_{\mathrm{recon}}$}
 
 As mentioned in Section \ref{sec:outline}, $E_{\mathrm{vis}}$ is an estimate of the
-energy visible to the PMT from deposition in the scintillator. The more meaningful
+energy visible to the PMT from deposition in the scintillator. The more useful
 initial energy of the particle must be determined using a separate parameterization.
 To determine such a parameterization, simulated data is used so that the initial
 energies of the events are known precisely, and then the response of the detector
-to different event energies and types can be modeled.
+to different event energies and types can be investigated.
 
 \begin{figure}[h]
   \centering
@@ -794,10 +816,10 @@ The mapping between $E_{\mathrm{vis}}$ and $E_{\mathrm{recon}}$ is determined se
 for 2011-2012, 2012-2013, and 2012-2013 with isobutane in the wirechamber.
 Using the simulated $\beta$-decay spectrum and a characteristic set of detector
 response variables, the simulated events are processed in the same manner as
-they would be for data. They are identified as Type 0,1, or 2/3, and their
+they would be for data. They are identified as Type 0, 1, or 2/3, and their
 $E_{\mathrm{vis}}$ values for each detector are determined. Then the events are
 grouped into histograms using their initial energy (we will call it $E_{\mathrm{recon}}$,
-but really this is the true energy of the events), with the histograms corresponding
+but really this is the true energy of the events), with the histogram bins corresponding
 to 10~keV groups from 0~keV to 790~keV. Then each of these histograms are fit to
 determine the average $E_{\mathrm{vis}}$ value for a given $E_{\mathrm{recon}}$. The results
 of these fits for each event type in each detector for 2011-2012 is shown as the data
@@ -825,6 +847,154 @@ the detector with the earlier trigger, making it the primary detector.
 Thus, for a Type 1
 event, one would plug $E_{\mathrm{vis}} = E_{\mathrm{vis}}^E + E_{\mathrm{vis}}^W$ into the $E_{\mathrm{recon}}$
 equation for the side that triggered first.
+
+\section{Detector Response Model} \label{sec:DetectorResponseModel}
+The goal of the Detector Response Model is to create an estimate of the potential PMT
+signals from the $E_Q$ produced in the simulation. While it is true that the simulation
+captures the true physics of the experiment, the simulation output does not properly
+represent the data signals.
+For instance, the purely simulated scintillator energy depositions have sharp peaks at the
+maximum allowed energy deposition with low
+energy tails, a result of energy losses elsewhere in the apparatus. The less probable outer shell
+conversion electron lines are also visible in the simulation. The data signals
+on the other hand are smeared out in a Gaussian fashion, with no possible
+resolution of the outer shell electron lines.
+The Gaussian-like peaks arise from finite resolution effects and
+must be incorporated in the simulatin using parameters calculated
+from real data.  
+
+
+\subsection{Extracting simulated ADC values}
+
+
+Recall from Section \ref{sec:EnergyResponse} that we can relate a PMT signal,
+$\mathrm{ADC}_i$, to the energy deposited in the scintillator
+using Equation \ref{eq:EvisResponse}.
+Our goal is to reverse engineer this expression to write an ADC signal as a
+function of the visible energy, noting that the visible energy is directly
+related to the quenched energy from simulation. Directly from \ref{eq:EvisResponse}
+we can trvially write down:
+%
+\begin{equation} \label{eq:pmtResponse}
+\mathrm{ADC}_i = f_i^{-1}\big(\eta_i(x,y) E_{\mathrm{vis},i} \big)/g_i + p_i
+\end{equation}
+%
+where we have dropped the time dependence for brevity. For the time being, take
+the PMT response functions $f$ and the position dependent response values $\eta_i(x,y)$ to be known,
+as their determination is addressed in Sections \ref{ssec:linCurves} and \ref{sssec:posmaps}
+respectively.
+
+Now we can further generalize this expression by recalling that the gain and the pedestals
+were extracted from distributions, with the values used in the gain correction and pedestal
+subtraction equal to the mean of the distribution. Technically speaking though, there is a
+well-defined probability that the actual gain and pedestal were not equal to this mean, but rather
+sampled some other value from the distributions. To account for this, we will add a spread
+to the gain and pedestal:
+%
+\begin{equation} 
+  \mathrm{ADC}_i = f_i^{-1}\big(\eta_i(x,y)  E_{\mathrm{vis},i} \big)/\big(g_i\pm\delta g_i\big) + \big(p_i \pm \delta p_i\big).
+  \label{eq:pmtResponse}
+\end{equation}
+%
+This is to be interpreted as the pedestal (gain) being sampled from a normal
+distribution with mean $p_i$ ($g_i$) and sigma $\delta p_i$ ($\delta g_i$).
+
+Remember the goal is to plug in $E_Q$ and return an ADC value for each PMT, so we must next
+relate $E_Q$ to $E_{\mathrm{vis}}$. What we really need is an expression for $\eta_iE_{\mathrm{vis}}$ in terms of $E_Q$.
+Backtracking for a moment, we recall that $E_{\mathrm{vis}}$ is by definition the result
+of plugging the ADC response into equation \ref{eq:EvisResponse}. The ADC response is proportional to the final amount of charge
+that reaches the anode in a PMT, and is thus the product
+of several stochastic processes and is only an estimate of the initial light from the scintillator that reached
+the photocathode. In fact, every dynode within the photomultiplier introduces stochasticity into the process, as every time an electron
+strikes a dynode, the number of emitted electrons is Poisson distributed. The final number of electrons that reach the anode
+can be expressed as several nested Poisson distributions,
+with the initial number of events equal to the number of photoelectrons present at the photocathode. The series of Poisson
+processes randomizes the final number of electrons seen by the anode, and therefore randomizes the ADC response.
+
+Let us attempt to estimate the total number of electrons that reach the anode, which in turn yields something
+proportional to the ADC response and thus also related to $E_{\mathrm{vis}}$. We will use only two nested Poisson
+processes, where the first emulates the gain from the very first dynode, and the second captures the gain from the rest of
+the dynodes as a whole. We then have:
+%
+\begin{equation}
+  N_i^{\mathrm{tot}} \approx \mathrm{Pois}(g_r \cdot \mathrm{Pois}(g_d \cdot N_i)),
+  \label{eq:ntot1}
+\end{equation}
+%
+where $N_i^{\mathrm{tot}}$ is the total number of electrons to reach the PMT anode, $g_d$ is the gain of the first dynode,
+$g_r$ is the total gain of the rest of the dynodes, and $N_i$ is the number of initial photoelectrons at the photocathode.
+This number of photoelectrons is precisely related to the amount of light which reaches the PMT, which as a matter of fact
+we defined as $N_i = \alpha_i \eta_i(x,y) E_Q$ in Section \ref{ssec:combinePMT}. Here $\alpha_i$ is again the PMT resolution
+factor which relates the number of photoelectrons to energy, and for now we should take it as known (see Section
+\ref{ssec:PMTresolution}).
+
+Rewriting Equation \ref{eq:ntot1} we have
+\begin{equation}
+  N_i^{\mathrm{tot}} \approx \mathrm{Pois}(g_r \cdot \mathrm{Pois}(g_d \cdot \alpha_i \eta_i(x,y) E_Q)).
+  \label{eq:ntot2}
+\end{equation}
+Here $N_i^{\mathrm{tot}}$ is an estimate of the total number of electrons that reach the PMT anode, but we can turn it
+into an estimate of the number of initial photoelectrons simply by dividing by each of the dynode gain factors:
+\begin{equation}
+  \overline{N_i} \approx \frac{1}{g_rg_d}\mathrm{Pois}(g_r \cdot \mathrm{Pois}(g_d \cdot \alpha_i \eta_i(x,y) E_Q)).
+  \label{eq:ntot3}
+\end{equation}
+
+But now we should realize that we already have an expression for $\overline{N_i}$ from Section \ref{ssec:combinePMT}, namely
+\begin{align}
+  \overline{N_i} &= N_i \pm \sqrt{N_i} \\
+  &= \alpha_i \eta_i(x,y) E_Q \pm \sqrt{\alpha_i \eta_i(x,y) E_Q} \\
+  &= \alpha_i \eta_i(x,y) \Bigg( E_Q \pm \sqrt{\frac{E_Q}{\alpha_i \eta_i(x,y)}}\Bigg) \\
+  &= \alpha_i \eta_i(x,y) E_{\mathrm{vis},i} 
+  \label{eq:bam}
+\end{align}
+where we used Equation \ref{eq:Evisi} in the last line. Thus we can now write
+\begin{equation}
+   \alpha_i \eta_i(x,y) E_{\mathrm{vis},i} \approx \frac{1}{g_rg_d}\mathrm{Pois}(g_r \cdot \mathrm{Pois}(g_d \cdot \alpha_i \eta_i(x,y) E_Q)),
+  \label{eq:ntot4}
+\end{equation}
+directly from which our desired expression for $\eta_i(x,y) E_{\mathrm{vis},i}$ follows:
+\begin{equation}
+   \eta_i(x,y) E_{\mathrm{vis},i} \approx \frac{1}{\alpha_i g_rg_d}\mathrm{Pois}(g_r \cdot \mathrm{Pois}(g_d \cdot \alpha_i \eta_i(x,y) E_Q)).
+  \label{eq:etaEvis}
+\end{equation}
+
+The last outstanding question is then what values to use for the gain of the dynodes. The PMTs are
+Hamamatsu model R7725, run typically between 1100-1300~V. From the Hamamatsu documentation \cite{hamamatsu},
+this model PMT has a total gain of $\sim2\times 10^5$ when run at $\sim1100$~V. Since this PMT has 12 stages (dynodes),
+if we assumed equal gain on every dynode this would give $g_d\approx2.7$. But the first dynode is biased $4\times$ higher
+than the rest, so it should exhibit a higher gain. Thus the gain of the first dynode was set to $g_d=16$, which then determines
+that the gain of the rest of the dynodes combined should be $g_r = 2\times 10^5/g_d = 12500$.
+
+\subsection{Applying the Detector Response Model}
+
+With Equation \ref{eq:etaEvis} to approximate $\eta_i(x,y) E_{\mathrm{vis},i}$ for each PMT, this can be plugged into
+$f^{-1}$ to return an initial ADC estimate in the form of Equation \ref{eq:pmtResponse}. The gain and pedestal
+widths could be taken as zero without substantial loss of model integrity, as the majority of the detector
+response has been captured using the position dependent response, PMT resolution factors, and sampling of the
+Poisson processes. The gain is stable enough that including a sampling of the width introduces $<1\%$ fluctuations
+in modeled ADC, and so it was ignored. The pedestal distributions for each PMT were sampled and used in the
+Detector Response Model, as this gives a width to a signal with no energy deposition as is seen in the data.
+To apply the random sampling of the pedestal, a Gaussian is randomly sampled with mean equal to zero and sigma equal
+to the rms recorded for that PMT in the run of interest. This random value is then added to the ADC estimate. 
+
+Once all $\mathrm{ADC}_i$ have been calculated, the two-fold trigger model must be applied.
+The PMT trigger thresholds as determined in Section \ref{sec:triggerThresh} are retrieved for the run of interest.
+The probability of triggering is read from the trigger threshold function for an individual PMT, and then
+acceptance/rejection is performed to decide whether the PMT triggered. The basic two-fold trigger logic is
+applied, so if two or more PMTs trigger, the scintillator on that side is recorded as having a two-fold trigger.
+
+With the modeled $\mathrm{ADC}_i$ values calculated and the pedestal width sampled and added to the signal, the ADC values
+are treated as though they are data and plugged into Equation \ref{eq:EvisResponse}. This subtracts the mean pedestal,
+applies the gain correction, and then maps the ADC response back to a new estimate of $\eta_i(x,y) E_{\mathrm{vis},i}$
+using the calibration linearity curve $f(\mathrm{ADC})$. Upon dividing by the position dependent light transport
+value $\eta_i(x,y)$, one has estimates for the visible from all PMTs.
+
+At this point, the individual $E_{\mathrm{vis},i}$ are combined using the now familiar methods of Section \ref{ssec:combinePMT}.
+Then a final $E_{\mathrm{recon}}$ value is determined via the normal parameterization. Everything about the simulation event
+now resembles a data event, and thus the analysis procedure for data and simulation becomes identical.
+
+
 
 
 %---------------------------------------------------------------------------------------
