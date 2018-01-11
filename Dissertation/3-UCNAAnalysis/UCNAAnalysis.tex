@@ -29,7 +29,7 @@ can be calibrated and analyzed.
 To preface the rest of this chapter, we can highlight
 the general process of the analysis beginning with a raw detector
 ADC value from each PMT and finishing with an asymmetry.
-Below are the general steps:
+Below are the general steps for processing the data:
 
 \begin{itemize}
 \item Determine pedestals for each PMT and subtract the pedestal from each data event.
@@ -45,6 +45,13 @@ Below are the general steps:
 \item Calculate an asymmetry and apply all systematic corrections.
 \end{itemize}
 
+Simulations of the experimental apparatus and particle transport is also intertwined
+in the analysis. By simulating the underlying physical processes, we gain an understanding
+as to what the signals in our detector indicate regarding the initial event. The simulations
+consist of a pure tracking of the particles with the summation of the energy losses throughout
+the spectrometer, and also a Detector Response Model to transform the simulation variables
+into detector-like signals. This process will be addressed in this chapter as well.
+
 It is important to point out early on the difference between $E_{\mathrm{vis}}$ and
 $E_{\mathrm{recon}}$. The deposited or visible energy, $E_{\mathrm{vis}}$, is an estimate of the energy
 physically deposited in the
@@ -55,6 +62,12 @@ the MWPC itself, and the dead layer of the scintillator. Of course the analysis 
 done in terms of $E_{\mathrm{vis}}$, but it is more convenient to express the results
 in terms of the true electron energy spectrum, and also the energy dependent theory modifications
 are in terms of the true initial energy of an event.
+
+The majority of the analysis described throughout this thesis was completed using
+the ROOT Data Analysis Framework \cite{brun1997root}. A special thanks goes out to
+the Nuclear Physics community as a whole, who have collectively built an indispensible
+web of documentation regarding any and all things ROOT. Without the ROOT documentation
+and user community, much of this analysis would have been painstakingly more difficult.
 
 
 
@@ -461,7 +474,14 @@ run can be seen in Figure \ref{fig:trigger_thresh}.
 \section{Simulation}
 \label{sec:Simulation}
 
-The simulations and application of the
+For this work, the simulation software from previous analyses was adopted
+and modified where seen fit to accomodate changes in the geometries
+and materials. The finer details of the particle generation and
+tracking can be found in \cite{mpmThesis}. For our purposes, a summary
+of the important quantities is more than sufficient for understanding
+the work contained within this thesis.
+
+\iffalse The simulations and application of the
 detector response model provide a suitable starting
 point for discussing the analysis, as the calibration of the data hinges
 strongly on the simulation results. There is a notable dependence of the
@@ -476,19 +496,122 @@ the detector response model was applied. The structure
 of the simulation code did not change from those in the previous analysis
 as described in \cite{mpmThesis}, although minor changes were
 made to the geometry to reflect real adjustments to the experimental
-apparatus. 
+apparatus. \fi
 
-\subsection{Input}
+\subsection{Overview}
+
+The simulation of the experimental geometry and particle tracking was completed
+using the \textsc{Geant4} Monte Carlo particle transport software package
+\cite{agostinelli2003geant4}. The initial kinematics of the event vertices
+were determined pre-simulation and fed into the \textsc{Geant4} toolkit, at which
+point the particle was propagated via Monte Carlo sampling of interactions
+with all components of the experimental geometry, including the magnetic field.
+The energy deposition was recorded within all sensitive detector components and
+even within the decay trap windows and walls, to which we do not have access
+in the real data. The relative timing of the scintillator hits was also
+recorded so as to mimic the timing signals of the experiment.
+
+The simulation is especially important when determining systematic corrections due
+to a priori knowledge of the initial kinematics of each event. Thus, after an event
+comes to rest and its detector response is considered, one can compare the signature
+of the signals to the initial momentum of the particle and analyze possible
+effects on observables from backscattering, angular dependence, and energy losses
+in non-sensitive detector regions for example.
+
+\subsection{Geometry and magnetic field} \label{sssec:simMagField}
+
+The geometry input into the \textsc{Geant4} simulation is taken directly from
+that given in Chapter \ref{ch:UCNA_Experiment}. Options for each variation
+of the geometry were implemented, including a 2011-2012 option with
+the thicker decay trap endcaps and a 2012-2013 option with thinner asymmetric
+decay trap endcaps. The 2012-2013 geometry is further subdivided into an option
+for neopentane in the wirechamber (same as 2011-2012) and for isobutane in the
+wirechamber, as a portion of the 2012-2013 runs were taken with this
+different fill gas. Any other minor differences in the geometry were also
+incorporated into the detector construction.
+
+The magnetic field profile is nominally taken to be 1~T in the decay trap
+with the field expansion to 0.6~T at the wirechambers incorporated also.
+Options to use the measured field maps, one of which is depicted in
+Section \ref{ssec:MagneticField}, were included, but in all source
+and $\beta$-decay simulations the smooth profile was used to save on
+computation time. Effects on the asymmetry from the non-smooth
+field profile present during data taking is addressed in
+Section \ref{sssec:MagFieldSyst}.
+
+The magnetic field is passed to the simulation as a set of discrete $B_z$
+values along the $z$-axis of the spectrometer as depicted in Figure \ref{fig:field_profile}.
+The continuous field profile on the $z$-axis is then interpolated between consecutive $z_i$ locations
+using the respective $B_z(z_i)$ values by a half-wave of a cosine,
+%
+\begin{equation}
+  B_z(z) = \frac{B_z(z_i) + B_z(z_{i+1})}{2} + \frac{B_z(z_i) - B_z(z_{i+1})}{2}\cos\bigg(\frac{z-z_i}{z_{i+1}-z_i}\pi\bigg),
+\end{equation}
+%
+where $z_i<z<z_{i+1}$.
+
+Then, if the field is taken to be azimuthally symmetric ($B_\phi(z,r,\phi)=0$) and $B_z(z,r,\phi)=B_z(r)$,
+the $r$-component can be calculated from Maxwell's equations:
+%
+\begin{equation}
+  \nabla \cdot \vec{B} = 0 \Rightarrow \frac{\partial B_z}{\partial z} + \frac{1}{r}\frac{\partial}{\partial r}\big(rB_r\big), 
+\end{equation}
+\begin{equation}
+  B_r(z,r) =  \frac{B(z_i) - B(z_{i+1})}{z_{i+1}-z_i}\frac{\pi r}{4}\sin\bigg(\frac{z-z_i}{z_{i+1}-z_i}\pi\bigg).
+\end{equation}
+%
+
+
+\subsection{Event Kinematics}
+
 \subsubsection{Conversion Electron Sources}
-make sure to show figures or a table with the conversion lines
-\subsubsection{Activated Xenon}
-\subsubsection{$\beta$-decay Electrons} \label{sssec:betaSim}
+For the conversion electron sources, the decay probabilities for conversion electrons,
+Auger electrons, and gamma rays are read from files specific to each isotope.
+The energy and event type sample the decay chain probabilities from these files, and
+the momentum is chosen isotropically over 4$\pi$. The initial vertex for any source
+event is randomly sampled within a small dot encapsulated in a sealed source holder
+along the center axis of the decay trap, as would be the case for a real sealed
+source used in the calibration.
+
+\subsubsection{Neutron $\beta$-decay Electrons} \label{sssec:betaSim}
+
+A detailed account of the functional form of the unpolarized $\beta$-decay rate used in the
+event generator
+is given in \cite{mpmThesis}. The corrections to the plain phase space spectrum are taken from
+Wilkinson's series of review articles on $\beta$-decay
+\cite{wilkinson1982,wilkinson1989evaluation,wilkinson1990evaluation,wilkinson1993evaluation,
+  wilkinson1995evaluation,wilkinson1997evaluation,wilkinson1998evaluation} and include
+the Fermi function coulomb correction, corrections for finite size of the nucleon, radiative
+corrections as described in Section \ref{sssec:RadCorr}, and recoil corrections for the finite
+mass of the proton in the final state.
+
+For this analysis, the decays were sampled from a polarized spectrum, thus necessitating the
+addition of the asymmetry to the decay rate. The polarized decay rate then took the form:
+\begin{equation}
+  \Gamma^{\mathrm{pol}}_\pm(E) = \Gamma^{\mathrm{unpol}}(E_e) \bigg( 1 \pm \xi(E) \bigg),
+\end{equation}
+where
+\begin{equation}
+  \xi(E) = A(E)\Big(1+\mathrm{R.O.}(E)+\mathrm{Rad}(E)\Big),
+\end{equation}
+$A(E)=A_0\beta cos\theta$, ``R.0.'' and ``Rad'' are the recoil order and radiative corrections to the asymmetry
+consistent with those from Sections \ref{sssec:ROCorr} and \ref{sssec:RadCorr}, $\pm$ indicates the two possible spin states,
+and $\Gamma^{\mathrm{unpol}}$ is the unpolarized
+spectrum. The value of $A_0= -0.1184$ was used, as this is the current global average \cite{pdg}.
+
+Each spin state was simulated for the 2011-2012 geometry, 2012-2013 geometry with neopentane in the wirechamber,
+and 2012-2013 with isobutane in the wirechamber. Matching the proper spin state simulation to the polarization orientation
+in the $\beta$-decay runs allows one to analyze the simulated data identically to the data. By comparing the
+extracted asymmetries to the input value of $A_0$, we can ensure that the analysis method is at least internally
+consistent.
+
+A special thanks is in order for X. Sun for his contributions to the polarized event generator.
 
 \subsection{Output}
-The Geant4 simulation provides adequate trajectory tracking along with
+The \textsc{Geant4} simulation provides trajectory tracking along with
 the energy deposition along these tracks. Obviously we have access to far
 more information in the simulation than we do with actual data, so the first
-task is to construct observables related to those coming from the detectors.
+task is to construct observables that are more useful.
 
 \subsubsection{Energy Deposition}
 By tallying the energy deposited along an entire track within some subset
@@ -497,18 +620,23 @@ the SCS. The areas of highest interest for the sake of analysis are the
 wirechambers and the scintillators. The energy deposited in the scintillator
 is of utmost importance, as the analysis can be completed without knowledge
 of the energy deposition in the wirechamber, where determination of energy
-deposition is only used for type II/III separation. From here on,
+deposition is only used for Type 2/3 backscattering separation. From here on,
 the energy lost in the scintillator, as determined from simulation, will be
-referred to as $E_{dep}$. This is the maximum energy which could be detectable
+referred to as $E_{\mathrm{dep}}$. This is the maximum energy which could be detectable
 for an event in the data if no inconspicuous energy losses existed.
 
 \subsubsection{Quenched Energy} \label{sssec:Equenched}
+In reality, the energy that is visible in the form of scintillation light is not exactly
+equal to $E_{\mathrm{dep}}$, but rather some of the energy is ``quenched'' when
+the energy deposition per unit length grows large near the end of a track. The
+empirical description for the light output 
+
+
 Show Birk's law. Talk about MPM and jianglai's analysis to determine
 quenching parameters. Then talk about the modification using BradF's note
 and show the shift to the functional form. Also show a figure which shows
 the quenched energy vs Edep.
 
-\subsubsection{Magnetic Field} \label{sssec:simMagField}
 
 \subsubsection{Position of Detector hits}
 Talk briefly of importance of position dependence, and maybe address
@@ -516,7 +644,7 @@ the way the position for the wirechamber and scintillator are calculated.
 I believe this was a weighted average of the track positions where the
 weights are given by the energy deposition.
 
-\subsection{Simulating Detector Response}
+\subsection{Detector Response Model}
 While all pertinent components of the experimental apparatus were included
 in the simulation, the detector response is not inherent within our
 output. You may notice from (figure with quenched energy) that this
@@ -527,8 +655,6 @@ from real data. The better we understand the conversion from a pure simulation
 energy output to a response which mimics that from our actual detectors, the
 more credence we can put in our calibration. For the time being, the model will
 be introduced with parameter determination addressed as it arises. 
-
-\subsection{Detector Response Model}
 
 Recall from Section \ref{sssec:pmtModel} that we can relate a digital signal
 in a PMT, $ADC_i$, to the energy deposited in the scintillator
