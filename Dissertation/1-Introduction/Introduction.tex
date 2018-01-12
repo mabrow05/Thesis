@@ -167,10 +167,11 @@ interaction Hamiltonian as there is no propagator, or force carrier, to mediate 
 interaction between the two currents. At the most fundamental level, the decay proceeds as is shown
 in Figure \ref{fig:pointInteraction} panel (b), where a $d$ quark decays into a $u$ quark
 via the emission of a massive $W^-$ boson. The mass of the $W$ ($\sim 80$~GeV) is much larger than
-the energy available in the decay, and thus the $W$ almost instanstaneously decays into
+the energy available in the decay, and thus the $W$ almost instantaneously decays into
 the $e^-$ and $\bar{\nu}_e$. The fact that the subsequent $W$ decay is ``almost'' instantaneous
 makes Fermi's contact interaction a good approximation. More formally, the small momentum transfer in nuclear
-$\beta$-decay compared to the mass of the $W$ boson makes the propagator take a constant form, thus absorbing
+$\beta$-decay compared to the mass of the $W$ boson makes the propagator approach a constant form
+(in the limit $q^2\rightarrow 0$), thus absorbing
 the propagator into the coupling constant.
 
 The theory
@@ -201,7 +202,7 @@ lends itself to the definition of
 two types of allowed $\beta$-decay transitions. The Fermi transition proceeds through the
 scalar and vector currents with $\Delta J=0$ and no parity change. Gamow-Teller transitions
 correspond to the axial vector and tensor currents and have $\Delta J=0,\pm1$ with no parity change,
-but excluding the $0^+\rightarrow 0^+$ nuclear transitions. The pseudoscalar terms does not
+but excluding the $0^+\rightarrow 0^+$ nuclear transitions. The pseudoscalar term does not
 contribute to the amplitude in the low energy limit \cite{renton1990}.
  
 
@@ -211,10 +212,10 @@ contribute to the amplitude in the low energy limit \cite{renton1990}.
 
 Prior to the 1950's, all discrete symmetries (parity, charge conjugation, and time reversal)
 were thought to be conserved separately for all interactions in nature. A dilemma arose when
-two particles, called the $\tau$ and $\theta$ mesons at the time, posessed the same mass
+two particles, called the $\tau$ and $\theta$ mesons at the time, possessed the same mass
 and charge as the $K^+$ meson, but decayed to different final states of parity. The $\tau$ decayed into three pions
-and the $\theta$ into two pions. The initial classification of the two observably identical particles into
-two different particles was logical given that parity conservation was then sacrosanct,
+and the $\theta$ into two pions. The initial classification of the two otherwise identical particles into
+separate particles was logical given that parity conservation was then sacrosanct,
 but in 1956 Lee and Yang proposed a very different solution to the problem. They realized that
 there was no evidence that parity must be conserved in the weak interaction.
 In the full expression of Fermi's theory (Equation \ref{eq:FermiFull}),
@@ -225,7 +226,7 @@ $P(\bar{\psi}_p \gamma_\mu \gamma^5 \psi_n) \rightarrow -\bar{\psi}_p \gamma_\mu
 muliplication of two such terms transforms like a scalar. Thus, none of the terms in \ref{eq:FermiFull})
 are capable of violating parity, as the Hamiltonian would remain invariant under a parity transformation. 
 
-In their 1956 paper \cite{leeyang1956}, Lee and Yang modified the weak ineraction Hamiltonian
+In their 1956 paper \cite{leeyang1956}, Lee and Yang modified the weak itneraction Hamiltonian
 by including the possibility of a pseudoscalar current-current interaction, namely
 %
 \begin{multline}
@@ -238,7 +239,7 @@ by including the possibility of a pseudoscalar current-current interaction, name
 \end{multline}
 %
 If any of the $C'_i$ coefficents are nonzero, parity would not be conserved due to
-the scalar-pseudoscalar form of the current-current interactions that are labelled by
+the scalar-pseudoscalar form of the current-current interactions that are labeled by
 the primed coefficients.
 
 Along with the inclusion of potential parity violating terms in the Hamiltonian, Lee and Yang
@@ -260,27 +261,34 @@ which is precisely what was discovered and can be seen in Figure \ref{fig:wuData
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.50]{1-Introduction/wuData.png}  
-  \caption{Data from C. S. Wu's experiment measuring the correlation between the emitted
+  \caption{Data from C. S. Wu's experiment \cite{wu1957} measuring the correlation between the emitted
     direction of the electron from the decay of polarized $^{60}\mathrm{Co}$. The two
     curves represent the counting rates when the nuclei were oriented in opposite
     directions with respect to the electron detector. The existence of a splitting
     indicates a violation of parity as the electrons are preferentially emitted in the
-    direction opposite the spin.}
+    direction opposite the spin. The asymmetry disappearance coincices with the spin relaxation time
+    of the $^{60}\mathrm{Co}$ nuclei.}
   \label{fig:wuData}
 \end{figure}
 
 The measurement showed that the electrons were preferentially
-emitted in the direction opposite the spin of the nuclei, which indicates parity violation due to
-the position inverted scenario not being observable. This is evident when considering that
-a correlation between the spin and the momentum takes the form $\vec{\sigma} \cdot \vec{p}$.
+emitted in the direction opposite the spin of the nuclei. It is straightforward to illustrate
+how such a preference in emission direction indicates parity violation. Start by considering that
+a correlation between the spin of the nucleus and the momentum of the electron
+must take the form $\vec{\sigma} \cdot \vec{p}$.
 The spin is a type of angular momentum and transforms as an axial vector under spatial inversion
-($P\vec{\sigma}=\vec{\sigma}$), while the momentum is a normal vector and
-simply changes sign under parity ($P\vec{p}=-\vec{p}$). Thus the existence of
-such a term in the decay rate (as will be shown in Section \ref{ssec:correlations}) makes the
-decay rate noninvariant under a parity transformation, and the position inverted scenario
-is automatically impossible since the spin vector would not change but we would expect to see
-the electron direction flip. This would result in electrons emitted aligned with the direction
-of the spin, which is not the observed case. From the theory presented thus far,
+($P\vec{\sigma}=\vec{\sigma}$), while the momentum is a polar vector and
+simply changes sign under parity ($P\vec{p}=-\vec{p}$). Thus the $\vec{\sigma} \cdot \vec{p}$
+combination is itself odd under parity ($P\vec{\sigma} \cdot \vec{p} = \vec{\sigma} \cdot (-\vec{p}) = -\vec{\sigma} \cdot \vec{p}$).
+The presence of
+a $\vec{\sigma} \cdot \vec{p}$ term in the decay rate, the existence of which the Wu result confirms,
+%as will be shown in Section \ref{ssec:correlations})
+makes the
+decay rate noninvariant under a parity transformation.
+The parity inverted scenario would show a preference for the electrons to be emitted aligned
+with the spin, which is not the observed case. Thus parity is not conserved in the
+weak interaction.
+From the theory presented thus far,
 the interaction involved was either axial vector or tensor, because decay of
 $^{60}\mathrm{Co} (J^p=5^+) \rightarrow {^{60}\mathrm{Ni}}(J^p=4^+)$ proceeds stricly through
 the Gamow-Teller transition. Whether the tensor or axial vector current (or both) was responsible
@@ -290,7 +298,8 @@ It should be noted that, following the news of Wu's result, Garwin, Lederman, an
 Weinrich \cite{garwin1957} from Columbia confirmed
 that parity is violated using the subsequent decays of $\pi^+ \rightarrow \mu^++\nu_\mu$
 followed by $\mu^+ \rightarrow e^+ + \bar{\nu}_e + \nu_\mu$. This was another process
-recommended by Lee and Yang. The premise is that the chiral odd neutrino in the first decay
+recommended by Lee and Yang. The premise is that the chiral odd neutrino (the spin of the neutrino
+is anti-aligned with its momentum, more on this in Section \ref{ssec:VminusA}) in the first decay
 forces the muon to be polarized in the direction of its momentum to conserve angular
 momentum. The polarized muon then decays and can thus be analyzed much like one would analyze the
 $\beta$-decay of a polarized nucleus, looking for correlations between the muon and
@@ -308,7 +317,7 @@ are observable, this gives
 %
 \begin{multline}
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
-  p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
+  p_e E_e \big( E_0 - E_e \big)^2 \\ \times \xi 
   \Bigg\{ 1 + a\frac{\vec{p}_e \cdot \vec{p}_\nu}{E_e E_\nu} + b\frac{m_e}{E_e} 
   + \frac{\langle\vec{ J }\rangle}{J} \cdot \Bigg[ A\frac{\vec{p}_e}{E_e}
     + B\frac{\vec{p}_\nu}{E_\nu} + D\frac{\vec{p}_e \times \vec{p}_\nu}{E_e E_\nu}\Bigg] \\
@@ -327,7 +336,7 @@ are observable, this gives
     + S\frac{\langle \vec{J} \rangle}{J} \frac{\vec{p}_e\cdot \vec{p}_\nu}{E_e E_\nu} \\
     + T\frac{\vec{p}_e}{E_e}\frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p}_\nu}{E_\nu}
     + U\frac{\vec{p}_\nu}{E_\nu}\frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p}_e}{E_e}
-    + W\frac{\vec{p}_e}{E_e+m_e}\frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p_e \times p}_\nu}{E_e E_\nu}
+    + W\frac{\vec{p}_e}{E_e+m_e}\frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p}_e \times \vec{p}_\nu}{E_e E_\nu}
     \Bigg]
   + V\frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{\sigma} \times \vec{p}_\nu}{E_\nu}
   \Bigg\}
@@ -335,12 +344,13 @@ are observable, this gives
 \end{multline}
 %
 where $F(\pm Z, E_e)$ is the Fermi function (a shape correction to the spectrum
-from coulomb interactions), $E$ is the energy of a given particle, $E^0$ is the endpoint
+from Coulomb interactions), $E$ is the energy of a given particle, $E_0$ is the endpoint
 energy of the electron, $\vec{p}$ is the particle momentum, $\vec{J}$ is the spin of the
-decaying nucleus (or nucleon), and $\vec{\sigma}$ is the spin of the electron. All of the correlation coefficients
+decaying nucleus (or nucleon), $\hat{\jmath}$ is a unit vector in the direction of $\vec{J}$,
+and $\vec{\sigma}$ is the spin of the electron. All of the correlation coefficients
 are functions of the coupling constants in the weak Hamiltonian (see Equation \ref{eq:leeyang}),
 as is $\xi$. The correlation coefficients and $\xi$ are also functions of Fermi and Gamow-Teller
-transition amplitudes \footnote{For the complete defitions see \cite{jackson1957a,jackson1957b,ebel1957}}.
+transition amplitudes \footnote{For the complete definitions see \cite{jackson1957a,jackson1957b,ebel1957}}.
 
 Foreshadowing upcoming sections, we write down the definitions of $\xi$ and $A\xi$ (ignoring Coulomb
 corrections):
@@ -387,12 +397,12 @@ relationships between the different coupling constants, but it would take observ
 of the behavior of the observed neutrinos and electrons to determine the true structure
 of the interaction Hamiltonian.
 
-\subsection{$V-A$ Structure}
+\subsection{$V-A$ Structure} \label{ssec:VminusA}
 
 By 1956, the theory of the weak interaction had developed from a purely vector current-current
 process into
 a combination of all possible Lorentz invariant current-current interactions and finally to the potential mixture
-of current-current terms that transform as scalars and pseudoscalars in order to accomodate
+of current-current terms that transform as scalars and pseudoscalars in order to accommodate
 parity violation. At this point, the theory needed to rely on experiment to determine
 which couplings were nonzero.
 
@@ -434,7 +444,7 @@ assumes that the V-A structure is universal within the weak interaction\footnote
 The theories of Feynman and Gell-Mann (and Sudarshan and Marshak)
 explained the observations at that time
 regarding the weak interaction. Then, also in 1958, confirmation of the V-A theory arrived when
-Goldhaber, Gradzins, and Sunyar indirectly measured
+Goldhaber, Grodzins, and Sunyar indirectly measured
 the helicity of the neutrino in electron capture on $^{152}\mathrm{Eu}$ and determined the
 emitted neutrino was indeed left-handed
 \cite{goldhaber1958,greiner1996}. It should be noted that these two theories differed from that of
@@ -530,7 +540,7 @@ To account for potential differences in the hadronic current, the
 Hamiltonian is modified slightly,
 %
 \begin{equation} 
-  H = G_F \Big(\bar{\psi}_p \gamma_\mu(g_V-g_A\gamma^5)\psi_n \Big)\Big(\bar{\psi}_{e} \gamma^\mu(1-\gamma^5)\psi_{\bar{\nu}} \Big),
+  H = G_F \Big(\bar{\psi}_p \gamma_\mu(g_V+g_A\gamma^5)\psi_n \Big)\Big(\bar{\psi}_{e} \gamma^\mu(1-\gamma^5)\psi_{\bar{\nu}} \Big),
   \label{eq:VminusA2}
 \end{equation}
 %
@@ -541,8 +551,11 @@ which lends itself to the definition
 \end{equation}
 
 The presence of the spectator quarks in the hadron
-can effectively renormalize the interaction, creating
-nonzero values for $g_V$ and $g_A$, and thus making them different from the
+can effectively renormalize the interaction, which can
+precipitate values of $g_V\neq 1$ and $g_A\neq -1$,
+%creating values for $|g_V|$ and $|g_A|$ different from unity (as one may guess from inspection of Equation \ref{eq:VminusA2}, $g_A$ is negative
+%under this convention),
+thus making the hadronic couplings different from the
 couplings in the leptonic current.
 
 \subsubsection{Conserved Vector Current Hypothesis}
@@ -608,7 +621,7 @@ Cabibbo found that $\theta_C \approx 13\degree$ described the observed differenc
 
 At the time Cabibbo introduced his modification, only the up, down and strange quarks were known
 to exist. Glashow, Iliopoulos, and Maiani proposed the existence of a fourth quark, the charm quark,
-with charge $+2/3$ as a complimentary particle in the weak doublet with the strange quark, to explain
+with charge $+2/3$ as a complementary particle in the weak doublet with the strange quark, to explain
 an observed discrepancy in the decay rate of $K^0 \rightarrow \mu^+ + \mu^-$ \cite{glashow1970}.
 Validation of the GIM mechanism arrived with the discovery of the
 charm quark in 1974.
@@ -668,13 +681,14 @@ The existence of non-zero off diagonal terms means that there are non-zero proba
 weak interactions between quarks of different generations, given that it is energetically
 allowed. The complex phase ($\delta$) present in the CKM
 matrix also accounts for CP-violation in weak interactions.
-The elements of the CKM matrix must be measured experimentally, and the unitarity of the matrix
-is an important test of the Standard Model. If
+The elements of the CKM matrix must be measured experimentally, and the unitarity of the matrix,
 %
 \begin{equation}
   |V_{ud}|^2 + |V_{us}|^2 + |V_{ub}|^2 = 1,
 \end{equation}
-then the Standard Model contains only the three observed generations of quarks.
+is an important test of the three quark nature of the Standard Model. If
+instead the CKM matrix is found to not be unitary, this would indicate the presence of
+new beyond Standard Model physics, an example of which could be a fourth generation of quarks.
 
 
 \section{What does this mean for the neutron?}
@@ -704,7 +718,7 @@ and the hadronic current $J^\mu$, written in the style of \cite{gardner2001}, is
 %\end{multline}
 %
 where the terms included are all those that satisfy translational and Lorentz invariance. Notice the
-usual $f_1(0)=g_V$ and $g_1(0) = -g_A$ terms from the earlier construction of the weak interaction
+usual $f_1(0)=g_V$ and $g_1(0) = g_A$ terms from the earlier construction of the weak interaction
 (Equation \ref{eq:VminusA2}). The
 rest of the couplings
 account for modifications to the hadronic current from other mechanisms (nuclear recoil and Coulomb for example)
@@ -736,7 +750,7 @@ Equation \ref{eq:jackson} simplifies drastically,
 %
 \begin{multline}
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
-  p_e E_e \big( E^0 - E_e \big)^2 \\ \times \xi 
+  p_e E_e \big( E_0 - E_e \big)^2 \\ \times \xi 
   \Bigg\{ 1 + a\frac{\vec{p}_e \cdot \vec{p}_\nu}{E_e E_\nu} + b\frac{m_e}{E_e} 
   + \frac{\langle \vec{J} \rangle}{J} \cdot \Bigg[ A\frac{\vec{p}_e}{E_e}
     + B\frac{\vec{p}_\nu}{E_\nu} + D\frac{\vec{p}_e \times \vec{p}_\nu}{E_e E_\nu}\Bigg]
@@ -749,7 +763,7 @@ of the decay electron are observable, which further simplifies Equation \ref{eq:
 %
 \begin{multline}
   \frac{d\Gamma}{dE_e dE_\nu d\Omega_e d\Omega_\nu} = \frac{1}{2} \frac{F(\pm Z, E_e)}{\big( 2\pi \big)^5}
-  p_e E_e \big( E^0 - E_e \big)^2 \times \xi 
+  p_e E_e \big( E_0 - E_e \big)^2 \times \xi 
   \Bigg\{ 1 + b\frac{m_e}{E_e} 
   + A \frac{\langle \vec{J} \rangle}{J} \cdot \frac{\vec{p}_e}{E_e}
   \Bigg\}.
@@ -817,12 +831,12 @@ where
   \lambda = \frac{C_A}{C_V} = \frac{g_A}{g_V}.
 \end{equation}
 
-This expression for $A$ is free of recoil order and Coulomb corrections, and so it is
+This expression for $A$ does not account for recoil order and Coulomb modifications to the asymmetry, and so it is
 often referred to as $A_0$. Thus we see that upon measuring the $\beta$-decay
 asymmetry parameter $A$, we must make modifications to the measured value to extract
 $A_0$. From $A_0$, a direct determination of $\lambda = \frac{g_A}{g_V}$, the ratio of the axial-vector to vector
 coupling constants in the hadronic weak interaction, follows.
-These corrections are below.
+These corrections are detailed below.
 
 \subsubsection{Recoil order corrections}  \label{sssec:ROCorr}
 
@@ -867,10 +881,11 @@ $d_1$ (via the $x^0$ and $x^1$ energy dependence) from measurements of both $A$ 
   \cite{jackson1957a}, if the extracted coupling constants differ from SM bounds or if the
   values of the extracted couplings are not consistent with each other.
 \end{displayquote}
+Part of the ever-continuing motivation for carrying out precision measurements for
+neutron decay correlation parameters like $A$ is to place more stringent limits on
+beyond SM physics.
 
-Current experimental limits are not yet at the precision needed to provide stringent
-limits on the beyond SM physics, but this is motivation to continue to measure
-neutron decay correlation parameters like $A$.
+
 
 \subsubsection{Electromagnetic Corrections} \label{sssec:RadCorr}
 
@@ -879,7 +894,7 @@ decay kinematics can be affected by both exchanging photons with the other
 constituents or Bremsstrahlung radiation as the electron moves through the field.
 Fermi initially accounted for modifications to the electron wavefunction from the
 presence of a point nucleus \cite{fermi1934versuch,wilkinson1982}, which appears
-as the Fermi correction to the phase space factor as seen the
+as the Fermi correction to the phase space factor as seen in the
 angular distribution in Equation \ref{eq:jackson}.
 
 The radiative correction of order $\alpha$ (the fine structure constant) to the
@@ -920,8 +935,8 @@ The neutron lifetime is given by
   \frac{1}{\tau_n} = \frac{G_F^2 m_e^5}{2\pi^3}V_{ud}^2 \big(1+3\lambda^2)f(1+\mathrm{RC})
 \end{equation}
 %
-where $f$ is the phase space factor and $(1+\mathrm{RC})$ accounts for recoil order
-corrections \cite{czarnecki2004precision}. If we take $G_F$ to be known from muon decay and $\lambda$ from
+where $f$ is the phase space factor and $(1+\mathrm{RC})$ accounts for radiative
+corrections \cite{czarnecki2004precision,marciano2006}. If we take $G_F$ to be known from muon decay and $\lambda$ from
 measurements of correlation paramaters (like $A$), then we see that upon measuring the
 neutron lifetime $\tau_n$, there is only one unknown: the CKM matrix element $V_{ud}$.
 We can rewrite the lifetime equation as
@@ -931,10 +946,11 @@ We can rewrite the lifetime equation as
 \end{equation}
 where the known values from $G_F$, $f$, and $(1+\mathrm{RC})$ have been combined.
 The uncertainty on the numerator comes from the combined uncertainties on
-the recoil corrections and the small uncertainty on $G_F$. Here we see that
+the radiative corrections, the leading uncertainty of which comes from
+the $\gamma W$-box diagram, and the small uncertainty on $G_F$. Here we see that
 by measuring the neutron lifetime and $\lambda$ from free neutron decay,
 one can determine $V_{ud}$ solely from neutron decay. 
-To date, the most precise determination of $V_{ud}$ come from nuclear
+To date, the most precise determination of $V_{ud}$ comes from nuclear
 $\beta$-decay of $0^+ \rightarrow 0^+$ which is purely a vector interaction
 and thus does not contain the axial-vector renormalization $g_A$.
 
@@ -951,12 +967,12 @@ quite differently than typically expected!
 
 In the UCNA experiment, neutrons
 with kinetic energies $<~350$~neV and speeds $<~8$~m/s are utilized to measure
-the neutron $\beta$-decay asymmetry parameter $A$. Neutron's of such energies
+the neutron $\beta$-decay asymmetry parameter $A$. Neutrons of such energies
 are called ultracold neutrons, and will often be referred to simply as UCN. The
 low energy of these neutrons means they can be trapped in material bottles, manipulated
 with magnetic fields, and even affected by gravity.
 
-\subsubsection{Fermi Potential} \label{sssec:fermipotential}
+\subsection{Fermi Potential} \label{sssec:fermipotential}
 
 As mentioned, UCN can be confined within material bottles, meaning that they are
 totally internally reflected from certain surfaces no matter the angle of incidence.
@@ -996,7 +1012,7 @@ Fermi potentials, UCN can be guided to the experimental volume and then held unt
 \end{table}
 
 
-\subsubsection{Gravity}
+\subsection{Gravity}
 
 As in classical physics, the neutron posesses gravitational potential energy of the form
 %
@@ -1011,7 +1027,7 @@ a change in height to lower the UCN energy to a regime which can be guided by ce
 materials as seen in Section \ref{sssec:fermipotential}, or they can be accelerated using
 a decrease in height to assist in detection of the UCN \cite{golub1991ultra}.
 
-\subsubsection{Magnetic Fields}
+\subsection{Magnetic Fields}
 
 The neutron has an instrinsic magnetic moment given by
 ${\mu}_n = -1.91304272(45){\mu}_N$ \cite{pdg} which arises from the quark makeup of the neutron.
@@ -1067,7 +1083,7 @@ and physical masses for the particles, one can, for example, extract the couplin
 hadronic current (Equation \ref{eq:hadronicCurrent}). The limiting factor for lattice QCD
 determinations of any parameter is the statistical precision from finite Monte Carlo sampling
 and systematic uncertainties associated with the extrapolations, but recent improvements in
-LQCD calculatations \cite{bhattacharya2016,capitani2017iso,berkowitz2017accurate}
+LQCD calculatations \cite{bhattacharya2016,capitani2017iso,berkowitz2017accurate,chang2017nucleon}
 show promise in soon reaching comparable precision for $g_A$ in relation to
 experiment. As such, comparison between the measured and LQCD results will allow for limits on
 beyond Standard Model right-handed currents in the weak interaction, as what is actually measured experimentally
@@ -1092,7 +1108,7 @@ is $g'_A = g_A(1-2\epsilon_R)$, where $\epsilon_R$ denotes the effective right-h
 Measurements of $A_0$ provide the most sensitive value of $\lambda = g_A/g_V$,
 which we now see has profound impact within the physics community.
 Measurements of $a_0$, the correlation between the electron momentum and
-neutrino momentum, are of comparable sensititivity, but such measurements are inherently more difficult.
+neutrino momentum, are of comparable sensitivity, but such measurements are inherently more difficult.
 They require either the reconstruction of the neutrino momentum through measurement of the recoil proton
 kinetic energy \cite{darius2017measurement}, which is less than 760~eV compared to the $\sim782$~keV endpoint
 of the electron, or through direct measurement of
@@ -1108,10 +1124,12 @@ to the relatively large systematic corrections applied for the older pre-2002 re
 all corrections being $<2\%$ for the newer post-2002 results \cite{brown2017}.
 
 The Mendenhall \textit{et al.} result \cite{mendenhall2013} is the UCNA predecessor to the current analysis
-presented within this thesis. It should be noted that all measurements prior to Mendenhall \textit{et al.}
+presented within this thesis. It should be noted that all measurements prior to Mendenhall
+\textit{et al.}\footnote{There are earlier UCNA results \cite{pattie2009first,liu2010determination}, but only the more recent
+  Mendenhall result is used in calculating the PDG average of $A_0$.}
 used cold neutron beams, whereas UCNA utilizes ultracold neutrons, and thus necessitates far different
 systematic corrections to the measured asymmetry compared to the other experiments. This makes the UCNA experiment
-a great compliment to the other measurements to ensure no unforeseen systematic bias to the experimentally
+a great complement to the other measurements to ensure no unforeseen systematic bias to the experimentally
 determined value of $A_0$ and $\lambda$ from cold neutron techniques. Present results from UCNA already
 confirm that the shift in $A_0$ values seems to
 be motivated by better experimental techniques as a whole and that post-2002 results are perhaps more aligned with the
