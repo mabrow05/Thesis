@@ -56,7 +56,8 @@ increase in UCN production.
 A schematic to assist in the understanding of the source at the time of data-taking
 for this analysis is found in Figure
 \ref{fig:sourceFig}. The process begins with delivery of protons from the 800~MeV proton
-accelerator operated in pulsed mode, with pulses repeated at a rate of 0.2~Hz.
+accelerator operated in pulsed mode, with pulses repeated at a rate of 0.2~Hz and a typical
+integrated proton current on target of $5-10~\mu$A.
 The protons strike a helium-cooled tungsten target (12~cm long) and produce
 spallation neutrons at roughly 20~MeV. The spallation target is surrounded by
 a room temperature beryllium reflector to help direct as many neutrons as
@@ -67,6 +68,8 @@ pass through a 1~cm thick moderator made of polyethylene beads cooled with the b
 from the cooling of the $\mathrm{SD}_2$ source in the cryostat.
 UCN are produced using the superthermal interaction of a cold neutron with the $\mathrm{SD}_2$,
 which transfers most of the neutron's energy to a phonon in the crystal \cite{golub1991ultra}.
+The $\mathrm{SD}_2$ is constantly cooled with liqiud He, thereby contiuously removing
+the heat. 
 
 The $\mathrm{SD}_2$ source is a cylinder 19.7~cm in diameter and 5.7~cm tall. There
 is a collection of ``fins'', or vertical teeth-like structures, located in
@@ -82,7 +85,7 @@ the biological shielding that surrounds the source. The higher 342~neV potential
 the $^{58}\mathrm{Ni}$ ensures that all neutrons which are capable of being guided by the
 stainless steel (189 neV potential) are confined within the entirety of the vertical guide
 \cite{saunders2013performance}. Upon looking at Figure \ref{fig:guides}, one sees that
-there are two $45\degree$ bends in the stainless steal guides to remove neutrons still
+there are two $45\degree$ bends in the stainless steel guides to remove neutrons still
 exceeding the UCN regime \cite{plaster2012}.
 
 \begin{figure}[h]
@@ -114,7 +117,7 @@ the UCN are guided through the 7~T primary polarizing magnet (or AFP magnet). At
 the guides switch to 100~cm of diamondlike carbon coated quartz guides \cite{mammei2010thin}
 for passage through the Adiabatic Fast Passage (AFP) spin flipper \cite{holley2012high}.
 The guides then switch back to circular copper guides before coupling to a rectangular
-(4~cm width $x$ 7~cm height) copper guide which transports the neutrons into the 1~T field
+(4~cm width $\times$ 7~cm height) copper guide which transports the neutrons into the 1~T field
 inside the Superconducting Spectrometer (SCS).
 
 Prior to the beginning of running in 2011, a shutter was installed between the decay trap and
@@ -152,7 +155,7 @@ a gradient is introduced in the holding field $B_0$ while the frequency of
 the rotating field is held constant. With proper tuning, the resonance condition is met, and as long
 as adiabaticity is maintained, the spin flips direction. The conditions for adiabaticity defined in terms
 of pertinent field parameters for this setup can be found in
-\cite{holley2012high}. Testing of the apparatus indicates an efficiency of $0.9985\pm0.0004$ \cite{holley2012high}.
+\cite{holley2012high}. The most recent polarimetry measurements indicate an efficiency $>99.9\%$ \cite{brown2017}.
 
 \begin{figure}[h]
   \centering
@@ -161,13 +164,13 @@ of pertinent field parameters for this setup can be found in
   \label{fig:setup}
 \end{figure}
 
-\section{Super-conducting Solenoidal Spectrometer}
+\section{Superconducting Solenoidal Spectrometer}
 
 The spectrometer consists mainly of the superconducting solenoidal magnet designed to produce
 the 1~T central field, a decay trap to contain the UCN until they decay, and detector
 packages located at each end of the spectrometer to detect decay electrons after they spiral
 about the field lines towards either detector. The detectors are referred to as
-East and West based on their orientaion in the experimental area.
+East and West based on their orientation in the experimental area.
 Brief descriptions of the main components follow.
 
 \subsection{Decay Trap}
@@ -181,7 +184,8 @@ directly below a 0.64~cm hole in the decay trap.
 One of the main differences between the 2011-2012 and 2012-2013 run periods was the thickness and
 material of the decay trap endcaps (sometimes interchangeably referred to as decay trap windows).
 In both geometries the endcaps were coated with 150~nm of
-Be (potential 252 neV) to aid in reflecting neutrons to confine them. The 2011-2012 endcaps
+Be (potential 252 neV) to aid in reflecting neutrons to confine them, which increases the
+UCN density and thus the decay rate. The 2011-2012 endcaps
 were 500~nm Mylar on both the East and West detectors, while the 2012-2013 endcaps were made of 6F6F
 \cite{hoedl2003} and were 130~nm (East) and 180~nm (West) thick. The change in endcap thickness
 is the primary reason for analyzing the two sets of data separately, as this changes the
@@ -190,7 +194,7 @@ systematics involving electron backscattering.
 \subsection{Magnetic Field} \label{ssec:MagneticField}
 
 The general requirements for the magnetic field within the decay trap was that it must be aligned with
-the axis of the decay trap to define the axis of polarization, strong enough to confine the larmor
+the axis of the decay trap to define the axis of polarization, strong enough to confine the Larmor
 radius of the decay electrons as they spiral toward the detectors, and uniform enough that
 electrons will not be reflected.
 
@@ -233,11 +237,13 @@ the 1~T field region, using $x_{\mathrm{trap}} = \sqrt{0.6} \times x_{\mathrm{MW
 In 2011-2012 and 2012-2013, the magnetic field was not as uniform as reported in 
 \cite{plaster2008solenoidal} due to damage to the shim coil persistence heater switches
 caused by multiple magnet quenches \cite{plaster2012}. A typical field profile can be seen
-in Figure \ref{fig:field_profile}, where the uniformity is at the $10^{-3}$ level, but there is
-pronounced dip in the center. Electrons
+in Figure \ref{fig:field_profile}, where a pronounced dip exists in the center due to the damage
+mentioned above. The uniformity outside the dip is at the $10^{-4}$ level, while the dip is
+$\sim4\times 10^{-3}$. Electrons
 that originate in the dip region can become trapped if the condition in equation
 \ref{eq:fieldReflection} is satisfied. The electron then only exits the field dip
 upon scattering from the residual gas in the decay trap which randomizes the direction
+and energy
 of the electron. The effect
 on the asymmetry from the field
 dip is addressed as a systematic
@@ -248,9 +254,9 @@ uncertainty in Section \ref{sssec:MagFieldSyst}.
 
 \subsubsection{Multiwire Proportional Chamber} \label{sssec:ExpMWPC}
 
-The multiwire proportional chamber (MWPC, or sometimes simply called the wirechamber)
+The multiwire proportional chamber (MWPC, or sometimes called the wirechamber throughout this work)
 \cite{ito2007,plaster2012} is
-utilized to reconstruct the position of the electron events and to reduce the ambient
+utilized to reconstruct the transverse position of the electron events and to reduce the ambient
 backgrounds. The MWPC consists of an anode plane in between two cathode planes, with the cathode
 planes oriented perpendicular to one another to allow for position reconstruction in both directions
 transverse to the axis of the SCS. There are
@@ -259,7 +265,7 @@ MWPC is $16.3 \times 16.3\mathrm{~cm}^2$ which maps to
 $ (\sqrt{0.6} \times 16.3) \times (\sqrt{0.6} \times 16.3) \mathrm{~cm}^2 = 12.6 \times 12.6\mathrm{~cm}^2$ coverage
 within the decay trap (remember the decay trap is within the 1~T field while the detectors
 are in the field expansion region with field of 0.6~T), thus the wirechamber covers the full
-decay trap exit. The anode wires are $10\mathrm{~\mu{m}}$ in diameter while the cathode
+decay trap cross-sectional area. The anode wires are $10\mathrm{~\mu{m}}$ in diameter while the cathode
 wires are $78.2\mathrm{~\mu{m}}$ in diameter, with the diameter of the cathode wires slightly
 larger than in previous run periods ($50\mathrm{~\mu{m}}$).
 
@@ -281,17 +287,18 @@ consecutive wires, so there are 16 ADC channels for each wirechamber cathode pla
 signal can be effectively used for the MWPC software trigger.
 
 The fill
-gas chosen for the MWPC should be low Z (low atomic number) to minimize the backscattering from heavy nuclei,
+gas chosen for the MWPC should be low Z (low atomic number) to minimize the backscattering from heavy nuclei
+($d\sigma/d\Omega \propto Z_{\mathrm{target}}^2$),
 but also electron dense to increase the ionization efficiency. Thus complex large molecules
 made up of low Z nuclei are good candidates.
-The MWPC during runnning was primarily filled with neopentane ($\mathrm{C}_5\mathrm{H}_{12}$) gas at a pressure of
+The MWPC during running was primarily filled with neopentane ($\mathrm{C}_5\mathrm{H}_{12}$) gas at a pressure of
 100~Torr, chosen to ensure enough gain for electrons within the $\beta$-decay spectrum. For a
 short time period in 2012-2013, the neopentane ran out and isobutane ($\mathrm{C}_5\mathrm{H}_{10}$)
 was used instead. Separate simulations were used for the isobutane runs, but no appreciable
 difference was noticed.
 
 The windows on the wirechamber are made as thin as possible so as to reduce backscattering, but still
-retain their integrity under the 100~T pressure difference between the SCS and the wirechamber. Events that
+retain their integrity under the 100~Torr pressure difference between the SCS and the wirechamber. Events that
 scatter off of the entrance window are particularly troublesome as they become missed backscattering events.
 The chosen front window material is $6\mathrm{~\mu{m}}$ of aluminized Mylar reinforced with Kevlar strings
 placed at 5~mm increments, and the exit window is also $6\mathrm{~\mu{m}}$ of aluminized Mylar \cite{mpmThesis}. 
@@ -299,13 +306,16 @@ placed at 5~mm increments, and the exit window is also $6\mathrm{~\mu{m}}$ of al
 The importance of the MWPC should not be understated. First of all, the position reconstruction allows for the
 definition of a fiducial volume within the decay trap so that we can cut out events which may have interacted
 with the decay trap walls. Such interactions change the energy/direction of the electron, so simply removing them
-reduces the systematic correction necessary. Secondly, the scintillator's energy response is position
+reduces the systematic correction necessary. Secondly, the scintillator light transport to the PMTs is position
 dependent, so the position of each event is needed to properly assign a reconstructed initial energy to
 each electron event. The MWPC is also vital in identifying backscattering events by looking at the energy
 deposited within the wirechamber, i.e. an event that backscatters off of the dead layer of the scintillator
 will deposit energy in the MWPC above some software cut and can be identified. And last of all,
-the wirechamber is highly insensitive to gamma rays, so by including a coincidence trigger between the wirechamber
-and the scintillator the majority of the gamma background is removed.
+the wirechamber is highly insensitive to gamma rays, thus, by including a coincidence trigger between the wirechamber
+and the scintillator, the majority of the gamma background is removed. The insensitivity is due to
+the low Z, low density gas making the probability of compton
+scattering small. Also, the $\sim$few~MeV gamma background along with the low Z gas makes pair production
+unlikely as well.
 
 \subsubsection{Scintillator}
 
@@ -320,7 +330,7 @@ From there, the twelve guides are adiabatically merged into four
 larger guides which are attached to four Hamamatsu R7725 PMTs with custom bases \cite{hickerson2013}.
 The light guides are merged and coupled to the PMTs in such a way that each PMT effectively
 covers one quadrant of the scintillator.
-A hardware two-fold trigger, or two PMTs above discriminator threshold, is required for a
+A hardware two-fold trigger, defined as two or more PMTs above discriminator threshold, is required for a
 global trigger to be issued from the PMTs.
 
 \begin{figure}[h]
@@ -344,7 +354,9 @@ sources. As depicted in Figure \ref{fig:sourceTranslate},
 these sources are placed on a source paddle and inserted into the side of the
 decay trap while under vacuum, and then they are translated across the horizontal axis of the decay
 trap. This method probes the position dependence of the scintillator, but only along one axis and
-at discrete points. The full position response is captured using another method as will be
+at discrete points (the sources are manually translated in between runs, thus the discrete source locations
+are a result of the required time and effort of the experimenter on shift).
+The full light transport position response of the scintillator is captured using another method as will be
 described later. Also detailed later in Section \ref{ssec:BiGain}, the gain of the PMTs is monitored
 and drifts corrected 
 on a run-by-run basis using a $^{207}\mathrm{Bi}$ ``pulser'' system \cite{morris1976stable}.
@@ -398,7 +410,7 @@ seen in Figure \ref{fig:TDCsig}.
     detector.
     Note that the horizontal axis is technically the time elapsed since a trigger occurred,
     so a longer time indicates an earlier
-    trigger.The dashed line
+    trigger. The dashed line
     indicates the cut used to separate a self-trigger (right of the dashed line) from a backscattering trigger
     (left of the dashed line).  The events at $t=0$ are events which did not create a self-trigger.}
   \label{fig:TDCsig}
@@ -412,11 +424,13 @@ reads all possible inputs. These include:
 \item UCN monitor $-$ used to monitor the UCN production at various
   stages along the experimental apparatus.
 \item $^{207}\mathrm{Bi}$ pulser event $-$ This is a high threshold, single PMT trigger, so if one PMT
-  has a trigger above a preset high threshold, but no other PMT has any trigger, this indicates the
+  has a trigger above a pre-set high threshold, but no other PMT has any trigger, this indicates the
   pulser created the trigger at the PMT and not the scintillator. This will be addressed more in the
   next chapter.
 \item LED pulser $-$ An LED system was in place to assist in correcting any non-linearity in the
-  PMT response. This was not utilized in this analysis, but still results in a global trigger.
+  PMT response. The light output of the LED is adjustable, and so by varying the light output of
+  the LED to the PMTs, the linearity could have been monitored.
+  This was not utilized in this analysis, but still results in a global trigger.
 \item Two-fold PMT trigger $-$ at least two of the four PMTs on one side must have signal above a pre-set
   threshold. This two-fold trigger indicates a particle deposited energy in the scintillator,
   distinguishing it from noise in a single PMT, a $^{207}\mathrm{Bi}$ pulser event, or an LED event.
@@ -474,6 +488,9 @@ the order of the runs within them as seen in table \ref{tab:octetStructure}. Whe
 or the B structure comes first within an octet is determined randomly. There are four $\beta$-decay
 runs of each spin-state (aligned and anti-aligned to the magnetic field in the spectrometer), and their
 accompanying background runs allow for background subtraction. 
+The utility of using the octet run structure lies in the fact that, upon proper combination of background
+subtracted rates during analysis, any linear drifts in the background rates cancel to all orders \cite{plaster2012}.
+%By the same
 
 \begin{table}[h]
   \caption{Octet structure, where $\pm$ indicates spin flipper on/off,
@@ -491,6 +508,8 @@ accompanying background runs allow for background subtraction.
   \end{tabular}
   \label{tab:octetStructure}
 \end{table}
+
+
 
 
 
@@ -517,11 +536,13 @@ the asymmetry.
 \end{figure}
 
 Based on which detector components trigger, we classify events
-into those that do not backscatter
+into those that do not observably backscatter
 (Type 0) and those that do backscatter (Types 1, 2, and 3) \cite{plaster2012}.
 A schematic of the different event types can be seen in Figure \ref{fig:backscatterSchematic}.
-Type 0 events
-trigger one scintillator and one MWPC on the same side, while Type 1 events trigger
+Type 0 events, while not explicitly listed on the schematic, are a combination of the ``no
+backscattering'' and ``missed'' events. They
+trigger one scintillator and one MWPC on the same side. Type 1 events are
+backscattering events that trigger 
 both scintillators and both MWPCs. For such events, we assign the initial
 direction to the triggering detector for Type 0 and to the earlier triggering detector
 for Type 1. Type 2/3 events comprise a class of events that backscatter and trigger both
