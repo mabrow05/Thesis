@@ -14,8 +14,8 @@ model used to characterize our detector response.
 \fi
 
 This chapter is dedicated to introducing important aspects of the analysis that
-is not strictly tied to calibrations and asymmetry extraction, but rather
-data collection and processing to turn raw detector signals into values that
+are not strictly tied to calibrations and asymmetry extraction, but rather to the
+data collection and processing required to turn raw detector signals into values that
 can be calibrated and analyzed. 
 
 
@@ -33,19 +33,19 @@ Below are the general steps for processing the data:
 
 \begin{itemize}
 \item Determine pedestals for each PMT and subtract the pedestal from each data event.
-\item Measure the gain of each PMT and divide the drifts out of the signal.
+\item Measure the gain of each PMT and remove any time-dependent drifts from the signal.
 \item Apply a PMT-by-PMT calibration to determine the expected position dependent
   energy deposited in the scintillator
   for each event.
-\item Correct for the position dependent response of each PMT
-  to return a visible energy as seen by each PMT, $E_{\mathrm{vis},i}$.
+\item Correct for the position dependent response of each PMT $i$
+  to return a visible energy for each PMT, $E_{\mathrm{vis},i}$.
 \item Combine the four PMT energies into a single deposited energy, $E_{\mathrm{vis}}$.
 \item Convert this combined estimate of the energy deposition to a final
   reconstructed energy, $E_{\mathrm{recon}}$, to use in analysis.
 \item Calculate an asymmetry and apply all systematic corrections.
 \end{itemize}
 
-Simulations of the experimental apparatus and particle transport is also intertwined
+Simulations of the experimental apparatus and particle transport are also intertwined
 in the analysis. By simulating the underlying physical processes, we gain an understanding
 as to what the signals in our detector indicate regarding the initial event. The simulations
 consist of particle tracking and the summation of energy losses throughout
@@ -53,19 +53,23 @@ the spectrometer, and also a Detector Response Model to transform the simulation
 into detector-like signals. This process will be addressed in Section \ref{sec:DetectorResponseModel}.
 
 It is important to point out early on the difference between $E_{\mathrm{vis}}$ and
-$E_{\mathrm{recon}}$. The deposited or visible energy, $E_{\mathrm{vis}}$, is an estimate of the energy
+$E_{\mathrm{recon}}$. The  visible energy, $E_{\mathrm{vis}}$, is an estimate of the energy
 physically deposited in the
 scintillator by a particle, while the reconstructed energy, $E_{\mathrm{recon}}$, is an estimate of
 the true initial energy of an event. The two are different due to the electron losing energy
 as it traverses through the windows of the decay trap, the windows of the MWPC,
-the MWPC itself, and the dead layer of the scintillator. Of course the analysis could be
+the MWPC itself, and the dead layer of the scintillator. These energy losses are not
+``visible'' as the energy loss is not captured by any active detector component\footnote{The MWPC is technically
+  an active detector, but it is not used as part of the energy calibration of the electron, and thus losses in
+the wirechamber decrease the energy visible in the scintillator.}.
+Of course the analysis could be
 done in terms of $E_{\mathrm{vis}}$, but it is more convenient to express the results
 in terms of the true electron energy spectrum, and also the energy dependent theory modifications
 are in terms of the true initial energy of the $\beta$-decay electrons.
 
 The majority of the analysis described throughout this thesis was completed using
 the ROOT Data Analysis Framework \cite{brun1997root}. A special thanks goes out to
-the Nuclear Physics community as a whole, who have collectively built an indispensible
+the Nuclear and Particle Physics communities as a whole, who have collectively built an indispensible
 web of documentation regarding any and all things ROOT. Without the ROOT documentation
 and user community, much of this analysis would have been painstakingly more difficult.
 
@@ -132,7 +136,7 @@ together, which leads to correlations between the PMT triggers. In a perfect wor
 each PMT would have one pedestal, and that pedestal wouldn't care about other PMT's signals.
 Instead, what we see is that the pedestals
 can be dependent on the type of events that are chosen 
-to construct the pedestal, and the effect can be \~10~channels for some PMTs.
+to construct the pedestal, and the effect can be $\sim10$~channels for some PMTs.
 This indicates that the pedestal for one PMT may be dependent
 on the signal present in another PMT. These shifts are important as a
 pedestal shift of 5-10 channels maps to an offset of roughly
@@ -192,7 +196,7 @@ importance of a run-by-run pedestal subtraction.
 \subsubsection{$^{207}\mathrm{Bi}$ Pulser}
 %The goal of the $^{207}\mathrm{Bi}$ gain monitoring pulser system is to create a standard
 %candle type signal present in all PMTs to be tracked over time. 
-The primary gain monitoring system consists of a small amount $^{207}\mathrm{Bi}$
+The primary gain monitoring system consists of a small amount of $^{207}\mathrm{Bi}$
 deposited within a small block of scintillator. The scintillator was surrounded by
 light reflecting material on three sides, with the fourth side covered with an optical
 attenuator to attempt to match the light output of the $\sim$1~MeV conversion line in the $^{207}\mathrm{Bi}$
@@ -204,8 +208,9 @@ discriminators then allowed for pulser triggers with a distinct pulser identific
 
 An unfortunate but low impact issue with the pulser involves the amount of attenuation applied to the
 pulser signal. The pulser peak lies well beyond the equivalent of 1~MeV of light as would be produced
-in the detector scintillator, and therefore far outside the range of the $\beta$-decay spectrum. This
-is not a serious issue as the PMTs seem to be quite linear, so even a peak well outside the
+in the detector scintillator, and therefore far outside the range of the $\beta$-decay spectrum.
+For the level of precision achieved with this experimental configuration, this
+is not a limiting issue as the PMTs seem to be quite linear, so even a peak well outside the
 energy range of interest should suffice.
 
 \begin{figure}[h] 
@@ -213,7 +218,7 @@ energy range of interest should suffice.
 \includegraphics[scale=.60]{3-UCNAAnalysis/gain_bismuth2.pdf}
 \caption{Example $^{207}\mathrm{Bi}$ spectrum and fit for a single PMT over
   the course of a run. The upper and lower bismuth conversion electron peaks are
-  seen, along with a distribution from decay gammas. Note that the gamma rays are
+  seen, along with a distribution from the compton scattering of decay gammas. Note that the gamma rays are
   visible because the pulser is attached directly to the PMT and there is no type
   of veto (like the MWPC) to remove them.}
 \label{fig:biPulser}
@@ -242,7 +247,7 @@ run, or
 %
 This automatically defines the gain of the reference run to be $g_{\mathrm{ref}}=1$. Then all other runs which are
 calibrated by a certain run period have gain factors which vary based on the fitted pulser value. The time
-dependence of the gain values in 2011-2012 can be seen in figures \ref{fig:2011-2012pulser_East}
+dependence of the gain values in 2011-2012 can be seen in Figures \ref{fig:2011-2012pulser_East}
 and \ref{fig:2011-2012pulser_West}. The behavior is similar in 2012-2013.
 
 Some problems with the $^{207}\mathrm{Bi}$ pulser did occur. There were several periods where the pulser
@@ -252,7 +257,7 @@ minimal effect on the energy reconstruction though, as the ``bad'' PMT is still 
 a two-fold trigger, and the remaining three PMTs contain sufficient information for reconstructing the
 energy deposited. Periods where $^{207}\mathrm{Bi}$ pulser information is missing are evident in
 Figure \ref{fig:2011-2012pulser_West} where there is missing data for certain PMTs over extended ranges.
-It should be noted that in 2012-2013, West PMT4 never had a functioning pulser and was never used for
+It should be noted that in 2012-2013, West PMT4 never had a functioning pulser and was consequently never used for
 energy reconstruction purposes.
 
 \begin{figure}[p] 
@@ -296,7 +301,7 @@ The method for calculating $g_{\mathrm{ep}}$ was developed previously by M. Mend
   \caption{Example Kurie plot with linear fit to extract the y-intercept, which is
     the endpoint energy. The deviations from a straight line are due to the
     trigger efficiency at low energies and finite resolution at high energies. Care
-    must be taken to fit in a region which more appropriately characterizes the true
+    must be taken to fit in a region which most appropriately characterizes the true
     underlying electron energy spectrum.}
   \label{fig:kuriePlot}
 \end{figure}
@@ -360,7 +365,7 @@ Then $E_{\mathrm{recon}}$ is calcuated using the final visible energies from the
 
 
 
-\subsection{Time-dependent backgrounds}
+\subsection{Time-Dependent Backgrounds}
 Background events which may have some time dependence are removed from the analysis
 via dedicated background runs that accompany every $\beta$-decay run.
 Subtracting these background rates from the data rates accounts for backgrounds
@@ -391,10 +396,11 @@ data is available and plentiful, it is straightforward to estimate
 the trigger probability by binning the data in some unit proportional to 
 energy (whether in energy or something like it is not important) and taking 
 the bin-by-bin ratio of those events that triggered to all of the events in the 
-sample. Plotting these ratios as a function of whatever energy-like metric was chosen tells 
-you how probable an event of some value is to create a trigger.
-Once you have mapped this probability, you can then sample these curves within 
-simulation to apply your true trigger threshold to simulated data.
+sample. Plotting these ratios as a function of whatever energy-like metric was chosen
+depicts how probable an event of some value is to create a trigger. The resulting
+trigger probability distribution can then be fit to extract a trigger function, and then
+these functions can be sampled within simulation to apply a model of the
+true trigger threshold to the simulated signals.
 
 
 \subsection{Trigger Data Selection}
@@ -459,7 +465,7 @@ two provided by a smoothing function $S_\pm$ defined as
 %
 which acts to ``turn on/off'' ($+/-$) a function $f(x)$ around the pivot point $x_0$ and with the severity of
 the on/off transition determined by the width parameter $R$. The functional fit $F(q)$ then becomes (note that the $\mathrm{erf}(x)$ and $\tanh(x)$ 
-have the range (-1,1), so they must be shifted and the range halved to accomodate $0<F(q)<1$):
+have the range (-1,1), so they must be shifted and the range halved to accommodate $0<F(q)<1$):
 %
 \begin{equation}
   F(q) = \frac{1}{2} \Bigg[ S_-\big(q;\mu,R\big) \bigg(1 + \mathrm{erf}\Big(\frac{q-\mu}{w_1}\Big)\bigg) +
@@ -479,10 +485,10 @@ run can be seen in Figure \ref{fig:trigger_thresh}.
 \label{sec:Simulation}
 
 For this work, the simulation software from previous analyses was adopted
-and modified where seen fit to accomodate changes in the geometries
+and modified where seen fit to accommodate changes in the geometries
 and materials. The finer details of the particle generation and
 tracking can be found in \cite{mpmThesis}. For our purposes, a summary
-of the important quantities is more than sufficient for understanding
+of the important quantities is sufficient for understanding
 the work contained within this thesis.
 
 \iffalse The simulations and application of the
@@ -507,7 +513,7 @@ apparatus. \fi
 The simulation of the experimental geometry and particle tracking was completed
 using the \textsc{Geant4} Monte Carlo particle transport software package
 \cite{agostinelli2003geant4}. The initial kinematics of the event vertices
-were determined pre-simulation and fed into the \textsc{Geant4} toolkit, at which
+were determined via a stand-alone kinematic event generator and fed into the \textsc{Geant4} toolkit, at which
 point the particle was propagated via Monte Carlo sampling of interactions
 with all components of the experimental geometry, including the magnetic field.
 The energy deposition was recorded within all sensitive detector components and
@@ -516,8 +522,8 @@ in the real data. The relative timing of the scintillator hits was also
 recorded so as to mimic the timing signals of the experiment.
 
 The simulation is especially important when determining systematic corrections due
-to a priori knowledge of the initial kinematics of each event. Thus, after an event
-comes to rest and its detector response is considered, one can compare the signature
+to a priori knowledge of the initial kinematics of each event. Thus, after a particle
+is stopped and its detector response is considered, one can compare the signature
 of the signals to the initial momentum of the particle and analyze possible
 effects on observables from backscattering, angular dependence, and energy losses
 in non-sensitive detector regions for example.
@@ -546,7 +552,7 @@ Section \ref{sssec:MagFieldSyst}.
 The magnetic field is passed to the simulation as a set of discrete $B_z$
 values along the $z$-axis of the spectrometer as depicted in Figure \ref{fig:field_profile}.
 The continuous field profile on the $z$-axis is then interpolated between consecutive $z_i$ locations
-using the respective $B_z(z_i)$ values by a half-wave of a cosine,
+using the respective $B_z(z_i)$ values by a half-wave of a cosine \cite{yuan2006progress},
 %
 \begin{equation}
   B_z(z) = \frac{B_z(z_i) + B_z(z_{i+1})}{2} + \frac{B_z(z_i) - B_z(z_{i+1})}{2}\cos\bigg(\frac{z-z_i}{z_{i+1}-z_i}\pi\bigg),
@@ -573,7 +579,7 @@ For the conversion electron sources, the decay probabilities for conversion elec
 Auger electrons, and gamma rays are read from files specific to each isotope.
 The energy and radiation type sample the decay chain probabilities from these files, and
 the momentum is chosen isotropically over 4$\pi$. The initial vertex for any source
-event is randomly sampled within a small dot encapsulated in a sealed source holder
+event is randomly sampled within a small dot ($\sim1.5$~mm) encapsulated in a model for a sealed source holder
 along the center axis of the decay trap, as would be the case for a real sealed
 source used in the calibration.
 
@@ -585,7 +591,7 @@ is given in \cite{mpmThesis}. The corrections to the plain phase space spectrum 
 Wilkinson's series of review articles on $\beta$-decay
 \cite{wilkinson1982,wilkinson1989evaluation,wilkinson1990evaluation,wilkinson1993evaluation,
   wilkinson1995evaluation,wilkinson1997evaluation,wilkinson1998evaluation} and include
-the Fermi function coulomb correction, corrections for finite size of the nucleon, radiative
+the Fermi function Coulomb correction, corrections for finite size of the nucleon, radiative
 corrections as described in Section \ref{sssec:RadCorr}, and recoil corrections for the finite
 mass of the proton in the final state.
 
@@ -598,23 +604,28 @@ where
 \begin{equation}
   \xi(E) = A(E)\Big(1+\mathrm{R.O.}(E)+\mathrm{Rad}(E)\Big),
 \end{equation}
-$A(E)=A_0\beta cos\theta$, ``R.0.'' and ``Rad'' are the recoil order and radiative corrections to the asymmetry
+$A(E)=A_0\beta \cos\theta$, ``R.O.'' and ``Rad'' are the recoil order and radiative corrections to the asymmetry
 consistent with those from Sections \ref{sssec:ROCorr} and \ref{sssec:RadCorr}, $\pm$ indicates the two possible spin states,
 and $\Gamma^{\mathrm{unpol}}$ is the unpolarized
-spectrum. The value of $A_0= -0.1184$ was used, as this is the current global average \cite{pdg}.
+spectrum. The value of $A_0= -0.1184$ was used, as this was the global average at the time of the simulation
+development \cite{pdg}.
+
 
 Each spin state was simulated for the 2011-2012 geometry, 2012-2013 geometry with neopentane in the wirechamber,
-and 2012-2013 with isobutane in the wirechamber. Matching the proper spin state simulation to the polarization orientation
+and 2012-2013 geometry with isobutane in the wirechamber. Matching the proper spin state simulation to the polarization orientation
 in the $\beta$-decay runs allows one to analyze the simulated data identically to the data. By comparing the
 extracted asymmetries to the input value of $A_0$, we can ensure that the analysis method is at least internally
 consistent.
 
+It should be noted that including the asymmetry in the initial probability distribution
+is a new contribution to the analysis, as in past analyses the electrons were generated from the unpolarized
+spectrum and then the final spectra were weighted by the above asymmetry factor $\xi(E)$.
 A special thanks is in order for X. Sun for his contributions to the polarized event generator.
 
 \subsection{Output}
 The \textsc{Geant4} simulation provides trajectory tracking along with
 the energy deposition along these tracks. Prior to processing the simulation
-for calibration or systematic purposed, the first
+for calibration or systematic purposes, the first
 task is to construct observables that are more useful.
 
 \subsubsection{Energy Deposition}
@@ -658,7 +669,7 @@ with the integration performed over the entirety of the path.
 \centering
 \includegraphics[scale=.6]{3-UCNAAnalysis/dEdx.pdf}
 \caption{Plot of $dE/dx$ for a plastic scintillator. The data (open circles) comes from NIST ESTAR,
-  and the dE/dx functional forms used previously (red dashed line) and presently (blue solid line)
+  and the $dE/dx$ functional forms used previously (red dashed line) and presently (blue solid line)
   are shown.}
 \label{fig:dEdx}
 \end{figure}
@@ -686,7 +697,7 @@ of $E_Q$ in the \textsc{Geant4} simulation for the current analysis with the val
 
 
 
-\subsubsection{Position of Detector hits}
+\subsubsection{Position of Detector Hits}
 The detector positions in both the scintillator and wirechamber are calculated as the weighted
 average of the step positions, with the weights equal to the energy deposited in that step.
 A more detector-like position response was utilized when analyzing the simulated data as is described
@@ -735,10 +746,10 @@ DAQ. Upon application of the individual detector calibrations, this yields
 eight visible energies, $E_{\mathrm{vis},i}^\mathrm{E,W}$, where $i$ runs from 1 to 4 for the
 four PMTs on each side. For each detector, the four available energies should
 be combined to create a visible energy for each side, $E_{\mathrm{vis}}^\mathrm{E,W}$. While the
-majority of events only strike one scintillator so only one of E/W visible energies will
+majority of events only strike one scintillator so only one of the E/W visible energies will
 be useful, the Type 1 events will have a usable energy on each side.
 
-Now not all PMTs are created equal. Some PMTs have better resolution than others, thus these PMTs
+Now not all PMTs behave identically Some PMTs have better resolution than others, thus these PMTs
 should contribute more to the average energy. A simple average would not account for this, but
 a weighted average, upon definition of the weights, will suffice:
 %
@@ -772,7 +783,7 @@ of the PMT by Equation \ref{eq:EvisResponse}, we have
 \end{equation}
 %
 
-The measured value of $E_{\mathrm{vis},i}$ is actually sampled from a distrubution with $\mu$ and $\sigma$ given by the
+The measured value of $E_{\mathrm{vis},i}$ is actually sampled from a distribution with $\mu$ and $\sigma$ given by the
 above equation, but we can assume that the best weight is given by $w_i = \frac{1}{\sigma_i^2} = \frac{\alpha_i \eta_i(x,y)}{E_Q}$.
 Then the final combined $E_{\mathrm{vis}}$ for a single detector becomes
 %
@@ -788,6 +799,11 @@ The uncertainty on the final weighted average above is given by
   \delta E_{\mathrm{vis}} = \frac{1}{\sqrt{\sum_{i=1}^{4} w_i}} = \frac{1}{\sqrt{\sum_{i=1}^{4} \frac{\alpha_i \eta_i(x,y)}{E_Q}}}
     \approx  \sqrt{\frac{E_{\mathrm{vis}}}{\sum_{i=1}^{4}\alpha_i \eta_i(x,y)}}.
 \end{equation}
+This is only approximately the uncertainty since $E_Q$ must be replaced by the energy estimate $E_{\mathrm{vis}}$. The quenched
+energy is not a known quantity within data and is precisely the quantity being estimated, thus it cannot
+be present in the uncertainty if it is to be calculated for data. This approximation has no impact
+on the analysis though, as the calculation of the impact of the energy uncertainty on the final asymmetry is unrelated
+to $ \delta E_{\mathrm{vis}}$ (See Section \ref{ssec:energyRecon}).
 
 As pointed out in \cite{mpmThesis}, the position map values only enter into the weighted average
 as part of the sum in the denominator and multiplied by the $\alpha_i$ conversion factors, which is a smoother
@@ -800,14 +816,15 @@ As mentioned in Section \ref{sec:outline}, $E_{\mathrm{vis}}$ is an estimate of 
 energy visible to the PMT from deposition in the scintillator. The more useful
 initial energy of the particle must be determined using a separate parameterization.
 To determine such a parameterization, simulated data is used so that the initial
-energies of the events are known precisely, and then the response of the detector
+energies of the events are known exactly, and then the response of the detector
 to different event energies and types can be investigated.
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.78]{3-UCNAAnalysis/2011-2012_Evis_to_Erecon.pdf}
-  \caption{Parameterization between $E_{\mathrm{vis}}$ and $E_{\mathrm{recon}}$ for
-    2011-2012. The mapping for the other geometries are very similar and thus are
+  \caption{Parameterization between $E_{\mathrm{vis}}$ and $E_{\mathrm{recon}}$ for the 
+    2011-2012 geometry, as determined from simulation.
+    The mapping for the other geometries are very similar and thus are
     not shown.}
   \label{fig:Erecon}
 \end{figure}
@@ -835,7 +852,10 @@ and then the fit is extrapolated continuously to zero from the lowest energy dat
   E_{\mathrm{recon}} = C_5{E_{\mathrm{vis}}}^{C_6}
 \end{equation}
 with the parameters $C_5$ and $C_6$ determined by ensuring the two equations are equal at the
-transition point along with their first derivatives.
+transition point along with their first derivatives. The reason for the linear relationship
+can be attributed to the low energy quenching effects as described in Section \ref{sssec:Equenched}.
+As $E_{\mathrm{recon}}$ becomes small, a larger proportion of the electron's energy is affected by quenching, and thus
+the lower energy events exhibit this nonlinear behavior.
 
 Using the fitted parameters, an $E_{\mathrm{recon}}$ value is determined
 for every event by plugging its weighted average $E_{\mathrm{vis}}$ into the proper equation.
@@ -858,7 +878,8 @@ maximum allowed energy deposition with low
 energy tails, a result of energy losses elsewhere in the apparatus. The less probable outer shell
 conversion electron lines are also visible in the simulation. The data signals
 on the other hand are smeared out in a Gaussian fashion, with no possible
-resolution of the outer shell electron lines.
+resolution of the outer shell electron lines due to the resolution of the detectors not
+being sufficiently narrow.
 The Gaussian-like peaks arise from finite resolution effects and
 must be incorporated in the simulatin using parameters calculated
 from real data.  
@@ -873,7 +894,7 @@ using Equation \ref{eq:EvisResponse}.
 Our goal is to reverse engineer this expression to write an ADC signal as a
 function of the visible energy, noting that the visible energy is directly
 related to the quenched energy from simulation. Directly from \ref{eq:EvisResponse}
-we can trvially write down:
+we can trivially write down:
 %
 \begin{equation} \label{eq:pmtResponse}
 \mathrm{ADC}_i = f_i^{-1}\big(\eta_i(x,y) E_{\mathrm{vis},i} \big)/g_i + p_i
@@ -908,7 +929,8 @@ of several stochastic processes and is only an estimate of the initial light fro
 the photocathode. In fact, every dynode within the photomultiplier introduces stochasticity into the process, as every time an electron
 strikes a dynode, the number of emitted electrons is Poisson distributed. The final number of electrons that reach the anode
 can be expressed as several nested Poisson distributions,
-with the initial number of events equal to the number of photoelectrons present at the photocathode. The series of Poisson
+with the initial number of electrons (the input of the first nested Poisson process)
+equal to the number of photoelectrons present at the photocathode. The series of Poisson
 processes randomizes the final number of electrons seen by the anode, and therefore randomizes the ADC response.
 
 Let us attempt to estimate the total number of electrons that reach the anode, which in turn yields something
@@ -987,8 +1009,8 @@ applied, so if two or more PMTs trigger, the scintillator on that side is record
 With the modeled $\mathrm{ADC}_i$ values calculated and the pedestal width sampled and added to the signal, the ADC values
 are treated as though they are data and plugged into Equation \ref{eq:EvisResponse}. This subtracts the mean pedestal,
 applies the gain correction, and then maps the ADC response back to a new estimate of $\eta_i(x,y) E_{\mathrm{vis},i}$
-using the calibration linearity curve $f(\mathrm{ADC})$. Upon dividing by the position dependent light transport
-value $\eta_i(x,y)$, one has estimates for the visible from all PMTs.
+using the calibration linearity curve $f_i(\mathrm{ADC})$. Upon dividing by the position dependent light transport
+value $\eta_i(x,y)$, one has estimates for the visible energies from all PMTs.
 
 At this point, the individual $E_{\mathrm{vis},i}$ are combined using the now familiar methods of Section \ref{ssec:combinePMT}.
 Then a final $E_{\mathrm{recon}}$ value is determined via the normal parameterization. Everything about the simulation event
@@ -1009,7 +1031,7 @@ the wirechamber and the scintillator. Here we simply highlight their use in the 
 
 The PMT calibration, as mentioned in Section \ref{sssec:scintEnCal},
 uses well known conversion electron sources
-to understand the detector response to there well-defined energies. By comparing the detector
+to understand the detector response to their well-defined energies. By comparing the detector
 response (coupling both ADC values and position map values) to simulated responses,
 we can map ADC signals from each PMT to visible energies deposited
 in the scintillator. These calibrations parameterize the detector response so that the
@@ -1026,7 +1048,7 @@ correction for these backscattering events.
 
 \section{Polarimetry} \label{sec:polarimetry}
 
-The polarimatry analysis was carried out Eric Dees of North Carolina State University and
+The polarimetry analysis was carried out by Eric Dees of North Carolina State University and
 deserves the attention of an entire dissertation itself. The previous polarimetry measurement
 is described in detail in a dissertation by Adam Holley \cite{holley2012ultracold}. A major
 difference between the previous depolarization measurement and the current depolarization
@@ -1063,7 +1085,7 @@ the UCN to flow into the switcher detector for measurement of UCN populations. T
 as a function of time can be found in Figure \ref{fig:switcherSignal}. The guides are cleaned of UCN while
 the UCN population in the trap remains contained. Then the spin flipper state is changed allowing the
 neutrons that were trapped between the 7~T magnet and the decay trap to pass back through the high
-field region (these trapped neutrons result from UCN who underwent an unwanted spin flip after passing
+field region (these trapped neutrons result from UCN that underwent an unwanted spin flip after passing
 the high field region, subsequently keeping them passing the 7~T field). Now that the guides are cleaned,
 the shutter is opened and all UCN with spins not equal to the desired loaded spin are emptied (remember that
 the spin flipper is switched from its original state). Once this population has been measured in the
@@ -1073,7 +1095,10 @@ background measurement in the switcher detector.
 
 The ratio of these populations is then extrapolated back to the equilibrium population as established
 during $\beta$-decay running by utilizing further \textit{ex situ} measurements and comparisons with
-simulation. The results of these measurements as well as the correction to the uncertainty resulting
+simulation. The \textit{ex situ} measurements are necessary to understand storage and transport effects
+for the depolarized UCN population after they have been stored behind the shutter from $t=0-30$~s, as the
+fraction of depolarized UCN needs to be extrapolated back to $t=0$~s.
+The results of these measurements as well as the correction to the uncertainty resulting
 from imperfect polarization ($P<1$) can be found in Section \ref{ssec:polCorr}.
 
 
