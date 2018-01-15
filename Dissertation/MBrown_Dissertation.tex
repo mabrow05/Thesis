@@ -2,10 +2,9 @@
 %you must include these 2 packages.
 \usepackage{amsmath}
 
-\usepackage[pdfauthor={Michael A-P Brown},
-  pdftitle={Determination of the neutron $\beta$-decay
-    correlation coefficient $A_0$ using parity violation in
-    neutron $\beta$-decay},
+\usepackage[pdfauthor={Michael A.-P. Brown},
+  pdftitle={Determination of the Neutron $\beta$-Decay Asymmetry
+    Parameter $A_0$ Using Polarized Ultracold Neutrons},
             pdfsubject={The Subject},
             pdfkeywords={Some Keywords},
             pdfproducer={Latex with hyperref},
@@ -14,6 +13,7 @@
             bookmarksopen=true,
             bookmarksnumbered=true,
             hidelinks]{hyperref}
+
 \usepackage{memhfixc}
 \usepackage{float}
 \usepackage{graphicx}
@@ -22,6 +22,7 @@
 \usepackage{mathtools}
 \usepackage{gensymb}
 \usepackage{rotating}
+
 %\usepackage[small]{titlesec}
 %\setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{3}
@@ -42,9 +43,9 @@ style=alphabetic,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %author data
-\author{Michael A-P Brown}
-\title{Determination of the neutron beta-decay asymmetry
-    parameter $A_0$ using polarized ultracold neutrons}
+\author{Michael A.-P. Brown}
+\title{Determination of the Neutron $\beta$-Decay Asymmetry
+    Parameter $A_0$ Using Polarized Ultracold Neutrons}
 \abstract{
   The UCNA Experiment at the Los Alamos Neutron Science Center (LANSCE) is the first measurement
   of the $\beta$-decay asymmetry parameter $A_0$ using polarized ultracold neutrons (UCN). $A_0$,
@@ -74,18 +75,44 @@ style=alphabetic,
 \maketitle
 
 
-\begin{acknowledgments}
-  %The friendship and guidance provided by Dr. Brad Plaster made this work possible. I thank you.
-  %Also to Dr. Renee Fatemi, Dr. Susan Gardner, and Dr. Kevin Donohue, I thank you for serving on
-  %my dissertation committee and seeing this process through.
-\end{acknowledgments}
-
-
 \begin{dedication}
-  %This work is dedicated to my parents, Cindy and John, and my soon-to-be wife, Kirstie, for their
-  %unending support. And also to Piper, my four-legged friend who keeps me sane.
+  I dedicate this to my soon to be daughter, Scarlett, for whom I am completing this thesis in a timely manner, and
+  also, to those who I have lost, my brother Kenny, stepfather Bill, and stepmother Diana. 
+  
 \end{dedication}
 
+\begin{acknowledgments}
+  First and foremost, this work was made possible through the
+  guidance provided by Dr. Brad Plaster. I thank you and appreciate not only the countless
+  hours we spent talking about physics, but also the friendship that has developed. I also would
+  like to thank Dr. Renee Fatemi, Dr. Susan Gardner, and Dr. Kevin Donohue for serving on
+  my dissertation committee and seeing this process through. 
+
+  I am very thankful to my entire family for constantly taking interest in everything I do.
+  To my parents, Cindy Spurlin and John Wade Brown, I thank you from the bottom of
+  my heart for pushing me to always be my best. I especially want to thank my loving
+  wife Kirstie, as she not only celebrated the good times over the past seven years, but she
+  endured the difficult times as well. You are my rock, and you are the reason I made it
+  this far. Also to my wife's parents, Joe and Lisa Brangers, I would like to thank you for
+  the immense amount of support you give me and Kirstie. We appreciate you more than you could know.
+  Last but not least, I thank my best dog friend Piper for keeping me sane.
+
+  I have been blessed with friends, old and new, who I want to thank for making life more enjoyable
+  throughout this process.
+  To all of my Crossfit friends in Frankfort and to my college golf teammates, the time
+  we have spent together has been a necessary and welcomed distraction from my research. To my
+  childhood friends, thank you for the love you show even when we are separated by thousands of miles
+  at times. To all of the UCNA collaborators who I have had the privelege of working alongside,
+  thank you for always being willing to help and for making research enjoyable.
+  The list of friends would not be complete without giving a special thank you to Dr. Nima Nouri
+  and Dr. Kevin Adkins. Nima, we sat together in the same lab for five years, and we made every effort
+  to not mention physics to each other, which led to a friendship built for a lifetime.
+  And Kevin, cheers to ten years of doing physics together, from
+  undergrad through graduate school, through your wedding and mine, and finally to a daughter for each
+  of us. Thank you for the time we spent learning physics together, but more importantly thank you for
+  your friendship.
+  
+\end{acknowledgments}
 
 \tableofcontents\clearpage
 \listoffigures\clearpage
@@ -123,8 +150,8 @@ style=alphabetic,
 \copyrightnotice
 
 % Appendix 1
-\include{Appendix1_magField/Append1}
-\copyrightnotice
+%\include{Appendix1_magField/Append1}
+%\copyrightnotice
 
 
 %-----------------------------------------------
@@ -134,6 +161,66 @@ style=alphabetic,
 %\bibliographystyle{alpha}
 %\bibliography{references}
 
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+%\setcounter{tocdepth}{0}
 \chapter{Vita}
-A brief vita goes here.
+
+\section*{Personal Information}
+\begin{tabular} {ll}
+  Name: & Michael Anthony-Paul Brown \\
+  Place of Birth: & Cincinnati, OH 
+\end{tabular}
+
+\section*{Educational Institutions}
+\begin{tabular} {l}
+  M.S. Physics    \\ University of Kentucky, Lexington, KY   \\May 2014 \\ \\
+  B.S. Physics    \\ Morehead State University, Morehead, KY \\May 2011 \\ \\
+  B.S. Mathematics\\ Morehead State University, Morehead, KY \\May 2011
+\end{tabular}
+
+\section*{Professional Positions}
+\begin{tabular} {l}
+  Graduate Research Assistant \\University of Kentucky, Lexington, KY \\
+  Department of Physics and Astronomy\\
+  January 2012 $-$ January 2018 \\
+  \\
+  Graduate Teaching Assistant \\University of Kentucky, Lexington, KY \\
+  Department of Physics and Astronomy \\
+  August 2011 $-$ December 2011 \\
+  \\
+  Undergraduate Research Assistant\\
+  Research Experience for Undergraduates (REU)\\
+  Duke University, Durham, NC \\
+  Department of Physics \\
+  May 2010 $-$ August 2010
+ 
+\end{tabular}
+
+
+\section*{Publications}
+\begin{tabular} {l}
+  Brown, M. A.-P., et al. "New result for the neutron $\beta$-asymmetry \\
+  parameter $ A_0 $ from UCNA." arXiv preprint arXiv:1712.00884 (2017). \\
+  \\
+  Hickerson, K. P., et al. "First direct constraints on Fierz interference \\
+  in free-neutron β decay." Physical Review C 96.4 (2017): 042501.\\
+  \\
+  Broussard, L. J., et al. "Detection system for neutron β decay correlations\\
+  in the UCNB and Nab experiments." Nuclear Instruments and Methods in Physics\\
+  Research Section A: Accelerators, Spectrometers, Detectors and Associated\\
+  Equipment 849 (2017): 83-93.\\
+  \\
+  Nouri, N., et al. "Frequency Shifts Induced by Field Gradients in Muon $g-2$\\
+  Experiments." arXiv preprint arXiv:1607.04691 (2016).\\
+  \\
+  Nouri, N., et al. "A prototype vector magnetic field monitoring system for \\
+  a neutron electric dipole moment experiment." Journal of Instrumentation\\
+  10.12 (2015): P12003.\\
+  \\
+  MacMullin, S., et al. "Measurement of the elastic scattering cross section \\
+  of neutrons from argon and neon." Physical Review C 87.5 (2013): 054613.
+  
+\end{tabular}
+
 \end{document}

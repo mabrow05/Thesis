@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Detector calibrations are a beautiful combination
-of simulation and data manipulation which allows one to extract the energy of
+of simulation and data analysis which allows one to extract the energy of
 an event based solely on some electronic signal. Imagine a baseball pitcher
 throwing a fastball into a sheet, and the observer behind the sheet must
 determine the velocity of the ball from only seeing the impression the pitch
@@ -29,22 +29,24 @@ effectively.
 
 \section{Wirechamber Position Reconstruction}
 
-\subsection{Wirechamber signals}
+\subsection{Wirechamber Signals}
 
 The wirechamber signals for each detector include a summed anode signal, and two collections of
 cathode signals consisting of 16 individual ``wire'' readings. Again we use the term
 wire loosely, as there are technically 64 wires in a plane, but they are read out in groups
 of four. The position of each wire group is taken to be the midpoint of the grouping (between
-the two center wires). The two sets of cathode signal collections come from perpendicular
-planes, so the position can be reconstructed along both the $x-axis$ and $y-$axis.
+the two center wires). The two sets of cathode signal collections come from planes
+whose wires are oriented perpendicular to each other,
+so the position can be reconstructed along both the $x-$axis and $y-$axis.
 
-The signal is read out by a peak sensing ADC, so the maximum value of the signal is recorded
+The signals are read out by a peak sensing ADC, so the maximum value of the signal on each wire
+is recorded
 for each event. The pedestal is determined using the bismuth pulser events (different from the
-PMT pedestals) and is subtracted from the ADC signal for every event. For the cathodes, a software
+PMT pedestals) and is subtracted from the ADC signal on each wire for every event. For the cathodes, a software
 threshold for each wire is set at 100~channels above pedestal, so only wires above this threshold
 will be used in the position reconstruction.
 
-\subsubsection{Wirechamber trigger} \label{sssec:mwpctrigg}
+\subsubsection{Wirechamber Trigger} \label{sssec:mwpctrigg}
 
 As mentioned in sections \ref{sssec:ExpMWPC} and \ref{sec:backscattering}, a wirechamber
 software trigger is set and used to eliminate the gamma background and to identify different
@@ -53,11 +55,11 @@ the cathode signals. The best trigger is one that separates the pedestal furthes
 triggering data. For this analysis, this was found to be the sum of the maximum cathode
 signals from the two wire planes.
 
-\subsubsection{Cathode wire clipping}
+\subsubsection{Cathode Wire Clipping}
 
 Low energy events deposit a substantial amount of energy in the MWPC, and thus create large
 signals in one or more wires in cathode planes. This can create a signal which is beyond the
-range of the ADC, producing an overflow event which is read out as the max value of the ADC
+range of the ADC, producing an overflow event which is read out as the maximum value of the ADC
 regardless of how much actual charge was deposited in the wirechamber.
 These events are called ``clipped'' events. A plot of the typical ratio of clipped events and the
 number of clipped wires can be seen in Figure \ref{fig:nClipped}.
@@ -66,7 +68,7 @@ number of clipped wires can be seen in Figure \ref{fig:nClipped}.
   \centering
   \includegraphics[scale=0.6,page=1]{4-UCNACalibrations/mwpc_position.pdf} 
   \caption{Number of clipped wires in the $x$-plane of the East detector. Most of the events
-    (\~92~\%) exhibit no clipping.}
+    ($\sim92~\%$) exhibit no clipping.}
   \label{fig:nClipped}
 \end{figure}
 
@@ -76,7 +78,7 @@ is no longer known, only that it was above the maximum ADC value. Using this wir
 the position reconstruction will not properly account for the strength of the
 signal at the position of the clipped wire.
 
-\subsection{Wirechamber position reconstruction}
+\subsection{Wirechamber Position Reconstruction}
 
 Determining the position of the spiraling electrons is vital for every component of the analysis
 that follows. Before now, the gain, pedestals, and trigger thresholds are determined with no
@@ -84,10 +86,10 @@ knowledge of the position of an event, but rather basic trigger logic. As will b
 the Section \ref{ssec:posmaps}, the actual response of the PMT is position dependent, and so we introduce the
 position reconstruction algorithm now.
 
-\subsubsection{Events with no cathode clipping}
+\subsubsection{Events with No Cathode Clipping}
 
 The algorithm developed for reconstructing the positions of the events for this analysis
-is meant to be as simple of possible, with more complex measures taken for special events.
+is meant to be as simple as possible, with more complex measures taken for special events.
 If we have an event that passes through the MWPC, creates a software trigger, and has no
 clipped wires, then the position is calculated as the average position of the signals:
 %
@@ -118,7 +120,7 @@ For well-behaved wires (no clipping, no missing or ``dead'' wire segments), this
 a continuous reconstruction of the events based on where they pass through the wirechamber.
 An example of the position dependence can be seen in Figure \ref{fig:wirechamberPos}.
 
-\subsubsection{Events with cathode clipping or missing wire signals}
+\subsubsection{Events with Cathode Clipping or Missing Wire Signals}
 
 In the event of a clipped wire or the rare case of a missing wire signal, the basic average method
 shown above will not suffice. Using the clipped wire in the average can systematically shift the
@@ -140,10 +142,10 @@ where $q$ is the signal as a function of position, $x$ is the position of the si
 a scaling parameter. If we take the log of this
 expression we have
 %
-\begin{align} \label{eq:gaussPos}
-   &\ln(q) = \ln(N) + \frac{(x-\bar{x})^2}{\sigma^2} \\
-   &\ln(q) = \frac{1}{\sigma^2}x^2 - \frac{2\bar{x}}{\sigma^2}x + \Big(\ln(N)+\frac{\bar{x}^2}{\sigma^2}\Big) \\
-   &\ln(q) = Ax^2 + Bx + C 
+\begin{align} 
+   \ln(q) &= \ln(N) + \frac{(x-\bar{x})^2}{\sigma^2} \\
+   &= \frac{1}{\sigma^2}x^2 - \frac{2\bar{x}}{\sigma^2}x + \Big(\ln(N)+\frac{\bar{x}^2}{\sigma^2}\Big) \\
+   &= Ax^2 + Bx + C \label{eq:gaussPos}
 \end{align}
 %
 with
@@ -158,7 +160,7 @@ maximum wire were the edge wire. The extraction of the mean is the approximation
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.5,page=7]{4-UCNACalibrations/mwpc_position.pdf} 
-  \caption{Collection of extraced $\sigma$ values for the Gaussian determination of event position. The
+  \caption{Collection of extracted $\sigma$ values for the Gaussian determination of event position. The
     average of this distribution is an estimate of the characteristic width of the wirechamber charge cloud,
     $\sigma_c$, used when only two wires are usable in the position reconstruction.}
   \label{fig:meanSigma}
@@ -172,12 +174,12 @@ to use this method. Again, if we assume that all signals follow a typical Gaussi
 charge cloud should be roughly constant. Thus we can determine a characteristic width, $\sigma_c$, from the
 mean extracted $\sigma$ from the rest of the events (including the non-clipped events). A histogram of the
 extracted $\sigma$ values can be seen in Figure \ref{fig:meanSigma}. A value of $\sigma_c = 6\text{~mm}$ was used
-for these type events, and then the mean was calculated by solving \ref{eq:gaussPos} with two unknowns.
+for these type of events, and then the mean was calculated by solving Equation\ref{eq:gaussPos} with two unknowns.
 
 Last of all, there is the situation where only one wire was above the individual threshold. For this type of event,
 the only reasonable choice is to set the position of the event to the position of this wire.
 
-\subsection{Simulation of wirechamber positions} \label{ssec:simWirePos}
+\subsection{Simulation of Wirechamber Positions} \label{ssec:simWirePos}
 
 In order to reduce any unforeseen systematic effects, an attempt at including
 every aspect of the experiment within the simulated data is made. Thus for the wirechamber
@@ -197,7 +199,7 @@ and clipping conditions to each of the cathode wires. The model already included
 collection on the range from $0$ to $\infty$. This could be used in the simple average method for ``good'' events
 with no clipping and no missing wires, but then any systematic effects from wire clipping would go unnoticed.
 
-\subsubsection{Wire model}
+\subsubsection{Wire Model}
 
 For each wire in each plane, the response can be characterized by two values: a clipping threshold and a trigger threshold.
 Recall that we apply an individual software trigger threshold of 100 ADC channels for each wire, so a model parameter must
@@ -238,13 +240,13 @@ for every wire grouping (64/run) in every $\beta$-decay run ($\sim1000$).
   \subfloat[Number of clipped wires]{\includegraphics[scale=0.3,page=4]{4-UCNACalibrations/mwpc_position.pdf}}
   \end{tabular}
   \caption{Comparisons between data (blue line) and simulation (red dashed line) after
-    the application of the single wire trigger and clipping model. There is a discrepancy in the multiplicity,
+    the application of the single wire trigger and clipping model. There is a slight discrepancy in the multiplicity,
     but the general features are captured. The number of clipped wires in data and simulation is in better agreement.}
   \label{fig:multDataSim}
 \end{figure}
 
 
-\subsubsection{Results of individual wire model}
+\subsubsection{Results of Individual Wire Model}
 
 The agreement between data and simulation from application
 of the trigger threshold can be seen in Figure \ref{fig:multDataSim} a.), where
@@ -466,7 +468,7 @@ proportional to the light that would have reached the PMT. This quantity is of c
 energy by the position response factor, and thus we calibrate to $\eta_i(x,y)E_{\mathrm{vis}}$, where $E_{\mathrm{vis}}$ in this
 case comes from simulation.
 
-\subsubsection{Fitting the source peaks}
+\subsubsection{Fitting the Source Peaks}
 Typical single PMT energy spectra for simulation and data from the $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$ sources can be
 found in Figures \ref{fig:Ce_spectra}, \ref{fig:Sn_spectra}, and \ref{fig:Bi_spectra} respectively. These spectra were produced using the final
 calibration, and at this point should only be inspected for their general shape to understand the type of fit required.
@@ -484,7 +486,7 @@ the summation of two Gaussian functions, so that the effect of one on the other 
 the proper mean is extracted from each. This helps remove effects from possible use of inaccurate
 resolution factors. %Figures \ref{fig:ADC_source_spectra} and \ref{fig:En_source_spectra} also shows the fits to each spectrum.
 
-\subsubsection{Extracting the PMT response}
+\subsubsection{Extracting the PMT Response}
 
 As mentioned above, we calibrate the PMT ADC response to a quantity proportional to the light incoming into
 the PMT, or $\eta_i(x,y)E_{\mathrm{vis}}$, so we need to plot $\eta_i(x,y)E_{\mathrm{vis}}$ vs. ADC response.
@@ -500,7 +502,7 @@ is fit with a quadratic response function,
 %
 where $x$ is the gain corrected ADC signal and $f$ is equivalent to $\eta(x,y)E_{\mathrm{vis}}$. The quadratic term
 is constrained to $|C_3|<7.5\times10^{-5}$, which is small compared to $C_2\approx1$. The $C_1$ offset allows
-for imperfections in the pedestal subtraction. If the pedestal subtraction were perfect, one would expect
+for imperfections in the pedestal subtraction. If the pedestal subtraction was perfect, one would expect
 $C_1\approx0$. Allowing $C_1$ to be a free parameter generally produces better Monte Carlo to Data agreement
 at low energies.
 
@@ -513,8 +515,10 @@ at low energies.
     \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=4]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}}
   \end{tabular}
   \caption{East linearity response curves for a single calibration run period in 2011-2012. The residuals
-    reported are calculated as $100\times(fit-data)/fit$. The error bars on the points are the error on the
-    extracted mean from the fits of the data and simulation peaks, but they are smaller than the markers.}
+    reported are calculated as $100\times$(fit$-$data)/fit. The error bars on the points are the error on the
+    extracted mean from the fits of the data and simulation peaks, but they are smaller than the markers. The sources
+    used are $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$, and the many points for each source
+  represent the many $(x,y)$ positions sampled.}
   \label{fig:eastLinCurves}
 \end{figure}
 
@@ -527,8 +531,11 @@ at low energies.
     \subfloat[PMT West 3]{\includegraphics[scale=0.35,page=8]{4-UCNACalibrations/linCurves_SrcPeriod_3.pdf}}
   \end{tabular}
   \caption{West linearity response curves for a single calibration run period in 2011-2012. The residuals
-  reported are calculated as $100\times(fit-data)/fit$. The error bars on the points are the error on the
-    extracted mean from the fits of the data and simulation peaks, but they are smaller than the markers.}
+  reported are calculated as $100\times$(fit$-$data)/fit. The error bars on the points are the error on the
+  extracted mean from the fits of the data and simulation peaks, but they are smaller than the markers.
+  The sources
+  used are $^{137}\mathrm{Ce}$, $^{113}\mathrm{Sn}$, and $^{207}\mathrm{Bi}$, and the many points for each source
+  represent the many $(x,y)$ positions sampled.}
   \label{fig:westLinCurves}
 \end{figure}
 
@@ -553,8 +560,8 @@ whether or not the resolution factors are correct for each individual calibratio
 This involves comparing the widths
 of the data peaks to the widths of the simulation peaks, both in the energy domain. The widths of the simulation
 peaks come directly from the fits used in calculating the linearity curves, as the simulated $E_{\mathrm{vis}}$
-spectra were already fitted, but recall that the PMT ADC spectra were used in determining the lineariry curves. Thus, in order
-to extract the data $E_{\mathrm{vis}}$ widths, the energy calibration for each run period must be applied
+spectra were already fitted, but recall that the PMT ADC spectra were used in determining the linearity curves. Thus, in order
+to extract the $E_{\mathrm{vis}}$ widths in data, the energy calibration for each run period must be applied
 to the conversion electron events themselves (the method for applying the
 calibration is briefly described in the following section). This provides $E_{\mathrm{vis}}$ spectra for each PMT as well as
 an $E_{\mathrm{recon}}$ spectrum from the combination of the individual PMT energies.
@@ -567,17 +574,18 @@ an $E_{\mathrm{recon}}$ spectrum from the combination of the individual PMT ener
   \end{tabular}
   \caption{Plots of the data source widths vs. the simulated source widths for a single PMT on each side of the
     detector used for determination of
-    the proper PMT resolution factors. When the slope$\approx$1, the resolution factors are recorded to be used
+    the proper PMT resolution factors. When the slope $\approx$ 1, the resolution factors are recorded to be used
     in the final calibration.}
   \label{fig:PMTwidths}
 \end{figure}
 
 With the source widths from both the data and simulation in hand, we plot the simulated widths vs. the data widths.
 If the resolution factors are correct, there will be a 1:1 ratio of the peaks. On the contrary, if the $\alpha_i$ values are
-incorrrect, the slope of the relationship indicates whether or not the resolution is set too high or to low.
+incorrrect, the slope of the relationship indicates whether or not the resolution is set too high or too low.
 Figure \ref{fig:PMTwidths} exemplifies the desired relationship between the simulation and data peak widths. The slope
 is extracted from a linear fit, and this is carried out for each PMT in a calibration period. The data points
-represent every source run in the respective source calibration period.
+represent every source run in the respective source calibration period, where again emphasis is placed on the
+many different $(x,y)$ locations at which the source holder was positioned during the calibration period.
 
 \begin{figure} [h]
   \centering
@@ -588,8 +596,9 @@ represent every source run in the respective source calibration period.
   \caption{Plots of the data source widths vs. the simulated source widths for the final $E_{\mathrm{recon}}$
     source spectra on each side of the
     detector. This is a measure of how well the individual PMT resolution factors combine to produce
-    agreement between the final reconstructed energy spectra. The slopes of nearly unity indicate the
-    final detector resolutions were very good for this calibration period.}
+    agreement between the final reconstructed energy spectra. The slopes of nearly unity indicate that the
+    final detector resolutions applied to the simulation were in very good agreement with
+    the underlying resolution of the PMTs for this calibration period.}
   \label{fig:EvisWidths}
 \end{figure}
 
@@ -606,7 +615,7 @@ where $\alpha_i'$ are the new estimates for the resolution factors.
 Once the slopes approach unity for all PMTs, the resolution factors are recorded and the linearity curves
 are calculated as the last step so that they use the best $\alpha_i$ values. This completes the calibration,
 and at this point final $E_{\mathrm{recon}}$ spectra for each source peak exist. The widths of these
-spectra, which are the culmination of all of the PMT information combined, provide a idea as to how well the
+spectra, which are the culmination of all of the PMT information combined, provide an idea as to how well the
 final combined widths agree between simulation and data. Figure \ref{fig:EvisWidths} shows this
 agreement for a single run period.
 
@@ -617,7 +626,7 @@ agreement for a single run period.
 %\end{equation*}
 %and the resolution factors are proportional to the square of the width.
 
-\subsection{Applying the calibration} \label{ssec:appCal}
+\subsection{Applying the Calibration} \label{ssec:appCal}
 
 Application of the calibration to an electron event of any kind requires first reading from the collection
 of calibration variables for each PMT: the position dependent response (interpolated to the exact position of the event),
@@ -635,7 +644,7 @@ These spectra came from a single calibration run that included all three sources
 \subsection{Monte Carlo to Data Agreement}
 A final measure of the agreement between Monte Carlo and data is best observed by comparing the $E_{\mathrm{recon}}$
 spectra of the data (after applying the calibration) to the $E_{\mathrm{recon}}$ spectra of the simulation (with
-the full detector response model applied). Figure \ref{fig:EreconSpectra} shows the typical agreement for each source.
+the full detector response model applied). Figure \ref{fig:Erecon_spectra} shows the typical agreement for each source.
 The agreement of all of the source peaks is further analyzed when determining the energy uncertainty contribution
 to the final asymmetry in Section \ref{ssec:energyRecon}.
 
@@ -643,7 +652,7 @@ to the final asymmetry in Section \ref{ssec:energyRecon}.
   \centering
   \includegraphics[scale=1,page=2]{4-UCNACalibrations/run_17523.pdf}
   \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{137}\mathrm{Ce}$ conversion electron source
-    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    data after application of the calibration. This is for a random run that included all three sources within the fiducial
     volume at the same time.}
   \label{fig:Ce_spectra}
 \end{sidewaysfigure}
@@ -652,7 +661,7 @@ to the final asymmetry in Section \ref{ssec:energyRecon}.
   \centering
   \includegraphics[scale=1,page=3]{4-UCNACalibrations/run_17523.pdf}
   \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{113}\mathrm{Sn}$ conversion electron source
-    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    data after application of the calibration. This is for a random run that included all three sources within the fiducial
     volume at the same time.}
   \label{fig:Sn_spectra}
 \end{sidewaysfigure}
@@ -661,7 +670,7 @@ to the final asymmetry in Section \ref{ssec:energyRecon}.
   \centering
   \includegraphics[scale=1,page=4]{4-UCNACalibrations/run_17523.pdf}
   \caption{Example spectra from each PMT for simulation (red dashed line) and data (blue line) for $^{207}\mathrm{Bi}$ conversion electron source
-    after application of the calibration. This is for a random run that included all three sources within the fiducial
+    data after application of the calibration. This is for a random run that included all three sources within the fiducial
     volume at the same time.}
   \label{fig:Bi_spectra}
 \end{sidewaysfigure}
@@ -670,7 +679,7 @@ to the final asymmetry in Section \ref{ssec:energyRecon}.
   \centering
   \includegraphics[scale=1,page=1]{4-UCNACalibrations/run_17523.pdf}
   \caption{Example $E_{\mathrm{recon}}$ spectra from combined PMT response
-    for simulation (red dashed line) and data (blue line) for all conversion electron sources
+    for simulation (red dashed line) and data (blue line) for all conversion electron source data
     after application of the calibration. This plot is from the same run as the plots of the previous individual
     PMT spectra, showing how the spectra combine to produce a single final energy estimate.}
   \label{fig:Erecon_spectra}
@@ -713,10 +722,10 @@ source calibration runs as was done for the scintillator energy calibration. Thi
 it automatically corrects for any changes in the anode gain on the run-by-run time scale. 
 
 
-\subsection{Position dependence of anode signal}
+\subsection{Position Dependence of Anode Signal}
 
 While the wirechamber is constructed to be as homogeneous as possible, a residual
-position dependence to the anode signal still exists. The cause of such position dependence is undetermined,
+position dependence to the anode signal still exists. The cause of such position dependence is not understood,
 but it only affects the energy calibration of the wirechamber, which is
 a non-essential component of the analysis. Also, by mapping the position dependence in a manner
 similar to the PMT position maps (Section \ref{sssec:posmaps}), we can remove any effects altogether.
@@ -776,9 +785,9 @@ After dividing out the MWPC position dependent response from the anode signals o
 we can attempt to relate the anode response to the expected wirechamber response from simulation (again
 we only use Type 0 events for the energy calibration). 
 To do this, we first separate the electron events by their $E_{\mathrm{recon}}$ into 50~keV energy bins beginning at 100~keV and ending at
-800~keV, giving twelve separate collections of electron events. The lower bound is chosen to avoid any possible
-effects from differences between the simulated and actual scintillator thresholds. The upper bound is just beyond
-the endpoint energy of the $\beta$-decay electrons.
+700~keV, giving twelve separate collections of electron events. The lower bound is chosen to avoid any possible
+effects from differences between the simulated and actual scintillator thresholds. The upper bound is set below the endpoint
+where there are still appreciable statistics in the $\beta$-decay spectrum.
 
 \begin{figure}[h]
   \centering
@@ -819,7 +828,7 @@ Examples of each fit for a single $E_{\mathrm{recon}}$ grouping can be seen in F
 If we
 have modeled the wirechamber correctly and as long as the MWPC anode signal is proportional to
 the total ionization created in the wirechamber, then we expect a linear relationship between the
-simulated energy depostion and the anode signal for each of the $E_{\mathrm{recon}}$ groupings. By plotting
+simulated energy deposition and the anode signal for each of the $E_{\mathrm{recon}}$ groupings. By plotting
 the MPVs from data and simulation and fitting with a straight line, we define the conversion
 from (position corrected) MWPC anode signal to energy deposited within the wirechamber. An example
 calibration is demonstrated in Figure \ref{fig:mwpcCal}. The calibration fit is of the form
@@ -882,7 +891,7 @@ distinguishes the Type 2 from the Type 3 events.
 \subsubsection{Monte Carlo Study}
 Monte Carlo studies provide the
 means for applying the most efficient cuts on the energy deposition in the wirechamber
-to separate the Type 2/3 backscattering events due to the fact that the true intitial direction of each event
+to separate the Type 2/3 backscattering events due to the fact that the true initial direction of each event
 is known, and thus so is the true type of the event. With this knowledge, one can analyze the fraction of events
 that are assigned the proper side as a function of different separation cuts. When we say we are applying cuts to
 separate the two event types, we mean choosing a wirechamber deposited energy where
@@ -903,7 +912,7 @@ as the two event type distributions overlap.
   \caption{Fraction of properly identified events where
     $200\mathrm{~keV}<E_{\mathrm{recon}}<300\mathrm{~keV}$ as a function of the separation cut.
     The polynomial fit to the maximum is indicated by the solid red line, from which the location
-    of the most effective separation cut is extacted.}
+    of the most effective separation cut is extracted.}
   \label{fig:propID}
 \end{figure}
 
@@ -927,7 +936,7 @@ range being analyzed.
 
 
 
-\subsubsection{Determining a continuous separation cut}
+\subsubsection{Determining a Continuous Separation Cut}
 
 After fitting the location of the optimal cuts of the eight $E_{\mathrm{recon}}$ groups, a
 continuous wirechamber cut can be extracted by plotting the location of the cuts vs. the
@@ -982,7 +991,7 @@ Upon integrating across all energies, the Type 2/3 separation method yields $>81
 of the Type 2/3 events,
 compared to the $\sim53\%$
 when no separation is applied. This improvement is very important if all event types
-are to be included in the final analysis, as it drastically reduces the
+are to be included in the final analysis, as it largely reduces the
 Monte Carlo systematic corrections that must be applied to the backscattering events.
 This will be shown in detail in the following chapter.
 

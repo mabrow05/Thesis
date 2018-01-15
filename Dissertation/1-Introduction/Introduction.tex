@@ -35,7 +35,7 @@ and $\beta$-decay.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Properties of the neutron}
+\section{Properties of the Neutron}
 \label{sec:neutronProperties}
 Let us take a moment to give a very brief introduction to the neutron to motivate the
 upcoming sections. The majority of this dissertation can be read and mostly understood
@@ -85,7 +85,7 @@ is $\sim 782$~keV, as shown by the maximum energy in the spectrum. The lifetime 
 approximately fifteen minutes.
 
 
-\section{$\beta$-decay and weak interactions: A brief history}
+\section{$\beta$-Decay and Weak Interactions: A Brief History}
 
 Prior to 1930, $\beta$-decay of nuclei was a polarizing topic of debate. Originally
 only the decay electron was detected, and given such an observed two-body decay (the recoil
@@ -109,7 +109,7 @@ the neutrino by Fermi, and it would be a crux of Fermi's theory of $\beta$-decay
 A quarter century later, the existence of the neutrino would be confirmed
 experimentally \cite{cowan1956detection}.
 
-\subsection{Fermi's theory of $\beta$-decay}
+\subsection{Fermi's Theory of $\beta$-Decay}
 After Pauli postulated the existence of the neutrino to explain the continuous energy
 distribution of the $\beta$-decay electron, Fermi attempted to theoretically describe
 the process in a similar manner to the theory of emission of
@@ -118,19 +118,40 @@ His theory relied on two postulates: the existence of the neutrino and that the 
 of heavy particles only, the neutron and the proton, both of which would turn out to be true.
 
 \begin{table}[h]
-  \caption{Transformation behavior of all possible bilinear covariants.} 
+  \caption{Transformation behavior of all possible bilinear covariants. The third column shows the
+  transformation under parity.} 
   \centering
-  \begin{tabular}{l c }
+  \begin{tabular}{l c}
     \hline \hline \\ [-1.75ex]
     $\bar{\psi}\psi$ & scalar \\ [0.50ex]
     $\bar{\psi}\gamma^5\psi$ & pseudoscalar \\ [0.50ex]
-    $\bar{\psi}\gamma^{\mu}\psi$ & vector \\ [0.50ex]
+    $\bar{\psi}\gamma^{\mu}\psi$ & vector\\ [0.50ex]
     $\bar{\psi}\gamma^{\mu}\gamma^5\psi$ & axial vector \\ [0.50ex]
     $\bar{\psi}\sigma^{\mu\nu}\psi$ & antisymmetric tensor \\ [0.50ex]   
     \hline
   \end{tabular}
   \label{tab:bilinearCov}
 \end{table}
+
+\iffalse
+\begin{table}[h]
+  \caption{Transformation behavior of all possible bilinear covariants. The third column shows the
+  transformation under parity.} 
+  \centering
+  \begin{tabular}{l c}
+    \hline \\-1.75
+    Current & Name & Parity \\
+    \hline \hline \\ [-1.75ex]
+    $\bar{\psi}\psi$ & scalar  & $1$\\ [0.50ex]
+    $\bar{\psi}\gamma^5\psi$ & pseudoscalar & $-1$ \\ [0.50ex]
+    $\bar{\psi}\gamma^{\mu}\psi$ & vector & $-1$ \\ [0.50ex]
+    $\bar{\psi}\gamma^{\mu}\gamma^5\psi$ & axial vector $1$ \\ [0.50ex]
+    $\bar{\psi}\sigma^{\mu\nu}\psi$ & antisymmetric tensor \\ [0.50ex]   
+    \hline
+  \end{tabular}
+  \label{tab:bilinearCov}
+\end{table}
+\fi
 
 Fermi's interaction Hamiltonian took the form (written in a different manner from Fermi's original
 paper on the subject for the sake of clarity) 
@@ -139,7 +160,12 @@ paper on the subject for the sake of clarity)
   H = C_V\big( \bar{\psi}_p \gamma_\mu \psi_n \big) \big( \bar{\psi}_e \gamma^\mu \psi_\nu \big), 
 \end{equation}
 %
-where $\bar{\psi} \gamma_\mu \psi$ is a vector current (see Table \ref{tab:bilinearCov}). The assumption
+where $\bar{\psi} \gamma_\mu \psi$ is a vector current (see Table \ref{tab:bilinearCov}).
+The $\psi$s in the above equation and the rest of the this thesis represent solutions to
+the Dirac equation for spin-1/2 fermions, and they take into account the mass and momentum
+of the particle involved in the interaction, as well as whether it is a particle or antiparticle
+that participates.
+The assumption
 that the current-current interaction would be of the vector-vector variety was a natural
 choice as this is the case for electromagnetism.
 
@@ -691,7 +717,7 @@ instead the CKM matrix is found to not be unitary, this would indicate the prese
 new beyond Standard Model physics, an example of which could be a fourth generation of quarks.
 
 
-\section{What does this mean for the neutron?}
+\section{What Does This Mean for the Neutron?}
 
 \subsection{Matrix Element}
 The matrix element for $\beta$-decay is given by
@@ -743,7 +769,7 @@ from either are expected to small, as they also contribute to the energy spectru
 \cite{holstein1974recoil,plaster2012}.
 
 
-\subsection{Neutron $\beta$-decay Asymmetry Parameter $A$} \label{ssec:neutronAsymmParam}
+\subsection{Neutron $\beta$-Decay Asymmetry Parameter $A$} \label{ssec:neutronAsymmParam}
 
 In the case of $\beta$-decay of polarized free neutrons and assuming the electron spin is undetectable,
 Equation \ref{eq:jackson} simplifies drastically,
@@ -838,7 +864,7 @@ $A_0$. From $A_0$, a direct determination of $\lambda = \frac{g_A}{g_V}$, the ra
 coupling constants in the hadronic weak interaction, follows.
 These corrections are detailed below.
 
-\subsubsection{Recoil order corrections}  \label{sssec:ROCorr}
+\subsubsection{Recoil Order Corrections}  \label{sssec:ROCorr}
 
 Gardner and Zhang \cite{gardner2001} present the asymmetry parameter $A$ upon considering recoil order effects
 from a finite mass nucleon. The treatment is completely general in that it includes all possible couplings
@@ -1046,7 +1072,7 @@ will see an attractive potential. The strength of the potential also indicates t
 Tesla will completely reflect a spin aligned with the field. We'll return to this in the next chapter.
 
 
-\section{Motivation in a nutshell}
+\section{Motivation in a Nutshell}
 
 The focus of this thesis is describing in detail a new precision
 measurement of the neutron $\beta$-decay asymmetry parameter $A_0$.
@@ -1064,7 +1090,7 @@ measurements of any $\beta$-decay observable (i.e. $A_0$) either produces a meas
 known to exist ($g_A$ and $g_V$ or the ratio $\lambda=g_A/g_V$), or tests the couplings believed to not exist within the
 Standard Model (scalar, pseudoscalar, tensor).
 
-\subsection{Why determine $\lambda$?}
+\subsection{Why Determine $\lambda$?}
 
 Determining $\lambda$ from measurements of the correlation coefficients is more fundamental to
 weak interaction physics, as the value is not determined within the theory. Therefore,
@@ -1103,7 +1129,7 @@ is $g'_A = g_A(1-2\epsilon_R)$, where $\epsilon_R$ denotes the effective right-h
 \end{figure}
 
 
-\subsection{Current status of $A_0$ measurements} \label{ssec:Previous_results}
+\subsection{Current Status of $A_0$ Measurements} \label{ssec:Previous_results}
 
 Measurements of $A_0$ provide the most sensitive value of $\lambda = g_A/g_V$,
 which we now see has profound impact within the physics community.
