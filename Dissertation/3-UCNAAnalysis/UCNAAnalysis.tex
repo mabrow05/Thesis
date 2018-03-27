@@ -69,7 +69,7 @@ are in terms of the true initial energy of the $\beta$-decay electrons.
 
 The majority of the analysis described throughout this thesis was completed using
 the ROOT Data Analysis Framework \cite{brun1997root}. A special thanks goes out to
-the Nuclear and Particle Physics communities as a whole, who have collectively built an indispensible
+the Nuclear and Particle Physics communities as a whole, who have collectively built an indispensable
 web of documentation regarding any and all things ROOT. Without the ROOT documentation
 and user community, much of this analysis would have been painstakingly more difficult.
 
@@ -218,7 +218,7 @@ energy range of interest should suffice.
 \includegraphics[scale=.60]{3-UCNAAnalysis/gain_bismuth2.pdf}
 \caption{Example $^{207}\mathrm{Bi}$ spectrum and fit for a single PMT over
   the course of a run. The upper and lower bismuth conversion electron peaks are
-  seen, along with a distribution from the compton scattering of decay gammas. Note that the gamma rays are
+  seen, along with a distribution from the Compton scattering of decay gammas. Note that the gamma rays are
   visible because the pulser is attached directly to the PMT and there is no type
   of veto (like the MWPC) to remove them.}
 \label{fig:biPulser}
@@ -237,12 +237,13 @@ inherently more Gaussian due to the lower end having a tail from extraneous ener
 
 The method for applying the gain correction is as follows. First, a reference gain must be determined
 to normalize all other gains against. This was chosen to be what is called the ``reference run'', and it
-typically consists of a manually inspected source run within each source calibration period. The gain factor
-is then calculated as the ratio of the pulser peak in a given run divided by the pulser peak in the reference
-run, or
+typically consists of a manually inspected source run within each source calibration period. The gain factor $g$
+for run $i$ 
+is then calculated as the ratio of the fitted pulser peak of run $i$, $\mu_i$, divided by the fitted pulser peak in the reference
+run, $\mu_{\mathrm{ref}}$, or
 %
 \begin{equation}
-  g_i = \frac{\mu_i}{\mu_{\mathrm{ref}}}
+  g_i = \frac{\mu_i}{\mu_{\mathrm{ref}}}.
 \end{equation}
 %
 This automatically defines the gain of the reference run to be $g_{\mathrm{ref}}=1$. Then all other runs which are
@@ -361,7 +362,7 @@ $i$ according to
 \begin{equation}
   E_{\mathrm{vis},i}^{\mathrm{FINAL}} = g_{\mathrm{ep},i} E_{\mathrm{vis},i}.
 \end{equation}
-Then $E_{\mathrm{recon}}$ is calcuated using the final visible energies from the available PMTs.
+Then $E_{\mathrm{recon}}$ is calculated using the final visible energies from the available PMTs.
 
 
 
@@ -499,7 +500,7 @@ response model on data, but this will be addressed as needed
 when describing the calibration.
 
 The simulation work for this thesis was completed
-using the Geant4 simulation software package. The geometry of the
+using the \textsc{Geant4} simulation software package. The geometry of the
 apparatus was duplicated
 to the best precision possible and benchmarked against data after
 the detector response model was applied. The structure
@@ -881,7 +882,7 @@ on the other hand are smeared out in a Gaussian fashion, with no possible
 resolution of the outer shell electron lines due to the resolution of the detectors not
 being sufficiently narrow.
 The Gaussian-like peaks arise from finite resolution effects and
-must be incorporated in the simulatin using parameters calculated
+must be incorporated in the simulation using parameters calculated
 from real data.  
 
 
@@ -998,7 +999,7 @@ Poisson processes. The gain is stable enough that including a sampling of the wi
 in modeled ADC, and so it was ignored. The pedestal distributions for each PMT were sampled and used in the
 Detector Response Model, as this gives a width to a signal with no energy deposition as is seen in the data.
 To apply the random sampling of the pedestal, a Gaussian is randomly sampled with mean equal to zero and sigma equal
-to the rms recorded for that PMT in the run of interest. This random value is then added to the ADC estimate. 
+to the RMS recorded for that PMT in the run of interest. This random value is then added to the ADC estimate. 
 
 Once all $\mathrm{ADC}_i$ have been calculated, the two-fold trigger model must be applied.
 The PMT trigger thresholds as determined in Section \ref{sec:triggerThresh} are retrieved for the run of interest.

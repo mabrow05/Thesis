@@ -407,7 +407,7 @@ where $Q_i$ is the fitted ADC value of the feature in pixel $i$ and $Q_0$ is the
 feature in the center pixel. This normalizes the position response for a PMT to the center pixel. The
 position response at some position $(x,y)$, referred to as the continuous variable $\eta(x,y)$,
 is then calculated via a two-dimensional Catmull-Rom
-cubic interpolating spline \cite{catmull1974}. The same interpolation is used to produce the smooth
+cubic interpolating spline \cite{catmull1974,mpmThesis}. The same interpolation is used to produce the smooth
 plots of the
 position dependence in Figure \ref{fig:posmaps}.
 
@@ -570,7 +570,7 @@ an $E_{\mathrm{recon}}$ spectrum from the combination of the individual PMT ener
   \centering
   \begin{tabular}{cc}
     \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=4]{4-UCNACalibrations/final_width_comp_3.pdf}} &
-    \subfloat[PMT East 0]{\includegraphics[scale=0.35,page=5]{4-UCNACalibrations/final_width_comp_3.pdf}} 
+    \subfloat[PMT West 0]{\includegraphics[scale=0.35,page=5]{4-UCNACalibrations/final_width_comp_3.pdf}} 
   \end{tabular}
   \caption{Plots of the data source widths vs. the simulated source widths for a single PMT on each side of the
     detector used for determination of
@@ -581,7 +581,7 @@ an $E_{\mathrm{recon}}$ spectrum from the combination of the individual PMT ener
 
 With the source widths from both the data and simulation in hand, we plot the simulated widths vs. the data widths.
 If the resolution factors are correct, there will be a 1:1 ratio of the peaks. On the contrary, if the $\alpha_i$ values are
-incorrrect, the slope of the relationship indicates whether or not the resolution is set too high or too low.
+incorrect, the slope of the relationship indicates whether or not the resolution is set too high or too low.
 Figure \ref{fig:PMTwidths} exemplifies the desired relationship between the simulation and data peak widths. The slope
 is extracted from a linear fit, and this is carried out for each PMT in a calibration period. The data points
 represent every source run in the respective source calibration period, where again emphasis is placed on the
@@ -590,8 +590,8 @@ many different $(x,y)$ locations at which the source holder was positioned durin
 \begin{figure} [h]
   \centering
   \begin{tabular}{cc}
-    \subfloat[PMT East 3]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} &
-    \subfloat[PMT East 0]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} 
+    \subfloat[East]{\includegraphics[scale=0.35,page=1]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} &
+    \subfloat[West]{\includegraphics[scale=0.35,page=2]{4-UCNACalibrations/widthsErecon_runPeriod_3.pdf}} 
   \end{tabular}
   \caption{Plots of the data source widths vs. the simulated source widths for the final $E_{\mathrm{recon}}$
     source spectra on each side of the
@@ -951,7 +951,7 @@ functional form
   f(x) = C_1 + C_2e^{-C_3x}.
 \end{equation}
 Then, with the fit parameters saved for each geometry, a continuously varying separation
-cut can be calculated depending on the $E_{\mathrm{recon}}$ of an indivudual event.
+cut can be calculated depending on the $E_{\mathrm{recon}}$ of an individual event.
 
 \begin{figure}[h]
   \centering
